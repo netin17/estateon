@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  /* background color */
+  --bg-black: #000;
+  --bg-white: #ffff;
+  --bg-light-red: #ef5e59;
+  /* color */
+  --color-light-red: #ef5e59;
+  --color-black: #000;
+  --color-white: #ffff;
+  --color-red: #ff0000;
+
+  /* Fonts */
+  --normal-font-weight: 400;
+  --bold-font-weight: 700;
+  --primary-font: "Poppins", sans-serif;
+}
+body {
+  font-family: var(--primary-font);
+}
+p {
+  font-weight: var(--normal-font-weight);
+  color: #bdb5b2;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--bold-font-weight);
+  color: var(--color-light-red);
+}
+h2 {
+  font-size: 44px;
+}
+a {
+  text-decoration: none;
+}
+.h5 {
+  width: 100%;
+  height: 10px;
+  background-color: var(--color-light-red);
+}
+.prop-txt {
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.prop-img img {
+  width: 40px;
+  margin-left: 10px;
+}
+.prop-box {
+  background: rgb(255 255 255);
+  padding: 5%;
+  box-shadow: 1px 1px 5px 0px #a5a0a0;
+}
+.head-txt {
+  font-size: 26px !important;
+  line-height: 2;
+  font-weight: 500;
+  color: #000;
+}
+.sell-btn {
+  padding: 6px 50px;
+  border-radius: 0;
+  font-size: 24px;
+}
+.rent-btn {
+  border: 1px solid #000;
+}
+.map-container {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.para {
+  font-size: 20px;
+  font-weight: 300;
+}
+.publish-btn {
+  font-size: 28px;
+  font-weight: 600;
+  border: 1px solid var(--color-light-red);
+  border-radius: 0;
+  padding: 8px 50px;
+  color: var(--color-light-red);
+}
+.line {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.line1 {
+  background: red;
+  height: 7px;
+  width: 40%;
+}
