@@ -43,17 +43,20 @@
       </div>
       <ul class="share-icon mt-3">
         <li>
-          <a href="https://www.facebook.com/EstateOnline" class="pl-0"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://facebook.com/EstateOnOfficial" class="pl-0"><i class="fab fa-facebook-f"></i></a>
         </li>
-        <!-- <li>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-        </li> -->
         <li>
-          <a href="https://www.instagram.com/eoninfratech/"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com/EstateOn_"><i class="fab fa-twitter"></i></a>
+        </li> 
+        <li>
+          <a href="https://www.instagram.com/estateonofficial/"><i class="fab fa-instagram"></i></a>
         </li>
-        <!-- <li>
-          <a href="#"><i class="fab fa-pinterest-p"></i></a>
-        </li> -->
+         <li>
+          <a href="https://pinterest.com/estateon"><i class="fab fa-pinterest-p"></i></a>
+        </li> 
+         <li>
+          <a href="https://www.linkedin.com/company/estateon"><i class="fab fa-linkedin-in"></i></a>
+        </li> 
       </ul>
       <div class="ftr-title">
         <h3>Subscribe</h3>

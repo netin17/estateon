@@ -531,7 +531,7 @@ a.locationArea {
   margin: 5px;
   background: #fff;
   border-radius: 5px;
-  min-height: 450px;
+  /* min-height: 450px; */
 }
 span.divider {
   border: 1px solid #f5f5f5;
