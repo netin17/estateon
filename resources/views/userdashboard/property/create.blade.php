@@ -125,7 +125,7 @@
             <h3 class="prop-txt">Add Basic Property information <span class="prop-img"><img
                         src="{{ asset('userfront/img/Icons/Basic-Information.png') }}" alt=""></span>
             </h3>
-        <form action="{{ route('frontuser.property.create') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('frontuser.property.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
             <div class="prop-box">
                 <div class="row">
@@ -209,7 +209,7 @@
                         </div>
                         <div class="mb-3">
                         <label for="property-loc" class="text-heading">Property Address</label>
-                                        <input type="text" id="address-input" name="address" class="form-control map-input" required>
+                                        <input type="text" id="address-input" name="address" placeholder="address" class="form-control map-input" required>
                         </div>
                     </div>
                     <div hidden class="form-group {{ $errors->has('lat') ? 'has-error' : '' }}">

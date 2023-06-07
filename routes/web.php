@@ -41,7 +41,8 @@ Route::post('startconversation','Web\ChatController@startconversation')->name('s
 Route::post('lead-add','Web\PropertiesController@leadAdd');
 
 Route::any('property/create', 'FrontUser\PropertiesController@create')->name('frontuser.property.create');
-//Route::any('profile/show', 'FrontUser\PropertiesController@create')->name('frontuser.profile.show');
+Route::post('property/store', 'FrontUser\PropertiesController@store')->name('frontuser.property.store');
+Route::any('profile/show', 'FrontUser\PropertiesController@create')->name('frontuser.profile.show');
 
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {

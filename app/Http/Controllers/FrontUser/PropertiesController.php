@@ -60,7 +60,7 @@ class PropertiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
         $data = [];
         //$data['property_type'] = PropertyType::get();
         $data['vastu'] = Vastu::get();
