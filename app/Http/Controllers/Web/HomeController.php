@@ -18,16 +18,16 @@ use Illuminate\Support\Str;
 class HomeController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
         //print '<pre>'; print_r(Auth::guard('frontuser')->user()); die;
+        $category = $request->input('category', 'R');
         $data['property_type'] = PropertyType::select(['id', 'name'])->get();
         $data['hot_featured'] = $this->gethotfeature();
         $data['by_admin'] = $this->getByAdmin();
         $data['by_users'] = $this->getByUsers();
-        $data['section'] = Ui::Where('name','home')->with('uimeta.uimetadata')->get();
-        // echo "<pre>"; print_r($data['section']->toArray());
-        // exit;
+        // $data['section'] = Ui::Where('name','home')->with('uimeta.uimetadata')->get();
+        $data['category'] = $category;
         $data['testimonials'] = Testimonials::get();
         // dd($data['hot_featured']['hot'][0]);
         return view('estate.home', compact('data'));

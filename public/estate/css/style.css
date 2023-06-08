@@ -2800,7 +2800,7 @@ li.v-inner.newly-added {
   box-sizing: border-box;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-image: url('https://estateon.com/uploads/image/property334/1bhk-img-mobile.jpg');
+  background-image: url('https://estateon.com/uploads/image/property334/1bhk-img-mobile.png');
   animation: border-transform 6s linear infinite alternate forwards;
     -webkit-animation-play-state: paused;
     -moz-animation-play-state: paused;
@@ -2810,10 +2810,10 @@ li.v-inner.newly-added {
   background-image: url('https://estateon.com/uploads/image/property154/WhatsApp%20Image%202021-10-12%20at%2022.47.21.jpeg');
 }
 .checkbox.thrd + label{
-  background-image: url('https://estateon.com/uploads/image/property158/WhatsApp%20Image%202021-10-21%20at%2012.30.43%20PM%20(1).jpeg');
+  background-image: url('https://estateon.com/uploads/image/property158/WhatsApp%20Image%202021-10-21%20at%2012.30.43%20PM%20(1).png');
 }
 .checkbox.foth + label{
-  background-image: url('https://estateon.com/uploads/image/property160/WhatsApp%20Image%202021-10-21%20at%2012.30.42%20PM%20(1).jpeg');
+  background-image: url('https://estateon.com/uploads/image/property160/WhatsApp%20Image%202021-10-21%20at%2012.30.42%20PM%20(1).png');
 }
 
 .checkbox:checked + label{
@@ -2862,7 +2862,7 @@ ul.slider-custom li {
   border: 5px solid #bdc3c7;
   background-size: cover;
   background-position: center;
-  background-image: url('https://estateon.com/uploads/image/property334/1bhk-img-mobile.jpg');
+  background-image: url('https://estateon.com/uploads/image/property334/1bhk-img-mobile.png');
   border-radius: 50%;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
@@ -2885,10 +2885,10 @@ ul.slider-custom li:nth-child(2) {
   background-image: url('https://estateon.com/uploads/image/property154/WhatsApp%20Image%202021-10-12%20at%2022.47.21.jpeg');
 }
 ul.slider-custom li:nth-child(3) {
-  background-image: url('https://estateon.com/uploads/image/property158/WhatsApp%20Image%202021-10-21%20at%2012.30.43%20PM%20(1).jpeg');
+  background-image: url('https://estateon.com/uploads/image/property158/WhatsApp%20Image%202021-10-21%20at%2012.30.43%20PM%20(1).png');
 }
 ul.slider-custom li:nth-child(4) {
-  background-image: url('https://estateon.com/uploads/image/property160/WhatsApp%20Image%202021-10-21%20at%2012.30.42%20PM%20(1).jpeg');
+  background-image: url('https://estateon.com/uploads/image/property160/WhatsApp%20Image%202021-10-21%20at%2012.30.42%20PM%20(1).png');
 }
 
 

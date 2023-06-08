@@ -11,9 +11,9 @@
       <div class="prop-tabs">
         <form action='{{ route("property.list") }}' id="homeform" name="homeform" method="GET">
           <div class="select_term">
-            <input type="radio" id="search_rent" name="type" value="rent" checked>
+            <input type="radio" id="search_rent" name="type" value="rent" {{$data['category']=='R'? 'checked':''}}>
             <label for="search_rent">Rent</label>
-            <input type="radio" id="search_sale" name="type" value="sale">
+            <input type="radio" id="search_sale" name="type" value="sale" {{$data['category']=='s'? 'checked':''}}>
             <label for="search_sale">Sale</label>
           </div>
           <div class="tab-pane">
@@ -84,64 +84,118 @@
                 </div>
                 <div class="section2 ml-80 cpoint">
                     <div class="sec2cont d-flex dnone">
+                        
+                        @switch($data['category'])
+                        @case('R')
                         <div class="minprice dnone minprice1">
-                            <!-- <input type="number" class="imputval disnone dnone" placeholder="Enter Min Price">
-                            <p class="selhed disnone dnone" style="margin-left: 50px;">Or select from <i class="fa-solid fa-hand-point-down redc"></i></p> -->
-                            <select name="" id="" class="textSearch select1 dnone" >
-                                <option value="Min Price">Min Price</option>
-                                <option value="&#8377 2.6 Cr">&#8377 5 Lac</option>
-                                <option value="&#8377 3 Cr">&#8377 10 Lac</option>
-                                <option value="&#8377 3.5 Cr">&#8377 20 Lac</option>
-                                <option value="&#8377 4 Cr">&#8377 30 Lac</option>
-                                <option value="&#8377 4.5 Cr">&#8377 40 Lac</option>
-                                <option value="&#8377 5 Cr">&#8377 50 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 60 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 70 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 80 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 90 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 1 Cr</option>
-                                <option value="&#8377 10 Cr">&#8377 2 Cr</option>
-                                <option value="&#8377 2.6 Cr">&#8377 2.5 Cr</option>
-                                <option value="&#8377 3.0 Cr">&#8377 3 Cr</option>
-                                <option value="&#8377 3.5 Cr">&#8377 3.5 Cr</option>
-                                <option value="&#8377 4.0 Cr">&#8377 4 Cr</option>
-                                <option value="&#8377 4.5 Cr">&#8377 4.5 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 5 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 6 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 7 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 8 Cr</option>
-                               
-                                
-                            </select>
-                        </div>
-                        <div class="minprice dnone minprice2">
-                            <!-- <input type="number" class="imputval disnone dnone" placeholder="Enter Max Price">
-                            <p class="selhed disnone dnone">Dropdown-Menu  </p> -->
-                            <select name="" id="" class="textSearch select2 dnone">
-                                <option value="Min Price">Max Price</option>
-                                <option value="&#8377 2.6 Cr">&#8377 5 Lac</option>
-                                <option value="&#8377 3 Cr">&#8377 10 Lac</option>
-                                <option value="&#8377 3.5 Cr">&#8377 20 Lac</option>
-                                <option value="&#8377 4 Cr">&#8377 30 Lac</option>
-                                <option value="&#8377 4.5 Cr">&#8377 40 Lac</option>
-                                <option value="&#8377 5 Cr">&#8377 50 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 60 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 70 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 80 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 90 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 1 Cr</option>
-                                <option value="&#8377 10 Cr">&#8377 2 Cr</option>
-                                <option value="&#8377 2.6 Cr">&#8377 2.5 Cr</option>
-                                <option value="&#8377 3.0 Cr">&#8377 3 Cr</option>
-                                <option value="&#8377 3.5 Cr">&#8377 3.5 Cr</option>
-                                <option value="&#8377 4.0 Cr">&#8377 4 Cr</option>
-                                <option value="&#8377 4.5 Cr">&#8377 4.5 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 5 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 6 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 7 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 8 Cr</option>                                
-                            </select>
-                    </div>
+                            <select name="budgetMin" id="budgetMin" class="textSearch select1 dnone" >
+                              <option value="">Min Price</option>
+                              <option value="5000">&#8377 5000</option>
+                              <option value="10000">&#8377 10000</option>
+                              <option value="15000">&#8377 15000</option>
+                              <option value="20000">&#8377 20000</option>
+                              <option value="25000">&#8377 25000</option>
+                              <option value="30000">&#8377 30000</option>
+                              <option value="35000">&#8377 35000</option>
+                              <option value="40000">&#8377 40000</option>
+                              <option value="50000">&#8377 50000</option>
+                              <option value="60000">&#8377 60000</option>
+                              <option value="85000">&#8377 85000</option>
+                              <option value="100000">&#8377 1 Lac</option>
+                              <option value="150000">&#8377 1.5 Lac</option>
+                              <option value="200000">&#8377 2 Lac</option>
+                              <option value="400000">&#8377 4 Lac</option>
+                              <option value="700000">&#8377 7 Lac</option>
+                              <option value="1000000">&#8377 10 Lac</option> 
+                          </select>
+                      </div> 
+                      <div class="minprice dnone minprice2">
+                          <select name="maxBudjet" id="maxBudjet" class="textSearch select2 dnone">
+                            <option value="">Max Price </option>
+                              <option value="5000">&#8377 5000</option>
+                              <option value="10000">&#8377 10000</option>
+                              <option value="15000">&#8377 15000</option>
+                              <option value="20000">&#8377 20000</option>
+                              <option value="25000">&#8377 25000</option>
+                              <option value="30000">&#8377 30000</option>
+                              <option value="35000">&#8377 35000</option>
+                              <option value="40000">&#8377 40000</option>
+                              <option value="50000">&#8377 50000</option>
+                              <option value="60000">&#8377 60000</option>
+                              <option value="85000">&#8377 85000</option>
+                              <option value="100000">&#8377 1 Lac</option>
+                              <option value="150000">&#8377 1.5 Lac</option>
+                              <option value="200000">&#8377 2 Lac</option>
+                              <option value="400000">&#8377 4 Lac</option>
+                              <option value="700000">&#8377 7 Lac</option>
+                              <option value="1000000">&#8377 10 Lac</option>                               
+                        </select>
+                </div>
+                            @break
+                        @case('s')
+                        <div class="minprice dnone minprice1">
+                          <select name="budgetMin" id="budgetMin" class="textSearch select1 dnone" >
+                            <option value="">Min Price</option>
+                            <option value="500000">&#8377; 5 Lac</option>
+                            <option value="1000000">&#8377;10 Lac</option>
+                            <option value="2000000">&#8377;20 Lac</option>
+                            <option value="3000000">&#8377;30 Lac</option>
+                            <option value="4000000">&#8377;40 Lac</option>
+                            <option value="5000000">&#8377;50 Lac</option>
+                            <option value="6000000">&#8377;60 Lac</option>
+                            <option value="7000000">&#8377;70 Lac</option>
+                            <option value="8000000">&#8377;80 Lac</option>
+                            <option value="9000000">&#8377;90 Lac</option>
+                            <option value="10000000">&#8377;1 Cr</option>
+                            <option value="12000000">&#8377;1.2 Cr</option>
+                            <option value="14000000">&#8377;1.4 Cr</option>
+                            <option value="16000000">&#8377;1.6 Cr</option>
+                            <option value="18000000">&#8377;1.8 Cr</option>
+                            <option value="20000000">&#8377;2 Cr</option>
+                            <option value="23000000">&#8377;2.3 Cr</option> 
+                            <option value="26000000">&#8377;2.6 Cr</option> 
+                            <option value="30000000">&#8377;3 Cr</option> 
+                            <option value="35000000">&#8377;3.5 Cr</option> 
+                            <option value="40000000">&#8377;4 Cr</option> 
+                            <option value="45000000">&#8377;4.5 Cr</option> 
+                            <option value="50000000">&#8377;5 Cr</option> 
+                            <option value="100000000">&#8377;10 Cr</option> 
+                            <option value="200000000">&#8377;20 Cr</option> 
+                        </select>
+                    </div> 
+                    <div class="minprice dnone minprice2">
+                        <select name="maxBudjet" id="maxBudjet" class="textSearch select2 dnone">
+                          <option value="">Max Price </option>
+                          <option value="500000">&#8377; 5 Lac</option>
+                          <option value="1000000">&#8377;10 Lac</option>
+                          <option value="2000000">&#8377;20 Lac</option>
+                          <option value="3000000">&#8377;30 Lac</option>
+                          <option value="4000000">&#8377;40 Lac</option>
+                          <option value="5000000">&#8377;50 Lac</option>
+                          <option value="6000000">&#8377;60 Lac</option>
+                          <option value="7000000">&#8377;70 Lac</option>
+                          <option value="8000000">&#8377;80 Lac</option>
+                          <option value="9000000">&#8377;90 Lac</option>
+                          <option value="10000000">&#8377;1 Cr</option>
+                          <option value="12000000">&#8377;1.2 Cr</option>
+                          <option value="14000000">&#8377;1.4 Cr</option>
+                          <option value="16000000">&#8377;1.6 Cr</option>
+                          <option value="18000000">&#8377;1.8 Cr</option>
+                          <option value="20000000">&#8377;2 Cr</option>
+                          <option value="23000000">&#8377;2.3 Cr</option> 
+                          <option value="26000000">&#8377;2.6 Cr</option> 
+                          <option value="30000000">&#8377;3 Cr</option> 
+                          <option value="35000000">&#8377;3.5 Cr</option> 
+                          <option value="40000000">&#8377;4 Cr</option> 
+                          <option value="45000000">&#8377;4.5 Cr</option> 
+                          <option value="50000000">&#8377;5 Cr</option> 
+                          <option value="100000000">&#8377;10 Cr</option> 
+                          <option value="200000000">&#8377;20 Cr</option>                               
+                      </select>
+              </div>
+                            @break
+                    @endswitch
+                       
                 </div>
             </div>
         </div>
@@ -289,16 +343,16 @@
            
             <ul class="slider-custom">
               <li>
-                <span>1 BHK House</span>
+                <span></span>
                 </li>
               <li>
-                <span>Villa for Sale</span>
+                <span></span>
                 </li>
               <li>
-                <span>plots in chinar hills rau by bass</span>
+                <span></span>
                 </li>
               <li>
-                <span>TOP location's plot for sale</span>
+                <span></span>
                 </li>
               </ul>
 
@@ -478,6 +532,7 @@
 @endsection
 @section('scripts')
 <script src="{{url('/js/mapInput.js')}}"></script>
+<script src="{{url('/js/homepage.js')}}"></script>
 <!-- <script async src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize"> -->
 
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initialize"></script>
