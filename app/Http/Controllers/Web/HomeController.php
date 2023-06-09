@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
         //print '<pre>'; print_r(Auth::guard('frontuser')->user()); die;
         $category = $request->input('category', 'R');
-        $data['property_type'] = PropertyType::select(['id', 'name'])->get();
+        $data['property_type'] = PropertyType::select(['id', 'name','property_type'])->whereNotIn('name', ['Other','Featured',"New Posting"])->get();
         $data['hot_featured'] = $this->gethotfeature();
         $data['by_admin'] = $this->getByAdmin();
         $data['by_users'] = $this->getByUsers();

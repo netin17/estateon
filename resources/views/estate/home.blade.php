@@ -19,18 +19,18 @@
           <div class="tab-pane">
             <div class="serch-flow">
               <div class="form-group loc-div">
-                <input type="location" class="form-control map-input" id="address-input" aria-describedby="" placeholder="Enter Location.." name="location" />
+                <input type="location" class="form-control map-input" id="address-input" aria-describedby="" placeholder="Enter Location.." name="location" required data-msg-required="Please enter a location." />
                 <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
                 <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
               </div>
-              <div class="form-group prop-div">
+              {{-- <div class="form-group prop-div">
                 <select type="Property Type" class="form-control" id="property_type" name="property_type">
                   <option value="">Property Type</option>
                   @foreach($data['property_type'] as $property_type)
                   <option value="{{$property_type->id}}">{{$property_type->name}}</option>
                   @endforeach
                 </select>
-              </div>
+              </div> --}}
 
                  <section class="mainsection">
         <div>
@@ -46,40 +46,32 @@
                         <p class="heading1 cpoint">Residential <i class="fa-solid fa-angle-down redc santo"></i> </p>
                         <div class="innersec1 ">
                             <ul class="subproperty d-flex ">
-                                <li>Flat</li>
-                                <li>House/Villa</li>
-                                <li>Plot</li>
-                            </ul>
-                            <ul class="subproperty d-flex">
-                                <li>1 Bhk</li>
-                                <li>2 Bhk</li>
-                                <li>3 Bhk</li>
-                                <li>4 Bhk</li>
-                                <li>5 Bhk</li>
-                                <li>5+ Bhk</li>
+                              @foreach($data['property_type'] as $property_type)
+                              @if($property_type->property_type == "residential")
+                                <li><input type="checkbox" name="residential[]" value="{{$property_type->id}}"> {{$property_type->name}}</li>
+                                @endif
+                                @endforeach
                             </ul>
                         </div>
                         <p class="heading2 cpoint">Commercial <i class="fa-solid fa-angle-down redc santo2"></i> </p>
                         <div class="innersec2 dnone">
                             <ul class="subproperty d-flex">
-                                <li>Office Space</li>
-                                <li>Shop/Showroom</li>
-                                <li>Commercial Land</li>
+                              @foreach($data['property_type'] as $property_type)
+                              @if($property_type->property_type == "commercial")
+                              <li><input type="checkbox" name="commercial[]" value="{{$property_type->id}}"> {{$property_type->name}}</li>
+                              @endif
+                              @endforeach
                             </ul>
-                            <ul class="subproperty d-flex">
-                                <li>Ware House/Godown</li>
-                                <li>Industrial Building</li>
-                                <li>Industrial Shed</li>
-                            </ul>
+                           
                         </div>
-                        <p class="heading3 cpoint">Other Property Types <i class="fa-solid fa-angle-down redc santo3"></i>
+                        {{-- <p class="heading3 cpoint">Other Property Types <i class="fa-solid fa-angle-down redc santo3"></i>
                         </p>
                         <div class="innersec3 dnone">
                             <ul class="subproperty d-flex">
                                 <li>Agricultural Land</li>
                                 <li>Farm House</li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="section2 ml-80 cpoint">
@@ -208,7 +200,7 @@
 
 
                <div class="find">
-                <button class="cm-btn">Find Property</button>
+                <button class="cm-btn" type="submit">Find Property</button>
               </div>
             </div>
           </div>

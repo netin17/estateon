@@ -150,14 +150,17 @@ class PropertiesController extends Controller
             }
         }
         
-        // if (isset($params['property_type'])) {
-        //     // if ($params['property_type'] != "") {
-        //     //     $property->whereHas('property_type', function ($query)  use ($params) {
-        //     //         $query->Where('type_id', $params['property_type']);
-        //     //         $query->with('type_data');
-        //     //     });
-        //     // }
-        // }
+        if (isset($params['residential']) || isset($params['commercial'])) {
+            $allpropertytypes= array_merge($params['residential'] ?? [], $params['commercial'] ?? []);
+         
+            if(count($allpropertytypes)>0){
+                $property->whereHas('property_type', function ($query)  use ($allpropertytypes) {
+                    $query->WhereIn('type_id', $allpropertytypes);
+                    $query->with('type_data');
+                });
+            }
+                
+        }
         
         // if (isset($params['bedroom'])) {
         //     if ($params['bedroom'] != 0) {
@@ -202,15 +205,15 @@ class PropertiesController extends Controller
         //         });
         //     }
         // }
-        if (isset($params['price'])) {
-            if ($params['price'] != '') {
-                $property->whereHas('property_details', function ($query)  use ($params) {
-                    $query->whereBetween('price', [0, $params['price']]);
-                });
-               
-            }
+        if (isset($params['budgetMin']) || isset($params['maxBudjet'])) {
+            $minbudget= $params['budgetMin'] =="" ? 0: $params['budgetMin'];
+            $maxbudget= $params['maxBudjet']  =="" ? 0: $params['maxBudjet'] ;
             
-        }
+                $property->whereHas('property_details', function ($query)  use ($minbudget,$maxbudget) {
+                    $query->whereBetween('price', [$minbudget, $maxbudget]);
+                });
+            
+         }
         // if (isset($params['vastu'])) {
         //     if ($params['vastu'] != '') {
         //         $property->whereHas('vastu', function ($query)  use ($params) {
@@ -243,19 +246,18 @@ class PropertiesController extends Controller
         //         }
         //     }
         // }
-        if (isset($params['property_by'])) {
-            $usertypearray = $params['property_by'];
-            if (gettype($usertypearray) == 'array') {
-                if (count($usertypearray) > 0) {
-                    $property->whereHas('owner', function ($query) use ($usertypearray) {
-                        $query->whereIs(implode(",", $usertypearray));
-                    });
-                }
-            }
-        }
+        // if (isset($params['property_by'])) {
+        //     $usertypearray = $params['property_by'];
+        //     if (gettype($usertypearray) == 'array') {
+        //         if (count($usertypearray) > 0) {
+        //             $property->whereHas('owner', function ($query) use ($usertypearray) {
+        //                 $query->whereIs(implode(",", $usertypearray));
+        //             });
+        //         }
+        //     }
+        // }
 
         $data['property'] = $property->simplePaginate(10);
-        // dd(  $data['property']);
         $data['latest'] = Property::where('approved', 1)->where('status', 1)->with(['property_details', 'images'])->limit(3)->orderByDesc('created_at')->get();
         $data['vastu'] = Vastu::get();
         $data['property_types'] = PropertyType::get();
