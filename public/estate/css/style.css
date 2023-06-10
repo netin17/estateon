@@ -2657,6 +2657,7 @@ section.ourMisson.space { padding-bottom: 0;}
     border-radius: 4px;
     margin-right: 5px;
     margin-top: 5px;
+    flex: none;
 }
 .rot{
     transform: rotate(180deg);
@@ -2970,4 +2971,9 @@ section.section.full-height.over-hide.px-4.px-sm-0 {
   ul.slider-custom li {
     height: 200px;
   }
+}
+ul.subproperty.d-flex {
+  resize: both;
+  overflow: auto;
+  padding: 5px;
 }
