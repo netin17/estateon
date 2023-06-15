@@ -2665,9 +2665,9 @@ section.ourMisson.space { padding-bottom: 0;}
 .d-block{
     display: block;
 }
-.bred{
+/* .bred{
     background-color: rgb(237, 136, 136);
-}
+} */
 .bnone{
     border: none;
 }
@@ -2977,3 +2977,7 @@ ul.subproperty.d-flex {
   overflow: auto;
   padding: 5px;
 }
+.checkbox-label {
+  cursor: pointer;
+}
+

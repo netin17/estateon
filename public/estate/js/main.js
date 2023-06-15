@@ -30,8 +30,8 @@ $(document).ready(function() {
 
 
     });
-    $('li').click(function (event) {
-        $(this).toggleClass('bred');
-    });
+    // $('li').click(function (event) {
+    //     $(this).toggleClass('bred');
+    // });
 
 
