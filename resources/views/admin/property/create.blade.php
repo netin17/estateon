@@ -176,10 +176,11 @@
             </div>
             <div id="property-type-commercial" class="form-group d-none  {{ $errors->has('property_type') ? 'has-error' : '' }}">
                 <label for="property_type_commercial">{{ trans('cruds.property.fields.property_type') }}*
-                    <select name="property_type" id="property_type_commercial" class="form-control select2" required>
+                    <select name="property_type_commercial" id="property_type_commercial" class="form-control select2" required>
                         @foreach($data['property_type_commercial'] as $propert)
-                        <option value="{{ $propert['id'] }}">{{ $propert['name'] }}</option>
+                        <option value="{{ $propert['id'] }}">{{ $propert['name'] }} {{ $propert['id']}}</option>
                         @endforeach
+
                     </select>
                     @if($errors->has('property_type'))
                     <em class="invalid-feedback">
@@ -192,7 +193,7 @@
             </div>
             <div id="property-type-residential" class="form-group d-none {{ $errors->has('property_type') ? 'has-error' : '' }}">
                 <label for="property_type_residential">{{ trans('cruds.property.fields.property_type') }}*
-                    <select name="property_type" id="property_type" class="form-control select2" required>
+                    <select name="property_type_residential" id="property_type_residential" class="form-control select2" required>
                         @foreach($data['property_type_residential'] as $propert)
                         <option value="{{ $propert['id'] }}">{{ $propert['name'] }}</option>
                         @endforeach

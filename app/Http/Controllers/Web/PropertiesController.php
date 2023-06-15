@@ -123,7 +123,7 @@ class PropertiesController extends Controller
             $query->select('name');
         }, 'property_type.type_data', 'property_details', 'images']);
         if ($userId != "") {
-            $property->where('user_id', '!=', $userId)->withCount([
+            $property->withCount([
                 'likes' => function ($query) use ($userId) {
                     $query->where('user_id', $userId);
                     $query->select(DB::raw('IF(count(*) > 0, 1, 0)'));

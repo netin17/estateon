@@ -180,7 +180,7 @@ class PropertiesController extends Controller
             ]);
         }
         ///property type
-        $property_type = $data['property_type'];
+        $property_type = $data['property_category']=='commercial'? $data['property_type_commercial']:$data['property_type_residential'];
         if ($property_type != '') {
             $assign_type = AssignedTypes::create([
                 'type_id' => $property_type,
@@ -302,7 +302,8 @@ class PropertiesController extends Controller
         $data['amenity'] = Amenity::get();
         $data['preferences'] = Preferences::get();
         $data['property'] = Property::where('id', $id)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details'])->first();
-        
+        //  echo "<pre>"; print_r($data['property']->toArray() );
+        // exit;
         $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
         $data['property_type_residential'] = PropertyType::where('property_type','residential')->get();
 
@@ -355,7 +356,7 @@ class PropertiesController extends Controller
             ]);
         }
         ///property type
-        $property_type = $data['property_type'];
+        $property_type = $data['property_category']=='commercial'? $data['property_type_commercial']:$data['property_type_residential'];
         $assigned_types = AssignedTypes::where('property_id', $id)->delete();
         if ($property_type != '') {
             $assign_type = AssignedTypes::create([
