@@ -17,6 +17,10 @@
     <!-- <link rel="stylesheet" href="{{ asset('userfront/css/details.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('userfront/css/image-uploader.css') }}">
     <link rel="stylesheet" href="{{ asset('userfront/css/propertylist.css') }}">
+
+
+
+
 </head>
 
 <body>
@@ -306,26 +310,21 @@
             <h3 class="prop-txt">Add Basic Property information <span class="prop-img"><img
                         src="{{ asset('userfront/img/Icons/Image-Section.png') }}" alt=""></span>
             </h3>
-
             <div class="prop-box">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <!-- <div class="col-md-12"> -->
-                                <div class="input-field col-md-12">
-                                <h6 class="head-txt">Add minimum 5 photos</h6>
-                                <input type="file" class="form-control" name="image[]" multiple />
-
-                                </div>
-
-                            <!-- </div> -->
-                        </div>
-
-                    </div>
- 
-                </div>
-
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="input-field col-md-12">
+            <h6 class="head-txt">Add minimum 5 photos</h6>
+            <input type="file" class="form-control" name="image[]" id="imageInput" multiple />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="imagePreviewContainer" class="row"></div>
+</div>
 
     </section>
 
@@ -441,10 +440,13 @@
         </div>
 
     </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
     <script src="{{ asset('userfront/js/main.js') }}"></script>
     <script src="{{ asset('userfront/js/image-uploader.js') }}"></script>
 
@@ -604,6 +606,52 @@
             e.preventDefault();
         }
     }
+    var images = []; // Array to store image data
+
+  $('#imageInput').change(function(e) {
+    var files = e.target.files;
+    var imagePreviewContainer = $('#imagePreviewContainer');
+    imagePreviewContainer.empty(); // Clear previous previews
+    images = []; // Reset the array
+
+    if (files) {
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+
+        reader.onload = (function(file) {
+          return function(e) {
+            var img = $('<img>').addClass('preview-image').attr('src', e.target.result);
+            img.appendTo(imagePreviewContainer);
+
+            // Push the image data to the array
+            images.push({
+              src: e.target.result,
+              type: 'image'
+            });
+          };
+        })(file);
+
+        reader.readAsDataURL(file);
+      }
+    }
+  });
+
+  // Initialize FancyBox on the images
+  $('#imagePreviewContainer').on('click', '.preview-image', function() {
+    var index = $(this).index();
+
+    $.fancybox.open(images, {
+      loop: true,
+      autoFocus: false,
+      buttons: ['close'],
+      closeClickOutside: true,
+      clickContent: false,
+      onInit: function(instance) {
+        instance.jumpTo(index); // Open FancyBox starting from the clicked image
+      }
+    });
+  });
 </script>
 
 </body>

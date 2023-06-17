@@ -412,3 +412,19 @@ a.footer-btn img {
   background-color: transparent !important;
   border: 1px solid #fff;
 }
+
+#imagePreviewContainer {
+  margin-top: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+#imagePreviewContainer .preview-image {
+  display: inline-block;
+  margin-right: 10px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+}
