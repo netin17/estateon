@@ -260,10 +260,10 @@ class PropertiesController extends Controller
         $data['property'] = $property->simplePaginate(10);
         $data['latest'] = Property::where('approved', 1)->where('status', 1)->with(['property_details', 'images'])->limit(3)->orderByDesc('created_at')->get();
         $data['vastu'] = Vastu::get();
-        $data['property_types'] = PropertyType::get();
+        $data['property_type'] = PropertyType::select(['id', 'name','property_type'])->whereNotIn('name', ['Other','Featured',"New Posting"])->get();
         $data['amenity'] = Amenity::get();
         $data['preferences'] = Preferences::get();
-        $data['userroles'] = ['Agent', 'Builder', 'Broker', 'Owner'];
+        // $data['userroles'] = ['Agent', 'Builder', 'Broker', 'Owner'];
         // echo "<pre>"; print_r($data['property'] ->toArray()); die;
         return view('estate.list', compact('data', 'params'));
             
@@ -306,7 +306,7 @@ class PropertiesController extends Controller
             $name =  $data['name'];
             $email =  $data['email'];
             $phone =  $data['phone'];
-            $message =  $data['message'];
+            $message =  ($data['message']=="others" || $data['message']=="") ? $data['othermessage']:$data['message'];
             $propertyID =  $data['property_id'];
             $time = time();
             $query = Leads::create(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'message'=>$message, 'property_id'=>$propertyID, 'created_at'=> $time]);

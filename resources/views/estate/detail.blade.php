@@ -141,15 +141,15 @@
                                      <script type="text/javascript">
                                         function CheckColors(val){
                                          var element=document.getElementById('message');
-                                         if(val=='Select your Message'||val=='others')
+                                         if(val==''|| val=='others')
                                            element.style.display='block';
                                          else  
                                            element.style.display='none';
                                         }
                                     </script> 
                                     <div class="form-group mb-4">
-                                        <select name="message" class="form-control" onchange='CheckColors(this.value);'>
-                                            <option>Select your Message</option>
+                                        <select name="message" class="form-control" onchange='CheckColors(this.value);' >
+                                            <option value="">Select your Message</option>
                                             <option value="Is this available">Is this available</option>
                                             <option value="I am Interested">I am Interested</option>
                                             <option value="Can we schedule a call">Can we schedule a call</option>
@@ -159,7 +159,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group mb-4">
-                                        <textarea class="form-control" rows="4" id="message" placeholder="Message" name="message" style='display:none;'></textarea>
+                                        <textarea class="form-control" rows="4" id="message" placeholder="Message" name="othermessage" style='display:none;'></textarea>
                                     </div>
                                    
                                     <input type="hidden" name="property_id" value="{{$data['property']->id}}"> 
@@ -186,14 +186,32 @@ $('body').on('click', '#contact-agent-button', function () {
         var data = that.closest('form#contact-agent').serialize();
         
         var isValid = true; 
-        that.closest('form#contact-agent').find('input,textarea').each(function(){
-            console.log($(this));
-            if($(this).val() == "" || $(this).val() == null){
-                isValid = false; 
+        that.closest('form#contact-agent').find('input,textarea,select').each(function(){
+            var name = $(this).attr('name');
+    if(name=='message' && ($(this).val()=="others" || $(this).val()=="")){
+        if($('#message').val().trim()==""){
+            isValid = false; 
+            $(this).addClass('field-error')
+            $('#message').addClass('field-error')
+        }
+    }else if(name != 'othermessage' && ($(this).val() == "" || $(this).val() == null)){
+        isValid = false; 
                 $(this).addClass('field-error')
-            }else{
-                $(this).removeClass('field-error')
-            }
+    }else{
+        if(name == 'othermessage' && ($('select[name="message"]').val()== "others" || $('select[name="message"]').val()=="") && ($(this).val() == "" || $(this).val() == null) ){
+            isValid = false;
+        }else{
+            $(this).removeClass('field-error')
+        }
+       
+    }
+    
+            // if($(this).val() == "" || $(this).val() == null){
+            //     isValid = false; 
+            //     $(this).addClass('field-error')
+            // }else{
+                
+            // }
 
         });
         //return false;
@@ -203,8 +221,6 @@ $('body').on('click', '#contact-agent-button', function () {
             that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Please enter all fields')
             return false;
         }
-        //console.log(data)        
-
         $.ajax({
             type: "POST",            
             dataType: "json",
@@ -214,7 +230,7 @@ $('body').on('click', '#contact-agent-button', function () {
             success: function (response) {
                 if(response.success){
                     that.closest('form').find('.message').removeClass('hide').addClass('text-success').html('Someone from the concerned team will contact you soon!')
-                    that.closest('form#contact-agent').find('input,textarea').val('');
+                    that.closest('form#contact-agent').find('input:visible,textarea:visible').val('');
                 }else{                    
                     that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Something went wrong!')
                 }                

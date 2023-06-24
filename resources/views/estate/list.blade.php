@@ -12,25 +12,17 @@
         <div class="col-lg-8">
           <div class="row">
             <div class="col-12">
+              @if(count($data['property'])>0)
               <div class="properties-ordering-wrapper">
+
                 <div class="results-count">
                   Showing
                   <span class="first">{{$data['property']->firstItem()}}</span> – <span class="last">{{$data['property']->lastItem()}}</span>
                 </div>
                 <div class="properties-ordering">
-                  <!--<form class="properties-ordering" method="get" action="https://www.demoapus-wp1.com/homeo/properties-list/">
-                     <div class="label">Sort by:</div>
-                       <select name="filter-orderby" class="orderby select2-hidden-accessible" data-placeholder="Sort by" tabindex="-1" aria-hidden="true">
-                              <option value="menu_order" selected="selected">Default</option>
-                              <option value="newest">Newest</option>
-                              <option value="oldest">Oldest</option>
-                              <option value="price-lowest">Lowest Price</option>
-                              <option value="price-highest">Highest Price</option>
-                              <option value="random">Random</option>
-                        </select>
-                      </form>-->
                 </div>
               </div>
+              @endif
             </div>
             @foreach($data['property'] as $property)
             <div class="col-md-6 col-12">
@@ -73,6 +65,11 @@
             <div class="col-12">
               {{ $data['property']->appends($params)->links() }}
             </div>
+            @if(count($data['property'])==0)
+            <div class="col-12 properties-ordering-wrapper">
+              No Property Found
+            </div>
+            @endif
           </div>
         </div>
 
@@ -82,162 +79,186 @@
               <h3>Advanced Search</h3>
               <form method="GET">
               <div class="form-group">
-                <input type="location" class="form-control map-input" id="address-input" aria-describedby="" placeholder="Enter Location.." name="location" style="margin-bottom: 15px;" />
-                <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
-                <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
-              </div>
-              <!-- <div class="form-group">
-                  <label for="roles">Property Type</label>
-                  <select name="property_type" class="custom-select mb-3">
-                    <option value="">Property Type</option>
-                    @foreach($data['property_types'] as $property_type)
-                    <option value="{{$property_type->id}}">{{$property_type->name}}</option>
-                    @endforeach
-                  </select>
-                </div> -->
+  <select class="form-control mb-2" id="propertytype" name="type">
+    <option value="rent" {{ request('type') == 'rent' ? 'selected' : '' }}>Rent</option>
+    <option value="sale" {{ request('type') == 'sale' ? 'selected' : '' }}>Sale</option>
+  </select>
+</div>
                 <div class="form-group">
-                  <label for="roles">Property By</label>
-                  <select name="property_by" class="form-control" >
-                    @foreach($data['userroles'] as $userrole)
-                    <option value="{{$userrole}}">{{$userrole}}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <!-- <div class="form-group">
-                  <select name="furnished" class="custom-select mb-3">
-                    <option value="">Furnished Status</option>
-                    <option value="furnished">Furnished</option>
-                    <option value="semi_furnished">Semi furnished</option>
-                    <option value="unfurnished">Un-furnished</option>
-                  </select>
-                </div> -->
-                <!-- <div class="form-group">
-                  <select name="bedroom" class="custom-select mb-3">
-                    <option value="">Bed Room</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                  </select>
-                </div> -->
-                <!-- <div class="form-group">
-                  <p>Distance</p>   
-                  <div class="range-slider mb-3">
-                    <input class="range-slider__range" type="range" value="3" min="0" max="10" step="1">
-                    <span class="range-slider__value">0km</span>
-                  </div> 
-                </div> -->
-                <!-- <div class="form-group">
-                  <label for="roles">Additional Prefrences</label>
-                  <select name="additional[]" class="custom-select mb-3" multiple="multiple">
-                    @foreach($data['preferences'] as $preferences)
-                    <option value="{{$preferences->id}}">{{$preferences->name}}</option>
-                    @endforeach
-
-                  </select>
+                  <input type="location" class="form-control map-input" id="address-input" aria-describedby="" placeholder="Enter Location.." name="location" style="margin-bottom: 15px;" value="{{request()->location ?? request()->location }}" />
+                  <input type="hidden" name="address_latitude" id="address-latitude" value="{{request()->address_latitude ? request()->address_latitude : 0 }}" />
+                  <input type="hidden" name="address_longitude" id="address-longitude" value="{{request()->address_longitude ? request()->address_longitude : 0 }}" />
                 </div>
                 <div class="form-group">
-                  <select name="vastu" class="custom-select mb-3">
-                    <option value="">Vastu Architecture</option>
-                    @foreach($data['vastu'] as $vastu)
-                    <option value="{{$vastu->id}}">{{$vastu->name}}</option>
-                    @endforeach
-                  </select>
+                  <p class="heading cpoint"><i class="fa-solid fa-house redc"></i> Property Type <i class="fa-solid fa-angle-down"></i> </p>
                 </div>
-                <div class="form-group">
-                  <label for="roles">Amenities</label>
-                  <select name="amenities[]" class="custom-select mb-3 form-control select2" multiple="multiple">
-                    @foreach($data['amenity'] as $amenity)
-                    <option value="{{$amenity->id}}">{{$amenity->name}}</option>
-                    @endforeach
-                  </select>
-                </div> -->
-                   
-                <div class="form-group">
-                  <p>Price</p>
-                  <div class="range-slider mb-3">
-                    <!-- <input class="range-slider__range" type="range" name="price" min="1000" max="2000000" step="500" id="filter_price">
-                    <span class="range-slider__value" id="pricerange">1000</span> -->
-                     <section class="mainsection-list">
-                <div>
-            <div class="d-flex mainhead">
-              <p class="Bheading cpoint"><i class="fa-solid fa-indian-rupee-sign redc"></i> Budget <i class="fa-solid fa-angle-down"></i></p>
-            </div>
-
-            <div class="">
-                <div class="section2 ml-80 cpoint">
-                    <div class="sec2cont d-flex dnone">
-                        <div class="minprice dnone minprice1">
-                            <!-- <input type="number" class="imputval disnone dnone" placeholder="Enter Min Price">
-                            <p class="selhed disnone dnone" style="margin-left: 50px;">Or select from <i class="fa-solid fa-hand-point-down redc"></i></p> -->
-                            <select name="" id="" class="textSearch select1 dnone" >
-                                <option value="Min Price">Min Price</option>
-                                <option value="&#8377 2.6 Cr">&#8377 5 Lac</option>
-                                <option value="&#8377 3 Cr">&#8377 10 Lac</option>
-                                <option value="&#8377 3.5 Cr">&#8377 20 Lac</option>
-                                <option value="&#8377 4 Cr">&#8377 30 Lac</option>
-                                <option value="&#8377 4.5 Cr">&#8377 40 Lac</option>
-                                <option value="&#8377 5 Cr">&#8377 50 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 60 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 70 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 80 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 90 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 1 Cr</option>
-                                <option value="&#8377 10 Cr">&#8377 2 Cr</option>
-                                <option value="&#8377 2.6 Cr">&#8377 2.5 Cr</option>
-                                <option value="&#8377 3.0 Cr">&#8377 3 Cr</option>
-                                <option value="&#8377 3.5 Cr">&#8377 3.5 Cr</option>
-                                <option value="&#8377 4.0 Cr">&#8377 4 Cr</option>
-                                <option value="&#8377 4.5 Cr">&#8377 4.5 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 5 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 6 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 7 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 8 Cr</option>
-                               
-                                
-                            </select>
-                        </div>
-                        <div class="minprice dnone minprice2">
-                            <!-- <input type="number" class="imputval disnone dnone" placeholder="Enter Max Price">
-                            <p class="selhed disnone dnone">Dropdown-Menu  </p> -->
-                            <select name="" id="" class="textSearch select2 dnone">
-                                <option value="Min Price">Max Price</option>
-                                <option value="&#8377 2.6 Cr">&#8377 5 Lac</option>
-                                <option value="&#8377 3 Cr">&#8377 10 Lac</option>
-                                <option value="&#8377 3.5 Cr">&#8377 20 Lac</option>
-                                <option value="&#8377 4 Cr">&#8377 30 Lac</option>
-                                <option value="&#8377 4.5 Cr">&#8377 40 Lac</option>
-                                <option value="&#8377 5 Cr">&#8377 50 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 60 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 70 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 80 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 90 Lac</option>
-                                <option value="&#8377 10 Cr">&#8377 1 Cr</option>
-                                <option value="&#8377 10 Cr">&#8377 2 Cr</option>
-                                <option value="&#8377 2.6 Cr">&#8377 2.5 Cr</option>
-                                <option value="&#8377 3.0 Cr">&#8377 3 Cr</option>
-                                <option value="&#8377 3.5 Cr">&#8377 3.5 Cr</option>
-                                <option value="&#8377 4.0 Cr">&#8377 4 Cr</option>
-                                <option value="&#8377 4.5 Cr">&#8377 4.5 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 5 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 6 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 7 Cr</option>
-                                <option value="&#8377 5.0 Cr">&#8377 8 Cr</option>                                
-                            </select>
+                <div class="section1">
+                  <div class="innersec dnone cpoint">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p class="heading1 cpoint mb-0">Residential <i class="fa-solid fa-angle-down redc santo"></i></p>
+                      <button type="button" class="close heading" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
+                    <div class="innersec1 ">
+                      <ul class="subproperty d-flex ">
+                        @foreach($data['property_type'] as $property_type)
+                        @if($property_type->property_type == "residential")
+                        <li>
+                          <label class="checkbox-label">
+                            <input type="checkbox" name="residential[]" value="{{$property_type->id}}" {{ (in_array($property_type->id, request('residential', [])) ? 'checked' : '') }}>
+                            {{$property_type->name}}
+                          </label>
+                        </li>
+                        @endif
+                        @endforeach
+                      </ul>
+                    </div>
+                    <p class="heading2 cpoint">Commercial <i class="fa-solid fa-angle-down redc santo2"></i> </p>
+                    <div class="innersec2 dnone">
+                      <ul class="subproperty d-flex">
+                        @foreach($data['property_type'] as $property_type)
+                        @if($property_type->property_type == "commercial")
+                        <li>
+                          <label class="checkbox-label">
+                            <input type="checkbox" name="commercial[]" value="{{$property_type->id}}" {{ (in_array($property_type->id, request('commercial', [])) ? 'checked' : '') }}> {{$property_type->name}}
+                          </label>
+                        </li>
+                        @endif
+                        @endforeach
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <p class="Bheading cpoint"><i class="fa-solid fa-indian-rupee-sign redc"></i> Budget <i class="fa-solid fa-angle-down"></i></p>
+                </div>
+                <div class="cpoint">
+                    <div class="d-flex dnone">
+                        
+                        @switch(request()->has('type'))
+                        @case('rent')
+                        <div class="minprice dnone">
+                            <select name="budgetMin" id="budgetMin" class="textSearch select1 dnone" >
+                              <option value="">Min Price</option>
+                              <option value="5000">&#8377 5000</option>
+                              <option value="10000">&#8377 10000</option>
+                              <option value="15000">&#8377 15000</option>
+                              <option value="20000">&#8377 20000</option>
+                              <option value="25000">&#8377 25000</option>
+                              <option value="30000">&#8377 30000</option>
+                              <option value="35000">&#8377 35000</option>
+                              <option value="40000">&#8377 40000</option>
+                              <option value="50000">&#8377 50000</option>
+                              <option value="60000">&#8377 60000</option>
+                              <option value="85000">&#8377 85000</option>
+                              <option value="100000">&#8377 1 Lac</option>
+                              <option value="150000">&#8377 1.5 Lac</option>
+                              <option value="200000">&#8377 2 Lac</option>
+                              <option value="400000">&#8377 4 Lac</option>
+                              <option value="700000">&#8377 7 Lac</option>
+                              <option value="1000000">&#8377 10 Lac</option> 
+                          </select>
+                      </div> 
+                      <div class="minprice dnone">
+                          <select name="maxBudjet" id="maxBudjet" class="textSearch select2 dnone">
+                            <option value="">Max Price </option>
+                              <option value="5000">&#8377 5000</option>
+                              <option value="10000">&#8377 10000</option>
+                              <option value="15000">&#8377 15000</option>
+                              <option value="20000">&#8377 20000</option>
+                              <option value="25000">&#8377 25000</option>
+                              <option value="30000">&#8377 30000</option>
+                              <option value="35000">&#8377 35000</option>
+                              <option value="40000">&#8377 40000</option>
+                              <option value="50000">&#8377 50000</option>
+                              <option value="60000">&#8377 60000</option>
+                              <option value="85000">&#8377 85000</option>
+                              <option value="100000">&#8377 1 Lac</option>
+                              <option value="150000">&#8377 1.5 Lac</option>
+                              <option value="200000">&#8377 2 Lac</option>
+                              <option value="400000">&#8377 4 Lac</option>
+                              <option value="700000">&#8377 7 Lac</option>
+                              <option value="1000000">&#8377 10 Lac</option>                               
+                        </select>
+                </div>
+                            @break
+                        @case('sale')
+                        <div class="minprice dnone">
+                          <select name="budgetMin" id="budgetMin" class="textSearch select1 dnone" >
+                            <option value="">Min Price</option>
+                            <option value="500000">&#8377; 5 Lac</option>
+                            <option value="1000000">&#8377;10 Lac</option>
+                            <option value="2000000">&#8377;20 Lac</option>
+                            <option value="3000000">&#8377;30 Lac</option>
+                            <option value="4000000">&#8377;40 Lac</option>
+                            <option value="5000000">&#8377;50 Lac</option>
+                            <option value="6000000">&#8377;60 Lac</option>
+                            <option value="7000000">&#8377;70 Lac</option>
+                            <option value="8000000">&#8377;80 Lac</option>
+                            <option value="9000000">&#8377;90 Lac</option>
+                            <option value="10000000">&#8377;1 Cr</option>
+                            <option value="12000000">&#8377;1.2 Cr</option>
+                            <option value="14000000">&#8377;1.4 Cr</option>
+                            <option value="16000000">&#8377;1.6 Cr</option>
+                            <option value="18000000">&#8377;1.8 Cr</option>
+                            <option value="20000000">&#8377;2 Cr</option>
+                            <option value="23000000">&#8377;2.3 Cr</option> 
+                            <option value="26000000">&#8377;2.6 Cr</option> 
+                            <option value="30000000">&#8377;3 Cr</option> 
+                            <option value="35000000">&#8377;3.5 Cr</option> 
+                            <option value="40000000">&#8377;4 Cr</option> 
+                            <option value="45000000">&#8377;4.5 Cr</option> 
+                            <option value="50000000">&#8377;5 Cr</option> 
+                            <option value="100000000">&#8377;10 Cr</option> 
+                            <option value="200000000">&#8377;20 Cr</option> 
+                        </select>
+                    </div> 
+                    <div class="minprice dnone">
+                        <select name="maxBudjet" id="maxBudjet" class="textSearch select2 dnone">
+                          <option value="">Max Price </option>
+                          <option value="500000">&#8377; 5 Lac</option>
+                          <option value="1000000">&#8377;10 Lac</option>
+                          <option value="2000000">&#8377;20 Lac</option>
+                          <option value="3000000">&#8377;30 Lac</option>
+                          <option value="4000000">&#8377;40 Lac</option>
+                          <option value="5000000">&#8377;50 Lac</option>
+                          <option value="6000000">&#8377;60 Lac</option>
+                          <option value="7000000">&#8377;70 Lac</option>
+                          <option value="8000000">&#8377;80 Lac</option>
+                          <option value="9000000">&#8377;90 Lac</option>
+                          <option value="10000000">&#8377;1 Cr</option>
+                          <option value="12000000">&#8377;1.2 Cr</option>
+                          <option value="14000000">&#8377;1.4 Cr</option>
+                          <option value="16000000">&#8377;1.6 Cr</option>
+                          <option value="18000000">&#8377;1.8 Cr</option>
+                          <option value="20000000">&#8377;2 Cr</option>
+                          <option value="23000000">&#8377;2.3 Cr</option> 
+                          <option value="26000000">&#8377;2.6 Cr</option> 
+                          <option value="30000000">&#8377;3 Cr</option> 
+                          <option value="35000000">&#8377;3.5 Cr</option> 
+                          <option value="40000000">&#8377;4 Cr</option> 
+                          <option value="45000000">&#8377;4.5 Cr</option> 
+                          <option value="50000000">&#8377;5 Cr</option> 
+                          <option value="100000000">&#8377;10 Cr</option> 
+                          <option value="200000000">&#8377;20 Cr</option>                               
+                      </select>
+              </div>
+                            @break
+                    @endswitch
+                       
                 </div>
             </div>
-        </div>
-    </section>
-                  </div>
-
-                  
-                </div>
-                <button class="cm-btn w-100">Search</button>
+<div>
+  <button class="cm-btn w-100">Search</button>
+</div>
+                
               </form>
             </div>
           </div>
 
-        
+
         </div>
       </div>
     </div>
@@ -263,10 +284,10 @@
   @section('scripts')
 
   <script src="{{url('/js/mapInput.js')}}"></script>
+  <script src="{{url('/js/homepage.js')}}"></script>
   <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initialize"></script>
 
   <script>
-
     $(document).ready(function() {
       $('#filter_price').change(function() {
         $('#pricerange').html($(this).val())

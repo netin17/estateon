@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+<link rel="stylesheet" href="{{ url('estate/summernote/summernote-bs4.css')}}">
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.property.title_singular') }}
@@ -22,7 +23,7 @@
 
             <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('cruds.property.fields.description') }}*</label>
-                <textarea id="description" name="description" class="form-control" required>{{$data['property']->description}}</textarea>
+                <textarea id="description" name="description" class="form-control textarea" required>{{$data['property']->description}}</textarea>
                 @if($errors->has('description'))
                 <em class="invalid-feedback">
                     {{ $errors->first('description') }}
@@ -347,6 +348,7 @@
 <script src="/js/mapInput.js"></script>
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script> -->
 
+<script src="{{ url('estate/summernote/summernote-bs4.min.js')}}"></script>
 
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initMap"></script>
 
@@ -356,7 +358,10 @@
 
         var latVal = parseFloat({{$data['property']->lat}});
         var lngVal = parseFloat({{$data['property']->lng}});
-
+        $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
             function initMap() {
               
                 var map = new google.maps.Map(document.getElementById('address-map'), {
