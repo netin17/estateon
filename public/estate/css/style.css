@@ -54,14 +54,14 @@ h4 {
   text-transform: initial;
   margin: 0;
 }
-p {
+/* p {
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
   color: #000;
   margin: 0;
   font-family: "Nunito", sans-serif;
-}
+} */
 a {
   transition: 0.3s all ease-in-out;
   -webkit-transition: 0.3s all ease-in-out;

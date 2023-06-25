@@ -47,7 +47,7 @@
                         <div class="wht_box">
                             <h3>Overview</h3>
                             <p class="mb-3">
-                               {{$data['property']->description}}
+                        {!! $data['property']->description !!}
                             </p>
                             <p class="mb-3">
                             {{$data['property']->notes}}

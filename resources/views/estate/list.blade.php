@@ -80,8 +80,8 @@
               <form method="GET">
               <div class="form-group">
   <select class="form-control mb-2" id="propertytype" name="type">
-    <option value="rent" {{ request('type') == 'rent' ? 'selected' : '' }}>Rent</option>
-    <option value="sale" {{ request('type') == 'sale' ? 'selected' : '' }}>Sale</option>
+    <option value="rent" {{request('type') == 'rent' ? 'selected' : '' }}>Rent</option>
+    <option value="sale" {{request('type') == 'sale' ? 'selected' : '' }}>Sale</option>
   </select>
 </div>
                 <div class="form-group">
@@ -136,8 +136,10 @@
                 </div>
                 <div class="cpoint">
                     <div class="d-flex dnone">
-                        
-                        @switch(request()->has('type'))
+                    @php
+    $type = request()->has('type') ? request()->get('type') : 'rent';
+@endphp
+                        @switch($type)
                         @case('rent')
                         <div class="minprice dnone">
                             <select name="budgetMin" id="budgetMin" class="textSearch select1 dnone" >
