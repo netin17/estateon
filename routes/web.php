@@ -79,10 +79,16 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::post('savemsg', 'ChatController@savemessage')->name('conversation.savemsg');
     Route::post('latestsg', 'ChatController@getlatestmessages')->name('conversation.lastest');
     Route::get('changestatus/{id}/{status}','PropertiesController@changestatus')->name('property.changestatus');
-    Route::resource('subscription', 'SubscriptionController');
+    Route::get('subscription/{id}', 'SubscriptionController@index')->name('subscription.index');
+    Route::get('subscription/{id}/create', 'SubscriptionController@create')->name('subscription.create');
+    Route::post('subscription/{id}/store', 'SubscriptionController@store')->name('subscription.store');
+    Route::get('subscription/{id}/edit', 'SubscriptionController@edit')->name('subscription.edit');
+    Route::post('subscription/{id}/update', 'SubscriptionController@update')->name('subscription.update');
     Route::get('usersubscription', 'SubscriptionController@usersubscription')->name('user.subscription');
     Route::get('subscriptiondetail/{id}', 'SubscriptionController@subscriptiondetail')->name('subscription.detail');
-
+    Route::get('plans', 'SubscriptionController@planTypes')->name('subscription.plan');
+    Route::get('plans/create','SubscriptionController@createPlanType')->name('subscription.plancreate');
+    Route::post('plans/store','SubscriptionController@storePlanType')->name('subscription.planstore'); 
     Route::get('propertyleads/{id}', 'PropertiesController@leads')->name('property.leads');
 
     Route::post('logout', 'HomeController@logout')->name('adminlogout');

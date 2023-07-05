@@ -2,7 +2,7 @@
 @section('content')
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("admin.subscription.create") }}">
+        <a class="btn btn-success" href="{{ route('admin.subscription.create', ['id' => $id]) }}">
             {{ trans('global.add') }} {{ trans('cruds.subscription.fields.plan') }}
         </a>
     </div>
@@ -23,6 +23,12 @@
                             {{ trans('cruds.subscription.fields.duration') }}
                         </th>
                         <th>
+                            Features
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -40,20 +46,26 @@
                             {{ $plan->time_in_monthes ?? '' }}
                         </td>
                         <td>
+                            {!! $plan->features ?? '' !!}
+                        </td>
+                        <td>
+                            {{ $plan->status ?? '' }}
+                        </td>
+                        <td>
                             <div class="activation_button">
-                                <a class="btn btn-xs btn-primary" href="{{ route('admin.subscription.show', $plan->id) }}">
+                            {{--   <a class="btn btn-xs btn-primary" href="{{ route('admin.subscription.show', $plan->id) }}">
                                     {{ trans('global.view') }}
-                                </a>
+                                </a> --}}
 
-                                <a class="btn btn-xs btn-info" href="{{ route('admin.subscription.edit', $plan->id) }}">
+                                <a class="btn btn-xs btn-info" href="{{route('admin.subscription.edit', ['id'=>$plan->id]) }}">
                                     {{ trans('global.edit') }}
                                 </a>
                             </div>
-                            <form action="{{ route('admin.subscription.destroy', $plan->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                            {{--   <form action="{{ route('admin.subscription.destroy', $plan->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                     @endforeach

@@ -3,11 +3,11 @@
 <link rel="stylesheet" href="{{ url('estate/summernote/summernote-bs4.css')}}">
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.user.title_singular') }}
+        {{ trans('global.create') }} Subscription Plan
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.subscription.store") }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.subscription.store', ['id' => $id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('cruds.subscription.fields.name') }}*</label>
@@ -57,6 +57,13 @@
                 <p class="helper-block">
                     {{ trans('cruds.subscription.fields.features_helper') }}
                 </p>
+            </div>
+            <div class="form-group">
+                <p>Status</p>
+                <input type="radio" id="active" name="status" value="active" @php if(old('status', 'active') === 'active') echo 'checked'; @endphp>
+                <label for="active">Active</label><br>
+                <input type="radio" id="inactive" name="status" value="inactive" @php if(old('status') === 'inactive') echo 'checked'; @endphp>
+                <label for="inactive">Inactive</label><br>
             </div>
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">

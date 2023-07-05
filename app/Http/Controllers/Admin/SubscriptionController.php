@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\SubscriptionPlan;
 use App\UserSubscription;
+use App\PlanTypes;
 class SubscriptionController extends Controller
 {
     /**
@@ -13,10 +14,10 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $plans = SubscriptionPlan::where('status', 1)->get();
-        return view('admin.subsription_plans.index', compact(['plans']));
+        $plans = SubscriptionPlan::where('plan_type_id', $id)->get();
+        return view('admin.subsription_plans.index', compact(['plans', 'id']));
     }
 
     /**
@@ -24,9 +25,10 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('admin.subsription_plans.create');
+       
+        return view('admin.subsription_plans.create', compact(['id']));
     }
 
     /**
@@ -35,17 +37,19 @@ class SubscriptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+
         $data = $request->all();
         $plan = SubscriptionPlan::create([
             'name' => $data['name'],
             'price' => $data['price'],
+            'plan_type_id' => $id,
             'time_in_monthes' => $data['time_in_monthes'],
             'features' => $data['features'],
-            'status' => 1
+            'status' => $data['status']
         ]);
-        return redirect()->route('admin.subscription.index');
+        return redirect()->route('admin.subscription.index', ['id' => $id]);
     }
 
     /**
@@ -84,7 +88,7 @@ class SubscriptionController extends Controller
         $plan = SubscriptionPlan::findOrFail($id);
         $plan->update($request->all());
 
-        return redirect()->route('admin.subscription.index');
+        return redirect()->route('admin.subscription.index',['id'=>$request->input('plan_type_id')]);
     }
 
     /**
@@ -116,5 +120,38 @@ class SubscriptionController extends Controller
     //    echo "<pre>"; print_r($usersubscription->toArray());
     //    exit;
         return view('admin.usersubscription.show', compact(['usersubscription']));
+    }
+
+    public function planTypes(){
+        $plan_types=PlanTypes::get();
+        return view('admin.plantype.index', compact(['plan_types']));
+    }   
+
+    public function createPlanType(){
+        return view('admin.plantype.create');
+    }
+
+    public function storePlanType(Request $request){
+        $validatedData = $request->validate([
+            'status' => 'required',
+            'name' => 'required|unique:plan_types,name',
+            // Add more fields and rules as needed
+        ]);
+          // Create a new instance of the model and assign the form data
+    $formData = new PlanTypes;
+    $formData->name = $request->input('name');
+    $formData->status = $request->input('status');
+    $formData->save();
+
+    // Redirect the user to a success page or another appropriate location
+    return redirect()->route('admin.subscription.plan');
+    }
+
+    public function getPlantype($id){
+
+    }
+
+    public function updatePlantype(Request $request){
+        
     }
 }

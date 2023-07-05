@@ -9,7 +9,7 @@
     <div class="card-body">
         <form action='{{ route("admin.subscription.update", [$plan->id]) }}' method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
+            <input type="text"  name="plan_type_id" value="{{ old('plan_type_id', isset($plan) ? $plan->plan_type_id : '') }}" class="form-control" required>
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('cruds.subscription.fields.name') }}*</label>
                 <input type="text" id="name" name="name" value="{{ old('name', isset($plan) ? $plan->name : '') }}" class="form-control" required>
@@ -57,6 +57,13 @@
                 <p class="helper-block">
                     {{ trans('cruds.subscription.fields.features_helper') }}
                 </p>
+            </div>
+            <div class="form-group">
+                <p>Status</p>
+                <input type="radio" id="active" name="status" value="active" @php if(old('status', $plan->status) === 'active') echo 'checked'; @endphp>
+                <label for="active">Active</label><br>
+                <input type="radio" id="inactive" name="status" value="inactive" @php if(old('status', $plan->status) === 'inactive') echo 'checked'; @endphp>
+                <label for="inactive">Inactive</label><br>
             </div>
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">

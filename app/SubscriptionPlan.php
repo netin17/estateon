@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubscriptionPlan extends Model
 {
-    protected $table = 'subsscription_plan';
-    protected $fillable = ['name', 'price', 'time_in_monthes','features','status'];
+    protected $table = 'subscription_plans';
+    protected $fillable = ['name', 'price', 'plan_type_id', 'time_in_monthes','features','status'];
 }

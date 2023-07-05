@@ -260,7 +260,7 @@
                 </div>
                 <span class="divider"></span>
                 <div class="catFooter">
-                  <a href="{{ route('property.detail', [$hotp->slug] ) }}" class="flatPrice">₹ <span>{{$hotp->property_details->price}}</span></a>
+                  <a href="{{ route('property.detail', [$hotp->slug] ) }}" class="flatPrice">₹ <span>{{number_form($hotp->property_details->price)}}</span></a>
                   <a class="cm-btn mb-2" href="#">{{$hotp->type}}</a>
                 </div>
               </div>

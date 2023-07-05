@@ -34,7 +34,7 @@
             </a>
             <ul class="nav-dropdown-items">
                 <li class="nav-item">
-                    <a href="{{ route("admin.subscription.index") }}" class="nav-link">
+                    <a href="{{ route("admin.subscription.plan") }}" class="nav-link">
                         <i class="fas fa-clipboard-list nav-icon"></i>
                         Plans
                     </a>
