@@ -153,8 +153,7 @@ class HomeController extends Controller
             'email' => 'required|email|unique:users',
             'phone' => 'required|unique:users',
             'password' => 'min:6|required_with:confirmpassword|same:confirmpassword',
-            'confirmpassword' => 'min:6',
-            'role' => 'required',
+            'confirmpassword' => 'min:6'
         ]);
         $user = User::create([
             'name' => $request->get('name'),
@@ -162,12 +161,7 @@ class HomeController extends Controller
             'password' => $request->get('password') == "" ? NULL : Hash::make($request->get('password')),
             'phone' => $request->get('phone') == "" ? NULL : $request->get('phone')
         ]);
-        $role=$request->get('role');
-        if($role){
-            $user->assign($role);
-        }else{
-            $user->assign('user');
-        }
+        $user->assign('user');
         return redirect()->route('home.signin');
         // echo "<pre>"; print_r($postdata);
         // exit;

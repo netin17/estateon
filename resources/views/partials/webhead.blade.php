@@ -17,6 +17,7 @@
 <link rel="icon" href="{{ url('favicon.ico')}}">
 <link rel="stylesheet" href="{{ url('estate/css/bootstrap.min.css')}}" />
 <link rel="stylesheet" href="{{ url('estate/css/style.css')}}" />
+<link rel="stylesheet" href="{{ url('estate/css/newcss/style.css')}}" />
 <link rel="stylesheet" href="{{ url('estate/css/slick.css')}}" />
 <link rel="stylesheet" href="{{ url('estate/css/slide.css')}}" />
 <link rel="stylesheet" href="{{ url('estate/web-fonts/css/fontawesome.min.css')}}" />

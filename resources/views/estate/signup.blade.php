@@ -1,153 +1,170 @@
 @extends('layouts.estate')
 @section('content')
-<div class="align-items-center log-bg">
-  <div class="container">
-    <div class="row no-gutters">
-      <div class="col-lg-10 col-md-12 mx-auto">
-        <div class="card login-card register-card">
-          <div class="card-body">
-            @if(count($errors) > 0 )
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <ul class="p-0 m-0" style="list-style: none;">
-                @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-                @endforeach
-              </ul>
+<section class="sign-up-section">
+    <div class="container large-container">
+        <div class="row align-items-center">
+            <div class="col-xl-7 col-md-6">
+                <div class="main-site-large-logo">
+                    <img src="{{ url('estate/images/very-large-logo2.png')}}" alt="logo" />
+                </div>
             </div>
-            @endif
-            <h3 class="login-card-description text-center">Sign up your account</h3>
-            <form action="{{ route("home.postsignup") }}" method="POST" enctype="multipart/form-data">
-              @csrf
-              <div class="row">
-                <div class="col-md-12 col-lg-6">
-                  <div class="form-group">
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Full Name">
-                  </div>
+            <div class="col-xl-5 col-md-6">
+                @if(count($errors) > 0 )
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <ul class="p-0 m-0" style="list-style: none;">
+                        @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
                 </div>
-                <div class="col-md-12 col-lg-6">
-                  <div class="form-group mb-4">
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email Address">
-                  </div>
-                </div>
-                <div class="col-md-12 col-lg-6">
-                  <div class="form-group mb-4">
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
-                  </div>
-                </div>
-                <div class="col-md-12 col-lg-6">
-                  <div class="form-group mb-4">
-                    <input type="password" name="confirmpassword" id="password" class="form-control" placeholder="Confirm Password">
-                  </div>
-                </div>
-                <div class="col-md-12 col-lg-6">
-                  <div class="alert alert-danger" id="error" style="display: none;"></div>  
-                   <div class="alert alert-success" id="sentSuccess" style="display: none;"></div>
-                  <div class="form-group mb-4">
-                    <input type="text" id="number" name="phone" class="form-control" placeholder="Phone number with country code">
-                    <div id="recaptcha-container"></div>
-                    <button type="button" class="btn btn-success" onclick="phoneSendAuth();">Get OTP</button>
-                  </div>
-                </div>
+                @endif
+                <form action="{{route('home.postsignup')}}" method="POST" class="sign-up-form" onsubmit="return submitForm()">
+                    @csrf
+                    <div class="sign-up-form-group mb-lg-4 mb-3">
+                        <input type="text" name="name" id="name" placeholder="Full Name" class="form-control sign-up-form-field transition w-100 d-block" />
+                    </div>
+                    <div class="sign-up-form-group mb-lg-4 mb-3">
+                        <input type="email" name="email" id="email" placeholder="Email" class="form-control sign-up-form-field transition w-100 d-block" />
+                    </div>
+                    <div class="sign-up-form-group mb-lg-4 mb-3">
+                        <input type="password" placeholder="Password" name="password" id="password" class="form-control sign-up-form-field transition w-100 d-block" />
+                    </div>
+                    <div class="sign-up-form-group mb-lg-4 mb-3">
+                        <input type="password" placeholder="Confirm Password" name="confirmpassword" id="cpassword" class="form-control sign-up-form-field transition w-100 d-block" />
+                    </div>
+                    <div class="sign-up-form-group mb-lg-4 mb-3 position-relative">
+                        <div class="alert alert-danger" id="error" style="display: none;"></div>
+                        <div class="alert alert-success" id="sentSuccess" style="display: none;"></div>
+                        <input type="text" id="number" name="phone" placeholder="Phone number with country code" class="form-control sign-up-form-field transition w-100 d-block" />
 
-                <div class="col-md-12 col-lg-6">
-                   <div class="alert alert-success" id="successRegsiter" style="display: none;"></div>
-                  <div class="form-group mb-4">
-                    <input type="text" id="verificationCode" class="form-control" placeholder="Enter verification code" required>
-                  <button type="button" class="btn btn-success" onclick="codeverify();">Verify OTP</button>
-                  </div>
-                </div>
+                    </div>
+                    <div class="contact-bottom d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center" id="recaptcha-container"></div>
+                    </div>
+                    <div class="sign-up-form-group mb-lg-4 mb-3 position-relative">
+                        <button type="button" class="verify-otp-btn" onclick="phoneSendAuth();">Send OTP</button>
+                    </div>
+                    <div class="sign-up-form-group mb-lg-4 mb-3 position-relative verifyotp">
+                        <input type="text" placeholder="OTP" id="verificationCode" class="form-control sign-up-form-field transition w-100 d-block" required />
+                        <button type="button" class="verify-otp-btn" onclick="codeverify();">Verify</button>
+                    </div>
+                    <div class="sign-up-form-group mb-lg-3 mb-3 d-flex align-items-center sign-up-conditions">
+                        <input type="checkbox" name="tandc" id="terms_conditions" required />
+                        <label for="terms_conditions" class="d-block ms-2">I accept the <a href="/">terms and
+                                conditions.</a></label>
+                    </div>
 
+                    <div class="contact-bottom d-flex align-items-center justify-content-center">
 
-                <div class="col-md-12 col-lg-6">
-                  <div class="form-group mb-4">
-                    <select class="form-control" id="role" name="role">
-                      <option>Select Role</option>
-                      @foreach($data['roles'] as $role)
-                      <option value="{{$role}}">{{$role}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                </div>
-              </div>
-            <input name="signup" id="signup" class="btn btn-block login-btn mb-4" type="submit" value="Sign Up">
-            </form>
-            <div class="text-center">
-              <p class="login-card-footer-text">Already Have An Account? <a href="{{ route("home.signin") }}" class="web-clr">Go For Log In</a></p>
+                        <button type="submit" class="contact-sub-btn btn btn-primary">Submit</button>
+                    </div>
+                    <p class="text-center sign-up-bottom-text mt-3" style="font-size: 14px;">Already have an
+                        account?
+                        <a href="{{route('home.signin')}}">Go For Login</a>
+                    </p>
+                </form>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+</section>
 @endsection
-   <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
-  
+@section('scripts')
+<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <script>
-      
-  var firebaseConfig = {
-    apiKey: "AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054",
-  authDomain: "estateon-e5287.firebaseapp.com",
-  databaseURL: "https://estateon-e5287.firebaseio.com",
-  projectId: "estateon-e5287",
-  storageBucket: "estateon-e5287.appspot.com",
-  messagingSenderId: "191717721261",
-  appId: "1:191717721261:web:21f5dd3cdcc7985ecf7224",
-  measurementId: "G-6RE4Q4XQHD"
-  };
-    
-  firebase.initializeApp(firebaseConfig);
-</script>
-  
-<script type="text/javascript">
-  
-    window.onload=function () {
-      render();
+    var isOTPVerified = false;
+    var coderesult;
+    var firebaseConfig = {
+        apiKey: "AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054",
+        authDomain: "estateon-e5287.firebaseapp.com",
+        databaseURL: "https://estateon-e5287.firebaseio.com",
+        projectId: "estateon-e5287",
+        storageBucket: "estateon-e5287.appspot.com",
+        messagingSenderId: "191717721261",
+        appId: "1:191717721261:web:21f5dd3cdcc7985ecf7224",
+        measurementId: "G-6RE4Q4XQHD"
     };
-  
+
+    firebase.initializeApp(firebaseConfig);
+
+    window.onload = function() {
+        render();
+    };
+
     function render() {
-        window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container');
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
         recaptchaVerifier.render();
     }
-  
+    
     function phoneSendAuth() {
-           
         var number = $("#number").val();
-          
-        firebase.auth().signInWithPhoneNumber(number,window.recaptchaVerifier).then(function (confirmationResult) {
-              
-            window.confirmationResult=confirmationResult;
-            coderesult=confirmationResult;
-            console.log(coderesult);
-  
-            $("#sentSuccess").text("Message Sent Successfully.");
-            $("#sentSuccess").show();
-              
-        }).catch(function (error) {
-            $("#error").text(error.message);
+        if ($.isNumeric(number)) {
+            $("#error").hide();
+            firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+                window.confirmationResult = confirmationResult;
+                coderesult = confirmationResult;
+
+
+                $("#verifyotp").show();
+                $("#sentSuccess").text("Message Sent Successfully.");
+                $("#sentSuccess").show();
+
+            }).catch(function(error) {
+                $("#error").text(error.message);
+                $("#error").show();
+                $("#verifyotp").hide();
+            });
+        } else {
+            // Not a valid number
+            $("#error").text("Not a valid number");
             $("#error").show();
-        });
-  
+            $("#verifyotp").hide();
+
+        }
     }
-  
+   
+
     function codeverify() {
-  
         var code = $("#verificationCode").val();
-  
-        coderesult.confirm(code).then(function (result) {
-            var user=result.user;
-            console.log(user);
-  
-            $("#successRegsiter").text("you are register Successfully.");
-            $("#successRegsiter").show();
-  
-        }).catch(function (error) {
-            $("#error").text(error.message);
-            $("#error").show();
-        });
+        if (code != "") {
+            if (coderesult != undefined) {
+                coderesult.confirm(code).then(function(result) {
+                    var user = result.user;
+                    console.log(user);
+                    isOTPVerified = true;
+                    $("#successRegsiter").text("you are register Successfully.");
+                    $("#successRegsiter").show();
+
+                }).catch(function(error) {
+                    $("#error").text(error.message);
+                    $("#error").show();
+                });
+            } else {
+                $("#error").text("Invalid Otp.");
+                $("#error").show();
+            }
+
+        }
     }
-  
+
+    function submitForm() {
+        // Check if the OTP is verified
+        var otpVerified = isOTPVerified; // Implement your OTP verification logic here
+
+        // If the OTP is not verified, prevent form submission
+        if (!otpVerified) {
+            // Display an error message or perform any necessary actions
+            $("#error").text("Please verify the OTP first.");
+            $("#error").show();
+
+            // Return false to prevent the form from submitting
+            return false;
+        }
+
+        // If the OTP is verified, allow the form submission
+        return true;
+    }
 </script>
+@endsection

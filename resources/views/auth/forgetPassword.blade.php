@@ -1,45 +1,45 @@
-@extends('layouts.auth')
+@extends('layouts.estate')
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card-group">
-            <div class="card p-4">
-                <div class="card-body">
+<section class="forgot-password-section">
+            <div class="container">
+                <div class="forgot-password-box mx-auto text-center">
                     <form method="POST" action="{{ route('forget.password.post') }}">
+                    {{ csrf_field() }}
+                        <h1 class="forgot-password-title dark-font mb-3">Forgot Password?</h1>
+                        <p class="sm-text mb-4 pb-2">No worries, we’ll send your reset instructions.</p>
+                        @if(count($errors) > 0 )
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <ul class="p-0 m-0" style="list-style: none;">
+                    @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                  </ul>
+                </div>
+                @endif
+                        <div class="sign-up-form-group pb-lg-2 mb-4">
                         {{ csrf_field() }}
-                        <h1>
-                            <div class="login-logo">
-                                <a href="#">
-                                    {{ trans('panel.site_title') }}
-                                </a>
-                            </div>
-                        </h1>
-                        <p class="text-muted"></p>
-                        <div>
-                            {{ csrf_field() }}
-                            <div class="form-group has-feedback">
-                                <input type="email" name="email" class="form-control" required="autofocus" placeholder="{{ trans('global.login_email') }}">
-                                @if($errors->has('email'))
-                                    <em class="invalid-feedback @if($errors->has('email')) show-error @endif">
-                                        {{ $errors->first('email') }}
-                                    </em>
-                                @endif
-                            </div>
+                        <input type="email" name="email" class="form-control" required="autofocus" placeholder="{{ trans('global.login_email') }}">
+            
                         </div>
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">
-                                    {{ trans('global.reset_password') }}
-                                </button>
-                            </div>
-                        </div>
+                        <button type="submit" class="contact-sub-btn btn btn-primary mx-auto px-lg-5 mb-lg-4 mb-3">Reset
+                            Password</button>
 
-                        {!! \Session::get('message') !!}
-
+                        <a href="{{route('home.signin')}}" class="back-login transition">
+                            <span class="d-flex align-items-center">
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.67188 8.9375L0.734375 5L4.67188 1.0625M1.28125 5H9.26562"
+                                        stroke="#7C7C7C" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span class="d-inline-block ms-1">Back to log in</span>
+                            </span>
+                            {!! \Session::get('message') !!}
+                        </a>
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </section>
 @endsection

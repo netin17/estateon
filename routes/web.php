@@ -1,13 +1,14 @@
-<?php
+<?php 
 use Illuminate\Support\Str;
 Route::get('/admin', function () { return redirect('/admin/home'); });
 
 //Route::get('forgot_password', 'Auth\ForgotPasswordController@forgotPassword');
 Route::get('forget-password', 'Auth\ForgotPasswordController@showForgetPasswordForm')->name('forget.password.get');
+Route::get('check-email/{email}', 'Auth\ForgotPasswordController@checkemail')->name('forger.check.email');
 Route::post('forget-password', 'Auth\ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post'); 
 Route::get('reset-password/{token}', 'Auth\ForgotPasswordController@showResetPasswordForm')->name('reset.password.get');
 Route::post('reset-password', 'Auth\ForgotPasswordController@submitResetPasswordForm')->name('reset.password.post');
-
+Route::get('reset-confirm', 'Auth\ForgotPasswordController@resetConfirm')->name('reset.password.confirm');
 Route::get('/', 'Web\HomeController@index')->name('home.index');
 Route::get('/signin', 'Web\HomeController@signin')->name('home.signin');
 Route::get('/signup', 'Web\HomeController@signup')->name('home.signup');
