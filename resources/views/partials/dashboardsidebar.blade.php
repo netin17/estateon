@@ -1,108 +1,38 @@
- <!-- Main Sidebar Container -->
- <nav class="main-header navbar navbar-expand navbar-dark">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
-      </li>
-    </ul>
-
-    <!-- SEARCH FORM -->
-    <form class="form-inline search-strip ml-3">
-    <!-- <div class="input-group input-group-md">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search Here" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div> -->
-      <div class="user-panel mr-3 mt-2 d-flex">
-        <div class="info">
-          <a href="#" class="d-block text-white">{{ Auth::user()->name }}</a>
-        </div>
-        <div class="image">
-          <img src="{{ url('dashboard/images/my-profile.png')}}" class="elevation-2" alt="User Image">
-        </div>
-      </div>
-    </form>
-      
-  </nav>
- <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="{{ route('frontuser.home.index') }}" class="brand-link text-center">
-      <img src="{{ url('dashboard/images/logo.png')}}" alt="EstateOn logo" class="brand-id">
-      <img src="{{ url('dashboard/images/small-icon.png')}}" alt="EstateOn logo" class="small-icon">
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               <li class="nav-item">
-                <a href="{{ route('frontuser.home.index') }}" class="nav-link {{ request()->is('frontuser/home') || request()->is('frontuser/home/*') ? 'active' : '' }}">
-                  <img src="{{ url('dashboard/images/dashboard.png')}}" alt="dashboard-image" class="nav-icon">
-                  <p>
-                    Dashboard
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('frontuser.property.index') }}" class="nav-link {{ request()->is('frontuser/property') || request()->is('frontuser/property/*') ? 'active' : '' }}">
-                  <img src="{{ url('dashboard/images/proerties.png')}}" alt="dashboard-image" class="nav-icon">
-                  <p>
-                    Properties
-                  </p>
-                </a>
-              </li>
-              <!-- <li class="nav-item">
-                <a href="pages/queries.html" class="nav-link">
-                  <img src="{{ url('dashboard/images/queris.png')}}" alt="dashboard-image" class="nav-icon">
-                  <p>
-                    Queries
-                  </p> <span class="new-queries">32</span>
-                </a>
-              </li> -->
-
-              <!-- <li class="nav-item">
-                <a href="pages/myprofile.html" class="nav-link">
-                  <img src="{{ url('dashboard/images/profile.png')}}" alt="dashboard-image" class="nav-icon">
-                  <p>
-                    My Profile
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/subscriptions.html" class="nav-link">
-                  <img src="{{ url('dashboard/images/subscribe.png')}}" alt="dashboard-image" class="nav-icon">
-                  <p>
-                    Subscription
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/changepassword.html" class="nav-link">
-                  <img src="{{ url('dashboard/images/password.png')}}" alt="dashboard-image" class="nav-icon">
-                  <p>
-                    Change Password
-                  </p>
-                </a>
-              </li> -->
-              <li class="nav-item">
-                <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"> 
-                  <img src="{{ url('dashboard/images/logout.png')}}" alt="dashboard-image" class="nav-icon">
-                  <p>
-                    Log Out
-                  </p>
-                </a>
-              </li>
-          </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+<div class="sidebar-col">
+                        <div class="sidebar-top-wrap">
+                            <div class="sidebar-top box-style text-center mb-lg-4">
+                                <div class="user-data-box text-center mb-lg-4 mb-3">
+                                    <h5 class="user-name dark-font mb-md-2 mb-1">{{$user->name}}</h5>
+                                    <p class="verified dark-font d-flex align-items-center justify-content-center">
+                                        Verified
+                                        <svg class="ms-1" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.243 16.3139L6 12.0699L7.414 10.6559L10.243 13.4839L15.899 7.8269L17.314 9.2419L10.243 16.3119V16.3139Z"
+                                                fill="#8591FF" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M1 12C1 5.925 5.925 1 12 1C18.075 1 23 5.925 23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12ZM12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 10.8181 3.23279 9.64778 3.68508 8.55585C4.13738 7.46392 4.80031 6.47177 5.63604 5.63604C6.47177 4.80031 7.46392 4.13738 8.55585 3.68508C9.64778 3.23279 10.8181 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12C21 14.3869 20.0518 16.6761 18.364 18.364C16.6761 20.0518 14.3869 21 12 21Z"
+                                                fill="#8591FF" />
+                                        </svg>
+                                    </p>
+                                </div>
+                                <p class="properties-total mv-2">Total Properties </p>
+                                <p class="properties-total-num red-font">{{$propertycount}}</p>
+                            </div>
+                            <div class="refer-box top-refer-box text-center mb-5 ">
+                                Refer To Your <br> Friend
+                            </div>
+                        </div>
+                        <div class="sidebar-link-box box-style">
+                            <ul class="sidebar-link-list py-lg-5 mt-lg-4">
+                                <li><a class="sidebar-link transition" href="/">Profile</a></li>
+                                <li><a class="sidebar-link transition" href="/">transitions
+                                        history</a></li>
+                                <li><a class="sidebar-link transition" href="/">Listed
+                                        Properties</a></li>
+                                <li><a class="sidebar-link transition sidebar-link-active" href="/">Add Property</a></li>
+                                <li><a class="sidebar-link transition" href="/">Leads</a></li>
+                                <li><a class="sidebar-link transition" href="/">Other Fav. Property</a></li>
+                            </ul>
+                        </div>
+                    </div>

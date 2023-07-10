@@ -21,9 +21,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Traits\CommonTrait;
 
 class PropertiesController extends Controller
 {
+    use CommonTrait;
     /**
      * Display a listing of the resource.
      *
@@ -61,16 +63,25 @@ class PropertiesController extends Controller
      */
     public function create()
     { 
-        $data = [];
-        //$data['property_type'] = PropertyType::get();
-        $data['vastu'] = Vastu::get();
-        $data['amenity'] = Amenity::get();
-        $data['preferences'] = Preferences::get();
-
-        $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
-        $data['property_type_residential'] = PropertyType::where('property_type','residential')->get();
-
-        return view('userdashboard.property.create', compact('data'));
+        if (Auth::check()) {
+            $data = [];
+            $userId = Auth::id();
+            $data['user']=$this->getUserDetailsById($userId);
+            $data['p_count']=$this->getUserPropertyCount($userId);
+            //$data['property_type'] = PropertyType::get();
+            $data['vastu'] = Vastu::get();
+            $data['amenity'] = Amenity::get();
+            $data['preferences'] = Preferences::get();
+    
+            $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
+            $data['property_type_residential'] = PropertyType::where('property_type','residential')->get();
+    
+            // return view('userdashboard.property.create', compact('data'));
+            return view('dashboard.addproperty', compact('data'));
+        } else {
+            return redirect()->route('home.index');
+        }
+       
     }
 
     /**

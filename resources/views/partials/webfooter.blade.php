@@ -1,88 +1,49 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4">
-      <div class="ftr-title">
-        <h3>About Site</h3>
-      </div>
-      <p class="wht">
-        We’re reimagining how you buy, sell and rent. It’s now easier to
-        get into a place you love. So let’s do this, together.
-      </p>
-    </div>
-    <div class="col-lg-2 col-md-6 col-12 mb-4">
-      <div class="ftr-title">
-        <h3>Quick Links</h3>
-      </div>
-      <div class="ftr_links">
-        <ul>
-          <li><a href="{{ route('page.aboutus') }}">About us</a></li>
-          <li><a href="{{ route('page.tandc') }}">Terms & Conditions</a></li>
-          <li><a href="{{ route('page.userguide') }}">User's Guide</a></li>
-          <li><a href="{{ route('page.faq') }}">FAQ's</a></li>
-          <li><a href="{{ route('page.contact') }}">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-lg-2 col-md-6 col-12 mb-4">
-      <div class="ftr-title">
-        <h3>Contact Us</h3>
-      </div>
-      <ul class="cntct-list">
-        <li>
-          <a href="mailto:info@estateon.com">info@estateon.com</a>
-        </li>
-        <li>
-          <address>Old street IT Park 8007, Mumbai India</address>
-        </li>
-        <li><a href="tel:+91 99262 66888">+91 99262 66888</a></li>
-      </ul>
-    </div>
-    <div class="col-lg-4 col-md-6 col-12 mb-4 in-ftrs">
-      <div class="ftr-title">
-        <h3>Follow Us</h3>
-      </div>
-      <ul class="share-icon mt-3">
-        <li>
-          <a href="https://facebook.com/EstateOnOfficial" class="pl-0"><i class="fab fa-facebook-f"></i></a>
-        </li>
-        <li>
-          <a href="https://twitter.com/EstateOn_"><i class="fab fa-twitter"></i></a>
-        </li> 
-        <li>
-          <a href="https://www.instagram.com/estateonofficial/"><i class="fab fa-instagram"></i></a>
-        </li>
-         <li>
-          <a href="https://pinterest.com/estateon"><i class="fab fa-pinterest-p"></i></a>
-        </li> 
-         <li>
-          <a href="https://www.linkedin.com/company/estateon"><i class="fab fa-linkedin-in"></i></a>
-        </li> 
-      </ul>
-      <div class="ftr-title">
-        <h3>Subscribe</h3>
-        <form action="">
-          <div class="form-group">
-            <input type="text" placeholder="Your Email" />
-            <button><i class="fas fa-chevron-right"></i></button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <a href="" onclick="topFunction()" id="gotoTop" title="Go to top"><span class="go_top"></span></a>
-</div>
-<div class="text-center copyright">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <p class="wht Copyrighttxt">
-          Estate On Copyright © 2021 All rights reserved.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-<a href="#" class="scrollToTop"><span class="go_top"></span></a>
+                <div class="row">
+                    <div class="footer-logo-col col-md-4 mb-md-0 mb-5">
+                        <div class="pe-lg-5">
+                            <div class="site-logo">
+                                <img src="{{ url('estate/images/footer-logo.png')}}" alt="logo" class="w-100" />
+                            </div>
+                            <p style="font-size: 14px; color: #fff;">We’re reimagining how you buy, sell and rent. It’s
+                                now
+                                easier to get
+                                into a place you love.
+                                So let’s do this, together</p>
+                        </div>
+                    </div>
+                    <div class="footer-link-col col-md-2 footer-link mb-md-0 mb-5">
+                        <ul class="footer-link-list">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="{{ route('page.aboutus') }}">About Us</a></li>
+                            <li><a href="{{ route('page.tandc') }}">Terms & Conditions</a></li>
+                            <li><a href="{{ route('page.faq') }}">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-sub-link-col col-md-3 mb-md-0 mb-5">
+                        <ul class="footer-link-list">
+                            <li><a href="{{route('property.list')}}">Properties</a></li>
+                            <li><a href="/">Explore Our Builders</a></li>
+                            @auth('frontuser')
+                            <li><a href="{{ route('frontuser.property.create') }}">Post Property Now </a></li>
+                            @endauth
+                            <li><a href="/">Create Your Builder Profile</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-social-link-col col-md-3 ps-xl-5 mb-md-0 mb-2">
+                        <span class="d-block mb-4 footer-col-title">Follow Us</span>
+                        <ul class="social-link-list d-flex">
+                            <li><a href="https://www.instagram.com/estateonofficial/"><img src="{{ url('estate/images/instagram.svg')}}" alt=""></a></li>
+                            <li><a href="https://twitter.com/EstateOn_"><img src="{{ url('estate/images/twitter.svg')}}" alt=""></a></li>
+                            <li><a href="https://www.linkedin.com/company/estateon"><img src="{{ url('estate/images/linkedin.svg')}}" alt=""></a></li>
+                            <li><a href="https://facebook.com/EstateOnOfficial"><img src="{{ url('estate/images/fb.svg')}}" alt=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center copyright-text mt-5">
+                    Copyright@2023 All Rights Resaved By Estateon
+                </div>
+            </div>
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
 <script src="https://kit.fontawesome.com/1625cb88aa.js" crossorigin="anonymous"></script>
@@ -93,16 +54,3 @@
 <script src="{{ url('estate/js/wow.min.js')}}"></script>
 <script src="{{ url('estate/js/min/main-min.js')}}"></script>
 <script src="{{ url('estate/js/main.js')}}"></script>
-
-<script>
-  $(window).scroll(function() {
-    var sticky = $('.header'),
-      scroll = $(window).scrollTop();
-
-    if (scroll >= 100) sticky.addClass('fixed');
-    else sticky.removeClass('fixed');
-  });
-  setTimeout(function() {
-    $("body").addClass("loaded");
-  }, 500);
-</script>
