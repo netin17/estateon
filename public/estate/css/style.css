@@ -1877,13 +1877,13 @@ form.properties-ordering {
 .accordion .card .card-header{
   padding: 0;
 }
-.card .card-header i {
-  position: absolute;
+/* .card .card-header i {
+   position: absolute; 
   right: 16px;
   top: 20px;
   font-size: 15px;
   color: #f05e59;
-}
+} */
 .accordion {
   padding: 30px;
   background: #ffffff;
@@ -2779,11 +2779,11 @@ li.v-inner.newly-added {
 /*.padding-tb{
   padding: 100px 0;
 }*/
-[type="radio"]:checked,
+/* [type="radio"]:checked,
 [type="radio"]:not(:checked){
   position: absolute;
   left: -9999px;
-}
+} */
 .checkbox:checked + label,
 .checkbox:not(:checked) + label{
   position: relative;

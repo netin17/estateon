@@ -15,9 +15,9 @@
                             <ul class="header-menu-list d-flex align-items-center justify-content-end">
                                 <li class="header-menu-item"><a href="{{route('property.list')}}">Local Properties</a></li>
                                 <li class="header-menu-item"><a href="/">Explore Our Builders</a></li>
-                                <li class="header-menu-item"><a href="/">Post Property Now</a></li>
+                                <li class="header-menu-item"><a href="{{ route('home.signin') }}">Post Property Now</a></li>
                                 <li class="header-menu-item">
-                                    <a href="/sign-up.html" class="yellow-btn btn btn-primary">Create Your Builder Profile</a>
+                                    <a href="/" class="yellow-btn btn btn-primary">Create Your Builder Profile</a>
                                 </li>
                                 <li class="header-menu-item"><a href="{{ route('home.signin') }}" class="login-btn btn btn-primary">Login</a>
                                 </li>
