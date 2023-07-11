@@ -1,7 +1,6 @@
 @extends('layouts.estate')
 @section('content')
 <link rel="stylesheet" href="{{ url('estate/css/newcss/multi-form.css')}}" />
-<link rel="stylesheet" href="{{ url('estate/css/newcss/jquery.fancybox.min.css')}}" />
 <link rel="stylesheet" href="{{ url('estate/summernote/summernote-bs4.css')}}">
 @include('partials.dashboardsidebar', ['user'=>$data['user'], 'propertycount'=>$data['p_count']])
 <div class="dashboard-content-col">
@@ -69,7 +68,7 @@
                                 </div>
                                 <div class="profile-form-group d-flex align-items-center mb-4">
                                     <label for="title" class="d-block">Properties Title</label>
-                                    <input type="text" id="title" name="property_feature" placeholder="" class="d-block profile-form-fild" required />
+                                    <input type="text" id="title" name="property_title" placeholder="" class="d-block profile-form-fild" required />
                                 </div>
                                 <div class="profile-form-group d-flex align-items-center mb-4">
                                     <label for="banner-image" class="d-block">Banner Image <span class="d-block red-font" style="font-size: 12px;">(jpeg or png. only)</span></label>
@@ -105,7 +104,7 @@
                                         </div>
                                         <div class="step-form-group mb-5">
                                             <label for="locality" class="step-form-label">Locality</label>
-                                            <input type="text" id="locality" placeholder="Add Nearby Locality" class="step-form-field w-100 d-block" required />
+                                            <input type="text" id="locality" placeholder="Add Nearby Locality" name="locality" class="step-form-field w-100 d-block" required />
                                         </div>
             </div>
             <div class="tab">
@@ -177,15 +176,33 @@
             <h3 class="dark-font text-center step-title">Other information</h3>
             <div class="step-form-group mb-3 col-md-6">
                                             <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
-                                            <input type="text" id="project-id" placeholder="HY174257"
+                                            <input type="text" id="project-id" placeholder="HY174257" name="rera_number"
                                                 class="step-form-field w-100 d-block" required />
                                         </div>
                                         <div class="step-form-group mb-3 col-md-6">
                                             <label for="include" class="step-form-label">Govt Tax Include</label>
-                                            <input type="text" id="include" placeholder="Include"
-                                                class="step-form-field w-100 d-block" required />
+                                            <select name="govt_tax_include" class="form-control select2" id="govt_tax">
+                                            <option value="1">Included</option>
+                                            <option value="0">Not Included</option>
+                                        </select>
                                         </div>
+                                        <div class="col-md-6 mb-3">
+                    <label for="extra_notes" class="text-heading">Extra Notes</label>
+                                        <input type="text" id="extra_notes" name="extra_notes" class="form-control">
+
+                    </div>
+                    <div class="col-md-12 mb-3">
+                    <label for="type" class="col-12 pl-0">Furnished</label>
+                                        <select name="furnished" class="form-control select2" id="type">
+                                            <option value="">--Select--</option>
+                                            <option value="furnished">Furnished</option>
+                                            <option value="unfurnished">Un Furnished</option>
+                                            <option value="semi_furnished">Semi Furnished</option>
+                                        </select>
+
+                    </div>
             </div>
+         {{--
             <div class="tab">
             <h3 class="dark-font text-center step-title">Add Images (jpeg or png. only)</h3>
             <div class="row">
@@ -202,6 +219,7 @@
   </div>
   <div id="imagePreviewContainer" class="row"></div>
             </div>
+            --}}  
             <div style="overflow:auto;">
                 <div style="float:right; margin-top: 5px;">
                     <button type="button" class="previous">Previous</button>
@@ -225,19 +243,63 @@
 @endsection
 @section('scripts')
 <script src="{{ url('estate/js/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{ url('estate/js/jquery-validation/additional-methods.min.js')}}"></script>
 <script src="{{ url('estate/js/multi-form.js')}}"></script>
-<script src="{{ url('estate/js/jquery.fancybox.min.js')}}"></script>
 <script src="{{ url('estate/summernote/summernote-bs4.min.js')}}"></script>
 <script src="{{ url('/js/mapInput.js')}}"></script>
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initMap"></script>
 <script type="text/javascript">
+var val	=	{
+    rules: {
+        type: "required",
+        property_category: "required",
+        property_type: "required",
+        vastu: "required",
+        property_title: "required",
+        banner_image:{
+            required: true,
+            extension: "jpg|jpeg|png"
+        },
+        name: 'required',
+        address: 'required',
+        locality: 'required',
+        price: 'required',
+        size: 'required',
+        length: 'required',
+        width: 'required'
+    },
+    messages: {
+        type: "Please select an option",
+        property_category: "Please Select an option",
+        property_type: "Please Select an option",
+        vastu: "Please Select an option",
+        property_title: "Enter title for your property",
+        banner_image:{
+            required: "Please select an image",
+            extension: "Only JPG, JPEG, or PNG files are allowed"
+        },
+        name: "Enter name for your property",
+        address: "Select Address",
+        locality: 'Select nearby locality',
+        price: 'Enter price for your property',
+        size: 'Enter size for your property',
+        length: 'Enter length for your property',
+        width: 'Enter width for your property'
+    }
+}
+
+
+
+
+
     $("#addProperty").multiStepForm({
         // defaultStep:0,
         beforeSubmit: function(form, submit) {
             console.log("called before submiting the form");
             console.log(form);
             console.log(submit);
-        }
+        },
+        validations:val,
     }).navigateTo(0);
 
     $(function() {
@@ -369,50 +431,37 @@
         allow_numbers_only(e)
     })
     
-    var images = []; // Array to store image data
+    // var images = []; // Array to store image data
 
-  $('#imageInput').change(function(e) {
-    var files = e.target.files;
-    var imagePreviewContainer = $('#imagePreviewContainer');
-    imagePreviewContainer.empty(); // Clear previous previews
-    images = []; // Reset the array
+//   $('#imageInput').change(function(e) {
+//     var files = e.target.files;
+//     var imagePreviewContainer = $('#imagePreviewContainer');
+//     imagePreviewContainer.empty(); // Clear previous previews
+//     images = []; // Reset the array
 
-    if (files) {
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        var reader = new FileReader();
+//     if (files) {
+//       for (var i = 0; i < files.length; i++) {
+//         var file = files[i];
+//         var reader = new FileReader();
 
-        reader.onload = (function(file) {
-          return function(e) {
-            var img = $('<img>').addClass('preview-image').attr('src', e.target.result);
-            img.appendTo(imagePreviewContainer);
+//         reader.onload = (function(file) {
+//           return function(e) {
+//             var img = $('<img>').addClass('preview-image').attr('src', e.target.result);
+//             img.appendTo(imagePreviewContainer);
 
-            // Push the image data to the array
-            images.push({
-              src: e.target.result,
-              type: 'image'
-            });
-          };
-        })(file);
+//             // Push the image data to the array
+//             images.push({
+//               src: e.target.result,
+//               type: 'image'
+//             });
+//           };
+//         })(file);
 
-        reader.readAsDataURL(file);
-      }
-    }
-  });
+//         reader.readAsDataURL(file);
+//       }
+//     }
+//   });
   // Initialize FancyBox on the images
-  $('#imagePreviewContainer').on('click', '.preview-image', function() {
-    var index = $(this).index();
-
-    $.fancybox.open(images, {
-      loop: true,
-      autoFocus: false,
-      buttons: ['close'],
-      closeClickOutside: true,
-      clickContent: false,
-      onInit: function(instance) {
-        instance.jumpTo(index); // Open FancyBox starting from the clicked image
-      }
-    });
-  });
+  
 </script>
 @endsection

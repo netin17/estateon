@@ -94,10 +94,11 @@ class PropertiesController extends Controller
     {
         $data = $request->all();
         // dd($data);
-         //echo "<pre>"; print_r($data); echo "</pre>";
+        //  echo "<pre>"; print_r($data); echo "</pre>";
         // exit;
         $user_id = Auth::guard('frontuser')->user()->id;
         //print $user_id; die;
+        $slug=commonfunction::createSlug($data['name'],0,'property');
         $property = Property::create([
             'name' => $data['name'],
             'user_id' => $user_id,
@@ -111,7 +112,7 @@ class PropertiesController extends Controller
             'featured' => isset($data['featured']) ? 1 : 0,
             'hot' => isset($data['hot']) ? 1 : 0,
             //'notes' => $data['notes'],
-            'slug'=> commonfunction::createSlug($data['name'],0,'property'),
+            'slug'=> $slug,
             'created_by' => $user_id
 
         ]);
@@ -132,22 +133,22 @@ class PropertiesController extends Controller
             ]);
             $image_id = $image->id;
         }
-        if( $files = $request->file('image')){
-            // dd($files);
-            foreach($files as $file){
-                $filename = $file->getClientOriginalName();
-                $path = public_path() . '/uploads/image/property' .$property_id . '/';
-                $file->move($path, $filename);
-                $url = url('/uploads/image/property' .$property_id . '/' . $filename);
-                $image = Images::create([
-                    'property_id' => $property_id,
-                    'name' => $filename,
-                    'url' => $url,
-                    'featured' => 0
-                ]);
-                $image_id = $image->id;
-            }
-        }
+        // if( $files = $request->file('image')){
+        //     // dd($files);
+        //     foreach($files as $file){
+        //         $filename = $file->getClientOriginalName();
+        //         $path = public_path() . '/uploads/image/property' .$property_id . '/';
+        //         $file->move($path, $filename);
+        //         $url = url('/uploads/image/property' .$property_id . '/' . $filename);
+        //         $image = Images::create([
+        //             'property_id' => $property_id,
+        //             'name' => $filename,
+        //             'url' => $url,
+        //             'featured' => 0
+        //         ]);
+        //         $image_id = $image->id;
+        //     }
+        // }
         // foreach($request->image as $i){
         //     $file = $i->file('image');
         //     $filename = $file->getClientOriginalName();
@@ -214,25 +215,14 @@ class PropertiesController extends Controller
                 AssignedPreferences::insert($insert_additional);
             }
         }
-
-        ////property details
-        // $property_details = Propertydetail::create([
-        //     'property_id' => $property_id,
-        //     'bedroom' => $data['bedroom'],
-        //     'bathroom' => $data['bathroom'],
-        //     'balcony' => $data['balcony'],
-        //     'kitchen' => $data['kitchen'],
-        //     'living_room' => isset($data['living_room']) ? 1 : 0,
-        //     'furnished' => $data['furnished'],
-        //     'price' => $data['price'],
-        //     'currency' => isset($data['currency']) ? $data['currency'] : NULL,
-        // ]);
-
         $extraNotes = isset($data['extra_notes']) ? $data['extra_notes'] : '';
 
         $property_details = Propertydetail::create([
             'property_id' => $property_id,
             'property_category' => $data['property_category'],
+            'property_title' => $data['property_title'],
+            'locality' => $data['locality'],
+            'rera_number' => $data['rera_number'],
             'property_feature' => @$data['property_feature'],
             //'bedroom' => $data['bedroom'],
             //'bathroom' => $data['bathroom'],
@@ -250,7 +240,7 @@ class PropertiesController extends Controller
             'extra_notes' => $extraNotes
         ]);
      
-        return redirect()->route('frontuser.property.index');
+        return redirect()->route('frontuser.property.addimages',['slug'=>$slug]);
      
         //
     }
@@ -437,29 +427,61 @@ class PropertiesController extends Controller
     }
     public function addimage(Request $request)
     {
-        // if (!Gate::allows('users_manage')) {
-        //     return abort(401);
-        // }
+        // Validate the request data
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            'property_id' => 'required|numeric',
         ]);
-        
+    
+        // Get the input data
         $data = $request->all();
+    
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();
             $path = public_path() . '/uploads/image/property' . $data['property_id'] . '/';
             $file->move($path, $filename);
             $url = url('/uploads/image/property' . $data['property_id'] . '/' . $filename);
+    
             $image = Images::create([
                 'property_id' => $data['property_id'],
                 'name' => $filename,
                 'url' => $url,
                 'featured' => 0
             ]);
+    
             $image_id = $image->id;
+    
+            // Return the image ID or any other response as needed
+            return response()->json(['image_id' => $image_id, 'url'=>$url], 200);
         }
-        return redirect()->route('frontuser.property.image', $data['property_id']);
+    
+        // Return an error response if the image file was not found
+        return response()->json(['message' => 'Image file not found.'], 400);
+    }
+    public function addImages($slug){
+        if (Auth::check()) {
+            $property=  Property::where('slug', $slug)->with(['images'])->first();
+            if ($property) {
+                $userId = Auth::user()->id;
+                if($userId != $property->user_id){
+                    return redirect()->route('frontuser.property.index');
+                }else{
+                    $data['user']=$this->getUserDetailsById($userId);
+                    $data['p_count']=$this->getUserPropertyCount($userId);
+                    $data['property']=$property;
+                    ////WORK HERE
+        //             echo "<pre>"; print_r($property->toArray()); echo "<pre>";
+        // exit;
+                    return view('dashboard.addimages', compact('data'));
+                }
+            } else {
+                return redirect()->route('frontuser.property.index');
+            }
+        } else {
+            return redirect()->route('home.index');
+        }
+     
     }
     public function deleteimage($id)
     {

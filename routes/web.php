@@ -117,6 +117,7 @@ Route::group(['middleware' => ['auth:frontuser'], 'prefix' => 'frontuser', 'as' 
     Route::resource('/', 'HomeController');
     Route::resource('home', 'HomeController');
     Route::resource('property', 'PropertiesController');
+    Route::get('addImages/{slug}','PropertiesController@addImages')->name('property.addimages');
     Route::any('images/{id}','PropertiesController@image')->name('property.image');
     Route::get('conversastion/{id?}', 'ChatController@index')->name('property.conversastion');
     Route::post('addimage', 'PropertiesController@addimage')->name('property.addimage');
