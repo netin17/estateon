@@ -47,13 +47,41 @@ class PropertiesController extends Controller
 
     public function index()
     {
-        $currentuserid = Auth::guard('frontuser')->user()->id;
-        $property = Property::where('user_id', $currentuserid)->with(['property_type.type_data', 'property_details', 'images'])->get();
-        $properties = $property;
-        // echo "<pre>"; print_r($properties->toArray()); echo "<pre>";
-        // exit;
-        //print '<pre>'; print_r($properties); die;
-        return view('userdashboard.property.index', compact('properties'));
+        // $currentuserid = Auth::guard('frontuser')->user()->id;
+        // $property = Property::where('user_id', $currentuserid)->with(['property_type.type_data', 'property_details', 'images'])->get();
+        // $properties = $property;
+        // // echo "<pre>"; print_r($properties->toArray()); echo "<pre>";
+        // // exit;
+        // //print '<pre>'; print_r($properties); die;
+        // return view('userdashboard.property.index', compact('properties'));
+
+
+        if (Auth::check()) {
+            $data = [];
+            $userId = Auth::id();
+            $data['user']=$this->getUserDetailsById($userId);
+            $data['p_count']=$this->getUserPropertyCount($userId);
+            $data['properties'] = Property::where('user_id', $userId)
+            ->with(['property_details','userSubscriptions' => function ($query) {
+                $query->where('start_at', '<=', now())
+                    ->where('end_at', '>=', now())
+                    ->with(['plan'=>function($pquery){
+                        $pquery->with(['planType']);
+                    }]);
+            }])
+            ->orderBy('id', 'desc')
+            ->paginate(2);
+    // echo "<pre>"; print_r($data['properties']->toArray()); echo "<pre>";
+    //     exit;
+            // return view('userdashboard.property.create', compact('data'));
+            return view('dashboard.listproperty', compact('data'));
+        } else {
+            return redirect()->route('home.index');
+        }
+
+
+
+
     }
 
     /**

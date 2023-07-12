@@ -23,7 +23,7 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable;
     use HasRolesAndAbilities;
 
-    protected $fillable = ['name', 'email', 'password', 'remember_token', 'phone', 'provider_name', 'provider_id', 'avatar', 'detail', 'login_by','slug', 'device_token', 'user_level'];
+    protected $fillable = ['name', 'email', 'password', 'remember_token', 'phone', 'provider_name', 'provider_id', 'avatar', 'detail', 'login_by', 'slug', 'device_token', 'user_level'];
 
     protected $hidden = [
         'password', 'remember_token', 'device_token'
@@ -58,7 +58,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    public function properties(){
+    public function properties()
+    {
         return $this->hasMany('App\Property', 'user_id');
+    }
+
+    public function userSubscriptions()
+    {
+        return $this->hasMany('App\UserSubscription', 'user_id');
     }
 }

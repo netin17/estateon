@@ -44,6 +44,7 @@ class SubscriptionController extends Controller
         $plan = SubscriptionPlan::create([
             'name' => $data['name'],
             'price' => $data['price'],
+            'description'=>$data['description'],
             'plan_type_id' => $id,
             'time_in_monthes' => $data['time_in_monthes'],
             'features' => $data['features'],

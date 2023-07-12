@@ -21,6 +21,18 @@
                     {{ trans('cruds.subscription.fields.name_helper') }}
                 </p>
             </div>
+            <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+                <label for="name">Title*</label>
+                <input type="text" id="title" name="title" class="form-control" required>
+                @if($errors->has('title'))
+                <em class="invalid-feedback">
+                    {{ $errors->first('title') }}
+                </em>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.subscription.fields.name_helper') }}
+                </p>
+            </div>
             <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                 <label for="price">{{ trans('cruds.subscription.fields.price') }}*</label>
                 <input type="number" id="price" name="price" class="form-control" required>
@@ -52,6 +64,19 @@
                 @if($errors->has('features'))
                 <em class="invalid-feedback">
                     {{ $errors->first('features') }}
+                </em>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.subscription.fields.features_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                <label for="features">Description</label>
+                <textarea id="description" name="description" class="form-control textarea" placeholder="Place some text here"
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                @if($errors->has('description'))
+                <em class="invalid-feedback">
+                    {{ $errors->first('description') }}
                 </em>
                 @endif
                 <p class="helper-block">

@@ -38,6 +38,11 @@ class Property extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+public function userSubscriptions()
+{
+    return $this->hasMany('App\UserSubscription', 'property_id');
+}
+
     public static function boot() {
         parent::boot();
 

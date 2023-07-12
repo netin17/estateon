@@ -123,6 +123,7 @@ Route::group(['middleware' => ['auth:frontuser'], 'prefix' => 'frontuser', 'as' 
     Route::post('addimage', 'PropertiesController@addimage')->name('property.addimage');
     Route::any('deleteimage/{id}', 'PropertiesController@deleteimage')->name('property.deleteimage');
     Route::get('propertyleads/{id}', 'PropertiesController@leads')->name('property.leads');
+    Route::get('plans/{slug}', 'SubscriptionController@displayPlans')->name('plans.list');
     //Route::post('property/create', 'PropertiesController@create')->name('frontuser.property.create');
 }); 
 

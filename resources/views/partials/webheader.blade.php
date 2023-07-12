@@ -26,7 +26,7 @@
                             @auth('frontuser')
                             <ul class="header-menu-list d-flex align-items-center justify-content-end">
                                 <li class="header-menu-item"><a href="/">Home</a></li>
-                                <li class="header-menu-item"><a href="{{ route('frontuser.property.create') }}" class="login-btn btn btn-primary">Dashboard</a>
+                                <li class="header-menu-item"><a href="{{ route('frontuser.property.index') }}" class="login-btn btn btn-primary">Dashboard</a>
                                 </li>
                                 <li class="header-menu-item">
                                     <a href="{{ route('logout') }}"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"
