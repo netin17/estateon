@@ -1,6 +1,8 @@
 @extends('layouts.estate')
 @section('content')
-
+<section class="dashboard-section">
+    <div class="container">
+    <div class="dashboard-row d-flex flex-wrap">
 @include('partials.dashboardsidebar', ['user'=>$data['user'], 'propertycount'=>$data['p_count']])
 <div class="dashboard-content-col">
                         <div class="dashboard-title-wrap d-lg-block d-none">
@@ -9,8 +11,8 @@
                         <div class="refer-box side-refer-box text-center mb-5">
                             Refer To Your Friend
                         </div>
-                        <div class="history-table-wrap box-style">
-                            <div class="table-bottom-shadow position-relative">
+                        <div class="history-table-wrap box-style position-relative">
+                            <div class="table-bottom-shadow ">
                                 <table class="w-100 listed-properties-table" style="border-collapse: separate;">
                                     <thead>
                                         <tr>
@@ -65,6 +67,9 @@
                             </div>
                         </div>
                     </div>
+        </div>
+    </div>
+</section>
 
 
 

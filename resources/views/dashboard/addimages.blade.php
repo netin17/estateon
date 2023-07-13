@@ -1,19 +1,20 @@
 @extends('layouts.estate')
 @section('content')
 <link rel="stylesheet" href="{{ url('estate/css/newcss/jquery.fancybox.min.css')}}" />
-@include('partials.dashboardsidebar', ['user'=>$data['user'], 'propertycount'=>$data['p_count']])
+<section class="dashboard-section">
+  <div class="container">
+    <div class="dashboard-row d-flex flex-wrap">
+      @include('partials.dashboardsidebar', ['user'=>$data['user'], 'propertycount'=>$data['p_count']])
 
-<h3 class="dark-font text-center step-title">Add Images (jpeg or png. only)</h3>
-            <div class="row">
+    <div class="dashboard-content-col">
+      <div class="step-content step-other-information box-style">
+      <h3 class="dark-font text-center step-title mb-4">Add Images (jpeg or png. only)</h3>
+            <div class="row mb-4">
     <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="input-field col-md-12">
+          <div class="input-field">
             <h6 class="head-txt">Select Image</h6>
             <input type="file" class="form-control" name="image" id="imageInput" />
           </div>
-        </div>
-      </div>
       <div id="loader" class="loader">
   <div class="loader-inner"></div>
 </div>
@@ -21,10 +22,15 @@
   </div>
   <div id="imagePreviewContainer" class="row">
     @foreach($data['property']->images as $image)
-    <div class="image-grid"><a href="{{$image->url}}" data-fancybox="gallery"><img src="{{$image->url}}"></a></div>
+    <div class="image-grid property-doc-col"><a href="{{$image->url}}" data-fancybox="gallery"><img src="{{$image->url}}" class="property-doc-img"></a></div>
 
     @endforeach
   </div>
+  </div>
+  </div>
+  </div>
+  </div>
+</section>
 
 @endsection
 @section('scripts')
