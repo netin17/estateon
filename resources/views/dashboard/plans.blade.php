@@ -80,10 +80,10 @@
             Lorem
             Ipsum has been the industry's standard</p>
         <div class="row mt-4 pt-1 justify-content-center">
-            @foreach($data['plans'] as $plan)
+            @foreach($data['plans'] as $index=>$plan)
             @if($plan->name=='Owner')
             @if(!empty($plan->subscriptonPlans))
-            @foreach($plan->subscriptonPlans as $sub_plan)
+            @foreach($plan->subscriptonPlans as $subIndex=>$sub_plan)
             <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
                 <div class="plan-card transition">
                     <div class="plan-card-head text-center">
@@ -93,7 +93,7 @@
                             <h6 class="plan-property-title mb-1">{{$sub_plan->name}}</h6>
                             <p>{{$sub_plan->price==0 ? '1 Week' : $sub_plan->time_in_monthes . 'Months'}}</p>
                         </div>
-                        <button type="button" class="get-started-btn btn btn-primary">Get Started</button>
+                        <button type="button" class="get-started-btn btn btn-primary buy_now" data-index="{{$index}}-{{$subIndex}}">Get Started</button>
                     </div>
                     {!! $sub_plan->features !!}
                 </div>
@@ -153,10 +153,10 @@
             Lorem
             Ipsum has been the industry's standard</p>
         <div class="row mt-4 pt-1 justify-content-center">
-            @foreach($data['plans'] as $plan)
+            @foreach($data['plans'] as $index=>$plan)
             @if($plan->name=='Agent')
             @if(!empty($plan->subscriptonPlans))
-            @foreach($plan->subscriptonPlans as $sub_plan)
+            @foreach($plan->subscriptonPlans as $subIndex=>$sub_plan)
             <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
                 <div class="plan-card transition">
                     <div class="plan-card-head text-center">
@@ -166,7 +166,7 @@
                             <h6 class="plan-property-title mb-1">{{$sub_plan->name}}</h6>
                             <p>{{$sub_plan->price==0 ? '1 Week' : $sub_plan->time_in_monthes . 'Months'}}</p>
                         </div>
-                        <button type="button" class="get-started-btn btn btn-primary">Get Started</button>
+                        <button type="button" class="get-started-btn btn btn-primary buy_now" data-index="{{$index}}-{{$subIndex}}">Get Started</button>
                     </div>
                     {!! $sub_plan->features !!}
                 </div>
@@ -383,20 +383,25 @@
             </div>
         </div>
     </div>
+
+    <div id="loader" class="loader">
+  <div class="loader-inner"></div>
+</div>
 </section>
 
 @endsection
 @section('scripts')
+<script src="{{ url('estate/js/wow.min.js')}}"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
         jQuery(document).ready(function () {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
             jQuery('.open-menu').click(function () {
                 jQuery('.header-wrap').slideToggle();
                 jQuery('.open-menu').toggleClass('close-menu');
                 jQuery("body").toggleClass("body-overflow");
             });
-        });
 
-        $(document).ready(function () {
             wow = new WOW({
                 boxClass: 'wow',      // default
                 animateClass: 'animated', // default
@@ -406,7 +411,99 @@
             })
             new WOW().init();
 
+
+
+function savepayment(data){
+    $.ajax({
+          url: "{{ route('frontuser.userSubscription.save') }}",
+          type: "POST",
+          data: {
+            planId: data.planId,
+            propertyId: data.propertyId,
+            txnid: data.txnid
+          },
+          headers: {
+            'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the request headers
+          },
+          success: function(response) {
+            // Handle success response
+           console.log(response)
+            // Hide loader
+            $('#loader').hide();
+            window.location.href = "{{ route('frontuser.property.index') }}";
+          },
+          error: function(xhr, status, error) {
+            // Handle error response
+            console.error(xhr.responseText);
+            // Hide loader
+            $('#loader').hide();
+          }
         });
+}
+
+
+            var plansData = @json($data['plans']);
+    $('body').on('click', '.buy_now', function(e) {
+        var indexes = $(this).data("index");
+        var index = indexes.split("-");
+        var planId = plansData[index[0]].subscripton_plans[index[1]].id;
+        var price = plansData[index[0]].subscripton_plans[index[1]].price;
+        var propertyId = "{{$data['property']->id}}";
+        console.log(planId, price, propertyId);
+   if(price==0){
+    $('#loader').show();
+      var data={
+        planId: planId,
+            propertyId: propertyId,
+            txnid: null
+      }
+      savepayment(data)
+   }else{
+    var options = {
+"key": "{{ env('RAZOR_KEY') }}",
+"amount": (price*100), // 2000 paise = INR 20
+"name": "EstateOn",
+"description": "Payment",
+"image": "{{ url('estate/images/logo.png')}}",
+"handler": function (response){
+    var data={
+            planId: planId,
+            propertyId: propertyId,
+            txnid: response.razorpay_payment_id
+      }
+      savepayment(data)
+// $.ajax({
+// url: SITEURL + 'paysuccess',
+// type: 'post',
+// dataType: 'json',
+// data: {
+// razorpay_payment_id: response.razorpay_payment_id , 
+// totalAmount : totalAmount ,product_id : product_id,
+// }, 
+// success: function (msg) {
+// window.location.href = SITEURL + 'razor-thank-you';
+// }
+// });
+},
+"prefill": {
+"contact": "{{$data['user']->phone}}",
+"email":   "{{$data['user']->email}}",
+},
+"theme": {
+"color": "#f05e59"
+}
+};
+var rzp1 = new Razorpay(options);
+rzp1.open();
+e.preventDefault();
+   }
+  
+    });
+
+           
+
+        });
+
 
     </script>
     @endsection

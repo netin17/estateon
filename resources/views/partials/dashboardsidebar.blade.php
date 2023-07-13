@@ -25,12 +25,12 @@
                         </div>
                         <div class="sidebar-link-box box-style">
                             <ul class="sidebar-link-list py-lg-5 mt-lg-4">
-                                <li><a class="sidebar-link transition" href="/">Profile</a></li>
-                                <li><a class="sidebar-link transition" href="/">transitions
+                                <li><a class="sidebar-link transition {{ request()->is('frontuser/change_password') || request()->is('frontuser/change_password/*') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.frontuser.change_password')}}">Profile</a></li>
+                                <li><a class="sidebar-link transition {{ request()->is('frontuser/transactionhistory') || request()->is('frontuser/transactionhistory/*') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.transactionhistory.get')}}">transitions
                                         history</a></li>
-                                <li><a class="sidebar-link transition" href="/">Listed
+                                <li><a class="sidebar-link transition {{ request()->is('frontuser/property') || request()->is('frontuser/property/index') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.property.index')}}">Listed
                                         Properties</a></li>
-                                <li><a class="sidebar-link transition sidebar-link-active" href="/">Add Property</a></li>
+                                <li><a class="sidebar-link transition {{ request()->is('frontuser/property/create') || request()->is('frontuser/property/create') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.property.create')}}">Add Property</a></li>
                                 <li><a class="sidebar-link transition" href="/">Leads</a></li>
                                 <li><a class="sidebar-link transition" href="/">Other Fav. Property</a></li>
                             </ul>

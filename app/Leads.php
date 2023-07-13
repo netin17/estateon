@@ -9,7 +9,7 @@ class Leads extends Model
     public $timestamps = false;
     //
     protected $table = 'leads';
-    protected $fillable = ['name', 'email', 'phone', 'message', 'property_id', 'created_at'] ;
+    protected $fillable = ['name', 'email', 'phone', 'message', 'property_id', 'viewed','created_at'] ;
     
     const UPDATED_AT = null;
   

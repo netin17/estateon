@@ -195,7 +195,6 @@ return [
         Silber\Bouncer\BouncerServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Kreait\Laravel\Firebase\ServiceProvider::class,
-        Riazxrazor\Payumoney\PayumoneyServiceProvider::class,
 
     ],
 
@@ -254,7 +253,6 @@ return [
         'Bouncer'      => Silber\Bouncer\BouncerFacade::class,
 		'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class, 
 		'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-        'Payumoney' => Riazxrazor\Payumoney\PayumoneyFacade::class
         
     ],
 

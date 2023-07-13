@@ -43,7 +43,6 @@
     39 => 'Silber\\Bouncer\\BouncerServiceProvider',
     40 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
     41 => 'Kreait\\Laravel\\Firebase\\ServiceProvider',
-    42 => 'Riazxrazor\\Payumoney\\PayumoneyServiceProvider',
   ),
   'eager' => 
   array (
@@ -75,7 +74,6 @@
     25 => 'Silber\\Bouncer\\BouncerServiceProvider',
     26 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
     27 => 'Kreait\\Laravel\\Firebase\\ServiceProvider',
-    28 => 'Riazxrazor\\Payumoney\\PayumoneyServiceProvider',
   ),
   'deferred' => 
   array (

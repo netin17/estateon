@@ -124,6 +124,10 @@ Route::group(['middleware' => ['auth:frontuser'], 'prefix' => 'frontuser', 'as' 
     Route::any('deleteimage/{id}', 'PropertiesController@deleteimage')->name('property.deleteimage');
     Route::get('propertyleads/{id}', 'PropertiesController@leads')->name('property.leads');
     Route::get('plans/{slug}', 'SubscriptionController@displayPlans')->name('plans.list');
+    Route::post('usersubscription', 'SubscriptionController@saveUserSubscription')->name('userSubscription.save');
+    Route::get('transactionhistory', 'SubscriptionController@transactionHistory')->name('transactionhistory.get');
+    Route::get('change_password', 'HomeController@showChangePasswordForm')->name('frontuser.change_password');
+    Route::patch('change_password', 'HomeController@changePassword')->name('frontuser.change_password');
     //Route::post('property/create', 'PropertiesController@create')->name('frontuser.property.create');
 }); 
 

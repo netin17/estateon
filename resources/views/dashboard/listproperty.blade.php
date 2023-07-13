@@ -44,7 +44,15 @@
                                             <td class="table-data">
                                                 <div class="listed-properties-table-data">
                                                     <p>{{$property->approved == 1 ? 'Approved':'Unapproved'}}</p>
+                                                    @if(count($property->userSubscriptions)>0)
+                                                    <div class="plan_name">
+                                                    {{$property->userSubscriptions[0]->plan->planType->name}}-{{$property->userSubscriptions[0]->plan->name}}
+                                                    </div>
+                                                    @else
                                                     <a href="{{route('frontuser.plans.list', ['slug'=>$property->slug]) }}" class="approved-link">Buy Plan</a>
+
+                                                    @endif
+                                                   
                                                 </div>
                                             </td>
                                             <td class="table-data">Sell</td>
@@ -53,7 +61,7 @@
                                                     <span
                                                         class="d-inline-block px-2 py-1 table-sky-btn mb-1">View</span><br>
                                                     <span
-                                                        class="d-inline-block px-2 py-1 table-sky-btn mb-1">Images</span><br>
+                                                        class="d-inline-block px-2 py-1 table-sky-btn mb-1"><a href="{{route('frontuser.property.addimages',['slug'=>$property->slug])}}">Images</a></span><br>
                                                     <span class="d-inline-block px-3 py-1 table-edit-btn">Edit</span>
                                                 </div>
                                             </td>
