@@ -15,7 +15,7 @@
         </div>
         </main>
         <div class="wrapper flex-grow-1"></div>
-        <footer>
+        <footer class="site-footer">
             @include('partials.webfooter')
         </footer>
         

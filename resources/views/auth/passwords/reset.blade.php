@@ -24,14 +24,14 @@
 
                         <input name="token" value="{{ $token }}" type="hidden">
                             <div class="form-group has-feedback">
-                                <input type="email" name="email" class="form-control sign-up-form-field transition w-100 d-block" required placeholder="{{ trans('global.login_email') }}">
+                                <input type="email" name="email" style="background-color: #FFFBFB;" class="form-control sign-up-form-field transition w-100 d-block" required placeholder="{{ trans('global.login_email') }}">
                             </div>
                         </div>
                         <div class="sign-up-form-group mb-lg-4 mb-3">
-                        <input type="password" name="password" class="form-control sign-up-form-field transition w-100 d-block" required placeholder="{{ trans('global.login_password') }}">
+                        <input type="password" name="password" style="background-color: #FFFBFB;" class="form-control sign-up-form-field transition w-100 d-block" required placeholder="{{ trans('global.login_password') }}">
                         </div>
                         <div class="sign-up-form-group mb-lg-4 mb-3">
-                        <input type="password" name="password_confirmation" class="form-control" required placeholder="{{ trans('global.login_password_confirmation') }}">
+                        <input type="password" name="password_confirmation" style="background-color: #FFFBFB;" class="form-control sign-up-form-field transition w-100 d-block" required placeholder="{{ trans('global.login_password_confirmation') }}">
                         </div>
                         <button type="submit" class="contact-sub-btn btn btn-primary mx-auto px-lg-5 mb-2"> Reset Password </button>
                         <a href="{{route('home.signin')}}" class="back-login transition">

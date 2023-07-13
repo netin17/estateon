@@ -8,7 +8,7 @@
                     <h1 class="forgot-password-title dark-font mb-3">Check your email</h1>
                     <p class="sm-text mb-2">We sent a password reset link to </p>
                     <p class="dark-font gmail-name fw-bolder mb-4">{{$user_email}}</p>
-                        <a href="mailto:" class="contact-sub-btn btn btn-primary mx-auto px-lg-5 mb-2">Open email app</a>
+                        <a href="mailto:" class="contact-sub-btn btn btn-primary mx-auto px-lg-5 mb-2 d-inline-block">Open email app</a>
                     <p class="sign-up-bottom-text mb-3 pt-1" style="font-size: 16px;">Didn’t receive the email? <a
                     href="{{route('forget.password.get')}}">Click to
                             resend</a></p>

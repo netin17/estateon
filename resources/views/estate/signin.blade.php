@@ -3,12 +3,12 @@
 <section class="sign-up-section login-section">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-xl-7 col-md-6">
+                    <div class="col-xl-6 col-md-6">
                         <div class="main-login-logo ms-0">
                             <img src="{{ url('estate/images/very-large-logo2.png')}}" alt="logo" />
                         </div>
                     </div>
-                    <div class="col-xl-5 col-md-6">
+                    <div class="col-xl-6 col-md-6">
                     @if(count($errors) > 0 )
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -32,7 +32,7 @@
                             <div class="mb-lg-3 mb-3 d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <input type="checkbox" name="" id="terms_conditions" />
-                                    <label for="terms_conditions" style="font-size: 14px;" class="d-block ms-2 dark-font"> Remember Password</label>
+                                    <label for="terms_conditions" style="font-size: 14px; margin-left: 4px;" class="d-block dark-font"> Remember Password</label>
                                 </div>
                                 <a href="{{route('forget.password.get')}}" class="d-block dark-font" style="font-size: 14px;">Forgot Password?</a>
                             </div>

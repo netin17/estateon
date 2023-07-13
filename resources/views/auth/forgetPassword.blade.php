@@ -21,7 +21,7 @@
                 @endif
                         <div class="sign-up-form-group pb-lg-2 mb-4">
                         {{ csrf_field() }}
-                        <input type="email" name="email" class="form-control" required="autofocus" placeholder="{{ trans('global.login_email') }}">
+                        <input type="email" name="email" class="form-control sign-up-form-field transition w-100 d-block" required="autofocus" placeholder="{{ trans('global.login_email') }}">
             
                         </div>
                         <button type="submit" class="contact-sub-btn btn btn-primary mx-auto px-lg-5 mb-lg-4 mb-3">Reset
