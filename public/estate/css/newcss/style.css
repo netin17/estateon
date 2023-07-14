@@ -1045,11 +1045,11 @@ body.body-overflow {
 }
 
 .dashboard-profile-form {
-  max-width: 585px;
+  /* max-width: 585px; */
   margin: 0 auto;
 }
 
-.dashboard-profile-form label {
+.profile-form-group label {
   width: 200px;
   padding-right: 20px;
 }
@@ -1368,9 +1368,10 @@ body.body-overflow {
 .step-back-btn {
   padding: 15px;
   color: #8e8e8e;
-  background-color: transparent;
+  background-color: transparent !important;
   border: 1px solid #8e8e8e;
   border-radius: 4px;
+  margin-right: 12px;
 }
 
 .step-next-btn {
@@ -1465,6 +1466,48 @@ body.body-overflow {
 .rent-sell-button input:checked + label {
   background-color: #c42128;
   color: #fff;
+}
+
+.step-checkbox-group {
+  position: relative;
+}
+
+.step-checkbox-group input {
+  position: absolute;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.step-checkbox-group label {
+  color: #5a5a5a;
+  font-size: 16px;
+  padding-left: 26px;
+  cursor: pointer;
+  position: relative;
+}
+
+.step-checkbox-group label:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 18px;
+  width: 18px;
+  background-image: url(../../images/checkbox.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.step-checkbox-group input:checked + label::after {
+  background-image: url(../../images/checkbox-fill.svg);
+}
+
+.step-form-field-other-info {
+  height: 70px;
 }
 
 /********* media css  ***********/
@@ -1634,6 +1677,10 @@ body.body-overflow {
   .property-doc-col {
     max-width: 25%;
     padding: 0 12px 20px 12px;
+  }
+
+  .step-form-field-other-info {
+    height: 60px;
   }
 }
 
@@ -1822,6 +1869,9 @@ body.body-overflow {
 
   .step-other-information {
     min-height: unset;
+  }
+  .step-form-field-other-info {
+    height: 50px;
   }
 }
 
