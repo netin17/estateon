@@ -26,7 +26,7 @@
                         <div class="sidebar-link-box box-style">
                             <ul class="sidebar-link-list py-lg-5 mt-lg-4">
                                 <li><a class="sidebar-link transition {{ request()->is('frontuser/change_password') || request()->is('frontuser/change_password/*') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.frontuser.change_password')}}">Profile</a></li>
-                                <li><a class="sidebar-link transition {{ request()->is('frontuser/transactionhistory') || request()->is('frontuser/transactionhistory/*') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.transactionhistory.get')}}">transitions
+                                <li><a class="sidebar-link transition {{ request()->is('frontuser/transactionhistory') || request()->is('frontuser/transactionhistory/*') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.transactionhistory.get')}}">Transitions
                                         history</a></li>
                                 <li><a class="sidebar-link transition {{ request()->is('frontuser/property') || request()->is('frontuser/property/index') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.property.index')}}">Listed
                                         Properties</a></li>
