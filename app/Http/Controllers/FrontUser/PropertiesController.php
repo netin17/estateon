@@ -307,7 +307,9 @@ class PropertiesController extends Controller
             $data['p_count']=$this->getUserPropertyCount($userId);
             //$data['property_type'] = PropertyType::get();
            
-            $data['property'] = Property::where('id', $id)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details'])->first();
+            $data['property'] = Property::where('id', $id)->with(['amenities', 'vastu.vastu_data', 'preferences', 'property_type.type_data', 'property_details','images'=>function($query){
+                $query->where('featured', 1)->first();
+            }])->first();
             if($userId != $data['property']->user_id){
                 return redirect()->route('frontuser.property.index');
             }else{
@@ -316,8 +318,10 @@ class PropertiesController extends Controller
                 $data['preferences'] = Preferences::get();
                 $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
                 $data['property_type_residential'] = PropertyType::where('property_type','residential')->get();
-                        echo "<pre>"; print_r($data['property']->toArray());
-        exit;
+                $data['amenityIds'] = $data['property']->amenities->pluck('amenity_id')->toArray();
+                $data['preferencesIds'] = $data['property']->preferences->pluck('preference_id')->toArray();
+        //                 echo "<pre>"; print_r($data['property']->toArray());
+        // exit;
                 //return view('userdashboard.property.edit', compact('data'));
                 return view('dashboard.editproperty', compact('data'));
             }
@@ -365,6 +369,24 @@ class PropertiesController extends Controller
         ];
         Property::where('id', $id)
             ->update($update_property);
+
+///banner Image///
+if ($request->hasFile('banner_image')) {
+    $file = $request->file('banner_image');
+    $filename = $file->getClientOriginalName();
+    $path = public_path() . '/uploads/image/property' .$id . '/';
+    $file->move($path, $filename);
+    $url = url('/uploads/image/property' .$id . '/' . $filename);
+    Images::where('property_id', $id)->where('featured', 1)->delete();
+    $image = Images::create([
+        'property_id' => $id,
+        'name' => $filename,
+        'url' => $url,
+        'featured' => 1
+    ]);
+
+    $image_id = $image->id;
+}
 
         ///Vastu///
         $vastu = isset($data['vastu']) ? $data['vastu'] : "";
@@ -423,7 +445,9 @@ class PropertiesController extends Controller
 
         $update_details = [            
             'property_category' => $data['property_category'],
-            'property_feature' => $data['property_feature'],
+            'property_feature' => @$data['property_feature'],
+            'property_title' => $data['property_title'],
+            'locality' => $data['locality'],
             //'bedroom' => $data['bedroom'],
             //'bathroom' => $data['bathroom'],
             //'balcony' => $data['balcony'],
@@ -436,7 +460,7 @@ class PropertiesController extends Controller
             'width' => $data['width'],
             'price' => $data['price'],
             //'currency' => $data['currency'],
-            'govt_tax_include' => $data['govt_tax_include'],
+            'govt_tax_include' => @$data['govt_tax_include'],
             'extra_notes' => $extraNotes
         ];
         Propertydetail::where('property_id', $id)

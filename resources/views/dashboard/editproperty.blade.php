@@ -2,6 +2,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ url('estate/css/newcss/multi-form.css')}}" />
 <link rel="stylesheet" href="{{ url('estate/summernote/summernote-bs4.css')}}">
+<link rel="stylesheet" href="{{ url('estate/css/newcss/jquery.fancybox.min.css')}}" />
 <section class="dashboard-section">
     <div class="container">
         <div class="dashboard-row d-flex flex-wrap">
@@ -25,8 +26,9 @@
                 </div>
                 <div class="step-content box-style">
                     <h3 class="dark-font text-center step-title">Add Basic Property Information</h3>
-                    <form action="{{ route('frontuser.property.store') }}" method="POST" enctype="multipart/form-data" class="dashboard-profile-form mt-5" id="addProperty">
+                    <form action="{{ route('frontuser.property.update', [$data['property']->id]) }}" method="POST" enctype="multipart/form-data" class="dashboard-profile-form mt-5" id="addProperty">
                         @csrf
+                        @method('PUT')
                         <div class="tab" style="max-width: 585px; margin: 0 auto;">
                             <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="name" class="d-block fw-bold">I want</label>
@@ -69,11 +71,12 @@
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="title" class="d-block">Properties Title</label>
-                                <input type="text" id="title" name="property_title" placeholder="" class="form-control d-block profile-form-fild" required />
+                                <input type="text" id="title" name="property_title" placeholder="" value="{{ $data['property']->property_details->property_title ?? ''}}" class="form-control d-block profile-form-fild" required />
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="banner-image" class="d-block">Banner Image <span class="d-block red-font" style="font-size: 12px;">(jpeg or png. only)</span></label>
-                                <input type="file" name="banner_image" id="banner-image" placeholder="" class="d-block form-control profile-form-fild" required />
+                                <input type="file" name="banner_image" id="banner-image" placeholder="" class="d-block form-control profile-form-fild" />
+                                <div class="image-grid property-doc-col"><a href="{{$data['property']->images[0]->url ?? ''}}" data-fancybox="gallery"><img src="{{$data['property']->images[0]->url ?? ''}}" class="property-doc-img"></a></div>
                             </div>
                         </div>
                         <div class="tab">
@@ -89,24 +92,24 @@
                                         <!--Google Maps-->
                                     </div>
                                     <div hidden class="form-group {{ $errors->has('lat') ? 'has-error' : '' }}">
-                                        <input type="hidden" id="address-latitude" name="lat" class="form-control" value="">
+                                        <input type="hidden" id="address-latitude" name="lat" class="form-control" value="{{$data['property']->lat ?? ''}}">
                                     </div>
                                     <div hidden class="form-group {{ $errors->has('lng') ? 'has-error' : '' }}">
-                                        <input type="hidden" id="address-longitude" name="lng" class="form-control" value="">
+                                        <input type="hidden" id="address-longitude" name="lng" class="form-control" value="{{$data['property']->lng ?? ''}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="step-form-group mb-3">
                                         <label for="name" class="step-form-label">Property/ Project Name</label>
-                                        <input type="text" id="name-input" name="name" placeholder="Name" class="step-form-field w-100 d-block" required />
+                                        <input type="text" id="name-input" name="name" placeholder="Name" value="{{$data['property']->name ?? ''}}" class="step-form-field w-100 d-block" required />
                                     </div>
                                     <div class="step-form-group mb-3">
                                         <label for="address" class="step-form-label">Property Address (Ref. Google Map)</label>
-                                        <input type="text" id="address-input" name="address" placeholder="Address" class="step-form-field w-100 d-block" required />
+                                        <input type="text" id="address-input" name="address" placeholder="Address" value="{{$data['property']->address ?? ''}}" class="step-form-field w-100 d-block" required />
                                     </div>
                                     <div class="step-form-group mb-5">
                                         <label for="locality" class="step-form-label">Locality</label>
-                                        <input type="text" id="locality" placeholder="Add Nearby Locality" name="locality" class="step-form-field w-100 d-block" required />
+                                        <input type="text" id="locality" placeholder="Add Nearby Locality" name="locality" value="{{$data['property']->property_details->locality ?? ''}}" class="step-form-field w-100 d-block" required />
                                     </div>
                                 </div>
                             </div>
@@ -116,23 +119,23 @@
                             <div class="row mt-4">
                                 <div class="step-form-group mb-3 col-md-6">
                                     <label for="Price" class="step-form-label">Price</label>
-                                    <input type="number" id="price" name="price" min="1" placeholder="e.g. 100000" class="step-form-field w-100 d-block" required />
+                                    <input type="number" id="price" name="price" min="1" placeholder="e.g. 100000" value="{{$data['property']->property_details->price ?? ''}}" class="step-form-field w-100 d-block" required />
                                 </div>
                                 <div class="step-form-group mb-3 col-md-6">
                                     <label for="size" class="step-form-label">Size (sq. feet)</label>
-                                    <input type="text" id="size" name="size" placeholder="250" class="step-form-field w-100 d-block" />
+                                    <input type="text" id="size" name="size" placeholder="250" value="{{$data['property']->property_details->size ?? ''}}" class="step-form-field w-100 d-block" />
                                 </div>
                                 <div class="step-form-group mb-3 col-md-6">
                                     <label for="length" class="step-form-label">Length (sq. feet)</label>
-                                    <input type="text" id="length" name="length" placeholder="25" class="step-form-field w-100 d-block" />
+                                    <input type="text" id="length" name="length" placeholder="25" value="{{$data['property']->property_details->length ?? ''}}" class="step-form-field w-100 d-block" />
                                 </div>
                                 <div class="step-form-group mb-3 col-md-6">
                                     <label for="width" class="step-form-label">Width (sq. feet)</label>
-                                    <input type="text" id="width" name="width" placeholder="203" class="step-form-field w-100 d-block" />
+                                    <input type="text" id="width" name="width" placeholder="203" value="{{$data['property']->property_details->width ?? ''}}" class="step-form-field w-100 d-block" />
                                 </div>
                                 <div class="step-form-group mb-3 col-12">
                                     <label for="Description" class="step-form-label">Description</label>
-                                    <textarea id="description" name="description" cols="30" rows="5" class="textarea" placeholder="Write here" required></textarea>
+                                    <textarea id="description" name="description" cols="30" rows="5" class="textarea" placeholder="Write here" required>{{$data['property']->description ?? ''}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +146,7 @@
                                     @php $amenityCount = count($data['amenity']); @endphp
                                     @foreach($data['amenity'] as $index => $amenity)
                                     <div class="step-checkbox-group mb-lg-4 mb-3">
-                                        <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $amenity['id'] }}" id="gridCheck">
+                                        <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $amenity['id'] }}" id="gridCheck" {{ in_array($amenity['id'], $data['amenityIds']) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="gridCheck">
                                             {{ $amenity['name'] }}
                                         </label>
@@ -160,7 +163,7 @@
                                         @php $preferenceCount = count($data['preferences']); @endphp
                                         @foreach($data['preferences'] as $index => $preference)
                                         <div class="step-checkbox-group mb-lg-4 mb-3">
-                                            <input class="form-check-input" name="additional[]" type="checkbox" value="{{ $preference['id'] }}" id="gridCheck">
+                                            <input class="form-check-input" name="additional[]" type="checkbox" value="{{ $preference['id'] }}" id="gridCheck" {{ in_array($preference['id'], $data['preferencesIds']) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="gridCheck">
                                                 {{ $preference['name'] }}
                                             </label>
@@ -177,27 +180,27 @@
                                     <div class="row mt-4">
                                         <div class="step-form-group mb-3 col-md-6">
                                             <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
-                                            <input type="text" id="project-id" placeholder="HY174257" name="rera_number" class="step-form-field step-form-field-other-info w-100 d-block" />
+                                            <input type="text" id="project-id" placeholder="HY174257" name="rera_number" value="{{$data['property']->property_details->rera_number ?? ''}}" class="step-form-field step-form-field-other-info w-100 d-block" />
                                         </div>
                                         <div class="step-form-group mb-3 col-md-6">
                                             <label for="include" class="step-form-label">Govt Tax Include</label>
                                             <select name="govt_tax_include" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="govt_tax">
-                                                <option value="1">Included</option>
-                                                <option value="0">Not Included</option>
+                                                <option value="1" {{ $data['property']->property_details->govt_tax_include ?? '' == '1' ? 'selected' : '' }}>Included</option>
+                                                <option value="0" {{ $data['property']->property_details->govt_tax_include ?? '' == '0' ? 'selected' : '' }}>Not Included</option>
                                             </select>
                                         </div>
                                         <div class="step-form-group col-md-6 mb-3">
                                             <label for="extra_notes" class="text-heading step-form-label">Extra Notes</label>
-                                            <input type="text" id="extra_notes" name="extra_notes" class="form-control m-0 step-form-field step-form-field-other-info w-100 d-block">
+                                            <input type="text" id="extra_notes" name="extra_notes" value="{{ $data['property']->property_details->extra_notes ?? '' }}" class="form-control m-0 step-form-field step-form-field-other-info w-100 d-block">
 
                                         </div>
                                         <div class="step-form-group col-md-6 mb-3">
                                             <label for="type" class="step-form-label">Furnished</label>
                                             <select name="furnished" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="type">
                                                 <option value="">--Select--</option>
-                                                <option value="furnished">Furnished</option>
-                                                <option value="unfurnished">Un Furnished</option>
-                                                <option value="semi_furnished">Semi Furnished</option>
+                                                <option value="furnished" {{ ($data['property']->property_details->furnished ?? '') === 'furnished' ? 'selected' : '' }}>Furnished</option>
+                                                <option value="unfurnished" {{ ($data['property']->property_details->furnished ?? '') === 'unfurnished' ? 'selected' : '' }}>Un Furnished</option>
+                                                <option value="semi_furnished" {{ ($data['property']->property_details->furnished ?? '') === 'semi_furnished' ? 'selected' : '' }}>Semi Furnished</option>
                                             </select>
                                         </div>
                                     </div>
@@ -251,6 +254,7 @@
 <script src="{{ url('estate/js/multi-form.js')}}"></script>
 <script src="{{ url('estate/summernote/summernote-bs4.min.js')}}"></script>
 <script src="{{ url('/js/mapInput.js')}}"></script>
+<script src="{{ url('estate/js/jquery.fancybox.min.js')}}"></script>
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initMap"></script>
 <script type="text/javascript">
     //     jQuery.validator.setDefaults({
@@ -272,7 +276,6 @@
             vastu: "required",
             property_title: "required",
             banner_image: {
-                required: true,
                 extension: "jpg|jpeg|png"
             },
             name: 'required',
@@ -290,7 +293,6 @@
             vastu: "Please Select an option",
             property_title: "Enter title for your property",
             banner_image: {
-                required: "Please select an image",
                 extension: "Only JPG, JPEG, or PNG files are allowed"
             },
             name: "Enter name for your property",
@@ -456,7 +458,7 @@
     $('body').on('keydown', '.only-numbers', function(e) {
         allow_numbers_only(e)
     })
-
+    $('[data-fancybox="gallery"]').fancybox();
     // var images = []; // Array to store image data
 
     //   $('#imageInput').change(function(e) {

@@ -90,14 +90,14 @@
                     <a class="nav-link" href="#"><img src="./assets/img/Icons/Leads.png" alt=""
                             class="img-fluid profile" width="30px">Leads</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ route('frontuser.handp.show') }}" class="nav-link "><img src="./assets/img/Icons/Help-&-Support.png" alt=""
                             class="img-fluid profile" width="30px">Help & Support</a>
-                </li>
+                </li> 
                 <li class="nav-item">
                     <a href="{{ route('frontuser.faq.show') }}" class="nav-link"><img src="./assets/img/Icons/FAQ.png" alt=""
                             class="img-fluid profile" width="30px">FAQ</a>
-                </li>
+                </li>--}}
             </ul>
 
         </div>
