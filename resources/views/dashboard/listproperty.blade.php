@@ -12,7 +12,7 @@
                             Refer To Your Friend
                         </div>
                         <div class="history-table-wrap box-style position-relative">
-                            <div class="table-bottom-shadow ">
+                            <div class="table-bottom-shadow table-pagination-main">
                                 <table class="w-100 listed-properties-table" style="border-collapse: separate;">
                                     <thead>
                                         <tr>

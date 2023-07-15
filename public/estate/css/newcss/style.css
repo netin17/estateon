@@ -1516,6 +1516,34 @@ body.body-overflow {
   width: 100%;
   padding-left: 200px;
 }
+.table-pagination-main {
+  display: flex;
+  flex-wrap: wrap;
+}
+.table-pagination-main nav {
+  order: 1;
+  position: relative;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.table-pagination-main .pagination .page-link {
+  border: 1px solid #757575;
+  color: #717171;
+}
+
+.table-pagination-main .pagination .page-link:hover {
+  color: #000;
+  border-color: #646363;
+  background-color: #fff;
+  box-shadow: 1px 1px 6px 0px #00000029;
+}
+
+.table-pagination-main .page-item.active .page-link {
+  background-color: #ffecec !important;
+  color: #c42128 !important;
+  border-color: #c42128 !important;
+}
 
 /********* media css  ***********/
 
