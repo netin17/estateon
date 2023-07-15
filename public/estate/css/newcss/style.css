@@ -1509,6 +1509,13 @@ body.body-overflow {
 .step-form-field-other-info {
   height: 70px;
 }
+.profile-form-group {
+  flex-wrap: wrap;
+}
+.profile-form-group label.error {
+  width: 100%;
+  padding-left: 200px;
+}
 
 /********* media css  ***********/
 
@@ -2104,6 +2111,10 @@ body.body-overflow {
 
   .property-doc-col {
     max-width: 33.33%;
+  }
+  .profile-form-group label.error {
+    width: 100%;
+    padding-left: 0;
   }
 }
 .loader {
