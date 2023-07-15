@@ -39,7 +39,7 @@ Route::post('startpayu','Web\SubscriptionController@startpayu')->name('payment.s
 Route::post('pay', 'Web\SubscriptionController@pay')->name('subscription.pay');
 Route::any('payment/response', 'Web\SubscriptionController@paymentresponse')->name('payment.response');
 Route::post('startconversation','Web\ChatController@startconversation')->name('startconversation');
-Route::post('lead-add','Web\PropertiesController@leadAdd');
+Route::post('lead-add','Web\PropertiesController@leadAdd')->name('frontuser.lead.create');
 
 Route::any('property/create', 'FrontUser\PropertiesController@create')->name('frontuser.property.create');
 Route::post('property/store', 'FrontUser\PropertiesController@store')->name('frontuser.property.store');
@@ -122,7 +122,7 @@ Route::group(['middleware' => ['auth:frontuser'], 'prefix' => 'frontuser', 'as' 
     Route::get('conversastion/{id?}', 'ChatController@index')->name('property.conversastion');
     Route::post('addimage', 'PropertiesController@addimage')->name('property.addimage');
     Route::any('deleteimage/{id}', 'PropertiesController@deleteimage')->name('property.deleteimage');
-    Route::get('propertyleads/{id}', 'PropertiesController@leads')->name('property.leads');
+    Route::get('propertyleads/{slug}', 'PropertiesController@leads')->name('property.leads');
     Route::get('plans/{slug}', 'SubscriptionController@displayPlans')->name('plans.list');
     Route::post('usersubscription', 'SubscriptionController@saveUserSubscription')->name('userSubscription.save');
     Route::get('transactionhistory', 'SubscriptionController@transactionHistory')->name('transactionhistory.get');

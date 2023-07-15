@@ -299,26 +299,25 @@ class PropertiesController extends Controller
         
         try {
             //$user_id = Auth::guard('frontuser')->id();
-            $data = $request->all();            
-            parse_str($data['data'], $data);
-            //print_R($data); die;
+            $data = $request->all(); 
            
             $name =  $data['name'];
             $email =  $data['email'];
             $phone =  $data['phone'];
             $message =  ($data['message']=="others" || $data['message']=="") ? $data['othermessage']:$data['message'];
             $propertyID =  $data['property_id'];
+            $subplan_id = $data['subplan_id'];
             $time = time();
-            $query = Leads::create(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'message'=>$message, 'property_id'=>$propertyID, 'created_at'=> $time]);
+            $query = Leads::create(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'message'=>$message, 'property_id'=>$propertyID, 'subplan_id'=>$subplan_id, 'viewed'=>0, 'created_at'=> $time]);
             if($query){
-                return response()->json(['code' => '101', 'success' => true]);
+                return redirect()->back()->with(['message', 'Thank you, We will contact you soon']);
             }else{
-                return response()->json(['code' => '101', 'success' => false]);
+                return redirect()->back()->with(['message', 'Thank you, We will contact you soon']);
             }
 
             
         } catch (Exception $e) {
-            return response()->json(['success' => false, 'code' => '102', 'error' => $e]);
+            return redirect()->back()->withErrors(['current_password' => $e->getMessage()]);
         }
     }
 }

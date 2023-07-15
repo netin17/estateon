@@ -147,7 +147,7 @@
                                     @foreach($data['amenity'] as $index => $amenity)
                                     <div class="step-checkbox-group mb-lg-4 mb-3">
                                         <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $amenity['id'] }}" id="gridCheck" {{ in_array($amenity['id'], $data['amenityIds']) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="gridCheck">
+                                        <label class="form-check-label" for="{{ $amenity['id'] }}">
                                             {{ $amenity['name'] }}
                                         </label>
                                     </div>
@@ -164,7 +164,7 @@
                                         @foreach($data['preferences'] as $index => $preference)
                                         <div class="step-checkbox-group mb-lg-4 mb-3">
                                             <input class="form-check-input" name="additional[]" type="checkbox" value="{{ $preference['id'] }}" id="gridCheck" {{ in_array($preference['id'], $data['preferencesIds']) ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="gridCheck">
+                                            <label class="form-check-label" for="checkbox{{ $preference['id'] }}">
                                                 {{ $preference['name'] }}
                                             </label>
                                         </div>

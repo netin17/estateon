@@ -89,7 +89,7 @@
                                     @if($data['property']['property_details']->price > 0)
                                     <li>
                                         <div class="text">Price:</div>
-                                        <div class="value"><span class="suffix">₹</span> <span class="price-text">{{$data['property']['property_details']->price}}</span></div>
+                                        <div class="value"><span class="suffix">₹</span> <span class="price-text">{{number_form($data['property']['property_details']->price)}}</span></div>
                                     </li>
                                     @endif
                                     <li>
@@ -124,7 +124,7 @@
                         @endif
                     </div>
 
-                    <div class="col-md-4">
+                 {{--   <div class="col-md-4">
                         <div class="wht_box">
                             <div class="contact_for_prp">
                                 <h3>Contact Agent</h3>
@@ -168,7 +168,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -181,63 +181,63 @@
     var site_url = "{{url('/')}}";
 
 
-$('body').on('click', '#contact-agent-button', function () {		
-        var that = $(this);
-        var data = that.closest('form#contact-agent').serialize();
+// $('body').on('click', '#contact-agent-button', function () {		
+//         var that = $(this);
+//         var data = that.closest('form#contact-agent').serialize();
         
-        var isValid = true; 
-        that.closest('form#contact-agent').find('input,textarea,select').each(function(){
-            var name = $(this).attr('name');
-    if(name=='message' && ($(this).val()=="others" || $(this).val()=="")){
-        if($('#message').val().trim()==""){
-            isValid = false; 
-            $(this).addClass('field-error')
-            $('#message').addClass('field-error')
-        }
-    }else if(name != 'othermessage' && ($(this).val() == "" || $(this).val() == null)){
-        isValid = false; 
-                $(this).addClass('field-error')
-    }else{
-        if(name == 'othermessage' && ($('select[name="message"]').val()== "others" || $('select[name="message"]').val()=="") && ($(this).val() == "" || $(this).val() == null) ){
-            isValid = false;
-        }else{
-            $(this).removeClass('field-error')
-        }
+//         var isValid = true; 
+//         that.closest('form#contact-agent').find('input,textarea,select').each(function(){
+//             var name = $(this).attr('name');
+//     if(name=='message' && ($(this).val()=="others" || $(this).val()=="")){
+//         if($('#message').val().trim()==""){
+//             isValid = false; 
+//             $(this).addClass('field-error')
+//             $('#message').addClass('field-error')
+//         }
+//     }else if(name != 'othermessage' && ($(this).val() == "" || $(this).val() == null)){
+//         isValid = false; 
+//                 $(this).addClass('field-error')
+//     }else{
+//         if(name == 'othermessage' && ($('select[name="message"]').val()== "others" || $('select[name="message"]').val()=="") && ($(this).val() == "" || $(this).val() == null) ){
+//             isValid = false;
+//         }else{
+//             $(this).removeClass('field-error')
+//         }
        
-    }
+//     }
     
-            // if($(this).val() == "" || $(this).val() == null){
-            //     isValid = false; 
-            //     $(this).addClass('field-error')
-            // }else{
+//             // if($(this).val() == "" || $(this).val() == null){
+//             //     isValid = false; 
+//             //     $(this).addClass('field-error')
+//             // }else{
                 
-            // }
+//             // }
 
-        });
-        //return false;
+//         });
+//         //return false;
 
-        that.closest('form').find('.message').removeClass('text-success').removeClass('text-danger').addClass('hide').html('')
-        if(isValid == false){
-            that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Please enter all fields')
-            return false;
-        }
-        $.ajax({
-            type: "POST",            
-            dataType: "json",
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            url: site_url + "/lead-add",
-            data: {data: data},
-            success: function (response) {
-                if(response.success){
-                    that.closest('form').find('.message').removeClass('hide').addClass('text-success').html('Someone from the concerned team will contact you soon!')
-                    that.closest('form#contact-agent').find('input:visible,textarea:visible').val('');
-                }else{                    
-                    that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Something went wrong!')
-                }                
-            }
-        });
-        return false;
-    })
+//         that.closest('form').find('.message').removeClass('text-success').removeClass('text-danger').addClass('hide').html('')
+//         if(isValid == false){
+//             that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Please enter all fields')
+//             return false;
+//         }
+//         $.ajax({
+//             type: "POST",            
+//             dataType: "json",
+//             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+//             url: site_url + "/lead-add",
+//             data: {data: data},
+//             success: function (response) {
+//                 if(response.success){
+//                     that.closest('form').find('.message').removeClass('hide').addClass('text-success').html('Someone from the concerned team will contact you soon!')
+//                     that.closest('form#contact-agent').find('input:visible,textarea:visible').val('');
+//                 }else{                    
+//                     that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Something went wrong!')
+//                 }                
+//             }
+//         });
+//         return false;
+//     })
 
   $(document).ready(function() {
 jQuery(".propty_silde").slick({

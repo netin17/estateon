@@ -254,42 +254,43 @@
                     </div>
                 </div>
                 <div class="col-md-8 contact-right-col">
-                    <form action="">
+                <form action="{{route('frontuser.lead.create')}}" method="POST" id="contact_form">
+                    @csrf
                         <div class="form-group-row d-flex flex-wrap">
                             <div class="form-group-col">
                                 <label for="fname">First Name*</label>
-                                <input type="text" id="fname" class="form-group-file" required />
+                                <input type="text" id="name" name="name" class="form-group-file" required />
+                                <input type="hidden" id="property_id" name="property_id" value="{{$data['property']->id}}" class="form-group-file" required />
                             </div>
                             <div class="form-group-col">
                                 <label for="plan">Select A Plan</label>
-                                <select name="" id="plan" class="form-group-file" required>
-                                    <option value="Owner1M">Owner 1M</option>
-                                    <option value="one">one</option>
-                                    <option value="two">two</option>
+                                <select name="subplan_id" id="plan" class="form-group-file" required>
+                                @foreach($data['plans'] as $index=>$plan)
+                                @foreach($plan->subscriptonPlans as $subIndex=>$sub_plan)
+                                    <option value="{{$sub_plan->id}}">{{$plan->name}} {{$sub_plan->name}}</option>
+                                    @endforeach
+            @endforeach
                                 </select>
                             </div>
                             <div class="form-group-col">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" class="form-group-file" required />
+                                <input type="email" id="email" name="email" class="form-group-file" required />
                             </div>
                             <div class="form-group-col">
                                 <label for="phone_no">Mobile Number*</label>
-                                <input type="number" id="phone_no" class="form-group-file" required />
+                                <input type="number" id="phone_no" name="phone" class="form-group-file" required />
                             </div>
                         </div>
                         <div class="form-group-row d-flex flex-wrap">
                             <div class="form-group-col w-100">
                                 <label for="phone_no">Write Message*</label>
-                                <textarea name="" id="" cols="30" rows="1" class="form-group-file" required></textarea>
-                                <textarea name="" id="" cols="30" rows="1" class="form-group-file"></textarea>
+                                <textarea name="message" id="message" cols="30" rows="1" class="form-group-file" required></textarea>
                             </div>
                         </div>
                         <div class="contact-bottom d-flex align-items-center justify-content-end">
-                            <div class="d-flex align-items-center">
-                                <input type="checkbox">
-                                <label class="d-block">I’m not a Robot</label>
-                                <img src="{{ url('estate/images/istockphoto.png')}}" alt="istockphoto">
-                            </div>
+                        <div class="contact-bottom d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center" id="recaptcha-container"></div>
+                    </div>
                             <button type="submit" class="contact-sub-btn btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -393,8 +394,51 @@
 @section('scripts')
 <script src="{{ url('estate/js/wow.min.js')}}"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <script>
+   
+
         jQuery(document).ready(function () {
+            var isOTPVerified = false;
+    var coderesult;
+    var firebaseConfig = {
+        apiKey: "AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054",
+        authDomain: "estateon-e5287.firebaseapp.com",
+        databaseURL: "https://estateon-e5287.firebaseio.com",
+        projectId: "estateon-e5287",
+        storageBucket: "estateon-e5287.appspot.com",
+        messagingSenderId: "191717721261",
+        appId: "1:191717721261:web:21f5dd3cdcc7985ecf7224",
+        measurementId: "G-6RE4Q4XQHD"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    window.onload = function() {
+        render();
+    };
+
+    function render() {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+        recaptchaVerifier.render();
+    }
+
+    $('#contact_form').submit(function(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  // Validate reCAPTCHA
+  var response = grecaptcha.getResponse();
+  if (response.length === 0) {
+    // reCAPTCHA is not validated, display an error message or take appropriate action
+    alert('Please complete the reCAPTCHA validation.');
+    return;
+  }
+
+  // reCAPTCHA is validated, proceed with form submission
+  $(this).unbind('submit').submit();
+});
+
+
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             jQuery('.open-menu').click(function () {
                 jQuery('.header-wrap').slideToggle();
@@ -504,6 +548,68 @@ e.preventDefault();
 
         });
 
+
+
+
+
+
+     $('body').on('click', '#contact-agent-button', function () {		
+        var that = $(this);
+        var data = that.closest('form#contact-agent').serialize();
+        
+        var isValid = true; 
+        that.closest('form#contact-agent').find('input,textarea,select').each(function(){
+            var name = $(this).attr('name');
+    if(name=='message' && ($(this).val()=="others" || $(this).val()=="")){
+        if($('#message').val().trim()==""){
+            isValid = false; 
+            $(this).addClass('field-error')
+            $('#message').addClass('field-error')
+        }
+    }else if(name != 'othermessage' && ($(this).val() == "" || $(this).val() == null)){
+        isValid = false; 
+                $(this).addClass('field-error')
+    }else{
+        if(name == 'othermessage' && ($('select[name="message"]').val()== "others" || $('select[name="message"]').val()=="") && ($(this).val() == "" || $(this).val() == null) ){
+            isValid = false;
+        }else{
+            $(this).removeClass('field-error')
+        }
+       
+    }
+    
+            // if($(this).val() == "" || $(this).val() == null){
+            //     isValid = false; 
+            //     $(this).addClass('field-error')
+            // }else{
+                
+            // }
+
+        });
+        //return false;
+
+        that.closest('form').find('.message').removeClass('text-success').removeClass('text-danger').addClass('hide').html('')
+        if(isValid == false){
+            that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Please enter all fields')
+            return false;
+        }
+        $.ajax({
+            type: "POST",            
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: site_url + "/lead-add",
+            data: {data: data},
+            success: function (response) {
+                if(response.success){
+                    that.closest('form').find('.message').removeClass('hide').addClass('text-success').html('Someone from the concerned team will contact you soon!')
+                    that.closest('form#contact-agent').find('input:visible,textarea:visible').val('');
+                }else{                    
+                    that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Something went wrong!')
+                }                
+            }
+        });
+        return false;
+    })
 
     </script>
     @endsection

@@ -15,6 +15,7 @@ use App\AssignedTypes;
 use App\AssignedVastu;
 use App\commonfunction;
 use App\Propertydetail;
+use App\PlanTypes;
 use App\AssignedAmenities;
 use App\AssignedPreferences;
 use Illuminate\Http\Request;
@@ -32,15 +33,18 @@ class PropertiesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function profile(){
-        $data = User::where('id',Auth::user()->id)->first();
+    public function profile()
+    {
+        $data = User::where('id', Auth::user()->id)->first();
         return view('userdashboard.profile', compact('data'));
     }
-    public function handp(){
+    public function handp()
+    {
         // $data = User::where('id',Auth::user()->id)->first();
         return view('userdashboard.handp');
     }
-    public function faq(){
+    public function faq()
+    {
         // $data = User::where('id',Auth::user()->id)->first();
         return view('userdashboard.faq');
     }
@@ -59,29 +63,29 @@ class PropertiesController extends Controller
         if (Auth::check()) {
             $data = [];
             $userId = Auth::id();
-            $data['user']=$this->getUserDetailsById($userId);
-            $data['p_count']=$this->getUserPropertyCount($userId);
+            $data['user'] = $this->getUserDetailsById($userId);
+            $data['p_count'] = $this->getUserPropertyCount($userId);
             $data['properties'] = Property::where('user_id', $userId)
-            ->with(['property_details','userSubscriptions' => function ($query) {
-                $query->where('start_at', '<=', now())
-                    ->where('end_at', '>=', now())
-                    ->with(['plan'=>function($pquery){
-                        $pquery->with(['planType']);
-                    }]);
-            }])
-            ->orderBy('id', 'desc')
-            ->paginate(2);
-    // echo "<pre>"; print_r($data['properties']->toArray()); echo "<pre>";
-    //     exit;
+                ->with(['property_details', 'userSubscriptions' => function ($query) {
+                    $query->where('start_at', '<=', now())
+                        ->where('end_at', '>=', now())
+                        ->with(['plan' => function ($pquery) {
+                            $pquery->with(['planType']);
+                        }]);
+                }])
+                ->orderBy('id', 'desc')
+                ->paginate(2);
+            $data['plans'] = PlanTypes::where('status', 'active')
+                ->with(['subscriptonPlans' => function ($query) {
+                    $query->where('status', 'active');
+                }])->get();
+            // echo "<pre>"; print_r($data['properties']->toArray()); echo "<pre>";
+            //     exit;
             // return view('userdashboard.property.create', compact('data'));
             return view('dashboard.listproperty', compact('data'));
         } else {
             return redirect()->route('home.index');
         }
-
-
-
-
     }
 
     /**
@@ -90,26 +94,25 @@ class PropertiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
+    {
         if (Auth::check()) {
             $data = [];
             $userId = Auth::id();
-            $data['user']=$this->getUserDetailsById($userId);
-            $data['p_count']=$this->getUserPropertyCount($userId);
+            $data['user'] = $this->getUserDetailsById($userId);
+            $data['p_count'] = $this->getUserPropertyCount($userId);
             //$data['property_type'] = PropertyType::get();
             $data['vastu'] = Vastu::get();
             $data['amenity'] = Amenity::get();
             $data['preferences'] = Preferences::get();
-    
-            $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
-            $data['property_type_residential'] = PropertyType::where('property_type','residential')->get();
-    
+
+            $data['property_type_commercial'] = PropertyType::where('property_type', 'commercial')->get();
+            $data['property_type_residential'] = PropertyType::where('property_type', 'residential')->get();
+
             // return view('userdashboard.property.create', compact('data'));
             return view('dashboard.addproperty', compact('data'));
         } else {
             return redirect()->route('home.index');
         }
-       
     }
 
     /**
@@ -126,7 +129,7 @@ class PropertiesController extends Controller
         // exit;
         $user_id = Auth::guard('frontuser')->user()->id;
         //print $user_id; die;
-        $slug=commonfunction::createSlug($data['name'],0,'property');
+        $slug = commonfunction::createSlug($data['name'], 0, 'property');
         $property = Property::create([
             'name' => $data['name'],
             'user_id' => $user_id,
@@ -140,7 +143,7 @@ class PropertiesController extends Controller
             'featured' => isset($data['featured']) ? 1 : 0,
             'hot' => isset($data['hot']) ? 1 : 0,
             //'notes' => $data['notes'],
-            'slug'=> $slug,
+            'slug' => $slug,
             'created_by' => $user_id
 
         ]);
@@ -150,9 +153,9 @@ class PropertiesController extends Controller
         if ($request->hasFile('banner_image')) {
             $file = $request->file('banner_image');
             $filename = $file->getClientOriginalName();
-            $path = public_path() . '/uploads/image/property' .$property_id . '/';
+            $path = public_path() . '/uploads/image/property' . $property_id . '/';
             $file->move($path, $filename);
-            $url = url('/uploads/image/property' .$property_id . '/' . $filename);
+            $url = url('/uploads/image/property' . $property_id . '/' . $filename);
             $image = Images::create([
                 'property_id' => $property_id,
                 'name' => $filename,
@@ -208,24 +211,24 @@ class PropertiesController extends Controller
             ]);
         }
         ////Amenities
-        
-        if(isset($data['amenities'])){
-        $amenities = $data['amenities'];
-        if (gettype($amenities) == 'array') {
-            $insert_ammenity = [];
-            if (count($amenities) > 0) {
-                foreach ($amenities as $value) {
-                    $values = [];
-                    $values['amenity_id'] = $value;
-                    $values['property_id'] = $property_id;
-                    $values["created_at"] = Carbon::now();
-                    $values["updated_at"] = now();
-                    array_push($insert_ammenity, $values);
+
+        if (isset($data['amenities'])) {
+            $amenities = $data['amenities'];
+            if (gettype($amenities) == 'array') {
+                $insert_ammenity = [];
+                if (count($amenities) > 0) {
+                    foreach ($amenities as $value) {
+                        $values = [];
+                        $values['amenity_id'] = $value;
+                        $values['property_id'] = $property_id;
+                        $values["created_at"] = Carbon::now();
+                        $values["updated_at"] = now();
+                        array_push($insert_ammenity, $values);
+                    }
+                    AssignedAmenities::insert($insert_ammenity);
                 }
-                AssignedAmenities::insert($insert_ammenity);
             }
         }
-    }
         ///Additional
         //$additional =  isset($data['additional']) ?  json_decode($data['additional']) : [];
         $additional =  isset($data['additional']) ?  $data['additional'] : [];
@@ -267,9 +270,9 @@ class PropertiesController extends Controller
             'govt_tax_include' => @$data['govt_tax_include'],
             'extra_notes' => $extraNotes
         ]);
-     
-        return redirect()->route('frontuser.property.addimages',['slug'=>$slug]);
-     
+
+        return redirect()->route('frontuser.property.addimages', ['slug' => $slug]);
+
         //
     }
 
@@ -281,10 +284,10 @@ class PropertiesController extends Controller
      */
     public function show($id)
     {
-       
+
 
         $data = [];
-        $data['property'] = Property::where('id', $id)->withCount('likes')->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details','images'])->first();
+        $data['property'] = Property::where('id', $id)->withCount('likes')->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details', 'images'])->first();
         return view('userdashboard.property.show', compact('data'));
     }
 
@@ -297,41 +300,37 @@ class PropertiesController extends Controller
     public function edit($id)
     {
         //
-       
+
 
 
         if (Auth::check()) {
             $data = [];
             $userId = Auth::id();
-            $data['user']=$this->getUserDetailsById($userId);
-            $data['p_count']=$this->getUserPropertyCount($userId);
+            $data['user'] = $this->getUserDetailsById($userId);
+            $data['p_count'] = $this->getUserPropertyCount($userId);
             //$data['property_type'] = PropertyType::get();
-           
-            $data['property'] = Property::where('id', $id)->with(['amenities', 'vastu.vastu_data', 'preferences', 'property_type.type_data', 'property_details','images'=>function($query){
+
+            $data['property'] = Property::where('id', $id)->with(['amenities', 'vastu.vastu_data', 'preferences', 'property_type.type_data', 'property_details', 'images' => function ($query) {
                 $query->where('featured', 1)->first();
             }])->first();
-            if($userId != $data['property']->user_id){
+            if ($userId != $data['property']->user_id) {
                 return redirect()->route('frontuser.property.index');
-            }else{
+            } else {
                 $data['vastu'] = Vastu::get();
                 $data['amenity'] = Amenity::get();
                 $data['preferences'] = Preferences::get();
-                $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
-                $data['property_type_residential'] = PropertyType::where('property_type','residential')->get();
+                $data['property_type_commercial'] = PropertyType::where('property_type', 'commercial')->get();
+                $data['property_type_residential'] = PropertyType::where('property_type', 'residential')->get();
                 $data['amenityIds'] = $data['property']->amenities->pluck('amenity_id')->toArray();
                 $data['preferencesIds'] = $data['property']->preferences->pluck('preference_id')->toArray();
-        //                 echo "<pre>"; print_r($data['property']->toArray());
-        // exit;
+                //                 echo "<pre>"; print_r($data['property']->toArray());
+                // exit;
                 //return view('userdashboard.property.edit', compact('data'));
                 return view('dashboard.editproperty', compact('data'));
             }
-         
-    
-            
         } else {
             return redirect()->route('home.index');
         }
-
     }
 
     /**
@@ -343,7 +342,7 @@ class PropertiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         //
         $data = $request->all();
         // echo "<pre>"; print_r($data);
@@ -364,29 +363,29 @@ class PropertiesController extends Controller
             'featured' => isset($data['featured']) ? 1 : 0,
             'hot' => isset($data['hot']) ? 1 : 0,
             //'notes' => $data['notes'],
-            'slug'=> commonfunction::createSlug($data['name'],0,'property'),
+            'slug' => commonfunction::createSlug($data['name'], 0, 'property'),
             'created_by' => $user_id
         ];
         Property::where('id', $id)
             ->update($update_property);
 
-///banner Image///
-if ($request->hasFile('banner_image')) {
-    $file = $request->file('banner_image');
-    $filename = $file->getClientOriginalName();
-    $path = public_path() . '/uploads/image/property' .$id . '/';
-    $file->move($path, $filename);
-    $url = url('/uploads/image/property' .$id . '/' . $filename);
-    Images::where('property_id', $id)->where('featured', 1)->delete();
-    $image = Images::create([
-        'property_id' => $id,
-        'name' => $filename,
-        'url' => $url,
-        'featured' => 1
-    ]);
+        ///banner Image///
+        if ($request->hasFile('banner_image')) {
+            $file = $request->file('banner_image');
+            $filename = $file->getClientOriginalName();
+            $path = public_path() . '/uploads/image/property' . $id . '/';
+            $file->move($path, $filename);
+            $url = url('/uploads/image/property' . $id . '/' . $filename);
+            Images::where('property_id', $id)->where('featured', 1)->delete();
+            $image = Images::create([
+                'property_id' => $id,
+                'name' => $filename,
+                'url' => $url,
+                'featured' => 1
+            ]);
 
-    $image_id = $image->id;
-}
+            $image_id = $image->id;
+        }
 
         ///Vastu///
         $vastu = isset($data['vastu']) ? $data['vastu'] : "";
@@ -443,7 +442,7 @@ if ($request->hasFile('banner_image')) {
 
         $extraNotes = isset($data['extra_notes']) ? $data['extra_notes'] : '';
 
-        $update_details = [            
+        $update_details = [
             'property_category' => $data['property_category'],
             'property_feature' => @$data['property_feature'],
             'property_title' => $data['property_title'],
@@ -463,12 +462,13 @@ if ($request->hasFile('banner_image')) {
             'govt_tax_include' => @$data['govt_tax_include'],
             'extra_notes' => $extraNotes
         ];
-        Propertydetail::where('property_id', $id)
-            ->update($update_details);
+        Propertydetail::updateOrCreate(
+            ['property_id' => $id], // Identification criteria (e.g., primary key)
+            $update_details // Data to update or create
+        );
 
-            
-            return redirect()->route('frontuser.property.index');
-            
+
+        return redirect()->route('frontuser.property.index');
     }
 
     /**
@@ -483,7 +483,8 @@ if ($request->hasFile('banner_image')) {
         // if (!Gate::allows('users_manage')) {
         //     return abort(401);
         // }
-        print 'a'; die;
+        print 'a';
+        die;
         $property = Property::findOrFail($id);
         $property->delete();
 
@@ -504,47 +505,48 @@ if ($request->hasFile('banner_image')) {
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'property_id' => 'required|numeric',
         ]);
-    
+
         // Get the input data
         $data = $request->all();
-    
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();
             $path = public_path() . '/uploads/image/property' . $data['property_id'] . '/';
             $file->move($path, $filename);
             $url = url('/uploads/image/property' . $data['property_id'] . '/' . $filename);
-    
+
             $image = Images::create([
                 'property_id' => $data['property_id'],
                 'name' => $filename,
                 'url' => $url,
                 'featured' => 0
             ]);
-    
+
             $image_id = $image->id;
-    
+
             // Return the image ID or any other response as needed
-            return response()->json(['image_id' => $image_id, 'url'=>$url], 200);
+            return response()->json(['image_id' => $image_id, 'url' => $url], 200);
         }
-    
+
         // Return an error response if the image file was not found
         return response()->json(['message' => 'Image file not found.'], 400);
     }
-    public function addImages($slug){
+    public function addImages($slug)
+    {
         if (Auth::check()) {
-            $property=  Property::where('slug', $slug)->with(['images'])->first();
+            $property =  Property::where('slug', $slug)->with(['images'])->first();
             if ($property) {
                 $userId = Auth::user()->id;
-                if($userId != $property->user_id){
+                if ($userId != $property->user_id) {
                     return redirect()->route('frontuser.property.index');
-                }else{
-                    $data['user']=$this->getUserDetailsById($userId);
-                    $data['p_count']=$this->getUserPropertyCount($userId);
-                    $data['property']=$property;
+                } else {
+                    $data['user'] = $this->getUserDetailsById($userId);
+                    $data['p_count'] = $this->getUserPropertyCount($userId);
+                    $data['property'] = $property;
                     ////WORK HERE
-        //             echo "<pre>"; print_r($property->toArray()); echo "<pre>";
-        // exit;
+                    //             echo "<pre>"; print_r($property->toArray()); echo "<pre>";
+                    // exit;
                     return view('dashboard.addimages', compact('data'));
                 }
             } else {
@@ -553,7 +555,6 @@ if ($request->hasFile('banner_image')) {
         } else {
             return redirect()->route('home.index');
         }
-     
     }
     public function deleteimage($id)
     {
@@ -566,16 +567,33 @@ if ($request->hasFile('banner_image')) {
 
         return redirect()->route('frontuser.property.image', $image->property_id);
     }
-    public function leads($propertyID)
+    public function leads($slug)
     {
-        //
-        // if (!Gate::allows('users_manage')) {
-        //     return abort(401);
-        // }
-        $data = [];
-        //$data['property_type'] = PropertyType::get();
-        $data['leads'] = Leads::where('property_id',$propertyID)->get();
-
-        return view('userdashboard.property.leads', compact('data'));
+        if (Auth::check()) {
+            $property =  Property::where('slug', $slug)->first();
+            if ($property) {
+                $userId = Auth::user()->id;
+                if ($userId != $property->user_id) {
+                    return redirect()->route('frontuser.property.index');
+                } else {
+                    $data['user'] = $this->getUserDetailsById($userId);
+                    $data['p_count'] = $this->getUserPropertyCount($userId);
+                    $data['property'] = $property;
+                    $data['leads'] = Leads::where('property_id', $property->id)->with(['property' => function ($query) {
+                        $query->with(['property_details']);
+                    }, 'subplan' => function ($query) {
+                        $query->with(['planType']);
+                    }])->paginate();
+                    ////WORK HERE
+                    //             echo "<pre>"; print_r($data['leads']->toArray()); echo "<pre>";
+                    // exit;
+                    return view('dashboard.leads', compact('data'));
+                }
+            } else {
+                return redirect()->route('frontuser.property.index');
+            }
+        } else {
+            return redirect()->route('home.index');
+        }
     }
 }
