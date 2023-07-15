@@ -31,13 +31,13 @@
                             <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="name" class="d-block fw-bold">I want</label>
                                 <div class="row">
-                                    <div class="col-md-4 rent-sell-button position-relative">
+                                    <div class="col-4 rent-sell-button position-relative">
 
                                         <input type="radio" id="rent" name="type" value="rent" checked required>
                                         <label for="rent" class="position-relative rent-button">Rent</label>
 
                                     </div>
-                                    <div class="col-md-4 rent-sell-button position-relative">
+                                    <div class="col-4 rent-sell-button position-relative">
                                         <input type="radio" id="sale" name="type" value="sale" required>
                                         <label for="sale" class="position-relative sell-button">Sale</label><br>
                                     </div>
@@ -143,8 +143,8 @@
                                     @php $amenityCount = count($data['amenity']); @endphp
                                     @foreach($data['amenity'] as $index => $amenity)
                                     <div class="step-checkbox-group mb-lg-4 mb-3">
-                                        <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $amenity['id'] }}" id="gridCheck">
-                                        <label class="form-check-label" for="gridCheck">
+                                        <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $amenity['id'] }}" id="{{ $amenity['id'] }}">
+                                        <label class="form-check-label" for="{{ $amenity['id'] }}">
                                             {{ $amenity['name'] }}
                                         </label>
                                     </div>
