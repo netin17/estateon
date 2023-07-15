@@ -30,7 +30,7 @@
                                 @endphp
 
                                 <tr>
-                                    <td class="table-data">{{ $transaction->plan->plan_type->name ?? '' }}-{{ $transaction->plan->name ?? '' }}</td>
+                                    <td class="table-data">{{ $transaction->plan->planType->name ?? '' }}-{{ $transaction->plan->name ?? '' }}</td>
                                     <td class="table-data">{{ optional($time)->format('d-m-Y') }}</td>
                                     <td class="table-data">{{ optional($time)->format('h:i A') }}</td>
                                     <td class="table-data">{{ $transaction->payment->txnid ?? '' }}</td>

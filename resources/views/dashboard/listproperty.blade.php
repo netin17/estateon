@@ -59,10 +59,10 @@
                                             <td class="table-data">
                                                 <div class="listed-properties-table-data">
                                                     <span
-                                                        class="d-inline-block px-2 py-1 table-sky-btn mb-1">View</span><br>
+                                                        class="d-inline-block px-2 py-1 table-sky-btn mb-1"><a href="{{ route('frontuser.property.show', $property->id) }}">View</a></span><br>
                                                     <span
                                                         class="d-inline-block px-2 py-1 table-sky-btn mb-1"><a href="{{route('frontuser.property.addimages',['slug'=>$property->slug])}}">Images</a></span><br>
-                                                    <span class="d-inline-block px-3 py-1 table-edit-btn">Edit</span>
+                                                    <span class="d-inline-block px-3 py-1 table-edit-btn"><a href="{{ route('frontuser.property.edit', $property->id) }}">Edit</a></span>
                                                 </div>
                                             </td>
                                         </tr>

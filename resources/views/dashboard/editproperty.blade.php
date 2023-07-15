@@ -33,12 +33,12 @@
                                 <div class="row">
                                     <div class="col-md-4 rent-sell-button position-relative">
 
-                                        <input type="radio" id="rent" name="type" value="rent" checked required>
+                                        <input type="radio" id="rent" name="type" value="rent" {{ $data['property']->type == 'rent' ? 'checked' : '' }} required>
                                         <label for="rent" class="position-relative rent-button">Rent</label>
 
                                     </div>
                                     <div class="col-md-4 rent-sell-button position-relative">
-                                        <input type="radio" id="sale" name="type" value="sale" required>
+                                        <input type="radio" id="sale" name="type" value="sale" {{ $data['property']->type == 'sale' ? 'checked' : '' }} required>
                                         <label for="sale" class="position-relative sell-button">Sale</label><br>
                                     </div>
                                     <div class="col-md-4"></div>
@@ -47,15 +47,15 @@
                             <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="category" class="d-block">Properties Category</label>
                                 <select id="property_category" name="property_category" class="d-block profile-form-fild form-control select2 m-0" required>
-                                    <option value="residential">Residential</option>
-                                    <option value="commercial">Commercial</option>
+                                    <option value="residential" {{ $data['property']->property_details->property_category ?? '' == 'residential' ? 'selected' : '' }}>Residential</option>
+                                    <option value="commercial" {{ $data['property']->property_details->property_category ?? '' == 'commercial' ? 'selected' : '' }}>Commercial</option>
                                 </select>
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="type" class="d-block">Properties Type </label>
                                 <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
                                     @foreach($data['property_type_commercial'] as $propert)
-                                    <option value="{{ $propert['id'] }}">{{ $propert['name'] }}</option>
+                                    <option value="{{ $propert['id'] }}" {{ $data['property']->property_type->type_id ?? '' == $propert['id'] ? 'selected' : '' }}>{{ $propert['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -63,7 +63,7 @@
                                 <label for="vastu" class="d-block">Properties Vastu </label>
                                 <select name="vastu" id="vastu" class="form-control d-block profile-form-fild select2 m-0" required>
                                     @foreach($data['vastu'] as $vast)
-                                    <option value="{{ $vast['id'] }}">{{ $vast['name'] }}</option>
+                                    <option value="{{ $vast['id'] }}" {{ $data['property']->vastu->vastu_id ?? '' == $vast['id'] ? 'selected' : '' }}>{{ $vast['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -75,65 +75,65 @@
                                 <label for="banner-image" class="d-block">Banner Image <span class="d-block red-font" style="font-size: 12px;">(jpeg or png. only)</span></label>
                                 <input type="file" name="banner_image" id="banner-image" placeholder="" class="d-block form-control profile-form-fild" required />
                             </div>
-                          </div>
+                        </div>
                         <div class="tab">
-                        <h3 class="dark-font text-center step-title">Add Location</h3>
+                            <h3 class="dark-font text-center step-title">Add Location</h3>
                             <div class="row mt-5">
-                            <div class="col-md-6">
-                                <div class="map-section-wrap">
-                                    <!--Google map-->
-                                    <div id="address-map-container" style="width:100%;height:400px; ">
-                                        <div style="width: 100%; height: 100%" id="address-map"></div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <div class="map-section-wrap">
+                                        <!--Google map-->
+                                        <div id="address-map-container" style="width:100%;height:400px; ">
+                                            <div style="width: 100%; height: 100%" id="address-map"></div>
+                                        </div>
 
-                                    <!--Google Maps-->
+                                        <!--Google Maps-->
+                                    </div>
+                                    <div hidden class="form-group {{ $errors->has('lat') ? 'has-error' : '' }}">
+                                        <input type="hidden" id="address-latitude" name="lat" class="form-control" value="">
+                                    </div>
+                                    <div hidden class="form-group {{ $errors->has('lng') ? 'has-error' : '' }}">
+                                        <input type="hidden" id="address-longitude" name="lng" class="form-control" value="">
+                                    </div>
                                 </div>
-                                <div hidden class="form-group {{ $errors->has('lat') ? 'has-error' : '' }}">
-                                    <input type="hidden" id="address-latitude" name="lat" class="form-control" value="">
-                                </div>
-                                <div hidden class="form-group {{ $errors->has('lng') ? 'has-error' : '' }}">
-                                    <input type="hidden" id="address-longitude" name="lng" class="form-control" value="">
+                                <div class="col-md-6">
+                                    <div class="step-form-group mb-3">
+                                        <label for="name" class="step-form-label">Property/ Project Name</label>
+                                        <input type="text" id="name-input" name="name" placeholder="Name" class="step-form-field w-100 d-block" required />
+                                    </div>
+                                    <div class="step-form-group mb-3">
+                                        <label for="address" class="step-form-label">Property Address (Ref. Google Map)</label>
+                                        <input type="text" id="address-input" name="address" placeholder="Address" class="step-form-field w-100 d-block" required />
+                                    </div>
+                                    <div class="step-form-group mb-5">
+                                        <label for="locality" class="step-form-label">Locality</label>
+                                        <input type="text" id="locality" placeholder="Add Nearby Locality" name="locality" class="step-form-field w-100 d-block" required />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                            <div class="step-form-group mb-3">
-                                <label for="name" class="step-form-label">Property/ Project Name</label>
-                                <input type="text" id="name-input" name="name" placeholder="Name" class="step-form-field w-100 d-block" required />
-                            </div>
-                            <div class="step-form-group mb-3">
-                                <label for="address" class="step-form-label">Property Address (Ref. Google Map)</label>
-                                <input type="text" id="address-input" name="address" placeholder="Address" class="step-form-field w-100 d-block" required />
-                            </div>
-                            <div class="step-form-group mb-5">
-                                <label for="locality" class="step-form-label">Locality</label>
-                                <input type="text" id="locality" placeholder="Add Nearby Locality" name="locality" class="step-form-field w-100 d-block" required />
-                            </div>    
-                        </div>
-                        </div>
                         </div>
                         <div class="tab">
                             <h3 class="dark-font text-center step-title">Price & Description</h3>
                             <div class="row mt-4">
-                            <div class="step-form-group mb-3 col-md-6">
-                                <label for="Price" class="step-form-label">Price</label>
-                                <input type="number" id="price" name="price" min="1" placeholder="e.g. 100000" class="step-form-field w-100 d-block" required />
-                            </div>
-                            <div class="step-form-group mb-3 col-md-6">
-                                <label for="size" class="step-form-label">Size (sq. feet)</label>
-                                <input type="text" id="size" name="size" placeholder="250" class="step-form-field w-100 d-block" />
-                            </div>
-                            <div class="step-form-group mb-3 col-md-6">
-                                <label for="length" class="step-form-label">Length (sq. feet)</label>
-                                <input type="text" id="length" name="length" placeholder="25" class="step-form-field w-100 d-block" />
-                            </div>
-                            <div class="step-form-group mb-3 col-md-6">
-                                <label for="width" class="step-form-label">Width (sq. feet)</label>
-                                <input type="text" id="width" name="width" placeholder="203" class="step-form-field w-100 d-block" />
-                            </div>
-                           <div class="step-form-group mb-3 col-12">
-                                <label for="Description" class="step-form-label">Description</label>
-                                <textarea id="description" name="description" cols="30" rows="5" class="textarea" placeholder="Write here" required></textarea>
-                            </div> 
+                                <div class="step-form-group mb-3 col-md-6">
+                                    <label for="Price" class="step-form-label">Price</label>
+                                    <input type="number" id="price" name="price" min="1" placeholder="e.g. 100000" class="step-form-field w-100 d-block" required />
+                                </div>
+                                <div class="step-form-group mb-3 col-md-6">
+                                    <label for="size" class="step-form-label">Size (sq. feet)</label>
+                                    <input type="text" id="size" name="size" placeholder="250" class="step-form-field w-100 d-block" />
+                                </div>
+                                <div class="step-form-group mb-3 col-md-6">
+                                    <label for="length" class="step-form-label">Length (sq. feet)</label>
+                                    <input type="text" id="length" name="length" placeholder="25" class="step-form-field w-100 d-block" />
+                                </div>
+                                <div class="step-form-group mb-3 col-md-6">
+                                    <label for="width" class="step-form-label">Width (sq. feet)</label>
+                                    <input type="text" id="width" name="width" placeholder="203" class="step-form-field w-100 d-block" />
+                                </div>
+                                <div class="step-form-group mb-3 col-12">
+                                    <label for="Description" class="step-form-label">Description</label>
+                                    <textarea id="description" name="description" cols="30" rows="5" class="textarea" placeholder="Write here" required></textarea>
+                                </div>
                             </div>
                         </div>
                         <div class="tab">
@@ -175,31 +175,31 @@
                                 <div class="tab">
                                     <h3 class="dark-font text-center step-title">Other information</h3>
                                     <div class="row mt-4">
-                                    <div class="step-form-group mb-3 col-md-6">
-                                        <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
-                                        <input type="text" id="project-id" placeholder="HY174257" name="rera_number" class="step-form-field step-form-field-other-info w-100 d-block" />
-                                    </div>
-                                    <div class="step-form-group mb-3 col-md-6">
-                                        <label for="include" class="step-form-label">Govt Tax Include</label>
-                                        <select name="govt_tax_include" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="govt_tax">
-                                            <option value="1">Included</option>
-                                            <option value="0">Not Included</option>
-                                        </select>
-                                    </div>
-                                    <div class="step-form-group col-md-6 mb-3">
-                                        <label for="extra_notes" class="text-heading step-form-label">Extra Notes</label>
-                                        <input type="text" id="extra_notes" name="extra_notes" class="form-control m-0 step-form-field step-form-field-other-info w-100 d-block">
+                                        <div class="step-form-group mb-3 col-md-6">
+                                            <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
+                                            <input type="text" id="project-id" placeholder="HY174257" name="rera_number" class="step-form-field step-form-field-other-info w-100 d-block" />
+                                        </div>
+                                        <div class="step-form-group mb-3 col-md-6">
+                                            <label for="include" class="step-form-label">Govt Tax Include</label>
+                                            <select name="govt_tax_include" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="govt_tax">
+                                                <option value="1">Included</option>
+                                                <option value="0">Not Included</option>
+                                            </select>
+                                        </div>
+                                        <div class="step-form-group col-md-6 mb-3">
+                                            <label for="extra_notes" class="text-heading step-form-label">Extra Notes</label>
+                                            <input type="text" id="extra_notes" name="extra_notes" class="form-control m-0 step-form-field step-form-field-other-info w-100 d-block">
 
-                                    </div>
-                                    <div class="step-form-group col-md-6 mb-3">
-                                        <label for="type" class="step-form-label">Furnished</label>
-                                        <select name="furnished" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="type">
-                                            <option value="">--Select--</option>
-                                            <option value="furnished">Furnished</option>
-                                            <option value="unfurnished">Un Furnished</option>
-                                            <option value="semi_furnished">Semi Furnished</option>
-                                        </select>
-                                    </div>
+                                        </div>
+                                        <div class="step-form-group col-md-6 mb-3">
+                                            <label for="type" class="step-form-label">Furnished</label>
+                                            <select name="furnished" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="type">
+                                                <option value="">--Select--</option>
+                                                <option value="furnished">Furnished</option>
+                                                <option value="unfurnished">Un Furnished</option>
+                                                <option value="semi_furnished">Semi Furnished</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 {{--
@@ -253,16 +253,16 @@
 <script src="{{ url('/js/mapInput.js')}}"></script>
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initMap"></script>
 <script type="text/javascript">
-//     jQuery.validator.setDefaults({
-//   // This will ignore all hidden elements alongside `contenteditable` elements
-//   // that have no `name` attribute
-//   ignore: ":hidden, [contenteditable='true']:not([description])"
-// });
+    //     jQuery.validator.setDefaults({
+    //   // This will ignore all hidden elements alongside `contenteditable` elements
+    //   // that have no `name` attribute
+    //   ignore: ":hidden, [contenteditable='true']:not([description])"
+    // });
     $.validator.addMethod('summernoteRequired', function(value, element) {
-    var summernoteValue = $(element).summernote('isEmpty');
-    console.log(summernoteValue)
-    return !summernoteValue;
-}, 'Please enter a value.');
+        var summernoteValue = $(element).summernote('isEmpty');
+        console.log(summernoteValue)
+        return !summernoteValue;
+    }, 'Please enter a value.');
 
     var val = {
         rules: {
@@ -281,7 +281,7 @@
             price: 'required',
             description: {
                 summernoteRequired: true
-    }
+            }
         },
         messages: {
             type: "Please select an option",
@@ -299,17 +299,17 @@
             price: 'Enter price for your property',
             description: {
                 summernoteRequired: 'Please enter a description.'
-    }
+            }
         }
     }
 
-//     if ($.validator.methods.summernoteRequired) {
-//   // The summernoteRequired method is added
-//   console.log('summernoteRequired method is added');
-// } else {
-//   // The summernoteRequired method is not added
-//   console.log('summernoteRequired method is not added');
-// }
+    //     if ($.validator.methods.summernoteRequired) {
+    //   // The summernoteRequired method is added
+    //   console.log('summernoteRequired method is added');
+    // } else {
+    //   // The summernoteRequired method is not added
+    //   console.log('summernoteRequired method is not added');
+    // }
 
 
 

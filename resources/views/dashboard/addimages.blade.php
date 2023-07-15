@@ -73,7 +73,7 @@ var imageId = response.image_id;
 var imageUrl=response.url;
 
 // Append the uploaded image to the grid view
-var imageHtml = '<div class="image-grid"><a href="' + imageUrl + '" data-fancybox="gallery"><img src="' + imageUrl + '"></a></div>';
+var imageHtml = '<div class="image-grid property-doc-col"><a href="' + imageUrl + '" data-fancybox="gallery"><img src="' + imageUrl + '"></a></div>';
     $('#imagePreviewContainer').append(imageHtml);
 
     // Reset the file input

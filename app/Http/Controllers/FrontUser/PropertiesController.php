@@ -297,17 +297,37 @@ class PropertiesController extends Controller
     public function edit($id)
     {
         //
-        $data = [];
-        //$data['property_type'] = PropertyType::get();
-        $data['vastu'] = Vastu::get();
-        $data['amenity'] = Amenity::get();
-        $data['preferences'] = Preferences::get();
-        $data['property'] = Property::where('id', $id)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details'])->first();
+       
 
-        $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
-        $data['property_type_residential'] = PropertyType::where('property_type','residential')->get();
 
-        return view('userdashboard.property.edit', compact('data'));
+        if (Auth::check()) {
+            $data = [];
+            $userId = Auth::id();
+            $data['user']=$this->getUserDetailsById($userId);
+            $data['p_count']=$this->getUserPropertyCount($userId);
+            //$data['property_type'] = PropertyType::get();
+           
+            $data['property'] = Property::where('id', $id)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details'])->first();
+            if($userId != $data['property']->user_id){
+                return redirect()->route('frontuser.property.index');
+            }else{
+                $data['vastu'] = Vastu::get();
+                $data['amenity'] = Amenity::get();
+                $data['preferences'] = Preferences::get();
+                $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
+                $data['property_type_residential'] = PropertyType::where('property_type','residential')->get();
+                        echo "<pre>"; print_r($data['property']->toArray());
+        exit;
+                //return view('userdashboard.property.edit', compact('data'));
+                return view('dashboard.editproperty', compact('data'));
+            }
+         
+    
+            
+        } else {
+            return redirect()->route('home.index');
+        }
+
     }
 
     /**
