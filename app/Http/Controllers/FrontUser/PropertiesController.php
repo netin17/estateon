@@ -15,6 +15,7 @@ use App\AssignedTypes;
 use App\AssignedVastu;
 use App\commonfunction;
 use App\Propertydetail;
+use App\Likes;
 use App\PlanTypes;
 use App\AssignedAmenities;
 use App\AssignedPreferences;
@@ -592,6 +593,24 @@ class PropertiesController extends Controller
             } else {
                 return redirect()->route('frontuser.property.index');
             }
+        } else {
+            return redirect()->route('home.index');
+        }
+    }
+
+    public function wishlist(){
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $data['user'] = $this->getUserDetailsById($userId);
+            $data['p_count'] = $this->getUserPropertyCount($userId);
+            $data['wishlist'] = Likes::where('user_id', $userId)->wherehas('property')->with(['property'=>function($query){
+                $query->with(['property_details', 'images'=>function($inmgQuery){
+                    $inmgQuery->where('featured',1);
+                }]);  
+            }])->paginate();
+                    //          echo "<pre>"; print_r($data['wishlist']->toArray()); echo "<pre>";
+                    // exit;
+            return view('dashboard.wishlist', compact('data'));
         } else {
             return redirect()->route('home.index');
         }

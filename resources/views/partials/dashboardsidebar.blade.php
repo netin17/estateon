@@ -32,7 +32,7 @@
                                         Properties</a></li>
                                 <li><a class="sidebar-link transition {{ request()->is('frontuser/property/create') || request()->is('frontuser/property/create') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.property.create')}}">Add Property</a></li>
                                 <!-- <li><a class="sidebar-link transition" href="/">Leads</a></li> -->
-                                <li><a class="sidebar-link transition" href="/">Other Fav. Property</a></li>
+                                <li><a class="sidebar-link transition {{ request()->is('frontuser/wishlist') || request()->is('frontuser/wishlist') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.user.wishlist')}}">Other Fav. Property</a></li>
                             </ul>
                         </div>
                     </div>
