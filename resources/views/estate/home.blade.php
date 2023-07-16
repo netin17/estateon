@@ -235,7 +235,7 @@
                 @if(isset($hotp->images[0]))
                 <a href="{{ route('property.detail', [$hotp->slug] ) }}"> <img src="{{$hotp->images[0]['url']}}" alt="image"></a>
                 @endif
-                @auth
+                @auth('frontuser')
                 @if($hotp->likes_count > 0)
                 <a class="likeBtn" data-propertyid="{{$hotp->id}}"><i class="fas fa-heart"></i> </a>
                 @endif
