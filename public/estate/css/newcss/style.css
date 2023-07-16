@@ -710,6 +710,13 @@ body.body-overflow {
   font-size: 18px;
   font-weight: 700;
   box-shadow: none;
+  padding: 1rem 1.25rem;
+  border: 0;
+}
+
+.accordion .card .card-header {
+  border: 0;
+  background-color: transparent;
 }
 
 .site-accordion .accordion-button:focus {
@@ -723,8 +730,9 @@ body.body-overflow {
 .site-accordion .accordion-body {
   padding-top: 0;
   font-size: 18px;
-  max-width: 600px;
   color: #3c3c43;
+  padding: 1.25rem !important;
+  padding-top: 0 !important;
 }
 
 .accordion-button:not(.collapsed)::after {
