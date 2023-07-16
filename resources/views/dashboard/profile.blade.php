@@ -33,56 +33,59 @@
 
             </div>
                     <form action="{{ route('frontuser.frontuser.change_password') }}" method="POST" class="dashboard-profile-form">
-                        @csrf
-                        @method('PATCH')
-                        <div class="profile-form-group d-flex align-items-center mb-4">
-                            <label for="name" class="d-block">Name:</label>
-                            <label for="phone" class="d-block">{{$data['user']->name}}</label>
-                        </div>
-                        <div class="profile-form-group d-flex align-items-center mb-4">
-                            <label for="email" class="d-block">Email:</label>
-                            <label for="phone" class="d-block">{{$data['user']->email}}</label>
-                        </div>
-                        <div class="profile-form-group d-flex align-items-center mb-4">
-                            <label for="phone" class="d-block">Phone No.:</label>
-                            <label for="phone" class="d-block">{{$data['user']->phone}}</label>
-                        </div>
+                        <div class="mx-auto" style="max-width:600px;">
 
-
-                        <div class="profile-form-group d-flex align-items-center mb-5 {{ $errors->has('current_password') ? 'has-error' : '' }}">
-                            <label for="current_password">Current password*</label>
-                            <input type="password" id="current_password" name="current_password" class="form-control d-block profile-form-fild">
-                            @if($errors->has('current_password'))
-                            <em class="invalid-feedback">
-                                {{ $errors->first('current_password') }}
-                            </em>
-                            @endif
-                        </div>
-                        <div class="profile-form-group d-flex align-items-center mb-5 {{ $errors->has('new_password') ? 'has-error' : '' }}">
-                            <label for="new_password">New password*</label>
-                            <input type="password" id="new_password" name="new_password" class="form-control d-block profile-form-fild">
-                            @if($errors->has('new_password'))
-                            <em class="invalid-feedback">
-                                {{ $errors->first('new_password') }}
-                            </em>
-                            @endif
-                        </div>
-                        <div class="profile-form-group d-flex align-items-center mb-5 {{ $errors->has('new_password_confirmation') ? 'has-error' : '' }}">
-                            <label for="new_password_confirmation">New password confirmation*</label>
-                            <input type="password" id="new_password_confirmation" name="new_password_confirmation" class="form-control d-block profile-form-fild">
-                            @if($errors->has('new_password_confirmation'))
-                            <em class="invalid-feedback">
-                                {{ $errors->first('new_password_confirmation') }}
-                            </em>
-                            @endif
-                        </div>
-
-
-
-
-
-                        <div class="profile-form-group">
-                            <button type="submit" class="profile-save-btn btn btn-primary px-5">Save</button>
+                            @csrf
+                            @method('PATCH')
+                            <div class="profile-form-group d-flex align-items-center mb-4">
+                                <label for="name" class="d-block">Name:</label>
+                                <label for="phone" class="d-block">{{$data['user']->name}}</label>
+                            </div>
+                            <div class="profile-form-group d-flex align-items-center mb-4">
+                                <label for="email" class="d-block">Email:</label>
+                                <label for="phone" class="d-block">{{$data['user']->email}}</label>
+                            </div>
+                            <div class="profile-form-group d-flex align-items-center mb-4">
+                                <label for="phone" class="d-block">Phone No.:</label>
+                                <label for="phone" class="d-block">{{$data['user']->phone}}</label>
+                            </div>
+    
+    
+                            <div class="profile-form-group d-flex align-items-center mb-5 {{ $errors->has('current_password') ? 'has-error' : '' }}">
+                                <label for="current_password">Current password*</label>
+                                <input type="password" id="current_password" name="current_password" class="form-control d-block profile-form-fild">
+                                @if($errors->has('current_password'))
+                                <em class="invalid-feedback">
+                                    {{ $errors->first('current_password') }}
+                                </em>
+                                @endif
+                            </div>
+                            <div class="profile-form-group d-flex align-items-center mb-5 {{ $errors->has('new_password') ? 'has-error' : '' }}">
+                                <label for="new_password">New password*</label>
+                                <input type="password" id="new_password" name="new_password" class="form-control d-block profile-form-fild">
+                                @if($errors->has('new_password'))
+                                <em class="invalid-feedback">
+                                    {{ $errors->first('new_password') }}
+                                </em>
+                                @endif
+                            </div>
+                            <div class="profile-form-group d-flex align-items-center mb-5 {{ $errors->has('new_password_confirmation') ? 'has-error' : '' }}">
+                                <label for="new_password_confirmation">New password confirmation*</label>
+                                <input type="password" id="new_password_confirmation" name="new_password_confirmation" class="form-control d-block profile-form-fild">
+                                @if($errors->has('new_password_confirmation'))
+                                <em class="invalid-feedback">
+                                    {{ $errors->first('new_password_confirmation') }}
+                                </em>
+                                @endif
+                            </div>
+    
+    
+    
+    
+    
+                            <div class="profile-form-group">
+                                <button type="submit" class="profile-save-btn btn btn-primary px-5">Save</button>
+                            </div>
                         </div>
                     </form>
                     <img src="{{ url('estate/images/dashboard-profile.svg')}}" alt="no-property" class="mx-auto profile-form-img d-block" />

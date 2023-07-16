@@ -427,6 +427,8 @@ body.body-overflow {
   border: 1px solid #c42128;
   color: #c42128;
   background-color: transparent;
+  font-size: 20px;
+  margin-bottom: 30px;
 }
 
 .get-started-btn:hover {
@@ -712,6 +714,22 @@ body.body-overflow {
   box-shadow: none;
   padding: 1rem 1.25rem;
   border: 0;
+  position: relative;
+}
+
+.site-accordion .accordion-button::after,
+.accordion-button:not(.collapsed)::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  background-image: url(../../images/chevron-down.svg) !important;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .accordion .card .card-header {
@@ -1142,6 +1160,8 @@ body.body-overflow {
   text-decoration: underline;
   margin-top: 80px;
   display: inline-block;
+  color: #c42128;
+  background-color: transparent;
 }
 
 .leads-tag-style {
@@ -1552,6 +1572,17 @@ body.body-overflow {
   background-color: #ffecec !important;
   color: #c42128 !important;
   border-color: #c42128 !important;
+}
+
+.main-card-row .media {
+  display: block;
+  text-align: center;
+}
+
+.main-card-row .media img {
+  margin: 0 auto 10px auto;
+  width: auto;
+  height: 90px;
 }
 
 /********* media css  ***********/
