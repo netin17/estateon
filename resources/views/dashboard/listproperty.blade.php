@@ -108,16 +108,16 @@
         </button>
       </div>
       <div class="modal-body">
-      <div class="col-md-8 contact-right-col">
+      <div class="contact-right-col">
                     <form action="{{route('frontuser.lead.create')}}" method="POST" id="contact_form">
                     @csrf
                         <div class="form-group-row d-flex flex-wrap">
-                            <div class="form-group-col">
+                            <div class="form-group-col px-1">
                                 <label for="fname">First Name*</label>
                                 <input type="text" id="name" name="name" class="form-group-file" required />
                                 <input type="hidden" id="property_id" name="property_id" class="form-group-file" required />
                             </div>
-                            <div class="form-group-col">
+                            <div class="form-group-col px-1">
                                 <label for="plan">Select A Plan</label>
                                 <select name="subplan_id" id="plan" class="form-group-file" required>
                                 @foreach($data['plans'] as $index=>$plan)
@@ -127,26 +127,26 @@
             @endforeach
                                 </select>
                             </div>
-                            <div class="form-group-col">
+                            <div class="form-group-col px-1">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" class="form-group-file" required />
                             </div>
-                            <div class="form-group-col">
+                            <div class="form-group-col px-1">
                                 <label for="phone_no">Mobile Number*</label>
                                 <input type="number" id="phone_no" name="phone" class="form-group-file" required />
                             </div>
                         </div>
                         <div class="form-group-row d-flex flex-wrap">
-                            <div class="form-group-col w-100">
+                            <div class="form-group-col px-1 w-100">
                                 <label for="phone_no">Write Message*</label>
                                 <textarea name="message" id="message" cols="30" rows="1" class="form-group-file" required></textarea>
                             </div>
                         </div>
-                        <div class="contact-bottom d-flex align-items-center justify-content-end">
+                        <div class="contact-bottom d-flex align-items-center justify-content-end flex-wrap">
                         <div class="contact-bottom d-flex align-items-center justify-content-center">
                         <div class="d-flex align-items-center" id="recaptcha-container"></div>
                     </div>
-                            <button type="submit" class="contact-sub-btn btn btn-primary">Submit</button>
+                            <button type="submit" class="contact-sub-btn btn btn-primary mt-2">Submit</button>
                         </div>
                     </form>
                 </div>
