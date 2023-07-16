@@ -146,8 +146,8 @@
                                     @php $amenityCount = count($data['amenity']); @endphp
                                     @foreach($data['amenity'] as $index => $amenity)
                                     <div class="step-checkbox-group mb-lg-4 mb-3">
-                                        <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $amenity['id'] }}" id="gridCheck" {{ in_array($amenity['id'], $data['amenityIds']) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="{{ $amenity['id'] }}">
+                                        <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $amenity['id'] }}" id="checkbox{{ $amenity['id'] }}" {{ in_array($amenity['id'], $data['amenityIds']) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="checkbox{{ $amenity['id'] }}">
                                             {{ $amenity['name'] }}
                                         </label>
                                     </div>
@@ -163,8 +163,8 @@
                                         @php $preferenceCount = count($data['preferences']); @endphp
                                         @foreach($data['preferences'] as $index => $preference)
                                         <div class="step-checkbox-group mb-lg-4 mb-3">
-                                            <input class="form-check-input" name="additional[]" type="checkbox" value="{{ $preference['id'] }}" id="gridCheck" {{ in_array($preference['id'], $data['preferencesIds']) ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="checkbox{{ $preference['id'] }}">
+                                            <input class="form-check-input" name="additional[]" type="checkbox" value="{{ $preference['id'] }}" id="checkboxs{{ $preference['id'] }}" {{ in_array($preference['id'], $data['preferencesIds']) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="checkboxs{{ $preference['id'] }}">
                                                 {{ $preference['name'] }}
                                             </label>
                                         </div>
