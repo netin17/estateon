@@ -87,11 +87,12 @@
             <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
                 <div class="plan-card transition">
                     <div class="plan-card-head text-center">
-                        <h5 class="plan-card-title red-font mb-md-2 mb-1">{{$sub_plan->title}}</h5>
-                        <p class="plan-card-text px-xl-3">{{$sub_plan->description}}</p>
+                        <h5 class="plan-card-title red-font mb-md-2 mb-1">{!! $sub_plan->title !!}</h5>
+                        <p class="plan-card-text px-xl-3">{!! $sub_plan->description !!}</p>
                         <div class="mt-md-4 mt-3 mb-md-3 mb-2">
                             <h6 class="plan-property-title mb-1">{{$sub_plan->name}}</h6>
-                            <p>{{$sub_plan->price==0 ? '1 Week' : $sub_plan->time_in_monthes . 'Months'}}</p>
+                            <p>{{$sub_plan->price == 0 ? '1 Week' : ($sub_plan->time_in_monthes > 1 ? $sub_plan->time_in_monthes . ' Months' : $sub_plan->time_in_monthes . ' Month')}}</p>
+                        
                         </div>
                         <button type="button" class="get-started-btn btn btn-primary buy_now" data-index="{{$index}}-{{$subIndex}}">Get Started</button>
                     </div>
@@ -160,11 +161,11 @@
             <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
                 <div class="plan-card transition">
                     <div class="plan-card-head text-center">
-                        <h5 class="plan-card-title red-font mb-md-2 mb-1 sky-font">{{$sub_plan->title}}</h5>
+                        <h5 class="plan-card-title red-font mb-md-2 mb-1 sky-font">{!! $sub_plan->title !!}</h5>
                         <p class="plan-card-text px-xl-3">{!!$sub_plan->description!!}</p>
                         <div class="mt-md-4 mt-3 mb-md-3 mb-2">
                             <h6 class="plan-property-title mb-1">{{$sub_plan->name}}</h6>
-                            <p>{{$sub_plan->price==0 ? '1 Week' : $sub_plan->time_in_monthes . 'Months'}}</p>
+                            <p>{{$sub_plan->price == 0 ? '1 Week' : ($sub_plan->time_in_months > 1 ? $sub_plan->time_in_months . ' Months' : $sub_plan->time_in_months . ' Month')}}</p>
                         </div>
                         <button type="button" class="get-started-btn btn btn-primary buy_now" data-index="{{$index}}-{{$subIndex}}">Get Started</button>
                     </div>
