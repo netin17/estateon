@@ -11,8 +11,8 @@
                         <div class="refer-box side-refer-box text-center mb-5">
                             Refer To Your Friend
                         </div>
-                        <div class="history-table-wrap box-style">
-                            <div class="table-bottom-shadow position-relative">
+                        <div class="history-table-wrap box-style position-relative">
+                            <div class="table-bottom-shadow">
                                 <table class="w-100 history-table">
                                     <thead>
                                         <tr>
