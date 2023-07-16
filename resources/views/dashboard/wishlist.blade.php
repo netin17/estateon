@@ -35,7 +35,7 @@
                                                 <div class="d-flex">
                                                     <span class="d-inline-block bhk-style">{{$wishlist->property->property_details->property_category ?? ''}}</span>
                                                 </div>
-                                                <p style="font-size: 16px;" class="red-font ms-auto">₹{{number_form($wishlist->property->property_details->price ?? 0)}}{{$wishlist->property->property_details->price}}</p>
+                                                <p style="font-size: 16px;" class="red-font ms-auto">₹{{number_form($wishlist->property->property_details->price ?? 0)}}</p>
                                             </div>
                                         </div>
                                     </div>

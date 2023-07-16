@@ -46,14 +46,14 @@ public function userSubscriptions()
     public static function boot() {
         parent::boot();
 
-        static::deleting(function($amenity) { // before delete() method call this
-             $amenity->amenities()->get()->each->delete();
-             $amenity->vastu()->get()->each->delete();
-             $amenity->preferences()->get()->each->delete();
-             $amenity->property_details()->get()->each->delete();
-             $amenity->property_type()->get()->each->delete();
-             $amenity->images()->get()->each->delete();
-             $amenity->likes()->get()->each->delete();
+        static::deleting(function($property) { // before delete() method call this
+             $property->amenities()->get()->each->delete();
+             $property->vastu()->get()->each->delete();
+             $property->preferences()->get()->each->delete();
+             $property->property_details()->get()->each->delete();
+             $property->property_type()->get()->each->delete();
+             $property->images()->get()->each->delete();
+             $property->likes()->get()->each->delete();
              // do the rest of the cleanup...
         });
     }
