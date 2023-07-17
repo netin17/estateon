@@ -1585,6 +1585,10 @@ body.body-overflow {
   height: 90px;
 }
 
+.note-editing-area p {
+  color: unset;
+}
+
 /********* media css  ***********/
 
 @media screen and (max-width: 1200px) {
