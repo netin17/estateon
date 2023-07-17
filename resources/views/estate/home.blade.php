@@ -402,7 +402,7 @@
       <h3 class="corner text-center">We have the most listings and constant updates.<br>
         So you’ll never miss out.</h3>
     </div>
-    <div class="row">
+    <div class="row main-card-row">
       <div class="col-md-4">
         <div class="media">
           <img class="mr-3" src="{{ url('estate/images/updateicon.png')}}" alt="Generic placeholder image">
