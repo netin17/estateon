@@ -51,14 +51,20 @@
                                     <option value="commercial">Commercial</option>
                                 </select>
                             </div>
-                            <div class="profile-form-group d-flex align-items-center mb-4">
+                            {{-- <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="type" class="d-block">Properties Type </label>
                                 <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
                                     @foreach($data['property_type_commercial'] as $propert)
                                     <option value="{{ $propert['id'] }}">{{ $propert['name'] }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
+                            <div class="profile-form-group d-flex align-items-center mb-4">
+  <label for="type" class="d-block">Properties Type</label>
+  <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
+  {{-- Options will be dynamically updated based on the selected property_category --}}
+  </select>
+</div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="vastu" class="d-block">Properties Vastu </label>
                                 <select name="vastu" id="vastu" class="form-control d-block profile-form-fild select2 m-0" required>
@@ -436,57 +442,57 @@
         $('#size').val(size);
     });
 
-    $('#property_category').change(function() {
-        showPropertyType();
+    // $('#property_category').change(function() {
+    //     showPropertyType();
+    // });
+    // showPropertyType();
+
+    // function showPropertyType() {
+    //     var val = $('#property_category').val();
+    //     if (val == "commercial") {
+    //         $('#property-type-commercial').removeClass('d-none')
+    //         $('#property-type-residential').addClass('d-none')
+    //     }
+    //     if (val == "residential") {
+    //         $('#property-type-residential').removeClass('d-none')
+    //         $('#property-type-commercial').addClass('d-none')
+    //     }
+    // }
+
+
+    var propertyTypes = {
+    residential: @json($data['property_type_residential']),
+    commercial: @json($data['property_type_commercial'])
+  };
+
+  function updatePropertyTypes() {
+    var selectedCategory = $('#property_category').val();
+    var propertyTypeSelect = $('#property_type_commercial');
+    var propertyTypeOptions = propertyTypes[selectedCategory];
+
+    // Clear existing options
+    propertyTypeSelect.empty();
+
+    // Add new options based on the selected property_category
+    $.each(propertyTypeOptions, function(index, propertyType) {
+      propertyTypeSelect.append($('<option>', {
+        value: propertyType.id,
+        text: propertyType.name
+      }));
     });
-    showPropertyType();
+  }
 
-    function showPropertyType() {
-        var val = $('#property_category').val();
-        if (val == "commercial") {
-            $('#property-type-commercial').removeClass('d-none')
-            $('#property-type-residential').addClass('d-none')
-        }
-        if (val == "residential") {
-            $('#property-type-residential').removeClass('d-none')
-            $('#property-type-commercial').addClass('d-none')
-        }
-    }
+  // Initial update based on the default selected property_category
+  updatePropertyTypes();
 
+  // Event listener for property_category change
+  $('#property_category').change(function() {
+    updatePropertyTypes();
+  });
     $('body').on('keydown', '.only-numbers', function(e) {
         allow_numbers_only(e)
     })
 
-    // var images = []; // Array to store image data
-
-    //   $('#imageInput').change(function(e) {
-    //     var files = e.target.files;
-    //     var imagePreviewContainer = $('#imagePreviewContainer');
-    //     imagePreviewContainer.empty(); // Clear previous previews
-    //     images = []; // Reset the array
-
-    //     if (files) {
-    //       for (var i = 0; i < files.length; i++) {
-    //         var file = files[i];
-    //         var reader = new FileReader();
-
-    //         reader.onload = (function(file) {
-    //           return function(e) {
-    //             var img = $('<img>').addClass('preview-image').attr('src', e.target.result);
-    //             img.appendTo(imagePreviewContainer);
-
-    //             // Push the image data to the array
-    //             images.push({
-    //               src: e.target.result,
-    //               type: 'image'
-    //             });
-    //           };
-    //         })(file);
-
-    //         reader.readAsDataURL(file);
-    //       }
-    //     }
-    //   });
-    // Initialize FancyBox on the images
+    
 </script>
 @endsection

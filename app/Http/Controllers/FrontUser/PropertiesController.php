@@ -108,7 +108,9 @@ class PropertiesController extends Controller
 
             $data['property_type_commercial'] = PropertyType::where('property_type', 'commercial')->get();
             $data['property_type_residential'] = PropertyType::where('property_type', 'residential')->get();
-
+//  echo "<pre>"; print_r($data['property_type_commercial']->toArray()); echo "</pre>";
+//  echo "<pre>"; print_r($data['property_type_residential']->toArray()); echo "</pre>";
+//         exit;
             // return view('userdashboard.property.create', compact('data'));
             return view('dashboard.addproperty', compact('data'));
         } else {
