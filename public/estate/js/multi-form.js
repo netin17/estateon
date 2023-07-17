@@ -36,11 +36,40 @@
         form.navigateTo(curIndex() - 1);
       });
 
+      form.getCurrentStepIndex = function() {
+        return tabs.index(tabs.filter('.current'));
+      };
+
       /* Next button goes forward iff current block validates */
       form.find('.next').click(function() {
         if('validations' in args && typeof args.validations === 'object' && !$.isArray(args.validations)){
           if(!('noValidate' in args) || (typeof args.noValidate === 'boolean' && !args.noValidate)){
+            ///REMOVE THIS CODE IF YOU ARE NOT USING SUMMERNOTE AND NOT WANT TO VALIDATE IT////
+            var textareaField = form.find('.note-editor.note-frame.card:not(:hidden)');
+      if(textareaField.length > 0){
+        var summernoteValue = textareaField.find('.note-editable').html();
+        
+        // Remove empty tags
+        summernoteValue = $(summernoteValue).filter(function() {
+          return $.trim($(this).text()) !== '';
+        }).get();
+        summernoteValue = $(summernoteValue).wrapAll('<div>').parent().html();
+        
+        if (typeof summernoteValue === 'undefined' || summernoteValue.trim() === '') {
+          textareaField.addClass('error'); // Add error class to indicate invalid input
+          textareaField.find('.note-editable').addClass('error');
+          textareaField.find('.note-error').remove();
+          textareaField.append('<div class="note-error">Please enter a value.</div>'); // Add required error message
+          return false;
+        } else {
+          textareaField.removeClass('error'); // Remove error class if it was previously added
+          textareaField.find('.note-editable').removeClass('error');
+          textareaField.find('.note-error').remove(); // Remove any existing error message
+        }
+      }
+            ///REMOVE up TO HEERE////
             form.validate(args.validations);
+            console.log(form.valid())
             if(form.valid() == true){
               form.navigateTo(curIndex() + 1);
               return true;

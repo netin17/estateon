@@ -264,11 +264,6 @@
 //   // that have no `name` attribute
 //   ignore: ":hidden, [contenteditable='true']:not([description])"
 // });
-    $.validator.addMethod('summernoteRequired', function(value, element) {
-    var summernoteValue = $(element).summernote('isEmpty');
-    console.log(summernoteValue)
-    return !summernoteValue;
-}, 'Please enter a value.');
 
     var val = {
         rules: {
@@ -284,10 +279,7 @@
             name: 'required',
             address: 'required',
             locality: 'required',
-            price: 'required',
-            description: {
-                summernoteRequired: true
-    }
+            price: 'required'
         },
         messages: {
             type: "Please select an option",
@@ -302,11 +294,9 @@
             name: "Enter name for your property",
             address: "Select Address",
             locality: 'Select nearby locality',
-            price: 'Enter price for your property',
-            description: {
-                summernoteRequired: 'Please enter a description.'
-    }
-        }
+            price: 'Enter price for your property'
+        },
+    
     }
 
 //     if ($.validator.methods.summernoteRequired) {
@@ -319,7 +309,7 @@
 
 
 
-    $("#addProperty").multiStepForm({
+var multiStepForm = $("#addProperty").multiStepForm({
         // defaultStep:0,
         beforeSubmit: function(form, submit) {
             console.log("called before submiting the form");
@@ -328,7 +318,7 @@
         },
         validations: val
     }).navigateTo(0);
-
+console.log(multiStepForm.getCurrentStepIndex())
     $(function() {
         // Summernote
         $('.textarea').summernote()
