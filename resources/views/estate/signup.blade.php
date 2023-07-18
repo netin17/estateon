@@ -39,10 +39,12 @@
                         <div class="alert alert-danger" id="error" style="display: none;"></div>
                         <div class="alert alert-success" id="sentSuccess" style="display: none;"></div>
                         <input type="text" id="number" name="phone" placeholder="Phone number with country code" class="form-control sign-up-form-field transition w-100 d-block" />
-                        <button type="button" class="verify-otp-btn px-4" onclick="phoneSendAuth();">Send OTP</button>
                     </div>
                     <div class="contact-bottom d-flex align-items-center justify-content-center">
                         <div class="d-flex align-items-center" id="recaptcha-container"></div>
+                    </div>
+                    <div class="position-relative">
+                        <button type="button" class="verify-otp-btn d-block send-otp-btn px-4" onclick="phoneSendAuth();">Send OTP</button>
                     </div>
                     <!-- <div class="sign-up-form-group mb-lg-4 mb-3 position-relative">
                         <button type="button" class="verify-otp-btn" onclick="phoneSendAuth();">Send OTP</button>
