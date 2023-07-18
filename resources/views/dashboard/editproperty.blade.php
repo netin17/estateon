@@ -47,20 +47,26 @@
                                 </div>
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
-                                <label for="category" class="d-block">Properties Category</label>
+                                <label for="category" class="d-block">Properties Category {{ $data['property']->property_details->property_category}}</label>
                                 <select id="property_category" name="property_category" class="d-block profile-form-fild form-control select2 m-0" required>
-                                    <option value="residential" {{ $data['property']->property_details->property_category ?? '' == 'residential' ? 'selected' : '' }}>Residential</option>
-                                    <option value="commercial" {{ $data['property']->property_details->property_category ?? '' == 'commercial' ? 'selected' : '' }}>Commercial</option>
-                                </select>
+    <option value="residential" {{ isset($data['property']->property_details->property_category) && $data['property']->property_details->property_category == 'residential' ? 'selected' : '' }}>Residential</option>
+    <option value="commercial" {{ isset($data['property']->property_details->property_category) && $data['property']->property_details->property_category == 'commercial' ? 'selected' : '' }}>Commercial</option>
+</select>
                             </div>
-                            <div class="profile-form-group d-flex align-items-center mb-4">
+                            {{--<div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="type" class="d-block">Properties Type </label>
                                 <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
                                     @foreach($data['property_type_commercial'] as $propert)
                                     <option value="{{ $propert['id'] }}" {{ $data['property']->property_type->type_id ?? '' == $propert['id'] ? 'selected' : '' }}>{{ $propert['name'] }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div>--}}
+                            <div class="profile-form-group d-flex align-items-center mb-4">
+  <label for="type" class="d-block">Properties Type</label>
+  <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
+  {{-- Options will be dynamically updated based on the selected property_category --}}
+  </select>
+</div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="vastu" class="d-block">Properties Vastu </label>
                                 <select name="vastu" id="vastu" class="form-control d-block profile-form-fild select2 m-0" required>
@@ -262,6 +268,94 @@
     //   // that have no `name` attribute
     //   ignore: ":hidden, [contenteditable='true']:not([description])"
     // });
+    
+    function initMap() {
+
+var map = new google.maps.Map(document.getElementById('address-map'), {
+    zoom: 10,
+    center: {
+        lat: 20.5937,
+        lng: 78.9629
+    },
+
+});
+
+var searchBox = new google.maps.places.SearchBox(document.getElementById('address-input'));
+//  map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('location'));
+
+var markersArray = [];
+
+google.maps.event.addListener(searchBox, 'places_changed', function() {
+    searchBox.set('address-map', null);
+
+
+    var places = searchBox.getPlaces();
+    console.log(places)
+
+
+
+    var bounds = new google.maps.LatLngBounds();
+    var i, place;
+    for (i = 0; place = places[i]; i++) {
+        (function(place) {
+
+            $('#address-latitude').val(place.geometry.location.lat())
+            $('#address-longitude').val(place.geometry.location.lng())
+
+            // var marker = new google.maps.Marker({
+
+            //   position: place.geometry.location
+            // });
+            // marker.bindTo('map', searchBox, 'map');
+            // google.maps.event.addListener(marker, 'map_changed', function() {
+            //   if (!this.getMap()) {
+            //     this.unbindAll();
+            //   }
+            // });
+            bounds.extend(place.geometry.location);
+
+
+        }(place));
+
+    }
+
+
+    map.fitBounds(bounds);
+    searchBox.set('address-map', map);
+    map.setZoom(Math.min(map.getZoom(), 12));
+
+});
+
+google.maps.event.addListener(map, "click", function(e) {
+
+    //lat and lng is available in e object                
+    var latLng = e.latLng;
+    console.log(latLng)
+
+    $('#address-latitude').val(latLng.lat())
+    $('#address-longitude').val(latLng.lng())
+
+    var marker = new google.maps.Marker({
+        position: latLng,
+        //icon:'images/pin.png',
+        //url: 'http://www.google.com/',
+        animation: google.maps.Animation.DROP
+    });
+    marker.setMap(map);
+    clearOverlays();
+    markersArray.push(marker);
+
+
+});
+
+function clearOverlays() {
+    for (var i = 0; i < markersArray.length; i++) {
+        markersArray[i].setMap(null);
+    }
+}
+
+}
+    $(document).ready(function() {
     $.validator.addMethod('summernoteRequired', function(value, element) {
         var summernoteValue = $(element).summernote('isEmpty');
         console.log(summernoteValue)
@@ -330,92 +424,6 @@
         $('.textarea').summernote()
     })
 
-    function initMap() {
-
-        var map = new google.maps.Map(document.getElementById('address-map'), {
-            zoom: 10,
-            center: {
-                lat: 20.5937,
-                lng: 78.9629
-            },
-
-        });
-
-        var searchBox = new google.maps.places.SearchBox(document.getElementById('address-input'));
-        //  map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('location'));
-
-        var markersArray = [];
-
-        google.maps.event.addListener(searchBox, 'places_changed', function() {
-            searchBox.set('address-map', null);
-
-
-            var places = searchBox.getPlaces();
-            console.log(places)
-
-
-
-            var bounds = new google.maps.LatLngBounds();
-            var i, place;
-            for (i = 0; place = places[i]; i++) {
-                (function(place) {
-
-                    $('#address-latitude').val(place.geometry.location.lat())
-                    $('#address-longitude').val(place.geometry.location.lng())
-
-                    // var marker = new google.maps.Marker({
-
-                    //   position: place.geometry.location
-                    // });
-                    // marker.bindTo('map', searchBox, 'map');
-                    // google.maps.event.addListener(marker, 'map_changed', function() {
-                    //   if (!this.getMap()) {
-                    //     this.unbindAll();
-                    //   }
-                    // });
-                    bounds.extend(place.geometry.location);
-
-
-                }(place));
-
-            }
-
-
-            map.fitBounds(bounds);
-            searchBox.set('address-map', map);
-            map.setZoom(Math.min(map.getZoom(), 12));
-
-        });
-
-        google.maps.event.addListener(map, "click", function(e) {
-
-            //lat and lng is available in e object                
-            var latLng = e.latLng;
-            console.log(latLng)
-
-            $('#address-latitude').val(latLng.lat())
-            $('#address-longitude').val(latLng.lng())
-
-            var marker = new google.maps.Marker({
-                position: latLng,
-                //icon:'images/pin.png',
-                //url: 'http://www.google.com/',
-                animation: google.maps.Animation.DROP
-            });
-            marker.setMap(map);
-            clearOverlays();
-            markersArray.push(marker);
-
-
-        });
-
-        function clearOverlays() {
-            for (var i = 0; i < markersArray.length; i++) {
-                markersArray[i].setMap(null);
-            }
-        }
-
-    }
     $('input[type=radio][name=type]').change(function() {
         if (this.value == 'rent') {
             console.log('Logic for entring rent duration (create and show input div)');
@@ -437,23 +445,47 @@
         var size = parseInt(width) * parseInt(length);
         $('#size').val(size);
     });
+    var propertyTypes = {
+    residential: @json($data['property_type_residential']),
+    commercial: @json($data['property_type_commercial'])
+  };
 
-    $('#property_category').change(function() {
-        showPropertyType();
+  // Function to update property_type select options based on the selected property_category
+  function updatePropertyTypes() {
+    var selectedCategory = $('#property_category').val();
+    var propertyTypeSelect = $('#property_type_commercial');
+    var propertyTypeOptions = propertyTypes[selectedCategory];
+
+    // Get the selected property_type value (from server or existing form data)
+    var selectedPropertyType = "{{$data['property']->property_type->type_id}}"//$('#property_type_commercial').val();
+console.log(selectedPropertyType)
+    // Clear existing options
+    propertyTypeSelect.empty();
+
+    // Add new options based on the selected property_category
+    $.each(propertyTypeOptions, function(index, propertyType) {
+      var option = $('<option>', {
+        value: propertyType.id,
+        text: propertyType.name
+      });
+
+      // Set the selected option if it matches the existing value
+      if (propertyType.id === parseInt(selectedPropertyType)) {
+        
+        option.attr('selected', 'selected');
+      }
+
+      propertyTypeSelect.append(option);
     });
-    showPropertyType();
+  }
 
-    function showPropertyType() {
-        var val = $('#property_category').val();
-        if (val == "commercial") {
-            $('#property-type-commercial').removeClass('d-none')
-            $('#property-type-residential').addClass('d-none')
-        }
-        if (val == "residential") {
-            $('#property-type-residential').removeClass('d-none')
-            $('#property-type-commercial').addClass('d-none')
-        }
-    }
+  // Initial update based on the default selected property_category
+  updatePropertyTypes();
+
+  // Event listener for property_category change
+  $('#property_category').change(function() {
+    updatePropertyTypes();
+  });
 
     $('body').on('keydown', '.only-numbers', function(e) {
         allow_numbers_only(e)
@@ -490,5 +522,6 @@
     //     }
     //   });
     // Initialize FancyBox on the images
+    })
 </script>
 @endsection
