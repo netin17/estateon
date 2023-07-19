@@ -24,13 +24,13 @@
                 <form action="{{route('home.postsignup')}}" method="POST" class="sign-up-form" onsubmit="return submitForm()">
                     @csrf
                     <div class="sign-up-form-group mb-lg-4 mb-3">
-                        <input type="text" name="name" id="name" placeholder="Full Name" class="form-control sign-up-form-field transition w-100 d-block" />
+                        <input type="text" name="name" id="name" placeholder="Full Name" class="form-control sign-up-form-field transition w-100 d-block" required />
                     </div>
                     <div class="sign-up-form-group mb-lg-4 mb-3">
-                        <input type="email" name="email" id="email" placeholder="Email" class="form-control sign-up-form-field transition w-100 d-block" />
+                        <input type="email" name="email" id="email" placeholder="Email" class="form-control sign-up-form-field transition w-100 d-block" required />
                     </div>
                     <div class="sign-up-form-group mb-lg-4 mb-3">
-                        <input type="password" placeholder="Password" name="password" id="password" class="form-control sign-up-form-field transition w-100 d-block" />
+                        <input type="password" placeholder="Password" name="password" id="password" class="form-control sign-up-form-field transition w-100 d-block" required />
                         <span id="togglePassword" class="password-toggle-icon" onclick="togglePasswordVisibility()">
         <i class="fa fa-eye"></i>
     </span>
@@ -181,11 +181,14 @@
       if (isValid) {
         input.classList.remove('invalid');
         errorMessageElement.textContent = ''; // Clear the error message
+        return true;
       } else {
         input.classList.add('invalid');
         errorMessageElement.textContent = 'Please enter a valid 10-digit Indian mobile number.';
+        return false;
       }
     }
+
     function submitForm() {
         // Check if the OTP is verified
         var otpVerified = isOTPVerified; // Implement your OTP verification logic here
@@ -193,14 +196,19 @@
         // If the OTP is not verified, prevent form submission
         if (!otpVerified) {
             // Display an error message or perform any necessary actions
+            $("#sentSuccess").hide();
             $("#error").text("Please verify the OTP first.");
             $("#error").show();
 
             // Return false to prevent the form from submitting
             return false;
         }
-
-        // If the OTP is verified, allow the form submission
+        const phoneNumberInput = document.getElementById('number');
+      var isvalid=validateIndianMobileNumber(phoneNumberInput);
+if(!isvalid){
+    return false;
+}
+        // If the OTP is verified and phone number is valid, allow the form submission
         return true;
     }
     function togglePasswordVisibility() {
