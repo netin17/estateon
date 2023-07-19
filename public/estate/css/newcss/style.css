@@ -1589,6 +1589,12 @@ body.body-overflow {
   color: unset;
 }
 
+.send-otp-btn {
+  position: unset !important;
+  transform: none !important;
+  margin: 10px auto 0px auto;
+}
+
 /********* media css  ***********/
 
 @media screen and (max-width: 1200px) {
