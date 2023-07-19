@@ -1,6 +1,6 @@
 @extends('layouts.estate')
 @section('content')
-<section class="find-prop">
+<section class="find-prop main-home-banner">
   <img src="{{ url('estate/images/banner.jpg')}}" alt="property-front-view" class="full-img" />
   <div class="container">
     <div class="web-intro">
