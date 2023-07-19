@@ -306,7 +306,7 @@ class PropertiesController extends Controller
             $phone =  $data['phone'];
             $message =  ($data['message']=="others" || $data['message']=="") ? $data['othermessage']:$data['message'];
             $propertyID =  $data['property_id'];
-            $subplan_id = $data['subplan_id'];
+            $subplan_id = isset($data['subplan_id']) ? $data['subplan_id']: null;
             $time = time();
             $query = Leads::create(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'message'=>$message, 'property_id'=>$propertyID, 'subplan_id'=>$subplan_id, 'viewed'=>0, 'created_at'=> $time]);
             if($query){
@@ -317,7 +317,7 @@ class PropertiesController extends Controller
 
             
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['current_password' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['Errors' => $e->getMessage()]);
         }
     }
 }

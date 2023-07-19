@@ -33,10 +33,10 @@
                     <div class="footer-social-link-col col-md-3 ps-xl-5 mb-md-0 mb-2">
                         <span class="d-block mb-4 footer-col-title">Follow Us</span>
                         <ul class="social-link-list d-flex">
-                            <li><a href="https://www.instagram.com/estateonofficial/"><img src="{{ url('estate/images/instagram.svg')}}" alt=""></a></li>
-                            <li><a href="https://twitter.com/EstateOn_"><img src="{{ url('estate/images/twitter.svg')}}" alt=""></a></li>
-                            <li><a href="https://www.linkedin.com/company/estateon"><img src="{{ url('estate/images/linkedin.svg')}}" alt=""></a></li>
-                            <li><a href="https://facebook.com/EstateOnOfficial"><img src="{{ url('estate/images/fb.svg')}}" alt=""></a></li>
+                            <li><a href="https://www.instagram.com/estateonofficial/" target="_blank"><img src="{{ url('estate/images/instagram.svg')}}" alt=""></a></li>
+                            <li><a href="https://twitter.com/EstateOn_" target="_blank"><img src="{{ url('estate/images/twitter.svg')}}" alt=""></a></li>
+                            <li><a href="https://www.linkedin.com/company/estateon" target="_blank"><img src="{{ url('estate/images/linkedin.svg')}}" alt=""></a></li>
+                            <li><a href="https://facebook.com/EstateOnOfficial" target="_blank"><img src="{{ url('estate/images/fb.svg')}}" alt=""></a></li>
                         </ul>
                     </div>
                 </div>

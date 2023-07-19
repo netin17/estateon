@@ -124,11 +124,12 @@
                         @endif
                     </div>
 
-                 {{--   <div class="col-md-4">
+                <div class="col-md-4">
                         <div class="wht_box">
                             <div class="contact_for_prp">
                                 <h3>Contact Agent</h3>
-                                <form id="contact-agent">
+                                <form action="{{route('frontuser.lead.create')}}" method="POST" id="contact_form">
+                                @csrf
                                     <div class="form-group">
                                         <input type="name" name="name" id="name" class="form-control" placeholder="Name" required>
                                     </div>
@@ -168,7 +169,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div> --}}
+                    </div> 
                 </div>
             </div>
         </div>
@@ -180,7 +181,56 @@
 
     var site_url = "{{url('/')}}";
 
+    //hang on event of form with id=myform
+    $("#contact_form").submit(function (e) {
+  // Prevent default form submission
+  e.preventDefault();
 
+  // Check form validity flag
+  var isValid = true;
+
+  // Loop through each input, textarea, and select element within the form
+  console.log($(this).find('input, textarea, select'))
+  $(this).find('input, textarea, select').each(function () {
+    var name = $(this).attr('name');
+    var value = $(this).val();
+
+    // Reset field error class
+    $(this).removeClass('field-error');
+
+    // Perform specific validations based on field names
+    if (name === 'message' && (value === 'others' || value === '')) {
+      // Check if the "message" field is empty or has the value "others"
+      if ($('#message').val().trim() === '') {
+        isValid = false;
+        $(this).addClass('field-error');
+        $('#message').addClass('field-error');
+      }
+    } else if (name !== 'othermessage' && (value === '' || value === null)) {
+      // Check if any other field (except "othermessage") is empty or null
+      isValid = false;
+      $(this).addClass('field-error');
+    } else {
+      if (name === 'othermessage' && ($('select[name="message"]').val() === 'others' || $('select[name="message"]').val() === '') && (value === '' || value === null)) {
+        // Check if "othermessage" is empty when the "message" select has the value "others" or is empty
+        isValid = false;
+      }
+    }
+  });
+
+  // Show appropriate message and prevent form submission if validation fails
+  $(this).find('.message').removeClass('text-success').removeClass('text-danger').addClass('hide').html('');
+ 
+
+  // If form validation is successful, submit the form
+  // Note: The actual form submission is not present in the provided code. You may need to add it here.
+  if (!isValid) {
+    $(this).find('.message').removeClass('hide').addClass('text-danger').html('Please enter all fields');
+    return false;
+  }else{
+    this.submit();
+  }
+});
 // $('body').on('click', '#contact-agent-button', function () {		
 //         var that = $(this);
 //         var data = that.closest('form#contact-agent').serialize();
@@ -221,21 +271,7 @@
 //             that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Please enter all fields')
 //             return false;
 //         }
-//         $.ajax({
-//             type: "POST",            
-//             dataType: "json",
-//             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-//             url: site_url + "/lead-add",
-//             data: {data: data},
-//             success: function (response) {
-//                 if(response.success){
-//                     that.closest('form').find('.message').removeClass('hide').addClass('text-success').html('Someone from the concerned team will contact you soon!')
-//                     that.closest('form#contact-agent').find('input:visible,textarea:visible').val('');
-//                 }else{                    
-//                     that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Something went wrong!')
-//                 }                
-//             }
-//         });
+//     //   $('#contact_form').submit();
 //         return false;
 //     })
 

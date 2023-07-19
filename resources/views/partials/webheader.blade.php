@@ -13,7 +13,7 @@
                         <div class="header-navbar header-wrap">
                         @guest('frontuser')
                             <ul class="header-menu-list d-flex align-items-center justify-content-end">
-                                <li class="header-menu-item"><a href="{{route('property.list')}}">Local Properties</a></li>
+                                <li class="header-menu-item"><a href="{{route('property.list')}}">Properties</a></li>
                                 <li class="header-menu-item"><a href="/">Explore Our Builders</a></li>
                                 <li class="header-menu-item"><a href="{{ route('home.signin') }}">Post Property Now</a></li>
                                 <li class="header-menu-item">
@@ -26,6 +26,7 @@
                             @auth('frontuser')
                             <ul class="header-menu-list d-flex align-items-center justify-content-end">
                                 <li class="header-menu-item"><a href="/">Home</a></li>
+                                <li class="header-menu-item"><a href="{{route('property.list')}}">Properties</a></li>
                                 <li class="header-menu-item"><a href="{{ route('frontuser.property.index') }}" class="login-btn btn btn-primary">Dashboard</a>
                                 </li>
                                 <li class="header-menu-item">
