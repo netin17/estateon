@@ -31,28 +31,31 @@
                     </div>
                     <div class="sign-up-form-group mb-lg-4 mb-3">
                         <input type="password" placeholder="Password" name="password" id="password" class="form-control sign-up-form-field transition w-100 d-block" />
+                        <span id="togglePassword" class="password-toggle-icon" onclick="togglePasswordVisibility()">
+        <i class="fa fa-eye"></i>
+    </span>
                     </div>
-                    <div class="sign-up-form-group mb-lg-4 mb-3">
+                   {{-- <div class="sign-up-form-group mb-lg-4 mb-3">
                         <input type="password" placeholder="Confirm Password" name="confirmpassword" id="cpassword" class="form-control sign-up-form-field transition w-100 d-block" />
-                    </div>
+                    </div> --}}
                     <div class="sign-up-form-group mb-lg-4 mb-3 position-relative">
                         <div class="alert alert-danger" id="error" style="display: none;"></div>
                         <div class="alert alert-success" id="sentSuccess" style="display: none;"></div>
-                        <input type="text" id="number" name="phone" placeholder="Phone number with country code" class="form-control sign-up-form-field transition w-100 d-block" />
+                        <input type="text" id="number" name="phone" placeholder="Phone number" class="form-control sign-up-form-field transition w-100 d-block" oninput="validateIndianMobileNumber(this)" maxlength="10" />
+                        <span id="error-message" style="color: red;"></span>
                     </div>
                     <div class="contact-bottom d-flex align-items-center justify-content-center">
                         <div class="d-flex align-items-center" id="recaptcha-container"></div>
                     </div>
-                    <div class="position-relative">
+                   <div class="position-relative">
                         <button type="button" class="verify-otp-btn d-block send-otp-btn px-4" onclick="phoneSendAuth();">Send OTP</button>
                     </div>
-                    <!-- <div class="sign-up-form-group mb-lg-4 mb-3 position-relative">
-                        <button type="button" class="verify-otp-btn" onclick="phoneSendAuth();">Send OTP</button>
-                    </div> -->
+                    <div class="alert alert-success" id="otpsuccess" style="display: none;"></div>
+                    <div class="alert alert-danger" id="otperror" style="display: none;"></div>
                     <div class="sign-up-form-group my-lg-4 my-3 position-relative verifyotp">
                         <input type="text" placeholder="OTP" id="verificationCode" class="form-control sign-up-form-field transition w-100 d-block" required />
                         <button type="button" class="verify-otp-btn" onclick="codeverify();">Verify</button>
-                    </div>
+                    </div> 
                     <div class="sign-up-form-group mb-lg-3 mb-3 d-flex align-items-center sign-up-conditions">
                         <input type="checkbox" name="tandc" id="terms_conditions" required />
                         <label for="terms_conditions" style="margin-left: 4px;" class="d-block ms-2">I accept the <a href="/">terms and
@@ -61,7 +64,7 @@
 
                     <div class="contact-bottom d-flex align-items-center justify-content-center">
 
-                        <button type="submit" class="contact-sub-btn btn btn-primary">Submit</button>
+                        <button type="submit" class="contact-sub-btn btn btn-primary">Register</button>
                     </div>
                     <p class="text-center sign-up-bottom-text mt-3" style="font-size: 14px;">Already have an
                         account?
@@ -104,7 +107,14 @@
         var number = $("#number").val();
         if ($.isNumeric(number)) {
             $("#error").hide();
-            firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+            var response = grecaptcha.getResponse();
+  if (response.length === 0) {
+    // reCAPTCHA is not validated, display an error message or take appropriate action
+    $("#error").text('Please complete the reCAPTCHA validation.');
+    $("#error").show();
+    return;
+  }
+            firebase.auth().signInWithPhoneNumber('+91'+number, window.recaptchaVerifier).then(function(confirmationResult) {
                 window.confirmationResult = confirmationResult;
                 coderesult = confirmationResult;
 
@@ -136,21 +146,46 @@
                     var user = result.user;
                     console.log(user);
                     isOTPVerified = true;
-                    $("#successRegsiter").text("you are register Successfully.");
-                    $("#successRegsiter").show();
+                    $("#error").hide();
+                    $("#otpsuccess").text("OTP Verified Successfully");
+                    $("#otpsuccess").show();
+                    $("#sentSuccess").hide();
 
                 }).catch(function(error) {
-                    $("#error").text(error.message);
-                    $("#error").show();
+                    $("#sentSuccess").hide();
+                    $("#otpsuccess").hide();
+                    $("#otperror").text(error.message);
+                    $("#otperror").show();
                 });
             } else {
-                $("#error").text("Invalid Otp.");
-                $("#error").show();
+                $("#sentSuccess").hide();
+                $("#otpsuccess").hide();
+                $("#otperror").text("Invalid Otp.");
+                $("#otperror").show();
             }
 
         }
     }
-
+    function validateIndianMobileNumber(input) {
+      const errorMessageElement = document.getElementById('error-message');
+      // Remove all non-numeric characters
+      const cleanedInput = input.value.replace(/[^0-9]/g, '');
+      
+      // Check if the number is 10 digits long and starts with 7, 8, or 9 (Indian mobile number format)
+      const isValid = /^[7-9]\d{9}$/.test(cleanedInput);
+      
+      // Update the input value to show only the valid part
+      input.value = cleanedInput.slice(0, 10);
+      
+      // Add or remove the 'invalid' class based on the validity of the input
+      if (isValid) {
+        input.classList.remove('invalid');
+        errorMessageElement.textContent = ''; // Clear the error message
+      } else {
+        input.classList.add('invalid');
+        errorMessageElement.textContent = 'Please enter a valid 10-digit Indian mobile number.';
+      }
+    }
     function submitForm() {
         // Check if the OTP is verified
         var otpVerified = isOTPVerified; // Implement your OTP verification logic here
@@ -167,6 +202,18 @@
 
         // If the OTP is verified, allow the form submission
         return true;
+    }
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const togglePasswordIcon = document.getElementById('togglePassword');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePasswordIcon.innerHTML = '<i class="fa fa-eye-slash"></i>'; // Change the icon to eye-slash
+        } else {
+            passwordInput.type = 'password';
+            togglePasswordIcon.innerHTML = '<i class="fa fa-eye"></i>'; // Change the icon back to eye
+        }
     }
 </script>
 @endsection

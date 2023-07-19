@@ -36,7 +36,7 @@
                     <div class="property-action-detail ali-right">
                         <div class="property-price">
                             <span class="suffix">&#8377;</span>
-                            <span class="price-text">{{$data['property']['property_details']->price}}</span>
+                            <span class="price-text">{{number_form($data['property']['property_details']->price)}}</span>
                         </div>
                         <button class="btn-add-property-favorite fvrt-btn" data-original-title="Add Favorite">
                             <i class="far fa-heart"></i></button>

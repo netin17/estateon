@@ -152,8 +152,7 @@ class HomeController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'phone' => 'required|unique:users',
-            'password' => 'min:6|required_with:confirmpassword|same:confirmpassword',
-            'confirmpassword' => 'min:6'
+            'password' => 'min:6'
         ]);
         $user = User::create([
             'name' => $request->get('name'),
