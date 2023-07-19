@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        Commands\DailyNotification::class
+        Commands\DailyNotification::class,
+        Commands\DeactivateExpiredSubscriptions::class,
     ];
 
     /**
