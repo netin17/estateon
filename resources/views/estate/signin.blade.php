@@ -37,7 +37,7 @@
                                 <a href="{{route('forget.password.get')}}" class="d-block dark-font" style="font-size: 14px;">Forgot Password?</a>
                             </div>
                             <div class="contact-bottom d-flex align-items-center justify-content-end">
-                                <button type="submit" class="contact-sub-btn btn btn-primary ">Login</button>
+                                <button type="submit" class="contact-sub-btn btn btn-primary submit-btn-style">Login</button>
                             </div>
                             <p class="text-center sign-up-bottom-text mt-3" style="font-size: 14px;">Don’t have an
                                 account?

@@ -227,10 +227,10 @@
             </div>
             --}}
                                 <div style="overflow:auto;">
-                                    <div class="d-flex justify-content-end mt-5">
+                                    <div class="d-flex justify-content-end mt-5 controal-btns">
                                         <button type="button" class="previous px-5 step-back-btn d-block transition me-2">Previous</button>
                                         <button type="button" class="next contact-sub-btn btn btn-primary m-0">Next</button>
-                                        <button type="button" class="submit contact-sub-btn btn btn-primary m-0">Submit</button>
+                                        <button type="button" class="submit px-5 contact-sub-btn btn btn-primary m-0">Submit</button>
                                     </div>
                                 </div>
                                 {{-- <!-- Circles which indicates the steps of the form: -->
