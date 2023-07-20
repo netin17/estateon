@@ -75,7 +75,7 @@ class PropertiesController extends Controller
                         }]);
                 }])
                 ->orderBy('id', 'desc')
-                ->paginate(2);
+                ->paginate(10);
             $data['plans'] = PlanTypes::where('status', 'active')
                 ->with(['subscriptonPlans' => function ($query) {
                     $query->where('status', 'active');

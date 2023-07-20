@@ -17,10 +17,10 @@ button:hover {opacity: 0.8; }
 .previous {background-color: #bbbbbb; }
 
 /* Make circles that indicate the steps of the form: */
-.step {height: 30px; width: 30px; cursor: pointer; margin: 0 2px; color: #fff; background-color: #bbbbbb; border: none; border-radius: 50%; display: inline-block; opacity: 0.8; padding: 5px}
+/* .step {height: 30px; width: 30px; cursor: pointer; margin: 0 2px; color: #fff; background-color: #bbbbbb; border: none; border-radius: 50%; display: inline-block; opacity: 0.8; padding: 5px} */
 
-.step.active {opacity: 1; background-color: #69c769;}
+.step.active {opacity: 1; background-color: #c42128;}
 
-.step.finish {background-color: #4CAF50; }
+.step.finish {background-color: #c42128; }
 
 .error {color: #f00; }

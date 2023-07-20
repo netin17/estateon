@@ -16,12 +16,12 @@
                 </div>
                 <div class="step-bar px-sm-5">
                     <ul class="d-flex step-list">
-                        <li class="position-relative step-item"><span class="d-block">1</span></li>
-                        <li class="position-relative step-item"><span class="d-block">2</span></li>
-                        <li class="position-relative step-item"><span class="d-block">3</span></li>
-                        <li class="position-relative step-item"><span class="d-block">4</span></li>
-                        <li class="position-relative step-item"><span class="d-block">5</span></li>
-                        <li class="position-relative step-item"><span class="d-block">6</span></li>
+                        <li class="position-relative step-item step"><span class="d-block">1</span></li>
+                        <li class="position-relative step-item step"><span class="d-block">2</span></li>
+                        <li class="position-relative step-item step"><span class="d-block">3</span></li>
+                        <li class="position-relative step-item step"><span class="d-block">4</span></li>
+                        <li class="position-relative step-item step"><span class="d-block">5</span></li>
+                        <li class="position-relative step-item step"><span class="d-block">6</span></li>
                     </ul>
                 </div>
                 <div class="step-content box-style">
