@@ -3,7 +3,7 @@
                             <div class="sidebar-top box-style text-center mb-lg-4">
                                 <div class="user-data-box text-center mb-lg-4 mb-3">
                                     <h5 class="user-name dark-font mb-md-2 mb-1">{{$user->name}}</h5>
-                                    <p class="verified dark-font d-flex align-items-center justify-content-center">
+                                    <p class="verified dark-font d-flex align-items-center justify-content-center mb-0">
                                         Verified
                                         <svg class="ms-1" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -16,8 +16,8 @@
                                         </svg>
                                     </p>
                                 </div>
-                                <p class="properties-total mv-2">Total Properties </p>
-                                <p class="properties-total-num red-font">{{$propertycount}}</p>
+                                <p class="properties-total mb-0">Total Properties </p>
+                                <p class="properties-total-num mb-0 red-font">{{$propertycount}}</p>
                             </div>
                             <div class="refer-box top-refer-box text-center mb-5 ">
                                 Refer To Your <br> Friend

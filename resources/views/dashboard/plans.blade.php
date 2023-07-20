@@ -115,13 +115,13 @@
 <section class="pb-5 mb-xl-3 video-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 pe-xl-5 mb-md-0 mb-4">
+            <div class="col-md-6 pr-xl-5 mb-md-0 mb-4">
                 <div class="video-content">
                     <span class="d-block mb-lg-3" style="color: #323232;">View your deram home</span>
                     <h3 class="section-title section-sm-title mb-md-4 mb-3">Explore Your Future Home With
                         Detailed
                         Videos</h3>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have
+                    <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have
                         suffered alteration in some form, by injected humour, or randomised words which don't
                         look even slightly believable.</p>
                     <ul class="video-content-list pt-xl-4 pt-3 mt-xl-1 ps-4 mb-lg-5 mb-4">
@@ -139,6 +139,8 @@
                 <div class="video-wrap position-relative">
                     <iframe width="420" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY">
                     </iframe>
+                    <span class="video-play-btn d-flex align-items-center justify-content-center"><img
+                                    src="{{ url('estate/images/red-video-icon.svg')}}" class="m-0" alt="red-video-icon"></span>
                 </div>
             </div>
         </div>

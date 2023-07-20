@@ -29,7 +29,7 @@
                     <div class="sign-up-form-group mb-lg-4 mb-3">
                         <input type="email" name="email" id="email" placeholder="Email" class="form-control sign-up-form-field transition w-100 d-block" required />
                     </div>
-                    <div class="sign-up-form-group mb-lg-4 mb-3">
+                    <div class="sign-up-form-group mb-lg-4 mb-3 position-relative">
                         <input type="password" placeholder="Password" name="password" id="password" class="form-control sign-up-form-field transition w-100 d-block" required />
                         <span id="togglePassword" class="password-toggle-icon" onclick="togglePasswordVisibility()">
         <i class="fa fa-eye"></i>
@@ -58,7 +58,7 @@
                     </div> 
                     <div class="sign-up-form-group mb-lg-3 mb-3 d-flex align-items-center sign-up-conditions">
                         <input type="checkbox" name="tandc" id="terms_conditions" required />
-                        <label for="terms_conditions" style="margin-left: 4px;" class="d-block ms-2">I accept the <a href="/">terms and
+                        <label for="terms_conditions" style="margin-left: 4px;" class="d-block ms-2 mb-0">I accept the <a href="/">terms and
                                 conditions.</a></label>
                     </div>
 
