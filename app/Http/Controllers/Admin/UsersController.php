@@ -7,6 +7,8 @@ use Silber\Bouncer\Database\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
+use App\Property;
+use App\PropertyType;
 use App\Http\Requests\Admin\StoreUsersRequest;
 use App\Http\Requests\Admin\UpdateUsersRequest;
 use App\commonfunction;
@@ -35,7 +37,7 @@ class UsersController extends Controller
         } else {
             $users = User::with(['roles'])->orderBy('id', 'desc');
         }
-        $users = $users->paginate(15);
+        $users = $users->paginate(10);
         return view('admin.users.index', ['users' => $users, 'filter' => $filter]);
     }
 
@@ -209,5 +211,40 @@ class UsersController extends Controller
         User::whereIn('id', request('ids'))->delete();
 
         return response()->noContent();
+    }
+
+    public function userProperties(Request $request, $userId){
+        if (!Gate::allows('property_manage') && !Gate::allows('users_manage')) {
+            return abort(401);
+        }
+
+        $filter = [];
+        $filter_all = isset($_GET['q']) ? $_GET['q'] : '';
+$user=User::where('id', $userId)->first();
+        if ($filter_all != '') {
+            $properties = Property::where('user_id', $userId)->with(['property_details'=>function($query) use($filter_all){
+                $query->where('title', 'LIKE', '%' . $filter_all . '%');
+            }, 'userSubscriptions'=>function($query){
+                $query->where('start_at', '<=', now())
+                ->where('end_at', '>=', now())
+                ->with(['plan' => function ($pquery) {
+                    $pquery->with(['planType']);
+                }]);
+            }])->where('name', 'LIKE', '%' . $filter_all . '%')
+                ->orderBy('id', 'desc');
+            $filter['q'] = $filter_all;
+        } else {
+            $properties = Property::where('user_id', $userId)->with(['property_details', 'userSubscriptions'=>function($query){
+                $query->where('start_at', '<=', now())
+                ->where('end_at', '>=', now())
+                ->with(['plan' => function ($pquery) {
+                    $pquery->with(['planType']);
+                }]);
+            }])->orderBy('id', 'desc');
+        }
+        $properties = $properties->paginate(10);
+        // echo "<pre>"; print_r($properties->toArray());
+        // exit;
+        return view('admin.users.userproperties', ['user'=>$user,'properties' => $properties, 'filter' => $filter]);
     }
 }

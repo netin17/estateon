@@ -482,17 +482,32 @@ class PropertiesController extends Controller
         }
         return redirect()->route('admin.property.image', $data['property_id']);
     }
-    public function deleteimage($id)
-    {
-        //
-        if (!Gate::allows('users_manage')) {
-            return abort(401);
-        }
-        $image = Images::findOrFail($id);
-        $image->delete();
-
-        return redirect()->route('admin.property.image', $image->property_id);
+    
+public function deleteimage($id)
+{
+    // Check if the user has the required permission
+    if (!Gate::allows('users_manage')) {
+        return abort(401);
     }
+
+    // Find the image record in the database
+    $image = Images::findOrFail($id);
+
+    // Get the image file path
+    $imagePath = public_path('uploads/image/property'.$image->property_id.'/'.$image->name);
+
+    // Check if the image file exists
+    if (File::exists($imagePath)) {
+        // If the image file exists, unlink it from the server
+        File::delete($imagePath);
+    }
+
+    // Delete the image record from the database
+    $image->delete();
+
+    // Redirect back to the property images page
+    return redirect()->route('admin.property.image', $image->property_id);
+}
     public function changestatus($id, $status){
         $condition=[];
         switch($status){

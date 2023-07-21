@@ -91,6 +91,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('plans/create','SubscriptionController@createPlanType')->name('subscription.plancreate');
     Route::post('plans/store','SubscriptionController@storePlanType')->name('subscription.planstore'); 
     Route::get('propertyleads/{id}', 'PropertiesController@leads')->name('property.leads');
+    ////
+    Route::get('user-properties/{userId}', 'UsersController@userProperties')->name('userproperty.list');
 
     Route::post('logout', 'HomeController@logout')->name('adminlogout');
 });

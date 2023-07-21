@@ -51,6 +51,9 @@
                         <th>
                             &nbsp;
                         </th>
+                        <th>
+                            &nbsp;
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,9 +79,14 @@
                             <td>
                                 {{ $user->phone ?? '' }}
                             </td>
-                            <!-- <td>
-                                {{ $user->login_by ?? '' }}
-                            </td> -->
+                            <td>
+                            <a class="btn btn-xs btn-primary" href="{{ route('admin.userproperty.list', ['userId'=>$user->id]) }}">
+                                    Properties
+                                </a>
+                                <a class="btn btn-xs btn-success" href="{{ route('admin.users.show', $user->id) }}">
+                                    Subscriptions
+                                </a>
+                            </td>
                             <td>
                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
                                     {{ trans('global.view') }}

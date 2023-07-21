@@ -11,7 +11,7 @@ class commonfunction extends Model
     public static function createSlug($title, $id = 0, $type)
     {
         // Normalize the title
-        $slug = $title;
+        $slug = str_replace(' ', '-', $title);
 
         // Get any that could possibly be related.
         // This cuts the queries down by doing it once.
@@ -25,7 +25,7 @@ class commonfunction extends Model
 
        
         // If we haven't used it before then we are all good.
-        if (! $allSlugs->contains('slug', $slug)){
+        if (!$allSlugs->contains('slug', $slug)){
             return $slug;
         }
 
