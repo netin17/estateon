@@ -34,10 +34,10 @@
 
                  <section class="mainsection">
         <div>
-            <div class="d-flex mainhead">
-                <p class="heading cpoint"><i class="fa-solid fa-house redc"></i> Property Type <i class="fa-solid fa-angle-down"></i> </p>
+            <div class="d-flex mainhead align-items-center">
+                <p class="heading cpoint mb-0"><i class="fa-solid fa-house redc"></i> Property Type <i class="fa-solid fa-angle-down"></i> </p>
                 <hr>
-                <p class="Bheading cpoint"><i class="fa-solid fa-indian-rupee-sign redc"></i> Budget <i class="fa-solid fa-angle-down"></i></p>
+                <p class="Bheading cpoint mb-0"><i class="fa-solid fa-indian-rupee-sign redc"></i> Budget <i class="fa-solid fa-angle-down"></i></p>
             </div>
 
             <div class="">

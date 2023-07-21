@@ -39,23 +39,23 @@
                         <input type="password" placeholder="Confirm Password" name="confirmpassword" id="cpassword" class="form-control sign-up-form-field transition w-100 d-block" />
                     </div> --}}
                     <div class="sign-up-form-group mb-lg-4 mb-3 position-relative">
-                        <div class="alert alert-danger" id="error" style="display: none;"></div>
-                        <div class="alert alert-success" id="sentSuccess" style="display: none;"></div>
                         <input type="text" id="number" name="phone" placeholder="Phone number" class="form-control sign-up-form-field transition w-100 d-block" oninput="validateIndianMobileNumber(this)" maxlength="10" />
                         <span id="error-message" style="color: red;"></span>
                     </div>
+                    <div class="alert alert-danger verify-otp-error" id="error" style="display: none;"></div>
+                    <div class="alert alert-success " id="sentSuccess" style="display: none;"></div>
                     <div class="contact-bottom d-flex align-items-center justify-content-center">
                         <div class="d-flex align-items-center" id="recaptcha-container"></div>
                     </div>
                    <div class="position-relative">
                         <button type="button" class="verify-otp-btn d-block send-otp-btn px-4" onclick="phoneSendAuth();">Send OTP</button>
                     </div>
-                    <div class="alert alert-success" id="otpsuccess" style="display: none;"></div>
-                    <div class="alert alert-danger" id="otperror" style="display: none;"></div>
+                    <div class="alert alert-success verify-otp-error" id="otpsuccess" style="display: none;"></div>
                     <div class="sign-up-form-group my-lg-4 my-3 position-relative verifyotp">
                         <input type="text" placeholder="OTP" id="verificationCode" class="form-control sign-up-form-field transition w-100 d-block" required />
                         <button type="button" class="verify-otp-btn" onclick="codeverify();">Verify</button>
                     </div> 
+                    <div class="alert alert-danger verify-otp-error" id="otperror" style="display: none;"></div>
                     <div class="sign-up-form-group mb-lg-3 mb-3 d-flex align-items-center sign-up-conditions">
                         <input type="checkbox" name="tandc" id="terms_conditions" required />
                         <label for="terms_conditions" style="margin-left: 4px;" class="d-block ms-2 mb-0">I accept the <a href="/">terms and
