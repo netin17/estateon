@@ -48,11 +48,11 @@
                             <ul class="subproperty d-flex ">
                               @foreach($data['property_type'] as $property_type)
                               @if($property_type->property_type == "residential")
-                                <li>
-                                  <label class="checkbox-label">
-                                  <input type="checkbox" name="residential[]" value="{{$property_type->id}}"> 
-                                  {{$property_type->name}}
-                                </label>
+                              <li>
+                                  <input type="checkbox" name="residential[]" value="{{$property_type->id}}" id="{{$property_type->name}}" > 
+                                  <label class="checkbox-label" for="{{$property_type->name}}">
+                                    {{$property_type->name}}
+                                  </label>
                                 </li>
                                 @endif
                                 @endforeach
