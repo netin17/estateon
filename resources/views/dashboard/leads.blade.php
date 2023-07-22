@@ -2,7 +2,7 @@
 @section('content')
 <section class="dashboard-section">
     <div class="container">
-    <div class="dashboard-row d-flex flex-wrap">
+    <div class="dashboard-row dashboard-row-propertyleads d-flex">
 @include('partials.dashboardsidebar', ['user'=>$data['user'], 'propertycount'=>$data['p_count']])
 <div class="dashboard-content-col">
                         <div class="dashboard-title-wrap d-lg-block d-none">

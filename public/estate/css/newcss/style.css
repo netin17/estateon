@@ -2011,6 +2011,9 @@ body.body-overflow {
   .step-form-field-other-info {
     height: 50px;
   }
+  .dashboard-row-propertyleads {
+    flex-wrap: wrap;
+  }
 }
 
 @media screen and (max-width: 767px) {
