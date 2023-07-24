@@ -204,7 +204,6 @@ class PropertiesController extends Controller
             }
         }
         ///Additional
-        //$additional =  isset($data['additional']) ?  json_decode($data['additional']) : [];
         $additional =  isset($data['additional']) ?  $data['additional'] : [];
         if (gettype($additional) == 'array') {
             $insert_additional = [];
@@ -222,18 +221,6 @@ class PropertiesController extends Controller
         }
 
         ////property details
-        // $property_details = Propertydetail::create([
-        //     'property_id' => $property_id,
-        //     'bedroom' => $data['bedroom'],
-        //     'bathroom' => $data['bathroom'],
-        //     'balcony' => $data['balcony'],
-        //     'kitchen' => $data['kitchen'],
-        //     'living_room' => isset($data['living_room']) ? 1 : 0,
-        //     'furnished' => $data['furnished'],
-        //     'price' => $data['price'],
-        //     'currency' => isset($data['currency']) ? $data['currency'] : NULL,
-        // ]);
-
         $extraNotes = isset($data['extra_notes']) ? $data['extra_notes'] : '';
 
         $property_details = Propertydetail::create([

@@ -185,9 +185,12 @@
     $("#contact_form").submit(function (e) {
   // Prevent default form submission
   e.preventDefault();
-
-  // Check form validity flag
   var isValid = true;
+  console.log(checkUserLoggedIn())
+  if (checkUserLoggedIn()) {
+        // User is logged in, proceed with form submission
+        // Check form validity flag
+  
 
   // Loop through each input, textarea, and select element within the form
   console.log($(this).find('input, textarea, select'))
@@ -230,7 +233,15 @@
   }else{
     this.submit();
   }
+    }else{
+        window.location.href = "/signin";
+    }
+  
 });
+function checkUserLoggedIn() {
+      // Use the Auth::check() method to check if the user is logged in
+      return {{ auth()->guard('frontuser')->check() ? 'true' : 'false' }};
+    }
 // $('body').on('click', '#contact-agent-button', function () {		
 //         var that = $(this);
 //         var data = that.closest('form#contact-agent').serialize();

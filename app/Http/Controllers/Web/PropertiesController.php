@@ -299,6 +299,12 @@ class PropertiesController extends Controller
         
         try {
             //$user_id = Auth::guard('frontuser')->id();
+
+            $validated = $request->validate([
+                'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'], // Allow only letters and spaces
+                'email' => 'required|email',
+                'phone' => 'required',
+            ]);
             $data = $request->all(); 
            
             $name =  $data['name'];

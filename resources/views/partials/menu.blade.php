@@ -167,7 +167,7 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a href="{{ route('admin.property.conversastion') }}" class="nav-link {{ request()->is('conversastion') ? 'active' : '' }}">
+            <a href="{{ route('admin.contactqueries.list') }}" class="nav-link {{ request()->is('contactqueries') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-comment-alt"></i>
                 Queries
             </a>

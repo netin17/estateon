@@ -16,6 +16,7 @@ use App\AssignedVastu;
 use App\commonfunction;
 use App\Propertydetail;
 use App\Likes;
+use App\States;
 use App\PlanTypes;
 use App\AssignedAmenities;
 use App\AssignedPreferences;
@@ -67,6 +68,7 @@ class PropertiesController extends Controller
             $userId = Auth::id();
             $data['user'] = $this->getUserDetailsById($userId);
             $data['p_count'] = $this->getUserPropertyCount($userId);
+            $data['states'] = States::where('country_id', 101)->get();
             $data['properties'] = Property::where('user_id', $userId)
                 ->with(['property_details', 'userSubscriptions' => function ($query) {
                     $query->where('start_at', '<=', now())

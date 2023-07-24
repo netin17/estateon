@@ -83,7 +83,7 @@
                             <a class="btn btn-xs btn-primary" href="{{ route('admin.userproperty.list', ['userId'=>$user->id]) }}">
                                     Properties
                                 </a>
-                                <a class="btn btn-xs btn-success" href="{{ route('admin.users.show', $user->id) }}">
+                                <a class="btn btn-xs btn-success" href="{{ route('admin.usersubscriptions.list', ['userId'=>$user->id]) }}">
                                     Subscriptions
                                 </a>
                             </td>

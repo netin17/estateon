@@ -10,6 +10,7 @@ use App\Property;
 use App\UserSubscription;
 use App\Payment;
 use App\User;
+use App\States;
 use App\SubscriptionPlan;
 use App\Traits\CommonTrait;
 class SubscriptionController extends Controller
@@ -35,6 +36,7 @@ public function displayPlans($slug){
                }else{
                 $data['user']=User::where('id', $userId)->first();
                 $data['property']=$property; 
+                $data['states'] = States::where('country_id', 101)->get();
                 $data['plans']=PlanTypes::where('status', 'active')
                 ->with(['subscriptonPlans'=>function($query){
                     $query->where('status', 'active');

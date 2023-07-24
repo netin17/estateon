@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use App\Conversation;
 use App\ConversationReply;
 use App\User;
+use App\Contacts;
 use App\AssignedAssistant;
 
 class ChatController extends Controller
@@ -32,7 +34,7 @@ class ChatController extends Controller
             $query->where('name', 'assistant');
         });
         $assistants = $users->get();
-        //    echo "<pre>"; print_r($queries->toarray()); 
+        //    echo "<pre>"; print_r($queries->toArray()); 
         //    exit;
         return view('admin.chat.index', compact(['queries', 'assistants']));
     }
@@ -167,6 +169,38 @@ class ChatController extends Controller
         $result['lastmsg_id']=$lastmsg_id;
 
         return response()->json(['status' => true, 'data' =>$result]);
+    }
+
+    public function get_contact_queries(Request $request){
+        if (!Gate::allows('property_manage') && !Gate::allows('users_manage')) {
+            return abort(401);
+        }
+        if (Auth::check()) {
+            $data = [];
+            $data['contact_queries']=Contacts::with(['property','state','user'])->paginate(10);
+            // echo "<pre>"; print_r($data['contact_queries']->toArray());
+            // exit;
+            return view('admin.chat.contactqueries', compact('data'));
+        }else{
+            return abort(401); 
+        }
+
+    }
+
+    public function updateResolved(Request $request){
+        $contactId = $request->input('contact_id');
+    $resolved = $request->input('resolved');
+
+    // Find the contact by ID and update the 'resolved' field
+    $contact = Contacts::find($contactId);
+    if ($contact) {
+        $contact->resolved = $resolved;
+        $contact->save();
+
+        return response()->json(['message' => 'Contact updated successfully'], 200);
+    }
+
+    return response()->json(['message' => 'Contact not found'], 404);
     }
 
 }

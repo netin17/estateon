@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\FrontUser;
 
 use App\Property;
+use App\Contacts;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use Hash;
+use Exception;
 use App\Traits\CommonTrait;
 class HomeController extends Controller
 {
@@ -139,5 +141,45 @@ class HomeController extends Controller
             'new_password' => 'required|min:6|confirmed',
         ]);
     }
+
+    public function addContact(Request $request){
+      
+        if (Auth::check()) {
+            $validated = $request->validate([
+                'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'], // Allow only letters and spaces
+                'email' => 'required|email',
+                'phone' => ['required', 'regex:/^[6789]\d{9}$/'],
+                'state_id' => 'required',
+                'message_type' =>'required'
+            ],[
+                'name.required' => 'The name field is required.',
+                'name.regex' => 'The name field should only contain letters and spaces.',
+                'email.required' => 'The email field is required.',
+                'email.email' => 'Please enter a valid email address.',
+                'phone.required' => 'The phone number field is required.',
+                'phone.regex' => 'Please enter a valid Indian phone number.',
+                'state_id.required' => 'The state field is required.',
+                'message_type.required' => 'The Topic field is required.',
+            ]);
+            $userId = Auth::user()->id;
+            $data = $request->all();
+            $contacts=Contacts::create([
+                "name"=> $data['name'],
+                "email" => $data['email'],
+                "phone" => $data['phone'],
+                "message_type" => $data['message_type'],
+                "state_id" => $data['state_id'],
+                "message" => $data['message'],
+                "property_id" =>$data['property_id'],
+                "user_id" =>$userId
+            ]);
+            return redirect()->back()->with('message', 'Thank you, We will contact you soon');
+            } else {
+                return redirect()->route('frontuser.property.index');
+            }
+        
+    }
+
+    
 
 }

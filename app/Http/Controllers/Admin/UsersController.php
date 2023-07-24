@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Property;
-use App\PropertyType;
+use App\UserSubscription;
 use App\Http\Requests\Admin\StoreUsersRequest;
 use App\Http\Requests\Admin\UpdateUsersRequest;
 use App\commonfunction;
@@ -220,7 +220,7 @@ class UsersController extends Controller
 
         $filter = [];
         $filter_all = isset($_GET['q']) ? $_GET['q'] : '';
-$user=User::where('id', $userId)->first();
+        $user=User::where('id', $userId)->first();
         if ($filter_all != '') {
             $properties = Property::where('user_id', $userId)->with(['property_details'=>function($query) use($filter_all){
                 $query->where('title', 'LIKE', '%' . $filter_all . '%');
@@ -247,4 +247,21 @@ $user=User::where('id', $userId)->first();
         // exit;
         return view('admin.users.userproperties', ['user'=>$user,'properties' => $properties, 'filter' => $filter]);
     }
+
+    public function userSubscriptions(Request $request, $userId){
+        if (!Gate::allows('property_manage') && !Gate::allows('users_manage')) {
+            return abort(401);
+        }
+
+        $data['user']=User::where('id', $userId)->first();
+        $data['subscriptions']=UserSubscription::where('user_id', $userId)->with(['payment','property', 'plan'=>function($query){
+            $query->with(['planType']);
+        }])->paginate(10);
+// echo "<pre>"; print_r($data['subscriptions']->toArray());
+//         exit;
+        return view('admin.users.usersubscriptions', compact('data'));
+
+    }
+
+
 }

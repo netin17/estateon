@@ -41,11 +41,11 @@ class DeactivateExpiredSubscriptions extends Command
      */
     public function handle()
     {
-        $expiredSubscriptions = UserSubscription::where('end_at', '<=', Carbon::now())->where('status', 'active')->get();
+        $expiredSubscriptions = UserSubscription::where('end_at', '<=', Carbon::now())->where('status', 1)->get();
 
     foreach ($expiredSubscriptions as $subscription) {
         // Update the subscription status to "inactive" or "expired"
-        $subscription->update(['status' => 'inactive']);
+        $subscription->update(['status' => 0]);
 
         // You can add any other logic here, e.g., send an email notification to the user.
     }

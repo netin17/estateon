@@ -172,7 +172,7 @@
       const cleanedInput = input.value.replace(/[^0-9]/g, '');
       
       // Check if the number is 10 digits long and starts with 7, 8, or 9 (Indian mobile number format)
-      const isValid = /^[7-9]\d{9}$/.test(cleanedInput);
+      const isValid = /^[5-9]\d{9}$/.test(cleanedInput);
       
       // Update the input value to show only the valid part
       input.value = cleanedInput.slice(0, 10);

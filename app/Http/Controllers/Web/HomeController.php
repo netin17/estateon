@@ -129,11 +129,15 @@ class HomeController extends Controller
         
     }
 
-    public function signin(){
+    public function signin(Request $request){
         if($user = Auth::guard('frontuser')->user())
         {
             return redirect()->route('home.index');
-        }else{ return view('estate.signin');}
+        }else{ 
+            $referrer = $request->server('HTTP_REFERER');
+            session(['referrer' => $referrer]);
+            return view('estate.signin', compact('referrer'));
+        }
        
     }
     public function signup(){
@@ -149,7 +153,7 @@ class HomeController extends Controller
     }
     public function postsignup(Request $request){
         $validated = $request->validate([
-            'name' => 'required',
+            'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'], // Allow only letters and spaces
             'email' => 'required|email|unique:users',
             'phone' => 'required|unique:users',
             'password' => 'min:6'
@@ -174,8 +178,14 @@ class HomeController extends Controller
            $user=Auth::guard('frontuser')->user();
             if($user->isAdmin){
                 return redirect()->intended(route('admin.home'));
-            }else{
-             return redirect()->route('home.index');
+            }else {
+                // Check if previous URL is the signup page
+                $referrer = $request->input('referrer');
+            if ($referrer && filter_var($referrer, FILTER_VALIDATE_URL)) {
+                return redirect()->away($referrer);
+            } else {
+                return redirect()->route('home.index');
+            }
             }
     }else{
                 return redirect()->back()

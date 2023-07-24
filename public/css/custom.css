@@ -294,3 +294,39 @@ span.select2-results ul li {
 .show-error{
     display: block;
 } 
+
+/*Toggle Switch*/
+/* CSS for the custom toggle switch */
+.custom-toggle-switch {
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  
+  .custom-toggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .custom-toggle + label {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: all 0.3s;
+  }
+  
+  .custom-toggle:checked + label {
+    left: calc(100% - 3px);
+    transform: translateX(-100%);
+    background-color: #007bff; /* Change the color when the toggle is ON */
+  }
+/*Toggle Switch*/

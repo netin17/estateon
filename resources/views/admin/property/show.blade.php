@@ -40,7 +40,7 @@
                             {{ trans('cruds.property.fields.description') }}
                         </th>
                         <td>
-                            {{ $data['property']->description }}
+                            {!! $data['property']->description !!}
                         </td>
                     </tr>
 

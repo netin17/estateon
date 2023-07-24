@@ -257,22 +257,41 @@
                     </div>
                 </div>
                 <div class="col-md-8 contact-right-col">
-                <form action="{{route('frontuser.lead.create')}}" method="POST" id="contact_form">
+                @if(count($errors) > 0 )
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <ul class="p-0 m-0" style="list-style: none;">
+                                @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                        @if(session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                        @endif
+                <form action="{{route('frontuser.contacts.add')}}" method="POST" id="contact_form">
                     @csrf
                         <div class="form-group-row d-flex flex-wrap">
                             <div class="form-group-col">
-                                <label for="fname">First Name*</label>
+                                <label for="fname">Name*</label>
                                 <input type="text" id="name" name="name" class="form-group-file" required />
                                 <input type="hidden" id="property_id" name="property_id" value="{{$data['property']->id}}" class="form-group-file" required />
                             </div>
-                            <div class="form-group-col">
-                                <label for="plan">Select A Plan</label>
-                                <select name="subplan_id" id="plan" class="form-group-file" required>
-                                @foreach($data['plans'] as $index=>$plan)
-                                @foreach($plan->subscriptonPlans as $subIndex=>$sub_plan)
-                                    <option value="{{$sub_plan->id}}">{{$plan->name}} {{$sub_plan->name}}</option>
-                                    @endforeach
-            @endforeach
+                            <div class="form-group-col px-1">
+                                <label for="plan">Select a topic</label>
+                                <select name="message_type" id="message_type" class="form-group-file" required>
+                                <option value="">--Select--</option>
+                                    <option value="Payment related issues">Payment related issues</option>
+                                    <option value="Property listing related Issues">Property listing related Issues</option>
+                                    <option value="About premium plans">About premium plans</option>
+                                    <option value="Talk to our Agent">Talk to our Agent</option>
+                                    <option value="Other">Other</option>
+                                 
                                 </select>
                             </div>
                             <div class="form-group-col">
@@ -282,6 +301,15 @@
                             <div class="form-group-col">
                                 <label for="phone_no">Mobile Number*</label>
                                 <input type="number" id="phone_no" name="phone" class="form-group-file" required />
+                            </div>
+                            <div class="form-group-col px-1">
+                                <label for="phone_no">State*</label>
+                                <select name="state_id" id="state_id" class="form-group-file" required>
+                                <option value="">--Select--</option>
+                                   @foreach($data['states'] as $state)
+                                   <option value="{{$state->id}}">{{$state->name}}</option>
+                                   @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group-row d-flex flex-wrap">

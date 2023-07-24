@@ -93,6 +93,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('propertyleads/{id}', 'PropertiesController@leads')->name('property.leads');
     ////
     Route::get('user-properties/{userId}', 'UsersController@userProperties')->name('userproperty.list');
+    Route::get('user-subscriptions/{userId}', 'UsersController@userSubscriptions')->name('usersubscriptions.list');
+    Route::get('ueser-queries','ChatController@get_contact_queries')->name('contactqueries.list');
+    Route::post('/contacts/update-resolved', 'ChatController@updateResolved')->name('contacts.update-resolved');
 
     Route::post('logout', 'HomeController@logout')->name('adminlogout');
 });
@@ -131,6 +134,7 @@ Route::group(['middleware' => ['auth:frontuser'], 'prefix' => 'frontuser', 'as' 
     Route::get('transactionhistory', 'SubscriptionController@transactionHistory')->name('transactionhistory.get');
     Route::get('change_password', 'HomeController@showChangePasswordForm')->name('frontuser.change_password');
     Route::patch('change_password', 'HomeController@changePassword')->name('frontuser.change_password');
+    Route::post('addContact', 'HomeController@addContact')->name('contacts.add');
     //Route::post('property/create', 'PropertiesController@create')->name('frontuser.property.create');
 }); 
 

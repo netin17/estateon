@@ -23,6 +23,7 @@
                 @endif
                         <form action="{{route('home.postsignin')}}" method="POST" class="sign-up-form pt-5">
                         @csrf
+                        <input type="hidden" name="referrer" value="{{ $referrer }}">
                             <div class="sign-up-form-group mb-lg-4 mb-3">
                                     <input type="email" name="email" id="email" class="form-control sign-up-form-field transition w-100 d-block" placeholder="Email address">
                             </div>
