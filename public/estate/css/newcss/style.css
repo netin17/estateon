@@ -311,7 +311,7 @@ button:focus,
   display: none;
   height: 25px;
   width: 25px;
-  background-image: url(../images/menu-icon.svg);
+  background-image: url(../../images/menu-icon.svg);
   background-position: top;
   background-repeat: no-repeat;
   background-size: contain;
