@@ -160,7 +160,7 @@ class PropertiesController extends Controller
             'lat' => $data['lat'],
             'lng' => $data['lng'],
             'type' => $data['type'],
-            'contact_number' => $data['contact_number'],
+            // 'contact_number' => $data['contact_number'],
             'status' => 1,
             'featured' => isset($data['featured']) ? 1 : 0,
             'hot' => isset($data['hot']) ? 1 : 0,
@@ -171,6 +171,21 @@ class PropertiesController extends Controller
         ]);
 
         $property_id = $property->id;
+
+        if ($request->hasFile('banner_image')) {
+            $file = $request->file('banner_image');
+            $filename = $file->getClientOriginalName();
+            $path = public_path() . '/uploads/image/property' . $property_id . '/';
+            $file->move($path, $filename);
+            $url = url('/uploads/image/property' . $property_id . '/' . $filename);
+            $image = Images::create([
+                'property_id' => $property_id,
+                'name' => $filename,
+                'url' => $url,
+                'featured' => 1
+            ]);
+            $image_id = $image->id;
+        }
         ///Vastu///
         $vastu = isset($data['vastu']) ? $data['vastu'] : "";
         if ($vastu != "") {
@@ -226,6 +241,9 @@ class PropertiesController extends Controller
         $property_details = Propertydetail::create([
             'property_id' => $property_id,
             'property_category' => $data['property_category'],
+            'property_title' => $data['property_title'],
+            'locality' => $data['locality'],
+            'rera_number' => $data['rera_number'],
             'property_feature' => $data['property_feature'],
             //'bedroom' => $data['bedroom'],
             //'bathroom' => $data['bathroom'],
@@ -288,7 +306,9 @@ class PropertiesController extends Controller
         $data['vastu'] = Vastu::get();
         $data['amenity'] = Amenity::get();
         $data['preferences'] = Preferences::get();
-        $data['property'] = Property::where('id', $id)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details'])->first();
+        $data['property'] = Property::where('id', $id)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details','images' => function ($query) {
+            $query->where('featured', 1)->first();
+        }])->first();
         //  echo "<pre>"; print_r($data['property']->toArray() );
         // exit;
         $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
@@ -322,7 +342,7 @@ class PropertiesController extends Controller
             'lat' => $data['lat'],
             'lng' => $data['lng'],
             'type' => $data['type'],
-            'contact_number' => $data['contact_number'],
+            // 'contact_number' => $data['contact_number'],
             'status' => 1,
             'featured' => isset($data['featured']) ? 1 : 0,
             'hot' => isset($data['hot']) ? 1 : 0,
@@ -333,6 +353,24 @@ class PropertiesController extends Controller
         Property::where('id', $id)
             ->update($update_property);
 
+         ///banner Image///
+         if ($request->hasFile('banner_image')) {
+            $file = $request->file('banner_image');
+            $filename = $file->getClientOriginalName();
+            $path = public_path() . '/uploads/image/property' . $id . '/';
+            $file->move($path, $filename);
+            $url = url('/uploads/image/property' . $id . '/' . $filename);
+            Images::where('property_id', $id)->where('featured', 1)->delete();
+            $image = Images::create([
+                'property_id' => $id,
+                'name' => $filename,
+                'url' => $url,
+                'featured' => 1
+            ]);
+
+            $image_id = $image->id;
+        }
+        
         ///Vastu///
         $vastu = isset($data['vastu']) ? $data['vastu'] : "";
         $assigned_vastu = AssignedVastu::where('property_id', $id)->delete();
@@ -390,7 +428,10 @@ class PropertiesController extends Controller
 
         $update_details = [            
             'property_category' => $data['property_category'],
-            'property_feature' => $data['property_feature'],
+            'property_feature' => @$data['property_feature'],
+            'property_title' => $data['property_title'],
+            'locality' => $data['locality'],
+            'rera_number' => $data['rera_number'],
             //'bedroom' => $data['bedroom'],
             //'bathroom' => $data['bathroom'],
             //'balcony' => $data['balcony'],
@@ -525,5 +566,20 @@ public function deleteimage($id)
         $data['leads'] = Leads::where('property_id',$propertyID)->get();
 
         return view('admin.property.leads', compact('data'));
+    }
+    public function updateviewed(Request $request){
+        $leadId = $request->input('lead_id');
+        $viewed = $request->input('viewed');
+    
+        // Find the contact by ID and update the 'viewed' field
+        $contact = Leads::find($leadId);
+        if ($contact) {
+            $contact->viewed = $viewed;
+            $contact->save();
+    
+            return response()->json(['message' => 'Lead updated successfully'], 200);
+        }
+    
+        return response()->json(['message' => 'Lead not found'], 404);  
     }
 }

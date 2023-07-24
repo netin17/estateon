@@ -330,3 +330,6 @@ span.select2-results ul li {
     background-color: #007bff; /* Change the color when the toggle is ON */
   }
 /*Toggle Switch*/
+.error {
+    color: #f00;
+}

@@ -6,9 +6,15 @@
         {{ trans('global.create') }} {{ trans('cruds.property.title_singular') }}
     </div>
     <div class="card-body">
-        <form action="{{ route("admin.property.store") }}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.property.store')}}" method="POST" id="create-property" enctype="multipart/form-data">
             @csrf
-
+            <div class="form-group">
+                <p>Property For</p>
+                <input type="radio" id="rent" name="type" value="rent">
+                <label for="rent">Rent</label><br>
+                <input type="radio" id="sale" name="type" value="sale">
+                <label for="sale">Sale</label><br>
+            </div>
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('cruds.property.fields.name') }}*</label>
                 <input type="text" id="name-input" name="name" class="form-control" required>
@@ -21,14 +27,11 @@
                     {{ trans('cruds.user.fields.email_helper') }}
                 </p>
             </div>
-
             <div class="form-group">
-                <p>Property For</p>
-                <input type="radio" id="rent" name="type" value="rent">
-                <label for="male">Rent</label><br>
-                <input type="radio" id="sale" name="type" value="sale">
-                <label for="female">Sale</label><br>
-            </div>
+                                <label for="title" class="d-block">Property Title</label>
+                                <input type="text" id="title" name="property_title" placeholder="" class="form-control d-block profile-form-fild" required />
+             </div>
+          
 
             <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('cruds.property.fields.description') }}*</label>
@@ -74,70 +77,14 @@
                 </em>
                 @endif
             </div>  
-            <!--<div class="form-group {{ $errors->has('notes') ? 'has-error' : '' }}">
-                <label for="notes">{{ trans('cruds.property.fields.note') }}*</label>
-                <textarea id="notes" name="notes" class="form-control" required></textarea>
-                @if($errors->has('notes'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('notes') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.note_helper') }}
-                </p>
-            </div>
-             <div class="form-group {{ $errors->has('bedroom') ? 'has-error' : '' }}">
-                <label for="bedroom">{{ trans('cruds.property.fields.bedroom') }}*</label>
-                <input type="number" id="bedroom" name="bedroom" min="1" class="form-control" required>
-                @if($errors->has('bedroom'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('bedroom') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.bedroom_helper') }}
-                </p>
-            </div> -->
-            <!-- <div class="form-group {{ $errors->has('bathroom') ? 'has-error' : '' }}">
-                <label for="bathroom">{{ trans('cruds.property.fields.bathroom') }}*</label>
-                <input type="number" id="bathroom" name="bathroom" min="1" class="form-control" required>
-                @if($errors->has('bathroom'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('bathroom') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.bathroom_helper') }}
-                </p>
-            </div> -->
-            <!-- <div class="form-group {{ $errors->has('balcony') ? 'has-error' : '' }}">
-                <label for="balcony">{{ trans('cruds.property.fields.balcony') }}*</label>
-                <input type="number" id="balcony" name="balcony" min="1" class="form-control" required>
-                @if($errors->has('balcony'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('balcony') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.balcony_helper') }}
-                </p>
-            </div> -->
-            <!-- <div class="form-group {{ $errors->has('kitchen') ? 'has-error' : '' }}">
-                <label for="kitchen">{{ trans('cruds.property.fields.kitchen') }}*</label>
-                <input type="number" id="kitchen" name="kitchen" min="1" class="form-control" required>
-                @if($errors->has('kitchen'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('kitchen') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.kitchen_helper') }}
-                </p>
-            </div> -->
-            <!-- <div class="form-group">
-                <label for="living_room">{{ trans('cruds.property.fields.living_room') }}</label>
-                <input type="checkbox" name="living_room" value="true">
-            </div> -->
+            <div class="form-group mb-5">
+                                <label for="locality" class="step-form-label">Locality</label>
+                                <input type="text" id="locality" placeholder="Add Nearby Locality" name="locality" class="step-form-field w-100 d-block" required />
+                            </div>   
+            <div class="form-group d-flex align-items-center mb-4">
+                                <label for="banner-image" class="d-block">Banner Image <span class="d-block red-font" style="font-size: 12px;">(jpeg or png. only)</span></label>
+                                <input type="file" name="banner_image" id="banner-image" placeholder="" class="d-block form-control profile-form-fild" required />
+                            </div>
             <div class="form-group">
                 <label for="type">Furnished
                 <select name="furnished" id="type" class="form-control select2">
@@ -343,8 +290,11 @@
                     {{ trans('cruds.user.fields.email_helper') }}
                 </p>
             </div>
-
-            <div class="form-group {{ $errors->has('contact_number') ? 'has-error' : '' }}">
+            <div class="form-group mb-3 col-md-6">
+                                        <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
+                                        <input type="text" id="project-id" placeholder="HY174257" name="rera_number" class="step-form-field step-form-field-other-info w-100 d-block" />
+                                    </div>
+            {{-- <div class="form-group {{ $errors->has('contact_number') ? 'has-error' : '' }}">
                 <label for="contact_number">Mobile Number*</label>
                 <input type="text" id="contact_number" name="contact_number" class="form-control" required>
                 @if($errors->has('contact_number'))
@@ -357,7 +307,7 @@
                 </p>
             </div>
 
-            <!-- <div class="form-group">
+          <div class="form-group">
                 <label for="posted">Posted By
                 <select name="furnished" id="posted" name="posted" class="form-control select2">
                     <option value="Owner">Owner</option>
@@ -366,7 +316,7 @@
                     <option value="Agent">Agent</option>
                     <option value="Admin">Admin</option>
                 </select>
-            </div> -->
+            </div> --}}
 
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
@@ -379,12 +329,61 @@
 @parent
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script> -->
 <script src="{{ url('estate/summernote/summernote-bs4.min.js')}}"></script>
-
+<script src="{{ url('estate/js/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{ url('estate/js/jquery-validation/additional-methods.min.js')}}"></script>
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initMap"></script>
         <script type="text/javascript">
                $(function () {
+
+
     // Summernote
     $('.textarea').summernote()
+    $.validator.addMethod('summernoteRequired', function(value, element) {
+        var summernoteValue = $(element).summernote('isEmpty');
+        console.log(summernoteValue)
+        return !summernoteValue;
+    }, 'Please enter a value.');
+    var val = {
+        rules: {
+            type: "required",
+            property_category: "required",
+            property_type: "required",
+            vastu: "required",
+            property_title: "required",
+            banner_image: {
+                required: true,
+                extension: "jpg|jpeg|png"
+            },
+            description: {
+                summernoteRequired: true
+            },
+            name: 'required',
+            address: 'required',
+            locality: 'required',
+            price: 'required'
+        },
+        messages: {
+            type: "Please select an option",
+            property_category: "Please Select an option",
+            property_type: "Please Select an option",
+            vastu: "Please Select an option",
+            property_title: "Enter title for your property",
+            banner_image: {
+                required: "Please select an image",
+                extension: "Only JPG, JPEG, or PNG files are allowed"
+            },
+            description: {
+                summernoteRequired: 'Please enter a description.'
+            },
+            name: "Enter name for your property",
+            address: "Select Address",
+            locality: 'Select nearby locality',
+            price: 'Enter price for your property'
+        },
+    
+    }
+    $("#create-property").validate(val)
+
   })
             function initMap() {
               

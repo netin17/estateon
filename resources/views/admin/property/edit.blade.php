@@ -6,7 +6,7 @@
         {{ trans('global.edit') }} {{ trans('cruds.property.title_singular') }}
     </div>
     <div class="card-body">
-        <form action="{{ route("admin.property.update", [$data['property']->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.property.update', [$data['property']->id]) }}" method="POST" id="edit-property" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -20,7 +20,10 @@
                     <option value="sale" {{$data['property']->type=='sale'? 'selected':''}}>Sale</option>
                 </select>
             </div>
-
+            <div class="form-group d-flex align-items-center mb-4">
+                                <label for="title" class="d-block">Property Title</label>
+                                <input type="text" id="title" name="property_title" placeholder="" value="{{ $data['property']->property_details->property_title ?? ''}}" class="form-control d-block profile-form-fild" required />
+                            </div>
             <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('cruds.property.fields.description') }}*</label>
                 <textarea id="description" name="description" class="form-control textarea" required>{{$data['property']->description}}</textarea>
@@ -65,72 +68,17 @@
                 </em>
                 @endif
             </div>
+            <div class="step-form-group mb-5">
+                                        <label for="locality" class="step-form-label">Locality</label>
+                                        <input type="text" id="locality" placeholder="Add Nearby Locality" name="locality" value="{{$data['property']->property_details->locality ?? ''}}" class="step-form-field w-100 d-block" required />
+                                    </div>
+            <div class="profile-form-group d-flex align-items-center mb-4">
+                                <label for="banner-image" class="d-block">Banner Image <span class="d-block red-font" style="font-size: 12px;">(jpeg or png. only)</span></label>
+                                <input type="file" name="banner_image" id="banner-image" placeholder="" class="d-block form-control profile-form-fild" />
+                                <div class="image-grid property-doc-col"><a href="{{$data['property']->images[0]->url ?? ''}}" data-fancybox="gallery"><img src="{{$data['property']->images[0]->url ?? ''}}" class="property-doc-img"></a></div>
+                            </div>
                                 
-            <!--<div class="form-group {{ $errors->has('notes') ? 'has-error' : '' }}">
-                <label for="notes">{{ trans('cruds.property.fields.note') }}</label>
-                <textarea id="notes" name="notes" class="form-control">{{$data['property']->notes}}</textarea>
-                @if($errors->has('notes'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('notes') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.note_helper') }}
-                </p>
-            </div>
-             <div class="form-group {{ $errors->has('bedroom') ? 'has-error' : '' }}">
-                <label for="bedroom">{{ trans('cruds.property.fields.bedroom') }}</label>
-                <input type="number" id="bedroom" name="bedroom" min="0" value="{{$data['property']->property_details['bedroom']}}" class="form-control" required>
-                @if($errors->has('bedroom'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('bedroom') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.bedroom_helper') }}
-                </p>
-            </div>
-            <div class="form-group {{ $errors->has('bathroom') ? 'has-error' : '' }}">
-                <label for="bathroom">{{ trans('cruds.property.fields.bathroom') }}</label>
-                <input type="number" id="bathroom" name="bathroom" min="0" value="{{$data['property']->property_details['bathroom']}}" class="form-control">
-                @if($errors->has('bathroom'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('bathroom') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.bathroom_helper') }}
-                </p>
-            </div>
-            <div class="form-group {{ $errors->has('balcony') ? 'has-error' : '' }}">
-                <label for="balcony">{{ trans('cruds.property.fields.balcony') }}*</label>
-                <input type="number" id="balcony" name="balcony" value="{{$data['property']->property_details['balcony']}}" min="0" class="form-control">
-                @if($errors->has('balcony'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('balcony') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.balcony_helper') }}
-                </p>
-            </div>
-            <div class="form-group {{ $errors->has('kitchen') ? 'has-error' : '' }}">
-                <label for="kitchen">{{ trans('cruds.property.fields.kitchen') }}</label>
-                <input type="number" id="kitchen" name="kitchen" min="0" value="{{$data['property']->property_details['kitchen']}}" class="form-control">
-                @if($errors->has('kitchen'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('kitchen') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.property.fields.kitchen_helper') }}
-                </p>
-            </div> 
-            <div class="form-group">
-                <label for="living_room">{{ trans('cruds.property.fields.living_room') }}</label>
-                <input type="checkbox" name="living_room" value="true" {{$data['property']->property_details['living_room']==1?'checked':'' }}>
-            </div> -->
-            <div class="form-group">
+           <div class="form-group">
                 <label for="type">Furnished
                 <select name="furnished" id="type" class="form-control select2">
                     <option value="furnished" {{$data['property']->property_details['furnished'] == "furnished"? 'selected': ''}}>Furnished</option>
@@ -328,12 +276,15 @@
                 <label for="type">User Id</label>
                 <input type="text" id="user_id" name="user_id" value="{{$data['property']->user_id}}" class="form-control" required>
             </div>
-
-            <div class="form-group">
+            <div class="form-group mb-3 col-md-6">
+                                            <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
+                                            <input type="text" id="project-id" placeholder="HY174257" name="rera_number" value="{{$data['property']->property_details->rera_number ?? ''}}" class="step-form-field step-form-field-other-info w-100 d-block" />
+                                        </div>
+           {{-- <div class="form-group">
                 <label for="type">Mobile Number</label>
                 <input type="text" id="contact_number" name="contact_number" value="{{$data['property']->contact_number}}" class="form-control" required>
             </div>
-
+            --}}
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>
@@ -349,7 +300,8 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script> -->
 
 <script src="{{ url('estate/summernote/summernote-bs4.min.js')}}"></script>
-
+<script src="{{ url('estate/js/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{ url('estate/js/jquery-validation/additional-methods.min.js')}}"></script>
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initMap"></script>
 
 
@@ -361,6 +313,49 @@
         $(function () {
     // Summernote
     $('.textarea').summernote()
+    $.validator.addMethod('summernoteRequired', function(value, element) {
+        var summernoteValue = $(element).summernote('isEmpty');
+        console.log(summernoteValue)
+        return !summernoteValue;
+    }, 'Please enter a value.');
+
+    var val = {
+        rules: {
+            type: "required",
+            property_category: "required",
+            property_type: "required",
+            vastu: "required",
+            property_title: "required",
+            banner_image: {
+                extension: "jpg|jpeg|png"
+            },
+            name: 'required',
+            address: 'required',
+            locality: 'required',
+            price: 'required',
+            description: {
+                summernoteRequired: true
+            }
+        },
+        messages: {
+            type: "Please select an option",
+            property_category: "Please Select an option",
+            property_type: "Please Select an option",
+            vastu: "Please Select an option",
+            property_title: "Enter title for your property",
+            banner_image: {
+                extension: "Only JPG, JPEG, or PNG files are allowed"
+            },
+            name: "Enter name for your property",
+            address: "Select Address",
+            locality: 'Select nearby locality',
+            price: 'Enter price for your property',
+            description: {
+                summernoteRequired: 'Please enter a description.'
+            }
+        }
+    }
+    $("#edit-property").validate(val)
   })
             function initMap() {
               

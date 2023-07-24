@@ -121,22 +121,24 @@
                             <a class="btn btn-xs btn-info" href="{{ route('admin.property.image', $property->id) }}">
                                 {{ trans('cruds.property.fields.image') }}
                             </a>
+                           {{--
                             <a class="btn btn-xs btn-info" href="{{ route('admin.property.conversastion', $property->id) }}">
                                 {{ trans('cruds.property.fields.queries') }}
                             </a>
+                            --}} 
                             </div> <div>
                             @if($property->approved==0)
                             <a class="btn btn-xs btn-success" href="{{ route('admin.property.changestatus', [$property->id, 'approve'] ) }}">
                                 {{ trans('cruds.property.fields.approve') }}
                             </a>
                             @endif
-                            @if($property->approved==0)
+                            {{-- @if($property->approved==0)
                             <form action="{{ route('admin.property.destroy', $property->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-xs btn-danger" value="{{  trans('cruds.property.fields.reject') }}">
                             </form>
-                            @endif
+                            @endif --}}
                             </div>
                             @if($property->status==0)
                             <a class="btn btn-xs btn-success" href="{{ route('admin.property.changestatus', [$property->id, 'activate'] ) }}">
@@ -148,11 +150,11 @@
                                 {{ trans('cruds.property.fields.deactivate') }}
                             </a>
                             @endif
-                            <form action="{{ route('admin.property.destroy', $property->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                            {{-- <form action="{{ route('admin.property.destroy', $property->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
+                            </form> --}}
                             </td>
                         </tr>
                     @endforeach

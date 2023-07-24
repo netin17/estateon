@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('user-subscriptions/{userId}', 'UsersController@userSubscriptions')->name('usersubscriptions.list');
     Route::get('ueser-queries','ChatController@get_contact_queries')->name('contactqueries.list');
     Route::post('/contacts/update-resolved', 'ChatController@updateResolved')->name('contacts.update-resolved');
+    Route::post('/contacts/update-leads', 'PropertiesController@updateviewed')->name('leads.update-viewed');
 
     Route::post('logout', 'HomeController@logout')->name('adminlogout');
 });

@@ -24,8 +24,11 @@
                         <th>
                             Message
                         </th>
+                        <th>
+                            Viewed
+                        </th>
                     
-                    @foreach($data['leads'] as $lead)
+                    @foreach($data['leads'] as $key=>$lead)
                     <tbody>
                        <tr>
                         
@@ -49,6 +52,12 @@
                         <td>
                             {{ $lead->message }}
                         </td>
+                        <td>
+                        <div class="custom-toggle-switch">
+                                <input type="checkbox" class="custom-toggle" id="toggleSwitch{{ $key }}" data-qid="{{$lead->id}}" {{ $lead->viewed==1 ? 'checked':'' }}>
+                                <label for="toggleSwitch{{ $key }}"></label>
+                            </div>
+                        </td>
                         
                     </tr>
                        </tbody>
@@ -62,4 +71,32 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+@parent
+<script>
+$(document).ready(function() {
+    $('.custom-toggle').change(function() {
+      var leadId = $(this).data('qid');
+      var viewed = $(this).prop('checked') ? 1 : 0;
+
+      // Make AJAX request to update the 'resolved' field
+      $.ajax({
+        url: "{{route('admin.leads.update-viewed') }}",
+        method: 'POST',
+        data: {
+        lead_id: leadId,
+        viewed: viewed,
+          _token: '{{ csrf_token() }}'
+        },
+        success: function(response) {
+          console.log('Contact updated successfully.');
+        },
+        error: function(xhr) {
+          console.log('Error updating contact.');
+        }
+      });
+    });
+  });
+</script>
 @endsection

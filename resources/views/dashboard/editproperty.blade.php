@@ -54,7 +54,7 @@
 </select>
                             </div>
                             {{--<div class="profile-form-group d-flex align-items-center mb-4">
-                                <label for="type" class="d-block">Properties Type </label>
+                                <label for="type" class="d-block">Property Type </label>
                                 <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
                                     @foreach($data['property_type_commercial'] as $propert)
                                     <option value="{{ $propert['id'] }}" {{ $data['property']->property_type->type_id ?? '' == $propert['id'] ? 'selected' : '' }}>{{ $propert['name'] }}</option>
@@ -62,13 +62,13 @@
                                 </select>
                             </div>--}}
                             <div class="profile-form-group d-flex align-items-center mb-4">
-  <label for="type" class="d-block">Properties Type</label>
+  <label for="type" class="d-block">Property Type</label>
   <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
   {{-- Options will be dynamically updated based on the selected property_category --}}
   </select>
 </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
-                                <label for="vastu" class="d-block">Properties Vastu </label>
+                                <label for="vastu" class="d-block">Property Vastu </label>
                                 <select name="vastu" id="vastu" class="form-control d-block profile-form-fild select2 m-0" required>
                                     @foreach($data['vastu'] as $vast)
                                     <option value="{{ $vast['id'] }}" {{ $data['property']->vastu->vastu_id ?? '' == $vast['id'] ? 'selected' : '' }}>{{ $vast['name'] }}</option>
@@ -76,7 +76,7 @@
                                 </select>
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
-                                <label for="title" class="d-block">Properties Title</label>
+                                <label for="title" class="d-block">Property Title</label>
                                 <input type="text" id="title" name="property_title" placeholder="" value="{{ $data['property']->property_details->property_title ?? ''}}" class="form-control d-block profile-form-fild" required />
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">

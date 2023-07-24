@@ -148,6 +148,7 @@ class PropertiesController extends Controller
             'status' => 1,
             'featured' => isset($data['featured']) ? 1 : 0,
             'hot' => isset($data['hot']) ? 1 : 0,
+            // 'contact_number' => $data['contact_number'],
             //'notes' => $data['notes'],
             'slug' => $slug,
             'created_by' => $user_id
@@ -453,6 +454,7 @@ class PropertiesController extends Controller
             'property_feature' => @$data['property_feature'],
             'property_title' => $data['property_title'],
             'locality' => $data['locality'],
+            'rera_number' => $data['rera_number'],
             //'bedroom' => $data['bedroom'],
             //'bathroom' => $data['bathroom'],
             //'balcony' => $data['balcony'],

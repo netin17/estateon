@@ -74,7 +74,7 @@
                                 </select>
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
-                                <label for="title" class="d-block">Properties Title</label>
+                                <label for="title" class="d-block">Property Title</label>
                                 <input type="text" id="title" name="property_title" placeholder="" class="form-control d-block profile-form-fild" required />
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
@@ -298,7 +298,6 @@
         },
     
     }
-
 //     if ($.validator.methods.summernoteRequired) {
 //   // The summernoteRequired method is added
 //   console.log('summernoteRequired method is added');
