@@ -320,7 +320,7 @@ button:focus,
 }
 
 .close-menu {
-  background-image: url(../images/close-icon.svg);
+  background-image: url(../../images/close-icon.svg);
 }
 
 body.body-overflow {
@@ -794,6 +794,7 @@ body.body-overflow {
 .contact-us-content h4 {
   font-size: 30px;
   margin-bottom: 6px;
+  color: #fff;
 }
 
 .contact-us-content p {
