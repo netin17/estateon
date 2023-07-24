@@ -43,13 +43,13 @@
                         <span id="error-message" style="color: red;"></span>
                     </div>
                     <div class="alert alert-danger verify-otp-error" id="error" style="display: none;"></div>
-                    <div class="alert alert-success " id="sentSuccess" style="display: none;"></div>
                     <div class="contact-bottom d-flex align-items-center justify-content-center">
                         <div class="d-flex align-items-center" id="recaptcha-container"></div>
                     </div>
-                   <div class="position-relative">
+                    <div class="position-relative">
                         <button type="button" class="verify-otp-btn d-block send-otp-btn px-4" onclick="phoneSendAuth();">Send OTP</button>
                     </div>
+                    <div class="alert alert-success verify-otp-error mt-1 mb-0" style="display: none;" id="sentSuccess">ddsds</div>
                     <div class="alert alert-success verify-otp-error" id="otpsuccess" style="display: none;"></div>
                     <div class="sign-up-form-group my-lg-4 my-3 position-relative verifyotp">
                         <input type="text" placeholder="OTP" id="verificationCode" class="form-control sign-up-form-field transition w-100 d-block" required />

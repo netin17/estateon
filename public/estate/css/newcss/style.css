@@ -410,6 +410,7 @@ body.body-overflow {
   background-color: #fff;
   position: relative;
   z-index: 1;
+  height: 100%;
 }
 
 .plan-card:hover {
@@ -1646,6 +1647,33 @@ body.body-overflow {
 
 .submit-btn-style {
   padding: 12px 70px;
+}
+
+.subproperty li {
+  border: 0;
+  padding: 0;
+  position: relative;
+}
+
+.subproperty li input {
+  position: absolute;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.subproperty li label {
+  display: block;
+  border: solid 1px grey;
+  padding: 5px 7px;
+  border-radius: 4px;
+}
+
+.subproperty li input:checked + label {
+  border-color: #fbe9e9;
+  background-color: #fbe9e9;
+  color: #000;
 }
 
 /********* media css  ***********/
