@@ -64,7 +64,7 @@
                               @foreach($data['property_type'] as $property_type)
                               @if($property_type->property_type == "commercial")
                               <li>
-                                <input type="checkbox" name="commercial[]" value="{{$property_type->id}}" id="{{$property_type->name}}"> {{$property_type->name}}
+                                <input type="checkbox" name="commercial[]" value="{{$property_type->id}}" id="{{$property_type->name}}">
                                 <label class="checkbox-label" for="{{$property_type->name}}">
                                     {{$property_type->name}}
                                   </label>
