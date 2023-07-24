@@ -297,7 +297,7 @@ class PropertiesController extends Controller
     public function leadAdd(Request $request)
     {
         
-        try {
+        // try {
             //$user_id = Auth::guard('frontuser')->id();
 
             $validated = $request->validate([
@@ -316,15 +316,15 @@ class PropertiesController extends Controller
             $time = time();
             $query = Leads::create(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'message'=>$message, 'property_id'=>$propertyID, 'subplan_id'=>$subplan_id, 'viewed'=>0, 'created_at'=> $time]);
             if($query){
-                return redirect()->back()->with(['message', 'Thank you, We will contact you soon']);
+                return redirect()->back()->with('message', 'Thank you, We will contact you soon');
             }else{
-                return redirect()->back()->with(['message', 'Thank you, We will contact you soon']);
+                return redirect()->back()->with('message', 'Thank you, We will contact you soon');
             }
 
             
-        } catch (Exception $e) {
-            return redirect()->back()->withErrors(['Errors' => $e->getMessage()]);
-        }
+        // } catch (Exception $e) {
+        //     return redirect()->back()->withErrors(['Errors' => $e->getMessage()]);
+        // }
     }
 }
 

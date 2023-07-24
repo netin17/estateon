@@ -333,3 +333,8 @@ span.select2-results ul li {
 .error {
     color: #f00;
 }
+.property-doc-img {
+    height: 146px;
+    object-fit: cover;
+    border-radius: 6px;
+  }

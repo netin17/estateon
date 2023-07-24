@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <link rel="stylesheet" href="{{ url('estate/summernote/summernote-bs4.css')}}">
+<link rel="stylesheet" href="{{ url('estate/css/newcss/jquery.fancybox.min.css')}}" />
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.property.title_singular') }}
@@ -302,6 +303,7 @@
 <script src="{{ url('estate/summernote/summernote-bs4.min.js')}}"></script>
 <script src="{{ url('estate/js/jquery-validation/jquery.validate.min.js')}}"></script>
 <script src="{{ url('estate/js/jquery-validation/additional-methods.min.js')}}"></script>
+<script src="{{ url('estate/js/jquery.fancybox.min.js')}}"></script>
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initMap"></script>
 
 
@@ -356,6 +358,7 @@
         }
     }
     $("#edit-property").validate(val)
+    $('[data-fancybox="gallery"]').fancybox();
   })
             function initMap() {
               

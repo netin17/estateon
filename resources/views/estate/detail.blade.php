@@ -127,6 +127,23 @@
                 <div class="col-md-4">
                         <div class="wht_box">
                             <div class="contact_for_prp">
+                            @if(count($errors) > 0 )
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <ul class="p-0 m-0" style="list-style: none;">
+                                @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                        @if(session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                        @endif
                                 <h3>Contact Agent</h3>
                                 <form action="{{route('frontuser.lead.create')}}" method="POST" id="contact_form">
                                 @csrf
