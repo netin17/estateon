@@ -298,11 +298,11 @@
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" class="form-group-file" required />
                             </div>
-                            <div class="form-group-col">
+                            <div class="form-group-col px-1">
                                 <label for="phone_no">Mobile Number*</label>
                                 <input type="number" id="phone_no" name="phone" class="form-group-file" required />
                             </div>
-                            <div class="form-group-col px-1">
+                            <div class="form-group-col">
                                 <label for="phone_no">State*</label>
                                 <select name="state_id" id="state_id" class="form-group-file" required>
                                 <option value="">--Select--</option>
