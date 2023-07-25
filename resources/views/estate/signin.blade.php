@@ -27,11 +27,12 @@
                             <div class="sign-up-form-group mb-lg-4 mb-3">
                                     <input type="email" name="email" id="email" class="form-control sign-up-form-field transition w-100 d-block" placeholder="Email address">
                             </div>
-                            <div class="sign-up-form-group mb-lg-4 mb-3">
-                                <input type="password" name="password" id="password" style="background-color: #FFFBFB;" placeholder="Password"  class="form-control sign-up-form-field transition w-100 d-block" />
+                            <div class="sign-up-form-group mb-lg-4 mb-3 position-relative">
+                                <input type="password" name="password" id="password" style="background-color: #FFFBFB;" placeholder="Password"  class="form-control sign-up-form-field sign-up-form-field-pw transition w-100 d-block" />
+                                <span class="pw-eye"></span>
                             </div>
                             <div class="mb-lg-3 mb-3 d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center ">
                                     <input type="checkbox" name="" id="terms_conditions" />
                                     <label for="terms_conditions" style="font-size: 14px; margin-left: 4px;" class="d-block dark-font mb-0"> Remember Password</label>
                                 </div>

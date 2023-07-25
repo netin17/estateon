@@ -39,5 +39,14 @@ jQuery(document).ready(function () {
         jQuery('.open-menu').toggleClass('close-menu');
         jQuery("body").toggleClass("body-overflow");
     });
+    jQuery('.pw-eye').click(function () {
+        jQuery('.pw-eye').toggleClass('pw-eye-open');
+        var input = jQuery(".sign-up-form-field-pw");
+        if (input.attr("type") === "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
 });
 

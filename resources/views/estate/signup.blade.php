@@ -49,8 +49,8 @@
                     <div class="position-relative">
                         <button type="button" class="verify-otp-btn d-block send-otp-btn px-4" onclick="phoneSendAuth();">Send OTP</button>
                     </div>
-                    <div class="alert alert-success verify-otp-error mt-1 mb-0" style="display: none;" id="sentSuccess">ddsds</div>
-                    <div class="alert alert-success verify-otp-error" id="otpsuccess" style="display: none;"></div>
+                    <div class="alert alert-success verify-otp-error mt-1 mb-0" style="display: none;" id="sentSuccess"></div>
+                    <div class="alert alert-success verify-otp-error mt-1" style="display: none;" id="otpsuccess"></div>
                     <div class="sign-up-form-group my-lg-4 my-3 position-relative verifyotp">
                         <input type="text" placeholder="OTP" id="verificationCode" class="form-control sign-up-form-field transition w-100 d-block" required />
                         <button type="button" class="verify-otp-btn" onclick="codeverify();">Verify</button>

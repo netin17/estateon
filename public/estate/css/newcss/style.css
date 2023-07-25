@@ -328,7 +328,7 @@ body.body-overflow {
 }
 
 .banner-bottom-content {
-  padding-top: 200px;
+  padding-top: 130px;
   position: relative;
   z-index: 99;
 }
@@ -1223,6 +1223,7 @@ body.body-overflow {
 .listed-properties-table .table-data {
   border-top: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
+  vertical-align: top;
 }
 
 .listed-properties-table .table-data:first-child {
@@ -1672,9 +1673,27 @@ body.body-overflow {
 }
 
 .subproperty li input:checked + label {
-  border-color: #fbe9e9;
-  background-color: #fbe9e9;
-  color: #000;
+  border-color: #f05e59;
+  background-color: #f05e59;
+  color: #fff;
+}
+
+.pw-eye {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  transform: translateY(-50%);
+  background-image: url(../../images/eye-show.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.pw-eye-open {
+  background-image: url(../../images/eye-off.svg);
 }
 
 /********* media css  ***********/
