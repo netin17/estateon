@@ -417,19 +417,19 @@ console.log(multiStepForm.getCurrentStepIndex())
         }
     });
 
-    $('#length').keyup(function() {
-        var width = $('#width').val();
-        var length = $(this).val();
-        var size = parseInt(width) * parseInt(length);
-        $('#size').val(size);
-    });
+    // $('#length').keyup(function() {
+    //     var width = $('#width').val();
+    //     var length = $(this).val();
+    //     var size = parseInt(width) * parseInt(length);
+    //     $('#size').val(size);
+    // });
 
-    $('#width').keyup(function() {
-        var width = $(this).val();
-        var length = $('#length').val();
-        var size = parseInt(width) * parseInt(length);
-        $('#size').val(size);
-    });
+    // $('#width').keyup(function() {
+    //     var width = $(this).val();
+    //     var length = $('#length').val();
+    //     var size = parseInt(width) * parseInt(length);
+    //     $('#size').val(size);
+    // });
 
     // $('#property_category').change(function() {
     //     showPropertyType();

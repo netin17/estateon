@@ -12,10 +12,9 @@
                     Refer To Your Friend
                 </div>
                 <div class="history-table-wrap box-style position-relative">
+                @if(count($data['properties'])>0)
                     <div class="table-bottom-shadow table-pagination-main">
-
-
-                        @if(count($errors) > 0 )
+                             @if(count($errors) > 0 )
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -91,6 +90,16 @@
                             </tfoot>
                         </table>
                     </div>
+                    @endif
+@if(count($data['properties'])==0)
+<div class="mx-auto no-property-img">
+                                <a  href="{{route('frontuser.property.create')}}" class="contact-sub-btn btn btn-primary px-5 add-property ms-0">Add
+                                    Property</a>
+                            </div>
+                            <img src="{{ url('estate/images/no-property.svg')}}" alt="no-property"
+                                class="mx-auto no-property-img d-block" />
+@endif
+
                 </div>
             </div>
         </div>

@@ -46,35 +46,22 @@ class PropertiesController extends Controller
         $property_type=[];
         $filter_all = isset($_GET['q']) ? $_GET['q'] : '';
 
-        $property = Property::with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details']);
+        $property = Property::with(['amenities.amenity_data',
+         'vastu.vastu_data',
+          'preferences.preferences_data',
+           'property_type.type_data',
+            'property_details',
+            'userSubscriptions'=>function($query){
+                $query->where('start_at', '<=', now())
+                ->where('end_at', '>=', now())
+                ->with(['plan' => function ($pquery) {
+                    $pquery->with(['planType']);
+                }]);
+            }
+        ]);
         if ($filter_all != '') {
-            $filtertype = isset($_GET['filter_type']) ? $_GET['filter_type'] : $filtertype;
-            $property_type = isset($_GET['pr_type']) ? $_GET['pr_type'] : $property_type;
-            if (is_array($property_type)) {
-                if (in_array("rent", $property_type)) {
-                    $property->where('type', 'rent');
-                }
-                if (in_array("sale", $property_type)) {
-                    $property->where('type', 'sale');
-                }
-            }
-            if (is_array($filtertype)) {
-                if (in_array("amenities", $filtertype)) {
-                    $property->whereHas('amenities.amenity_data', function ($query) use ($filter_all) {
-                        $query->where('name', 'like', '%'.$filter_all.'%');
-                    });
-                }
-                if (in_array("vastu", $filtertype)) {
-                    $property->whereHas('vastu.vastu_data', function ($query) use ($filter_all) {
-                        $query->where('name', 'like', '%'.$filter_all.'%');
-                    });
-                }
-                if (in_array("property_type", $filtertype)) {
-                    $property->whereHas('property_type.type_data', function ($query) use ($filter_all) {
-                        $query->where('name', 'like', '%'.$filter_all.'%');
-                    });
-                }
-            }
+            $property->where('name', 'LIKE', '%' . $filter_all . '%')
+            ->orWhere('id', 'LIKE', '%' . $filter_all . '%');
             $filter['q'] = $filter_all;
         }
         $property->orderBy('id', 'desc');
@@ -88,7 +75,7 @@ class PropertiesController extends Controller
 
         // echo "<pre>"; print_r($properties->toArray()); echo "<pre>";
         // exit;
-        return view('admin.property.index', compact('properties', 'filter', 'filtertype','property_type' ));
+        return view('admin.property.index', compact('properties', 'filter','property_type' ));
     }
 
     

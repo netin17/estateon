@@ -4,13 +4,12 @@
         throw  " : Called with Invalid argument";
       var form = this;
       var tabs = form.find('.tab');
-      var steps = form.find('.step');
+      var steps = $('.step-item'); //form.find('.step-item');
       steps.each(function(i, e){
         $(e).on('click', function(ev){
         });
       });
       form.navigateTo = function (i) {/*index*/
-      console.log("dfdfds", i)
         /*Mark the current section with the class 'current'*/
         tabs.removeClass('current').eq(i).addClass('current');
         // Show only the navigation buttons that make sense for the current section:
@@ -26,11 +25,18 @@
         /*Return the current index by looking at which section has the class 'current'*/
         return tabs.index(tabs.filter('.current'));
       }
+      // function fixStepIndicator(n) {
+      //   steps.each(function(i, e){
+      //     i == n ? $(e).addClass('active') : $(e).removeClass('active');
+      //   });
+      // }
+
       function fixStepIndicator(n) {
-        steps.each(function(i, e){
-          i == n ? $(e).addClass('active') : $(e).removeClass('active');
+        steps.each(function (i, e) {
+          i <= n ? $(e).addClass('step-done') : $(e).removeClass('step-done');
         });
       }
+
       /* Previous button is easy, just go back */
       form.find('.previous').click(function() {
         form.navigateTo(curIndex() - 1);

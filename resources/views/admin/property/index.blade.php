@@ -13,12 +13,9 @@
     </div>
     <div class="card-body">
         <div class="filter-area in-flx">
-            <div class="card-tools">
-                <h4>Filter</h4>
-            </div>
             <form action="{{ route('admin.property.index') }}" class="filter-item">
                 <div class="input-group input-group-sm">
-                    <div class="fea">
+                   {{-- <div class="fea">
                         <label>Features</label>
                         <select name="filter_type[]" id="filter_type" class="form-control select2">
                             <option value="amenities" {{in_array('amenities', $filtertype)  ? 'selected' : ''}}>Amenities</option>
@@ -32,12 +29,11 @@
                             <option value="sale" {{in_array('sale', $property_type)  ? 'selected' : ''}}>Sale</option>
                             <option value="rent" {{in_array('rent', $property_type)  ? 'selected' : ''}}>Rent</option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="fea">
-                        <label>Like</label>
                         <div class="srch-right">
                             <div class="input-group-append">
-                                 <input type="text" name="q" class="form-control search_list" placeholder="Search" value="{{ request()->get('q') }}" required>
+                                 <input type="text" name="q" class="form-control search_list" placeholder="Search (id, name)" value="{{ request()->get('q') }}">
                                 <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                             </div>
                         </div> 
@@ -73,15 +69,18 @@
                         <th>
                             {{ trans('cruds.property.fields.preferences') }}
                         </th>
-                        <!-- <th>
-                            {{ trans('cruds.property.fields.property_type') }}
-                        </th> -->
-                        <!-- <th>
-                            {{ trans('cruds.property.fields.featured') }}
+                        <th>
+                           Status
                         </th>
                         <th>
-                            {{ trans('cruds.property.fields.hot') }}
-                        </th> -->
+                        Active Plan
+                        </th>
+                        <th>
+                            Subscription Start date
+                        </th>
+                        <th>
+                        Subscription End date
+                        </th>
                         <th class="all_btn_selections">
                             &nbsp;
                         </th>
@@ -89,6 +88,13 @@
                 </thead>
                 <tbody>
                     @foreach($properties as $key => $property)
+                    @php
+                  
+                        $timestart = isset($property->userSubscriptions[0]->start_at) ? \Carbon\Carbon::parse($property->userSubscriptions[0]->start_at) : null;
+                        $timeend = isset($property->userSubscriptions[0]->end_at) ? \Carbon\Carbon::parse($property->userSubscriptions[0]->end_at) : null;
+                    
+                                
+                                @endphp
                     <tr data-entry-id="{{ $property->id }}">
                     <td>
                             {{ $property->id ?? '' }}
@@ -121,16 +127,34 @@
                             <span class="badge badge-info">{{ $preference['preferences_data']['name']  ?? ''}}</span>
                             @endforeach
                         </td>
-                        <!-- <td>
-                            <span class="badge badge-info">{{ $property->property_type['type_data']['name']  ?? ''}}</span>
-
-                        </td> -->
-                        <!-- <td>
-                            {{ $property->featured==1 ? 'true':'false' }}
-                        </td>
                         <td>
-                            {{ $property->hot==1 ? 'true':'false' }}
-                        </td> -->
+                            @if($property->approved == 0)
+                                <span class="badge badge-danger">Unapproved</span>
+                            @else
+                                <span class="badge badge-success">Approved</span>
+                            @endif
+
+                            -
+
+                            @if($property->status == 0)
+                                <span class="badge badge-danger">Deactivated</span>
+                            @else
+                                <span class="badge badge-success">Activated</span>
+                            @endif
+                            </td>
+                            <td>
+                            @if(count($property->userSubscriptions)>0)
+                                                    <div class="plan_name">
+                                                    {{$property->userSubscriptions[0]->plan->planType->name}}-{{$property->userSubscriptions[0]->plan->name}}
+                                                    </div>
+                                                    @endif
+                            </td>
+                            <td>
+                            {{ optional($timestart)->format('d-m-Y') }}
+                            </td>
+                            <td>
+                            {{ optional($timeend)->format('d-m-Y') }}
+                            </td>
                         <td> 
                             <div class="activation_button">
                             <a class="btn btn-xs btn-primary" href="{{ route('admin.property.show', $property->id) }}">
@@ -189,7 +213,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="12" class="text-center pgntion">{{ $properties->appends($filter)->appends(['filter_type'=>$filtertype, 'pr_type'=>$property_type])->links() }}</td>
+                        <td colspan="12" class="text-center pgntion">{{ $properties->appends($filter)->links() }}</td>
                     </tr>
                 </tfoot>
             </table>

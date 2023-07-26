@@ -438,12 +438,12 @@
 });
 
 
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            jQuery('.open-menu').click(function () {
-                jQuery('.header-wrap').slideToggle();
-                jQuery('.open-menu').toggleClass('close-menu');
-                jQuery("body").toggleClass("body-overflow");
-            });
+            // var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            // jQuery('.open-menu').click(function () {
+            //     jQuery('.header-wrap').slideToggle();
+            //     jQuery('.open-menu').toggleClass('close-menu');
+            //     jQuery("body").toggleClass("body-overflow");
+            // });
 
             wow = new WOW({
                 boxClass: 'wow',      // default
