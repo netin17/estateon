@@ -93,7 +93,7 @@
                     @endif
 @if(count($data['properties'])==0)
 <div class="mx-auto no-property-img">
-                                <a  href="{{route('frontuser.property.create')}}" class="contact-sub-btn btn btn-primary px-5 add-property ms-0">Add
+                                <a  href="{{route('frontuser.property.create')}}" class="contact-sub-btn add-property-btn btn btn-primary px-5 add-property ms-0">Add
                                     Property</a>
                             </div>
                             <img src="{{ url('estate/images/no-property.svg')}}" alt="no-property"
