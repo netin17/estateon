@@ -28,8 +28,10 @@
                                     <input type="email" name="email" id="email" class="form-control sign-up-form-field transition w-100 d-block" placeholder="Email address">
                             </div>
                             <div class="sign-up-form-group mb-lg-4 mb-3 position-relative">
-                                <input type="password" name="password" id="password" style="background-color: #FFFBFB;" placeholder="Password"  class="form-control sign-up-form-field sign-up-form-field-pw transition w-100 d-block" />
-                                <span class="pw-eye"></span>
+                                <input type="password" name="password" id="password" style="background-color: #FFFBFB;" placeholder="Password"  class="form-control sign-up-form-field transition w-100 d-block" />
+                                <span id="togglePassword" class="password-toggle-icon" onclick="togglePasswordVisibility()">
+        <i class="fa fa-eye"></i>
+    </span>
                             </div>
                             <div class="mb-lg-3 mb-3 d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center ">
@@ -51,3 +53,20 @@
             </div>
         </section>
 @endsection
+@section('scripts')
+<script>
+     function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const togglePasswordIcon = document.getElementById('togglePassword');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePasswordIcon.innerHTML = '<i class="fa fa-eye-slash"></i>'; // Change the icon to eye-slash
+        } else {
+            passwordInput.type = 'password';
+            togglePasswordIcon.innerHTML = '<i class="fa fa-eye"></i>'; // Change the icon back to eye
+        }
+    }
+</script>
+@endsection
+</script>

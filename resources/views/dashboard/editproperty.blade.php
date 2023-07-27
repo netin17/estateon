@@ -16,12 +16,12 @@
                 </div>
                 <div class="step-bar px-sm-5">
                     <ul class="d-flex step-list">
-                        <li class="position-relative step-item step"><span class="d-block">1</span></li>
-                        <li class="position-relative step-item step"><span class="d-block">2</span></li>
-                        <li class="position-relative step-item step"><span class="d-block">3</span></li>
-                        <li class="position-relative step-item step"><span class="d-block">4</span></li>
-                        <li class="position-relative step-item step"><span class="d-block">5</span></li>
-                        <li class="position-relative step-item step"><span class="d-block">6</span></li>
+                        <li class="position-relative step-item"><span class="d-block">1</span></li>
+                        <li class="position-relative step-item"><span class="d-block">2</span></li>
+                        <li class="position-relative step-item"><span class="d-block">3</span></li>
+                        <li class="position-relative step-item"><span class="d-block">4</span></li>
+                        <li class="position-relative step-item"><span class="d-block">5</span></li>
+                        <li class="position-relative step-item"><span class="d-block">6</span></li>
                     </ul>
                 </div>
                 <div class="step-content box-style">
@@ -432,19 +432,19 @@ function clearOverlays() {
         }
     });
 
-    $('#length').keyup(function() {
-        var width = $('#width').val();
-        var length = $(this).val();
-        var size = parseInt(width) * parseInt(length);
-        $('#size').val(size);
-    });
+    // $('#length').keyup(function() {
+    //     var width = $('#width').val();
+    //     var length = $(this).val();
+    //     var size = parseInt(width) * parseInt(length);
+    //     $('#size').val(size);
+    // });
 
-    $('#width').keyup(function() {
-        var width = $(this).val();
-        var length = $('#length').val();
-        var size = parseInt(width) * parseInt(length);
-        $('#size').val(size);
-    });
+    // $('#width').keyup(function() {
+    //     var width = $(this).val();
+    //     var length = $('#length').val();
+    //     var size = parseInt(width) * parseInt(length);
+    //     $('#size').val(size);
+    // });
     var propertyTypes = {
     residential: @json($data['property_type_residential']),
     commercial: @json($data['property_type_commercial'])
