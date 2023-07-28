@@ -236,23 +236,23 @@
                         <p>Fill up the form and our Team will get back to you within 24 hours.</p>
                         <ul class="contact-us-link mt-5">
                             <li class="d-flex align-items-center">
-                                <span class="d-flex me-2"><img src="{{ url('estate/images/gmail.svg')}}" alt=""></span>
+                                <span class="d-flex mr-2"><img src="{{ url('estate/images/gmail.svg')}}" alt=""></span>
                                 <span class="d-flex">info@estateom.com</span>
                             </li>
                             <li class="d-flex align-items-center">
-                                <span class="d-flex me-2"><img src="{{ url('estate/images/location.svg')}}" alt=""></span>
+                                <span class="d-flex mr-2"><img src="{{ url('estate/images/location.svg')}}" alt=""></span>
                                 <span class="d-flex">Indore, Madhya Pradesh, India</span>
                             </li>
                             <li class="d-flex align-items-center">
-                                <span class="d-flex me-2"><img src="{{ url('estate/images/light-fb.svg')}}" alt=""></span>
+                                <span class="d-flex mr-2"><img src="{{ url('estate/images/mi_call.svg')}}" alt=""></span>
                                 <span class="d-flex">+91 99262 66888</span>
                             </li>
                         </ul>
                         <ul class="d-flex contact-us-social-links">
-                            <li><img src="{{ url('estate/images/light-instagram.svg')}}" alt=""></li>
-                            <li><img src="{{ url('estate/images/light-in.svg')}}" alt=""></li>
-                            <li><img src="{{ url('estate/images/light-fb.svg')}}" alt=""></li>
-                            <li><img src="{{ url('estate/images/light-twitter.svg')}}" alt=""></li>
+                            <li class="mr-2"><img src="{{ url('estate/images/light-instagram.svg')}}" alt=""></li>
+                            <li class="mr-2"><img src="{{ url('estate/images/light-in.svg')}}" alt=""></li>
+                            <li class="mr-2"><img src="{{ url('estate/images/light-fb.svg')}}" alt=""></li>
+                            <li class="mr-2"><img src="{{ url('estate/images/light-twitter.svg')}}" alt=""></li>
                         </ul>
                     </div>
                 </div>

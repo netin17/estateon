@@ -1,22 +1,38 @@
 $(document).ready(function () {
 
 });
+var flg = "off";
 $(".heading").click(function () {
     $(".innersec").toggleClass("dnone");
     $(".minprice").addClass("dnone");
     $(".disnone").addClass("dnone");
     $(".textSearch").addClass("dnone");
-
+    flg = "off";
 });
 $(".heading1").click(function () {
+    flg = "off";
     $(".innersec1").toggleClass("dnone");
     $(".santo").toggleClass("rot");
+    $(".innersec2").addClass("dnone");
+    $(".santo2").addClass("rot");
 });
 $(".heading2").click(function () {
+    flg = "off";
     $(".innersec2").toggleClass("dnone");
     $(".santo2").toggleClass("rot");
-
+    $(".innersec1").addClass("dnone");
+    $(".santo").addClass("rot");
 });
+$(function () {
+
+    $(document).on("click", function (e) {
+        if (flg == "on") {
+            $(".innersec").addClass("dnone");
+        }
+        flg = "on";
+    });
+});
+
 $(".heading3").click(function () {
     $(".innersec3").toggleClass("dnone");
     $(".santo3").toggleClass("rot");
@@ -38,6 +54,15 @@ jQuery(document).ready(function () {
         jQuery('.header-wrap').slideToggle();
         jQuery('.open-menu').toggleClass('close-menu');
         jQuery("body").toggleClass("body-overflow");
+    });
+    jQuery('.pw-eye').click(function () {
+        jQuery('.pw-eye').toggleClass('pw-eye-open');
+        var input = jQuery(".sign-up-form-field-pw");
+        if (input.attr("type") === "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
     });
 });
 

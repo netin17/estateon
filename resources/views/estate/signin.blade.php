@@ -34,7 +34,7 @@
     </span>
                             </div>
                             <div class="mb-lg-3 mb-3 d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center ">
                                     <input type="checkbox" name="" id="terms_conditions" />
                                     <label for="terms_conditions" style="font-size: 14px; margin-left: 4px;" class="d-block dark-font mb-0"> Remember Password</label>
                                 </div>
