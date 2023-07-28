@@ -1725,7 +1725,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -2098,6 +2098,9 @@ input[type=number] {
 }
 
 @media screen and (max-width: 767px) {
+  .contact-left-col {
+    padding-bottom: 120px;
+  }
   .textarea-msg {
     min-height: 120px;
     margin-bottom: 30px;
