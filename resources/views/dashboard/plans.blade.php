@@ -302,27 +302,26 @@
                                 <label for="phone_no">Mobile Number*</label>
                                 <input type="number" id="phone_no" name="phone" class="form-group-file" required />
                             </div>
-                            <div class="form-group-col">
-                                <label for="phone_no">State*</label>
-                                <select name="state_id" id="state_id" class="form-group-file" required>
-                                <option value="">--Select--</option>
-                                   @foreach($data['states'] as $state)
-                                   <option value="{{$state->id}}">{{$state->name}}</option>
-                                   @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group-row d-flex flex-wrap">
-                            <div class="form-group-col w-100">
+                            
+                            <div class="form-group-col mb-0">
                                 <label for="phone_no">Write Message*</label>
-                                <textarea name="message" id="message" cols="30" rows="1" class="form-group-file" required></textarea>
+                                <textarea name="message" id="message" cols="30" rows="1" class="form-group-file textarea-msg" required></textarea>
                             </div>
-                        </div>
-                        <div class="contact-bottom d-flex align-items-center justify-content-end">
-                        <div class="contact-bottom d-flex align-items-center justify-content-center">
-                        <div class="d-flex align-items-center" id="recaptcha-container"></div>
-                    </div>
-                            <button type="submit" class="contact-sub-btn btn btn-primary">Submit</button>
+                            <div class="contact-bottom mb-0 px-1 form-group-col d-flex align-items-center justify-content-end flex-wrap">
+                                <div class="form-group-col px-1 w-100">
+                                    <label for="phone_no">State*</label>
+                                    <select name="state_id" id="state_id" class="form-group-file" required>
+                                        <option value="">--Select--</option>
+                                        @foreach($data['states'] as $state)
+                                        <option value="{{$state->id}}">{{$state->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="contact-bottom d-flex align-items-center justify-content-end w-100">
+                                    <div class="d-flex align-items-center" id="recaptcha-container"></div>
+                                </div>
+                                <button type="submit" class="contact-sub-btn btn btn-primary mt-2">Submit</button>
+                            </div>
                         </div>
                     </form>
                 </div>

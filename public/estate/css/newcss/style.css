@@ -783,7 +783,7 @@ body.body-overflow {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  bottom: -70px;
+  bottom: -18px;
   right: 0;
 }
 
@@ -810,7 +810,10 @@ body.body-overflow {
 }
 
 .contact-us-social-links {
-  padding: 80px 0 0 50px;
+  position: absolute;
+  bottom: 34px;
+  padding-left: 35px;
+  width: 100%;
 }
 
 .contact-right-col {
@@ -1707,6 +1710,25 @@ ul.subproperty.d-flex {
   background-image: url(../../images/eye-off.svg);
 }
 
+.textarea-msg {
+  height: calc(100% - 43px);
+  border: 1px solid #b9b9b9;
+}
+
+.text-popup-msg {
+  border: 1px solid #b9b9b9;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 /********* media css  ***********/
 
 @media screen and (max-width: 1200px) {
@@ -2076,6 +2098,11 @@ ul.subproperty.d-flex {
 }
 
 @media screen and (max-width: 767px) {
+  .textarea-msg {
+    min-height: 120px;
+    margin-bottom: 30px;
+    height: auto;
+  }
   .hero-section::after {
     background-position: left;
   }
@@ -2132,6 +2159,7 @@ ul.subproperty.d-flex {
 
   .contact-bottom {
     display: block !important;
+    padding: 0 !important;
   }
 
   .contact-bottom img {

@@ -23,6 +23,9 @@ $(".heading2").click(function () {
     $(".innersec1").addClass("dnone");
     $(".santo").addClass("rot");
 });
+$(".innersec *").click(function () {
+    flg = "off";
+});
 $(function () {
 
     $(document).on("click", function (e) {
