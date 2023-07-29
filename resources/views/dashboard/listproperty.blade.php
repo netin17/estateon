@@ -151,7 +151,7 @@
                                 <label for="phone_no">Mobile Number*</label>
                                 <input type="text" id="phone_no" name="phone" class="form-group-file" required />
                             </div>
-                            <div class="form-group-col px-1">
+                            <div class="form-group-col w-100 px-1">
                                 <label for="phone_no">State*</label>
                                 <select name="state_id" id="state_id" class="form-group-file" required>
                                     <option value="">--Select--</option>
@@ -164,7 +164,7 @@
                         <div class="form-group-row d-flex flex-wrap">
                             <div class="form-group-col px-1 w-100">
                                 <label for="phone_no">Write Message*</label>
-                                <textarea name="message" id="message" cols="30" rows="1" class="form-group-file" required></textarea>
+                                <textarea name="message" id="message" cols="30" rows="3" class="form-group-file text-popup-msg" required></textarea>
                             </div>
                         </div>
                         <div class="contact-bottom d-flex align-items-center justify-content-end flex-wrap">

@@ -95,7 +95,10 @@
                 <div class="section1">
                   <div class="innersec dnone cpoint">
                     <div class="d-flex justify-content-between align-items-center">
-                      <p class="heading1 cpoint mb-0">Residential <i class="fa-solid fa-angle-down redc santo"></i></p>
+                    <div class="row w-100">
+                      <p class="heading1 col-6 cpoint mb-0">Residential <i class="fa-solid fa-angle-down redc santo"></i></p>
+                        <p class="heading2 col-6 cpoint">Commercial <i class="fa-solid fa-angle-down redc santo2"></i> </p>
+                    </div>  
                       <button type="button" class="close heading" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -105,8 +108,8 @@
                         @foreach($data['property_type'] as $property_type)
                         @if($property_type->property_type == "residential")
                         <li>
-                          <label class="checkbox-label">
-                            <input type="checkbox" name="residential[]" value="{{$property_type->id}}" {{ (in_array($property_type->id, request('residential', [])) ? 'checked' : '') }}>
+                          <input type="checkbox" name="residential[]" id="{{$property_type->id}}" value="{{$property_type->id}}" {{ (in_array($property_type->id, request('residential', [])) ? 'checked' : '') }}>
+                          <label class="checkbox-label" for="{{$property_type->id}}">
                             {{$property_type->name}}
                           </label>
                         </li>
@@ -114,14 +117,15 @@
                         @endforeach
                       </ul>
                     </div>
-                    <p class="heading2 cpoint">Commercial <i class="fa-solid fa-angle-down redc santo2"></i> </p>
+                    
                     <div class="innersec2 dnone">
                       <ul class="subproperty d-flex">
                         @foreach($data['property_type'] as $property_type)
                         @if($property_type->property_type == "commercial")
                         <li>
-                          <label class="checkbox-label">
-                            <input type="checkbox" name="commercial[]" value="{{$property_type->id}}" {{ (in_array($property_type->id, request('commercial', [])) ? 'checked' : '') }}> {{$property_type->name}}
+                          <input type="checkbox" name="commercial[]" id="{{$property_type->id}}" value="{{$property_type->id}}" {{ (in_array($property_type->id, request('commercial', [])) ? 'checked' : '') }}> 
+                          <label class="checkbox-label" for="{{$property_type->id}}">
+                          {{$property_type->name}}
                           </label>
                         </li>
                         @endif

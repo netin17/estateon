@@ -43,7 +43,10 @@
             <div class="">
                 <div class="section1">
                     <div class="innersec dnone cpoint">
-                        <p class="heading1 cpoint">Residential <i class="fa-solid fa-angle-down redc santo"></i> </p>
+                      <div class="row">
+                        <p class="heading1 col-6 cpoint">Residential <i class="fa-solid fa-angle-down redc santo"></i> </p>
+                        <p class="heading2 col-6 cpoint">Commercial <i class="fa-solid fa-angle-down redc rot santo2"></i> </p>
+                      </div>
                         <div class="innersec1 ">
                             <ul class="subproperty d-flex ">
                               @foreach($data['property_type'] as $property_type)
@@ -58,7 +61,6 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <p class="heading2 cpoint mt-2">Commercial <i class="fa-solid fa-angle-down redc rot santo2"></i> </p>
                         <div class="innersec2 dnone">
                             <ul class="subproperty d-flex">
                               @foreach($data['property_type'] as $property_type)
