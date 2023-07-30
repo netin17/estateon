@@ -317,6 +317,18 @@
           }
         })
       })
+        // Function to update the "type" parameter in the URL and reload the page
+    function updateTypeParameter(value) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('type', value);
+        window.location.href = url.toString();
+    }
+
+    // Event listener for the "propertytype" select element
+    document.getElementById('propertytype').addEventListener('change', function() {
+        const selectedValue = this.value;
+        updateTypeParameter(selectedValue);
+    });
     })
   </script>
   @endsection
