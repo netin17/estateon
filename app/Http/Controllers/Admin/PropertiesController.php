@@ -347,7 +347,22 @@ class PropertiesController extends Controller
             $path = public_path() . '/uploads/image/property' . $id . '/';
             $file->move($path, $filename);
             $url = url('/uploads/image/property' . $id . '/' . $filename);
-            Images::where('property_id', $id)->where('featured', 1)->delete();
+
+            $image = Images::where('property_id', $id)->where('featured', 1)->first();
+            if ($image) {
+            // Get the image file path
+            $imagePath = public_path('uploads/image/property'.$image->property_id.'/'.$image->name);
+        
+            // Check if the image file exists
+            if (File::exists($imagePath)) {
+                // If the image file exists, unlink it from the server
+                File::delete($imagePath);
+            }
+        
+            // Delete the image record from the database
+            $image->delete();
+
+        }
             $image = Images::create([
                 'property_id' => $id,
                 'name' => $filename,
@@ -466,7 +481,7 @@ class PropertiesController extends Controller
 
     public function image($id)
     {
-        $data['images'] = Images::where('property_id', $id)->get();
+        $data['images'] = Images::where('property_id', $id)->where('featured', 0)->get();
         $data['property_id'] = $id;
         return view('admin.property.image', compact('data'));
         // exit;

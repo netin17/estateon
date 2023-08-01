@@ -40,6 +40,11 @@
                         </div>
                         <button class="btn-add-property-favorite fvrt-btn" data-original-title="Add Favorite">
                             <i class="far fa-heart"></i></button>
+
+                             {{-- Share button --}}
+    <button id="shareButton" class="cm-btn" style="margin:2px 2px">Share</button>
+    <!-- Toast message container -->
+    <div id="toastContainer"></div>
                     </div>
                 </div>
                 <div class="row">
@@ -70,7 +75,7 @@
                                     @endif
                                     @if($data['property']['property_details']->size > 1)
                                     <li>
-                                        <div class="text">Lot dimensions:</div>
+                                        <div class="text">Plot dimensions:</div>
                                         <div class="value">{{$data['property']['property_details']->length}}x{{$data['property']['property_details']->width}}</div>
                                     </li>
                                     @endif
@@ -259,49 +264,7 @@ function checkUserLoggedIn() {
       // Use the Auth::check() method to check if the user is logged in
       return {{ auth()->guard('frontuser')->check() ? 'true' : 'false' }};
     }
-// $('body').on('click', '#contact-agent-button', function () {		
-//         var that = $(this);
-//         var data = that.closest('form#contact-agent').serialize();
-        
-//         var isValid = true; 
-//         that.closest('form#contact-agent').find('input,textarea,select').each(function(){
-//             var name = $(this).attr('name');
-//     if(name=='message' && ($(this).val()=="others" || $(this).val()=="")){
-//         if($('#message').val().trim()==""){
-//             isValid = false; 
-//             $(this).addClass('field-error')
-//             $('#message').addClass('field-error')
-//         }
-//     }else if(name != 'othermessage' && ($(this).val() == "" || $(this).val() == null)){
-//         isValid = false; 
-//                 $(this).addClass('field-error')
-//     }else{
-//         if(name == 'othermessage' && ($('select[name="message"]').val()== "others" || $('select[name="message"]').val()=="") && ($(this).val() == "" || $(this).val() == null) ){
-//             isValid = false;
-//         }else{
-//             $(this).removeClass('field-error')
-//         }
-       
-//     }
-    
-//             // if($(this).val() == "" || $(this).val() == null){
-//             //     isValid = false; 
-//             //     $(this).addClass('field-error')
-//             // }else{
-                
-//             // }
 
-//         });
-//         //return false;
-
-//         that.closest('form').find('.message').removeClass('text-success').removeClass('text-danger').addClass('hide').html('')
-//         if(isValid == false){
-//             that.closest('form').find('.message').removeClass('hide').addClass('text-danger').html('Please enter all fields')
-//             return false;
-//         }
-//     //   $('#contact_form').submit();
-//         return false;
-//     })
 
   $(document).ready(function() {
 jQuery(".propty_silde").slick({
@@ -318,6 +281,43 @@ jQuery(".propty_silde").slick({
   nextArrow:
     "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
 });
+
+//Share button functionality
+document.getElementById('shareButton').addEventListener('click', function() {
+            // Create a new textarea element to hold the URL
+            var textarea = document.createElement('textarea');
+            textarea.value = window.location.href;
+
+            // Append the textarea to the DOM
+            document.body.appendChild(textarea);
+
+            // Copy the URL from the textarea
+            textarea.select();
+            document.execCommand('copy');
+
+            // Remove the textarea from the DOM
+            document.body.removeChild(textarea);
+
+            // Show the toast message
+            var toastContainer = document.getElementById('toastContainer');
+            var toastMessage = document.createElement('div');
+            toastMessage.className = 'share-toast';
+            toastMessage.innerText = 'Link copied!';
+            toastContainer.appendChild(toastMessage);
+
+            // Automatically remove the toast after a few seconds
+            setTimeout(function() {
+                toastContainer.removeChild(toastMessage);
+            }, 3000);
+        });
+
+        //!! share button functionality //
+
+
+
+
+
+
   })
 </script>
 @endsection

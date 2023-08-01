@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\File;
 use App\Traits\CommonTrait;
 
 class PropertiesController extends Controller
@@ -543,7 +544,9 @@ class PropertiesController extends Controller
     public function addImages($slug)
     {
         if (Auth::check()) {
-            $property =  Property::where('slug', $slug)->with(['images'])->first();
+            $property =  Property::where('slug', $slug)->with(['images'=>function($query){
+                $query->where('featured',0);
+            }])->first();
             if ($property) {
                 $userId = Auth::user()->id;
                 if ($userId != $property->user_id) {
@@ -566,14 +569,26 @@ class PropertiesController extends Controller
     }
     public function deleteimage($id)
     {
-        //
-        // if (!Gate::allows('users_manage')) {
-        //     return abort(401);
-        // }
+        try {
         $image = Images::findOrFail($id);
-        $image->delete();
 
-        return redirect()->route('frontuser.property.image', $image->property_id);
+        // Get the image file path
+        $imagePath = public_path('uploads/image/property'.$image->property_id.'/'.$image->name);
+    
+        // Check if the image file exists
+        if (File::exists($imagePath)) {
+            // If the image file exists, unlink it from the server
+            File::delete($imagePath);
+        }
+    
+        // Delete the image record from the database
+        $image->delete();
+    
+
+        return response()->json(['success' => true, 'message' => 'Image deleted successfully']);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => 'Failed to delete image']);
+    }
     }
     public function leads($slug)
     {

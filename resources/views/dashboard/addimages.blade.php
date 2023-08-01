@@ -1,6 +1,7 @@
 @extends('layouts.estate')
 @section('content')
 <link rel="stylesheet" href="{{ url('estate/css/newcss/jquery.fancybox.min.css')}}" />
+<link rel="stylesheet" href="{{ url('estate/js/toastr/toastr.min.css')}}" />
 <section class="dashboard-section">
   <div class="container">
     <div class="dashboard-row d-flex flex-wrap">
@@ -21,11 +22,22 @@
             </div>
           </div>
           <div id="imagePreviewContainer" class="row">
-            @foreach($data['property']->images as $image)
-            <div class="image-grid property-doc-col"><a href="{{$image->url}}" data-fancybox="gallery"><img src="{{$image->url}}" class="property-doc-img"></a></div>
-
-            @endforeach
-          </div>
+    @foreach($data['property']->images as $image)
+    <div class="image-grid property-doc-col">
+        <a href="{{$image->url}}" data-fancybox="gallery">
+            <img src="{{$image->url}}" class="property-doc-img">
+        </a>
+        <button class="delete-image-btn" data-image-id="{{$image->id}}">&times;</button>
+    </div>
+    @endforeach
+</div>
+<div class="row justify-content-end">
+                                        <div class="step-form-group pt-xl-0 col-md-3">
+                                            <div class="d-flex">
+<button type="button" class="w-100 d-block step-next-btn btn-danger ms-2 transition">Next</button>
+                                            </div>
+                                        </div>
+</div>
         </div>
       </div>
     </div>
@@ -35,6 +47,7 @@
 @endsection
 @section('scripts')
 <script src="{{ url('estate/js/jquery.fancybox.min.js')}}"></script>
+<script src="{{ url('estate/js/toastr/toastr.min.js')}}"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     $.fancybox.defaults.animationEffect = "none";
@@ -75,8 +88,12 @@
               var imageUrl = response.url;
 
               // Append the uploaded image to the grid view
-              var imageHtml = '<div class="image-grid property-doc-col"><a href="' + imageUrl + '" data-fancybox="gallery"><img src="' + imageUrl + '"></a></div>';
-              $('#imagePreviewContainer').append(imageHtml);
+              var imageHtml = '<div class="image-grid property-doc-col">' +
+        '<a href="' + imageUrl + '" data-fancybox="gallery">' +
+        '<img src="' + imageUrl + '" class="property-doc-img"></a>' +
+        '<button class="delete-image-btn" data-image-id="' + imageId + '">&times;</button>' +
+        '</div>';
+    $('#imagePreviewContainer').append(imageHtml);
 
               // Reset the file input
               $('#imageInput').val('');
@@ -85,10 +102,11 @@
               $('[data-fancybox="gallery"]').fancybox();
               // Hide loader
               $('#loader').hide();
+              toastr.success('Image uploaded successfully.');
             },
             error: function(xhr, status, error) {
               // Handle error response
-              console.error(xhr.responseText);
+              toastr.error(xhr.responseText, 'Error');
               // Hide loader
               $('#loader').hide();
             }
@@ -100,6 +118,56 @@
       }
     });
     $('[data-fancybox="gallery"]').fancybox();
+
+//DELETE IMAGE//
+$('#imagePreviewContainer').on('click', '.delete-image-btn', function() {
+            var imageId = $(this).data('image-id');
+            
+            // Ask for confirmation before proceeding with deletion
+            if (confirm('Are you sure you want to delete this image?')) {
+                // Send AJAX request to delete the image
+                $.ajax({
+                    type: 'DELETE',
+                    url: "/frontuser/deleteimage/" + imageId,
+                    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Image deleted successfully, remove the image from the DOM
+                            $(this).parent('.image-grid').remove();
+                            // Optionally, you can show a success message to the user
+                            toastr.success(response.message, 'Success');
+                        } else {
+                            // Failed to delete image, show an error message
+                            toastr.error(response.message, 'Error');
+                        }
+                    }.bind(this),
+                    error: function() {
+                        // Show an error message if the AJAX request fails
+                        alert('Failed to delete image. Please try again later.');
+                    }
+                });
+            }
+        });
+
+//!!DELETE IMAGE//
+// Click event handler for the "Next" button
+$('.step-next-btn').on('click', function() {
+        // Show a success toast message
+        var approved="{{$data['property']->approved}}";
+       if(approved=='0'){
+        toastr.success('Your Property will be live after verification');
+       }else{
+        toastr.success('Your Property details saved successfully');
+       }
+        // Set a small delay to give time for the toast to be displayed
+        setTimeout(function() {
+            // Redirect to the next page here
+            window.location.href = "{{ route('frontuser.property.index') }}";
+        }, 1500); // Adjust the delay time as needed
+    });
+
   });
 </script>
 @endsection

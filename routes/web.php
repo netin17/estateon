@@ -127,7 +127,7 @@ Route::group(['middleware' => ['auth:frontuser'], 'prefix' => 'frontuser', 'as' 
     Route::any('images/{id}','PropertiesController@image')->name('property.image');
     Route::get('conversastion/{id?}', 'ChatController@index')->name('property.conversastion');
     Route::post('addimage', 'PropertiesController@addimage')->name('property.addimage');
-    Route::any('deleteimage/{id}', 'PropertiesController@deleteimage')->name('property.deleteimage');
+    Route::delete('deleteimage/{id}', 'PropertiesController@deleteimage')->name('property.deleteimage');
     Route::get('propertyleads/{slug}', 'PropertiesController@leads')->name('property.leads');
     Route::get('wishlist', 'PropertiesController@wishlist')->name('user.wishlist');
     Route::get('plans/{slug}', 'SubscriptionController@displayPlans')->name('plans.list');

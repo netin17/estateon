@@ -2327,7 +2327,43 @@ ul.subproperty.d-flex {
   border-radius: 50%;
   animation: spin 2s linear infinite;
 }
+/* Position the delete button */
+.image-grid {
+  position: relative;
+}
 
+.delete-image-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+
+ /* CSS for the share toast message */
+ .share-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 9999;
+}
+/* Add some padding around the image */
+.property-doc-img {
+  padding: 10px;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
