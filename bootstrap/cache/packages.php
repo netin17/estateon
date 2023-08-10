@@ -89,6 +89,13 @@
       'Bouncer' => 'Silber\\Bouncer\\BouncerFacade',
     ),
   ),
+  'silviolleite/laravelpwa' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LaravelPWA\\Providers\\LaravelPWAServiceProvider',
+    ),
+  ),
   'tymon/jwt-auth' => 
   array (
     'aliases' => 
