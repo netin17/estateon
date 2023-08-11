@@ -34,7 +34,7 @@
                         <table class="w-100 listed-properties-table" style="border-collapse: separate;">
                             <thead>
                                 <tr>
-                                    <th class="table-title">ID</th>
+                                    <th class="table-title">Property ID</th>
                                     <th class="table-title">Property Title</th>
                                     <th class="table-title">Visiter's Phone</th>
                                     <th class="table-title">Time</th>
@@ -51,7 +51,7 @@
                                 <tr>
                                     <td class="table-data">
                                         <div class="listed-properties-table-data">
-                                            <p>{{$visiter->id ?? ''}}</p>
+                                            <p>{{$visiter->property->id ?? ''}}</p>
                                         </div>
                                     </td>
                                     <td class="table-data">

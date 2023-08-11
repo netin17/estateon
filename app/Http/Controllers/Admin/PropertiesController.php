@@ -565,7 +565,7 @@ public function deleteimage($id)
         }
         $data = [];
         //$data['property_type'] = PropertyType::get();
-        $data['leads'] = Leads::where('property_id',$propertyID)->get();
+        $data['leads'] = Leads::where('property_id',$propertyID)->orderBy('id','DESC')->paginate(10);
 
         return view('admin.property.leads', compact('data'));
     }

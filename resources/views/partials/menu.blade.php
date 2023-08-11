@@ -172,6 +172,18 @@
                 Queries
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.visitors.list') }}" class="nav-link {{ request()->is('visitors') ? 'active' : '' }}">
+            <i class="nav-icon fa fa-motorcycle"></i>
+                Visitors
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.leads.list') }}" class="nav-link {{ request()->is('leads') ? 'active' : '' }}">
+            <i class="nav-icon fa fa-line-chart"></i>
+                Leads
+            </a>
+        </li>
         @endcan
 
         @if(Auth::user()->user_level == 2)

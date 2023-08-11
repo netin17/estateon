@@ -321,7 +321,8 @@ class PropertiesController extends Controller
             $message =  ($data['message']=="others" || $data['message']=="") ? $data['othermessage']:$data['message'];
             $propertyID =  $data['property_id'];
             $subplan_id = isset($data['subplan_id']) ? $data['subplan_id']: null;
-            $query = Leads::create(['name'=>$name,
+            $query = Leads::create([
+            'name'=>$name,
              'email'=>$email,
               'phone'=>$phone,
                'message'=>$message,

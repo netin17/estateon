@@ -15,5 +15,8 @@ class Leads extends Model
     public function subplan(){
         return $this->belongsTo('App\SubscriptionPlan', 'subplan_id');
     }
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id');
+    }
   
 }
