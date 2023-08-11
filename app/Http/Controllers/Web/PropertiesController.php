@@ -299,11 +299,19 @@ class PropertiesController extends Controller
         
         // try {
             //$user_id = Auth::guard('frontuser')->id();
-
+            if(Auth::guard('frontuser')->check()){
+                $userId = Auth::guard('frontuser')->id();
             $validated = $request->validate([
                 'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'], // Allow only letters and spaces
                 'email' => 'required|email',
-                'phone' => 'required',
+                'phone' => ['required', 'regex:/^[6789]\d{9}$/']
+            ],[
+                'name.required' => 'The name field is required.',
+                'name.regex' => 'The name field should only contain letters and spaces.',
+                'email.required' => 'The email field is required.',
+                'email.email' => 'Please enter a valid email address.',
+                'phone.required' => 'The phone number field is required.',
+                'phone.regex' => 'Please enter a valid Indian phone number.',
             ]);
             $data = $request->all(); 
            
@@ -313,13 +321,23 @@ class PropertiesController extends Controller
             $message =  ($data['message']=="others" || $data['message']=="") ? $data['othermessage']:$data['message'];
             $propertyID =  $data['property_id'];
             $subplan_id = isset($data['subplan_id']) ? $data['subplan_id']: null;
-            $time = time();
-            $query = Leads::create(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'message'=>$message, 'property_id'=>$propertyID, 'subplan_id'=>$subplan_id, 'viewed'=>0, 'created_at'=> $time]);
+            $query = Leads::create(['name'=>$name,
+             'email'=>$email,
+              'phone'=>$phone,
+               'message'=>$message,
+                'property_id'=>$propertyID,
+                 'subplan_id'=>$subplan_id,
+                  'viewed'=>0,
+                  'user_id'=> $userId
+                ]);
             if($query){
                 return redirect()->back()->with('message', 'Thank you, We will contact you soon');
             }else{
                 return redirect()->back()->with('message', 'Thank you, We will contact you soon');
             }
+        }else{
+            return redirect()->back()->withErrors(['error' => 'Unauthorized']);
+        }
 
             
         // } catch (Exception $e) {

@@ -58,6 +58,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+    public function ownsProperty($propertyId)
+    {
+        return $this->properties()->where('id', $propertyId)->exists();
+    }
     public function properties()
     {
         return $this->hasMany('App\Property', 'user_id');

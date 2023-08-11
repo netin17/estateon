@@ -136,6 +136,9 @@ Route::group(['middleware' => ['auth:frontuser'], 'prefix' => 'frontuser', 'as' 
     Route::get('change_password', 'HomeController@showChangePasswordForm')->name('frontuser.change_password');
     Route::patch('change_password', 'HomeController@changePassword')->name('frontuser.change_password');
     Route::post('addContact', 'HomeController@addContact')->name('contacts.add');
+
+    Route::post('property/{propertyId}/visit', 'PropertyVisitorController@visitProperty');
+    Route::get('properties/visitors', 'PropertyVisitorController@visitors')->name('property.visitors');
     //Route::post('property/create', 'PropertiesController@create')->name('frontuser.property.create');
 }); 
 
