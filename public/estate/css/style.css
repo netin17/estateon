@@ -1458,6 +1458,7 @@ section.pprty_detail {
   background: #f05e59;
   line-height: 47px;
   color: #fff;
+  margin: 10px;
 }
 .fvrt-btn i {
   font-size: 20px;
@@ -2661,6 +2662,7 @@ h4.Agnt_name {
     height: 35px;
     width: 36px;
     line-height: 40px;
+    margin: 10px;
   }
   .property-action-detail.ali-right {
     margin: 13px 0 0;

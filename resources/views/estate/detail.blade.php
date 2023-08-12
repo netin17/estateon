@@ -42,9 +42,26 @@
                             <i class="far fa-heart"></i></button>
 
                              {{-- Share button --}}
-    <button id="shareButton" class="cm-btn" style="margin:2px 2px">Share</button>
+                             {{-- <button id="shareButton" class="cm-btn" style="margin:2px 2px">Share</button> --}}
+
+
+
+    <div class="social-sharing">
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank" rel="noopener">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+    </a>
+    <!-- Twitter -->
+    <a href="https://twitter.com/intent/tweet?url={{ url()->current() }}&text={{ urlencode($data['property']['slug']) }}" target="_blank" rel="noopener">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+    </a>
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url()->current() }}" target="_blank" rel="noopener">
+        <i class="fa fa-linkedin" aria-hidden="true"></i>
+    </a>
+</div>
     <!-- Toast message container -->
-    <div id="toastContainer"></div>
+    {{-- <div id="toastContainer"></div> --}}
                     </div>
                 </div>
                 <div class="row">
@@ -283,33 +300,33 @@ jQuery(".propty_silde").slick({
 });
 
 //Share button functionality
-document.getElementById('shareButton').addEventListener('click', function() {
-            // Create a new textarea element to hold the URL
-            var textarea = document.createElement('textarea');
-            textarea.value = window.location.href;
+// document.getElementById('shareButton').addEventListener('click', function() {
+//             // Create a new textarea element to hold the URL
+//             var textarea = document.createElement('textarea');
+//             textarea.value = window.location.href;
 
-            // Append the textarea to the DOM
-            document.body.appendChild(textarea);
+//             // Append the textarea to the DOM
+//             document.body.appendChild(textarea);
 
-            // Copy the URL from the textarea
-            textarea.select();
-            document.execCommand('copy');
+//             // Copy the URL from the textarea
+//             textarea.select();
+//             document.execCommand('copy');
 
-            // Remove the textarea from the DOM
-            document.body.removeChild(textarea);
+//             // Remove the textarea from the DOM
+//             document.body.removeChild(textarea);
 
-            // Show the toast message
-            var toastContainer = document.getElementById('toastContainer');
-            var toastMessage = document.createElement('div');
-            toastMessage.className = 'share-toast';
-            toastMessage.innerText = 'Link copied!';
-            toastContainer.appendChild(toastMessage);
+//             // Show the toast message
+//             var toastContainer = document.getElementById('toastContainer');
+//             var toastMessage = document.createElement('div');
+//             toastMessage.className = 'share-toast';
+//             toastMessage.innerText = 'Link copied!';
+//             toastContainer.appendChild(toastMessage);
 
-            // Automatically remove the toast after a few seconds
-            setTimeout(function() {
-                toastContainer.removeChild(toastMessage);
-            }, 3000);
-        });
+//             // Automatically remove the toast after a few seconds
+//             setTimeout(function() {
+//                 toastContainer.removeChild(toastMessage);
+//             }, 3000);
+//         });
 
         //!! share button functionality //
 //record user visit to page//

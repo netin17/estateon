@@ -2361,6 +2361,33 @@ ul.subproperty.d-flex {
   z-index: 9999;
 }
 /* Add some padding around the image */
+/*
+social media share
+*/
+.social-sharing {
+  display: flex;
+  gap: 10px;
+}
+
+.social-sharing a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #f05e59;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.social-sharing a:hover {
+  background-color: #f05e59;
+}
+/*
+social media share
+*/
 .property-doc-img {
   padding: 10px;
 }
