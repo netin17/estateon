@@ -56,56 +56,73 @@
                                 <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
                                     @foreach($data['property_type_commercial'] as $propert)
                                     <option value="{{ $propert['id'] }}">{{ $propert['name'] }}</option>
-                                    @endforeach
-                                </select>
-                            </div> --}}
-                            <div class="profile-form-group d-flex align-items-center mb-4">
-  <label for="type" class="d-block">Properties Type</label>
-  <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
-  {{-- Options will be dynamically updated based on the selected property_category --}}
-  </select>
-</div>
-                            <div class="profile-form-group d-flex align-items-center mb-4">
-                                <label for="vastu" class="d-block">Properties Vastu </label>
-                                <select name="vastu" id="vastu" class="form-control d-block profile-form-fild select2 m-0" required>
-                                    @foreach($data['vastu'] as $vast)
-                                    <option value="{{ $vast['id'] }}">{{ $vast['name'] }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="profile-form-group d-flex align-items-center mb-4">
-                                <label for="title" class="d-block">Property Title</label>
-                                <input type="text" id="title" name="property_title" placeholder="" class="form-control d-block profile-form-fild" required />
-                            </div>
-                            <div class="profile-form-group d-flex align-items-center mb-4">
-                                <label for="banner-image" class="d-block">Banner Image <span class="d-block red-font" style="font-size: 12px;">(jpeg or png. only)</span></label>
-                                <input type="file" name="banner_image" id="banner-image" placeholder="" class="d-block form-control profile-form-fild" required />
-                            </div>
-                          </div>
-                        <div class="tab">
-                        <h3 class="dark-font text-center step-title">Add Location</h3>
-                            <div class="row mt-5">
-                            <div class="col-md-6">
-                                <div class="map-section-wrap">
-                                    <!--Google map-->
-                                    <div id="address-map-container" style="width:100%;height:400px; ">
-                                        <div style="width: 100%; height: 100%" id="address-map"></div>
-                                    </div>
+                            @endforeach
+                            </select>
+                        </div> --}}
+                        <div class="profile-form-group d-flex align-items-center mb-4">
+                            <label for="type" class="d-block">Properties Type</label>
+                            <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
+                                {{-- Options will be dynamically updated based on the selected property_category --}}
+                            </select>
+                        </div>
+                        <div class="profile-form-group d-flex align-items-center mb-4">
+                            <label for="vastu" class="d-block">Properties Vastu </label>
+                            <select name="vastu" id="vastu" class="form-control d-block profile-form-fild select2 m-0" required>
+                                @foreach($data['vastu'] as $vast)
+                                <option value="{{ $vast['id'] }}">{{ $vast['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="profile-form-group d-flex align-items-center mb-4">
+                            <label for="title" class="d-block">Property Title</label>
+                            <input type="text" id="title" name="property_title" placeholder="" class="form-control d-block profile-form-fild" required />
+                        </div>
+                        <div class="profile-form-group d-flex align-items-center mb-4">
+                            <label for="banner-image" class="d-block">Banner Image <span class="d-block red-font" style="font-size: 12px;">(jpeg or png. only)</span></label>
+                            <input type="file" name="banner_image" id="banner-image" placeholder="" class="d-block form-control profile-form-fild" required />
+                        </div>
+                </div>
+                <div class="tab">
+                    <h3 class="dark-font text-center step-title">Add Location</h3>
+                    <div class="row mt-5">
+                        <div class="col-md-6">
+                            <div class="map-section-wrap">
+                                <!--Google map-->
+                                <div id="address-map-container" style="width:100%;height:400px; ">
+                                    <div style="width: 100%; height: 100%" id="address-map"></div>
+                                </div>
 
-                                    <!--Google Maps-->
-                                </div>
-                                <div hidden class="form-group {{ $errors->has('lat') ? 'has-error' : '' }}">
-                                    <input type="hidden" id="address-latitude" name="lat" class="form-control" value="">
-                                </div>
-                                <div hidden class="form-group {{ $errors->has('lng') ? 'has-error' : '' }}">
-                                    <input type="hidden" id="address-longitude" name="lng" class="form-control" value="">
-                                </div>
+                                <!--Google Maps-->
                             </div>
-                            <div class="col-md-6">
+                            <div hidden class="form-group {{ $errors->has('lat') ? 'has-error' : '' }}">
+                                <input type="hidden" id="address-latitude" name="lat" class="form-control" value="">
+                            </div>
+                            <div hidden class="form-group {{ $errors->has('lng') ? 'has-error' : '' }}">
+                                <input type="hidden" id="address-longitude" name="lng" class="form-control" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="step-form-group mb-3">
                                 <label for="name" class="step-form-label">Property/ Project Name</label>
                                 <input type="text" id="name-input" name="name" placeholder="Name" class="step-form-field w-100 d-block" required />
                             </div>
+
+                            <div class="step-form-group mb-3">
+                                <label for="name" class="step-form-label">State</label>
+                                <select name="state_id" id="state_id" class="form-control d-block profile-form-fild select2 m-0" required>
+                                <option value="">--Select--</option>
+                                @foreach($data['states'] as $state)
+                                    <option value="{{ $state['id'] }}">{{ $state['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="step-form-group mb-3">
+                                <label for="name" class="step-form-label">City</label>
+                                <select name="city_id" id="city_id" class="form-control d-block profile-form-field select2 m-0" required>
+                                    <!-- Cities will be populated dynamically -->
+                                </select>
+                            </div>
+
                             <div class="step-form-group mb-3">
                                 <label for="address" class="step-form-label">Property Address (Ref. Google Map)</label>
                                 <input type="text" id="address-input" name="address" placeholder="Address" class="step-form-field w-100 d-block" required />
@@ -113,102 +130,102 @@
                             <div class="step-form-group mb-5">
                                 <label for="locality" class="step-form-label">Locality</label>
                                 <input type="text" id="locality" placeholder="Add Nearby Locality" name="locality" class="step-form-field w-100 d-block" required />
-                            </div>    
-                        </div>
-                        </div>
-                        </div>
-                        <div class="tab">
-                            <h3 class="dark-font text-center step-title">Price & Description</h3>
-                            <div class="row mt-4">
-                            <div class="step-form-group mb-3 col-md-6">
-                                <label for="Price" class="step-form-label">Price</label>
-                                <input type="number" id="price" name="price" min="1" placeholder="e.g. 100000" class="step-form-field w-100 d-block" required />
-                            </div>
-                            <div class="step-form-group mb-3 col-md-6">
-                                <label for="size" class="step-form-label">Size (sq. feet)</label>
-                                <input type="text" id="size" name="size" placeholder="250" class="step-form-field w-100 d-block" />
-                            </div>
-                            <div class="step-form-group mb-3 col-md-6">
-                                <label for="length" class="step-form-label">Length (sq. feet)</label>
-                                <input type="text" id="length" name="length" placeholder="25" class="step-form-field w-100 d-block" />
-                            </div>
-                            <div class="step-form-group mb-3 col-md-6">
-                                <label for="width" class="step-form-label">Width (sq. feet)</label>
-                                <input type="text" id="width" name="width" placeholder="203" class="step-form-field w-100 d-block" />
-                            </div>
-                           <div class="step-form-group mb-3 col-12">
-                                <label for="Description" class="step-form-label">Description</label>
-                                <textarea id="description" name="description" cols="30" rows="5" class="textarea" placeholder="Write here" required></textarea>
-                            </div> 
                             </div>
                         </div>
-                        <div class="tab">
-                            <h3 class="dark-font text-center step-title">Amenities & Other Preferences</h3>
-                            <div class="row">
+                    </div>
+                </div>
+                <div class="tab">
+                    <h3 class="dark-font text-center step-title">Price & Description</h3>
+                    <div class="row mt-4">
+                        <div class="step-form-group mb-3 col-md-6">
+                            <label for="Price" class="step-form-label">Price</label>
+                            <input type="number" id="price" name="price" min="1" placeholder="e.g. 100000" class="step-form-field w-100 d-block" required />
+                        </div>
+                        <div class="step-form-group mb-3 col-md-6">
+                            <label for="size" class="step-form-label">Carpet Area* (sq. feet)</label>
+                            <input type="text" id="carpet_area" name="carpet_area" placeholder="250" class="only-numbers step-form-field w-100 d-block" required/>
+                        </div>
+                        <div class="step-form-group mb-3 col-md-6">
+                            <label for="length" class="step-form-label">Super Area (sq. feet)</label>
+                            <input type="text" id="super_area" name="super_area" placeholder="25" class="only-numbers step-form-field w-100 d-block" />
+                        </div>
+                        <div class="step-form-group mb-3 col-md-6">
+                            <label for="width" class="step-form-label">Build-in area (sq. feet)</label>
+                            <input type="text" id="build_up_area" name="build_up_area" placeholder="203" class="only-numbers step-form-field w-100 d-block" />
+                        </div>
+                        <div class="step-form-group mb-3 col-12">
+                            <label for="Description" class="step-form-label">Description</label>
+                            <textarea id="description" name="description" cols="30" rows="5" class="textarea" placeholder="Write here" required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab">
+                    <h3 class="dark-font text-center step-title">Amenities & Other Preferences</h3>
+                    <div class="row">
+                        <div class="col-md-3 col-6">
+                            @php $amenityCount = count($data['amenity']); @endphp
+                            @foreach($data['amenity'] as $index => $amenity)
+                            <div class="step-checkbox-group mb-lg-4 mb-3">
+                                <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $amenity['id'] }}" id="{{ $amenity['id'] }}">
+                                <label class="form-check-label" for="{{ $amenity['id'] }}">
+                                    {{ $amenity['name'] }}
+                                </label>
+                            </div>
+                            @if(($index + 1) % 7 == 0 && ($index + 1) < $amenityCount) </div>
                                 <div class="col-md-3 col-6">
-                                    @php $amenityCount = count($data['amenity']); @endphp
-                                    @foreach($data['amenity'] as $index => $amenity)
-                                    <div class="step-checkbox-group mb-lg-4 mb-3">
-                                        <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $amenity['id'] }}" id="{{ $amenity['id'] }}">
-                                        <label class="form-check-label" for="{{ $amenity['id'] }}">
-                                            {{ $amenity['name'] }}
-                                        </label>
-                                    </div>
-                                    @if(($index + 1) % 7 == 0 && ($index + 1) < $amenityCount) </div>
-                                        <div class="col-md-3 col-6">
-                                            @endif
-                                            @endforeach
-                                        </div>
+                                    @endif
+                                    @endforeach
                                 </div>
+                        </div>
 
-                                <div class="row">
+                        <div class="row">
+                            <div class="col-md-3 col-6">
+                                @php $preferenceCount = count($data['preferences']); @endphp
+                                @foreach($data['preferences'] as $index => $preference)
+                                <div class="step-checkbox-group mb-lg-4 mb-3">
+                                    <input class="form-check-input" name="additional[]" type="checkbox" value="{{ $preference['id'] }}" id="checkbox{{ $preference['id'] }}">
+                                    <label class="form-check-label" for="checkbox{{ $preference['id'] }}">
+                                        {{ $preference['name'] }}
+                                    </label>
+                                </div>
+                                @if(($index + 1) % 7 == 0 && ($index + 1) < $preferenceCount) </div>
                                     <div class="col-md-3 col-6">
-                                        @php $preferenceCount = count($data['preferences']); @endphp
-                                        @foreach($data['preferences'] as $index => $preference)
-                                        <div class="step-checkbox-group mb-lg-4 mb-3">
-                                            <input class="form-check-input" name="additional[]" type="checkbox" value="{{ $preference['id'] }}" id="checkbox{{ $preference['id'] }}">
-                                            <label class="form-check-label" for="checkbox{{ $preference['id'] }}">
-                                                {{ $preference['name'] }}
-                                            </label>
-                                        </div>
-                                        @if(($index + 1) % 7 == 0 && ($index + 1) < $preferenceCount) </div>
-                                            <div class="col-md-3 col-6">
-                                                @endif
-                                                @endforeach
-                                            </div>
+                                        @endif
+                                        @endforeach
                                     </div>
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <h3 class="dark-font text-center step-title">Other information</h3>
+                            <div class="row mt-4">
+                                <div class="step-form-group mb-3 col-md-6">
+                                    <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
+                                    <input type="text" id="project-id" placeholder="HY174257" name="rera_number" class="step-form-field step-form-field-other-info w-100 d-block" />
                                 </div>
-                                <div class="tab">
-                                    <h3 class="dark-font text-center step-title">Other information</h3>
-                                    <div class="row mt-4">
-                                    <div class="step-form-group mb-3 col-md-6">
-                                        <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
-                                        <input type="text" id="project-id" placeholder="HY174257" name="rera_number" class="step-form-field step-form-field-other-info w-100 d-block" />
-                                    </div>
-                                    <div class="step-form-group mb-3 col-md-6">
-                                        <label for="include" class="step-form-label">Govt Tax Include</label>
-                                        <select name="govt_tax_include" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="govt_tax">
-                                            <option value="1">Included</option>
-                                            <option value="0">Not Included</option>
-                                        </select>
-                                    </div>
-                                    <div class="step-form-group col-md-6 mb-3">
-                                        <label for="extra_notes" class="text-heading step-form-label">Extra Notes</label>
-                                        <input type="text" id="extra_notes" name="extra_notes" class="form-control m-0 step-form-field step-form-field-other-info w-100 d-block">
+                                <div class="step-form-group mb-3 col-md-6">
+                                    <label for="include" class="step-form-label">Govt Tax Include</label>
+                                    <select name="govt_tax_include" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="govt_tax">
+                                        <option value="1">Included</option>
+                                        <option value="0">Not Included</option>
+                                    </select>
+                                </div>
+                                <div class="step-form-group col-md-6 mb-3">
+                                    <label for="extra_notes" class="text-heading step-form-label">Extra Notes</label>
+                                    <input type="text" id="extra_notes" name="extra_notes" class="form-control m-0 step-form-field step-form-field-other-info w-100 d-block">
 
-                                    </div>
-                                    <div class="step-form-group col-md-6 mb-3">
-                                        <label for="type" class="step-form-label">Furnished</label>
-                                        <select name="furnished" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="type">
-                                            <option value="">--Select--</option>
-                                            <option value="furnished">Furnished</option>
-                                            <option value="unfurnished">Un Furnished</option>
-                                            <option value="semi_furnished">Semi Furnished</option>
-                                        </select>
-                                    </div>
-                                    </div>
                                 </div>
-                                {{--
+                                <div class="step-form-group col-md-6 mb-3">
+                                    <label for="type" class="step-form-label">Furnished</label>
+                                    <select name="furnished" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="type">
+                                        <option value="">--Select--</option>
+                                        <option value="furnished">Furnished</option>
+                                        <option value="unfurnished">Un Furnished</option>
+                                        <option value="semi_furnished">Semi Furnished</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        {{--
             <div class="tab">
             <h3 class="dark-font text-center step-title">Add Images (jpeg or png. only)</h3>
             <div class="row">
@@ -226,14 +243,14 @@
   <div id="imagePreviewContainer" class="row"></div>
             </div>
             --}}
-                                <div style="overflow:auto;">
-                                    <div class="d-flex justify-content-end mt-5 controal-btns">
-                                        <button type="button" class="previous px-5 step-back-btn d-block transition me-2">Previous</button>
-                                        <button type="button" class="next contact-sub-btn btn btn-primary m-0">Next</button>
-                                        <button type="button" class="submit px-5 contact-sub-btn btn btn-primary m-0">Submit</button>
-                                    </div>
-                                </div>
-                                {{-- <!-- Circles which indicates the steps of the form: -->
+                        <div style="overflow:auto;">
+                            <div class="d-flex justify-content-end mt-5 controal-btns">
+                                <button type="button" class="previous px-5 step-back-btn d-block transition me-2">Previous</button>
+                                <button type="button" class="next contact-sub-btn btn btn-primary m-0">Next</button>
+                                <button type="button" class="submit px-5 contact-sub-btn btn btn-primary m-0">Submit</button>
+                            </div>
+                        </div>
+                        {{-- <!-- Circles which indicates the steps of the form: -->
             <div style="text-align:center;margin-top:40px;">
                 <span class="step">1</span>
                 <span class="step">2</span>
@@ -243,12 +260,12 @@
                 <span class="step">6</span>
             </div>
             --}}
-                    </form>
+                        </form>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 @endsection
 @section('scripts')
@@ -259,11 +276,11 @@
 <script src="{{ url('/js/mapInput.js')}}"></script>
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxCC1NFlOCM9k9pI4paC8vhJytSY4t054&libraries=places&callback=initMap"></script>
 <script type="text/javascript">
-//     jQuery.validator.setDefaults({
-//   // This will ignore all hidden elements alongside `contenteditable` elements
-//   // that have no `name` attribute
-//   ignore: ":hidden, [contenteditable='true']:not([description])"
-// });
+    //     jQuery.validator.setDefaults({
+    //   // This will ignore all hidden elements alongside `contenteditable` elements
+    //   // that have no `name` attribute
+    //   ignore: ":hidden, [contenteditable='true']:not([description])"
+    // });
 
     var val = {
         rules: {
@@ -296,28 +313,26 @@
             locality: 'Select nearby locality',
             price: 'Enter price for your property'
         },
-    
+
     }
-//     if ($.validator.methods.summernoteRequired) {
-//   // The summernoteRequired method is added
-//   console.log('summernoteRequired method is added');
-// } else {
-//   // The summernoteRequired method is not added
-//   console.log('summernoteRequired method is not added');
-// }
+    //     if ($.validator.methods.summernoteRequired) {
+    //   // The summernoteRequired method is added
+    //   console.log('summernoteRequired method is added');
+    // } else {
+    //   // The summernoteRequired method is not added
+    //   console.log('summernoteRequired method is not added');
+    // }
 
 
 
-var multiStepForm = $("#addProperty").multiStepForm({
+    var multiStepForm = $("#addProperty").multiStepForm({
         // defaultStep:0,
         beforeSubmit: function(form, submit) {
             console.log("called before submiting the form");
-            console.log(form);
-            console.log(submit);
         },
         validations: val
     }).navigateTo(0);
-console.log(multiStepForm.getCurrentStepIndex())
+    console.log(multiStepForm.getCurrentStepIndex())
     $(function() {
         // Summernote
         $('.textarea').summernote()
@@ -450,38 +465,78 @@ console.log(multiStepForm.getCurrentStepIndex())
 
 
     var propertyTypes = {
-    residential: @json($data['property_type_residential']),
-    commercial: @json($data['property_type_commercial'])
-  };
+        residential: @json($data['property_type_residential']),
+        commercial: @json($data['property_type_commercial'])
+    };
 
-  function updatePropertyTypes() {
-    var selectedCategory = $('#property_category').val();
-    var propertyTypeSelect = $('#property_type_commercial');
-    var propertyTypeOptions = propertyTypes[selectedCategory];
+    function updatePropertyTypes() {
+        var selectedCategory = $('#property_category').val();
+        var propertyTypeSelect = $('#property_type_commercial');
+        var propertyTypeOptions = propertyTypes[selectedCategory];
 
-    // Clear existing options
-    propertyTypeSelect.empty();
+        // Clear existing options
+        propertyTypeSelect.empty();
 
-    // Add new options based on the selected property_category
-    $.each(propertyTypeOptions, function(index, propertyType) {
-      propertyTypeSelect.append($('<option>', {
-        value: propertyType.id,
-        text: propertyType.name
-      }));
-    });
-  }
+        // Add new options based on the selected property_category
+        $.each(propertyTypeOptions, function(index, propertyType) {
+            propertyTypeSelect.append($('<option>', {
+                value: propertyType.id,
+                text: propertyType.name
+            }));
+        });
+    }
 
-  // Initial update based on the default selected property_category
-  updatePropertyTypes();
-
-  // Event listener for property_category change
-  $('#property_category').change(function() {
+    // Initial update based on the default selected property_category
     updatePropertyTypes();
-  });
+
+
+    //number only function
+    function allow_numbers_only(event) {
+        // Allow: backspace, delete, tab, escape, enter, and .
+        if ($.inArray(event.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+            // Allow: Ctrl+A, Command+A
+            (event.keyCode === 65 && (event.ctrlKey === true || event.metaKey === true)) ||
+            // Allow: home, end, left, right, down, up
+            (event.keyCode >= 35 && event.keyCode <= 40)) {
+            // Let it happen, don't do anything
+            return;
+        }
+
+        // Ensure that it is a number or decimal point and stop the keypress
+        if ((event.shiftKey || (event.keyCode < 48 || event.keyCode > 57)) &&
+            (event.keyCode < 96 || event.keyCode > 105) &&
+            (event.keyCode !== 190 && event.keyCode !== 110)) {
+            event.preventDefault();
+        }
+    }
+    // Event listener for property_category change
+    $('#property_category').change(function() {
+        updatePropertyTypes();
+    });
     $('body').on('keydown', '.only-numbers', function(e) {
         allow_numbers_only(e)
     })
-
-    
+    $(document).ready(function () {
+        $('#state_id').on('change', function () {
+            var stateId = $(this).val();
+            $.ajax({
+                url: '/cities/' + stateId,
+                type: 'GET',
+                success: function (response) {
+                    var citySelect = $('#city_id');
+                    citySelect.empty();
+                    $.each(response, function (index, city) {
+                        citySelect.append($('<option>', {
+                            value: city.id,
+                            text: city.name
+                        }));
+                    });
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
 </script>
 @endsection

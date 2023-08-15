@@ -112,6 +112,7 @@ class PropertiesController extends Controller
 
             $data['property_type_commercial'] = PropertyType::where('property_type', 'commercial')->get();
             $data['property_type_residential'] = PropertyType::where('property_type', 'residential')->get();
+            $data['states'] = States::where('country_id', 101)->get();
 //  echo "<pre>"; print_r($data['property_type_commercial']->toArray()); echo "</pre>";
 //  echo "<pre>"; print_r($data['property_type_residential']->toArray()); echo "</pre>";
 //         exit;
@@ -405,7 +406,7 @@ class PropertiesController extends Controller
             ]);
         }
         ///property type
-        $property_type = $data['property_type'];
+        $property_type = isset($data['property_type'])? $data['property_type'] : '';
         $assigned_types = AssignedTypes::where('property_id', $id)->delete();
         if ($property_type != '') {
             $assign_type = AssignedTypes::create([
@@ -414,7 +415,7 @@ class PropertiesController extends Controller
             ]);
         }
         ////Amenities
-        $amenities = $data['amenities'];
+        $amenities = isset($data['amenities']) ? $data['amenities']: [];
         $assigned_amenities = AssignedAmenities::where('property_id', $id)->delete();
         if (gettype($amenities) == 'array') {
             $insert_ammenity = [];

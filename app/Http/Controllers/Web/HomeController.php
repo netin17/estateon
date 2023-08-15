@@ -8,6 +8,7 @@ use App\Property;
 use App\PropertyType;
 use App\Testimonials;
 use App\User;
+use App\Cities;
 use App\Ui;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -202,5 +203,14 @@ public function logout(Request $request) {
   public function invcaptcha()
   {
       return view('estate.phonesignin');
+  }
+  public function getCitiesByState(Request $request, $stateId){
+    try {
+      $cities=Cities::where('state_id', $stateId)->get();
+
+      return response()->json($cities);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => 'Failed to get cities']);
+    }
   }
 }

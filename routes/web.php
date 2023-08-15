@@ -15,6 +15,7 @@ Route::get('/signup', 'Web\HomeController@signup')->name('home.signup');
 Route::post('/postsignup', 'Web\HomeController@postsignup')->name('home.postsignup');
 Route::post('/postsignin', 'Web\HomeController@postsignin')->name('home.postsignin');
 Route::get('detail/{slug}', 'Web\PropertiesController@detail')->name('property.detail');
+Route::get('newddetail/{slug}', 'Web\PropertiesController@newdetail')->name('property.newdetail');
 Auth::routes(['register' => false]);
 Route::get('/phonelogin', 'Web\HomeController@invcaptcha')->name('home.plogin');
 // Change Password Routes...
@@ -33,6 +34,7 @@ Route::get('tandc', 'Web\PageController@tandc')->name('page.tandc');
 Route::get('userguide', 'Web\PageController@userguide')->name('page.userguide');
 Route::get('wishlist', 'Web\PageController@wishlist')->name('page.wishlist');
 Route::get('agent', 'Web\UserController@agents')->name('user.agent');
+Route::get('cities/{stateId}','Web\HomeController@getCitiesByState')->name('statecities.list');
 Route::get('userdetail/{slug}', 'Web\UserController@userdetail')->name('user.detail');
 Route::any('paymentresponse', 'Web\PageController@paymentsuccess')->name('payment.success');
 Route::post('startpayu','Web\SubscriptionController@startpayu')->name('payment.start');

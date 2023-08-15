@@ -104,6 +104,17 @@ class PropertiesController extends Controller
         return view('estate.detail', compact('data'));
     }
 
+    public function newdetail($slug){
+        $data = [];
+        $data['property'] = Property::where('slug', $slug)->withCount('likes')->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details', 'images'])->first();
+        if($data['property'] == null){
+            return redirect()->route('home.index');
+        }
+        // echo "<pre>"; print_r($data['property']->toArray());
+        // exit;
+        return view('estate.newdetail', compact('data')); 
+    }
+
     public function list(Request $request)
     {        
         // echo "<pre>";
