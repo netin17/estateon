@@ -6,7 +6,7 @@ use App\Amenity;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Support\Facades\Storage;
 class AmenitiesController extends Controller
 {
     /**
@@ -54,10 +54,21 @@ class AmenitiesController extends Controller
         }
         $validatedData = $request->validate([
             'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png',
         ]);
-        Amenity::create($request->all());
+        $amenity = new Amenity();
+        $amenity->name = $request->input('name');
 
-        return redirect()->route('admin.amenity.index');
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('amenity_images', 'public');
+            $amenity->image = $imagePath;
+        }
+
+        $amenity->save();
+
+        return redirect()->route('admin.amenity.index')->with('success', 'Amenity created successfully.');
+        
     }
 
     /**
@@ -106,10 +117,28 @@ class AmenitiesController extends Controller
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
+        $request->validate([
+            'name' => 'required|string',
+            'image' => 'image|mimes:jpeg,png',
+        ]);
+    
         $amenity = Amenity::findOrFail($id);
-        $amenity->update($request->all());
+        $amenity->name = $request->input('name');
+    
+        // Handle image upload only if "change image" checkbox is checked
+        if ($request->hasFile('image') && $request->has('change_image')) {
+            // Delete the old image
+            if ($amenity->image) {
+                Storage::disk('public')->delete($amenity->image);
+            }
+    
+            $imagePath = $request->file('image')->store('amenity_images', 'public');
+            $amenity->image = $imagePath;
+        }
+    
+        $amenity->save();
 
-        return redirect()->route('admin.amenity.index');
+        return redirect()->route('admin.amenity.index')->with('success', 'Amenity updated successfully.');
     }
 
     /**
@@ -125,9 +154,15 @@ class AmenitiesController extends Controller
             return abort(401);
         }
         $amenity = Amenity::findOrFail($id);
+
+        // Delete the image if it exists
+        if ($amenity->image) {
+            Storage::disk('public')->delete($amenity->image);
+        }
+    
         $amenity->delete();
 
-        return redirect()->route('admin.amenity.index');
+        return redirect()->route('admin.amenity.index')->with('success', 'Amenity deleted successfully.');
     }
 
     public function massDestroy(Request $request)

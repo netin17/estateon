@@ -47,6 +47,26 @@
                                 </div>
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
+                                <label for="name" class="d-block fw-bold">Are You*</label>
+                                <div class="row">
+                                    <div class="col-4 rent-sell-button position-relative">
+
+                                        <input type="radio" id="agent" name="user_type" value="agent" {{ $data['property']->property_details->user_type == 'agent' ? 'checked' : '' }} required>
+                                        <label for="agent" class="position-relative rent-button">Agent</label>
+
+                                    </div>
+                                    <div class="col-4 rent-sell-button position-relative">
+                                        <input type="radio" id="owner" name="user_type" value="owner" {{ $data['property']->property_details->user_type == 'owner' ? 'checked' : '' }} required>
+                                        <label for="owner" class="position-relative sell-button">Owner</label><br>
+                                    </div>
+                                    <div class="col-4 rent-sell-button position-relative">
+                                        <input type="radio" id="builder" name="user_type" value="builder" {{ $data['property']->property_details->user_type == 'builder' ? 'checked' : '' }} required>
+                                        <label for="builder" class="position-relative sell-button">Builder</label><br>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </div>
+                            <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="category" class="d-block">Properties Category {{ $data['property']->property_details->property_category}}</label>
                                 <select id="property_category" name="property_category" class="d-block profile-form-fild form-control select2 m-0" required>
     <option value="residential" {{ isset($data['property']->property_details->property_category) && $data['property']->property_details->property_category == 'residential' ? 'selected' : '' }}>Residential</option>
@@ -97,12 +117,6 @@
 
                                         <!--Google Maps-->
                                     </div>
-                                    <div hidden class="form-group {{ $errors->has('lat') ? 'has-error' : '' }}">
-                                        <input type="hidden" id="address-latitude" name="lat" class="form-control" value="{{$data['property']->lat ?? ''}}">
-                                    </div>
-                                    <div hidden class="form-group {{ $errors->has('lng') ? 'has-error' : '' }}">
-                                        <input type="hidden" id="address-longitude" name="lng" class="form-control" value="{{$data['property']->lng ?? ''}}">
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="step-form-group mb-3">
@@ -112,6 +126,8 @@
                                     <div class="step-form-group mb-3">
                                         <label for="address" class="step-form-label">Property Address (Ref. Google Map)</label>
                                         <input type="text" id="address-input" name="address" placeholder="Address" value="{{$data['property']->address ?? ''}}" class="step-form-field w-100 d-block" required />
+                                        <input type="text" id="address-latitude" name="lat" class="visually-hidden" value="{{$data['property']->lat ?? ''}}" autocomplete="new-address"/>
+                            <input type="text" id="address-longitude" name="lng" class="visually-hidden" value="{{$data['property']->lng ?? ''}}" autocomplete="hhh-address"/>
                                     </div>
                                     <div class="step-form-group mb-5">
                                         <label for="locality" class="step-form-label">Locality</label>
@@ -128,17 +144,17 @@
                                     <input type="number" id="price" name="price" min="1" placeholder="e.g. 100000" value="{{$data['property']->property_details->price ?? ''}}" class="step-form-field w-100 d-block" required />
                                 </div>
                                 <div class="step-form-group mb-3 col-md-6">
-                                    <label for="size" class="step-form-label">Size (sq. feet)</label>
-                                    <input type="text" id="size" name="size" placeholder="250" value="{{$data['property']->property_details->size ?? ''}}" class="step-form-field w-100 d-block" />
-                                </div>
-                                <div class="step-form-group mb-3 col-md-6">
-                                    <label for="length" class="step-form-label">Length (sq. feet)</label>
-                                    <input type="text" id="length" name="length" placeholder="25" value="{{$data['property']->property_details->length ?? ''}}" class="step-form-field w-100 d-block" />
-                                </div>
-                                <div class="step-form-group mb-3 col-md-6">
-                                    <label for="width" class="step-form-label">Width (sq. feet)</label>
-                                    <input type="text" id="width" name="width" placeholder="203" value="{{$data['property']->property_details->width ?? ''}}" class="step-form-field w-100 d-block" />
-                                </div>
+                            <label for="size" class="step-form-label">Carpet Area* (sq. feet)</label>
+                            <input type="text" id="carpet_area" name="carpet_area" placeholder="250" value="{{$data['property']->property_details->carpet_area ?? ''}}" class="only-numbers step-form-field w-100 d-block" required/>
+                        </div>
+                        <div class="step-form-group mb-3 col-md-6">
+                            <label for="length" class="step-form-label">Super Area (sq. feet)</label>
+                            <input type="text" id="super_area" name="super_area" placeholder="25" value="{{$data['property']->property_details->super_area ?? ''}}" class="only-numbers step-form-field w-100 d-block" />
+                        </div>
+                        <div class="step-form-group mb-3 col-md-6">
+                            <label for="width" class="step-form-label">Build-in area (sq. feet)</label>
+                            <input type="text" id="build_up_area" name="build_up_area" placeholder="203" value="{{$data['property']->property_details->build_up_area ?? ''}}" class="only-numbers step-form-field w-100 d-block" />
+                        </div>
                                 <div class="step-form-group mb-3 col-12">
                                     <label for="Description" class="step-form-label">Description</label>
                                     <textarea id="description" name="description" cols="30" rows="5" class="textarea" placeholder="Write here" required>{{$data['property']->description ?? ''}}</textarea>
@@ -184,6 +200,56 @@
                                 <div class="tab">
                                     <h3 class="dark-font text-center step-title">Other information</h3>
                                     <div class="row mt-4">
+
+                                    <div class="step-form-group mb-3 col-md-6">
+    <label for="property_status" class="step-form-label">Property Status</label>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_status" value="ready_to_move" id="ready_to_move"  {{ $data['property']->property_details->property_status == 'ready_to_move' ? 'checked' : '' }}>
+        <label class="form-check-label" for="ready_to_move">Ready to Move</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_status" value="under_construction" id="under_construction" {{ $data['property']->property_details->property_status == 'under_construction' ? 'checked' : '' }}>
+        <label class="form-check-label" for="under_construction">Under Construction</label>
+    </div>
+
+
+<div class="step-form-group mb-3 property-age-options" style="{{ $data['property']->property_details->property_status == 'ready_to_move' ? 'display: block;' : 'display: none;' }}">
+    <label for="property_age" class="step-form-label">Property Age</label>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="0-5" id="age_0_5">
+        <label class="form-check-label" for="age_0_5">0-5 years</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="6-10" id="age_6_10">
+        <label class="form-check-label" for="age_6_10">6-10 years</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="11-15" id="age_11_15">
+        <label class="form-check-label" for="age_11_15">11-15 years</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="15+" id="age_15+">
+        <label class="form-check-label" for="age_15+">More Than 15</label>
+    </div>
+    <!-- Add more options here as needed -->
+</div>
+
+<div class="step-form-group mb-3 possession-options" style="{{ $data['property']->property_details->property_status == 'under_construction' ? 'display: block;' : 'display: none;' }}">
+    <label for="possession_by" class="step-form-label">Possession By</label>
+    <!-- Use a loop or add options manually -->
+    <div class="form-check">
+        @foreach ($data['possessionByOptions'] as $option)
+            <input type="radio" class="form-check-input" name="possesion_by" value="{{ $option }}" id="possession_{{ $option }}"
+            {{ $data['property']->property_details->possesion_by == $option ? 'checked' : '' }}>
+            <label class="form-check-label" for="possession_{{ $option }}">{{ $option }}</label>
+        @endforeach
+    </div>
+    <!-- Add more options here as needed -->
+</div>
+</div>
+
+
+
                                         <div class="step-form-group mb-3 col-md-6">
                                             <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
                                             <input type="text" id="project-id" placeholder="HY174257" name="rera_number" value="{{$data['property']->property_details->rera_number ?? ''}}" class="step-form-field step-form-field-other-info w-100 d-block" />
@@ -372,6 +438,7 @@ function clearOverlays() {
             banner_image: {
                 extension: "jpg|jpeg|png"
             },
+            lat:"required",
             name: 'required',
             address: 'required',
             locality: 'required',
@@ -389,6 +456,7 @@ function clearOverlays() {
             banner_image: {
                 extension: "Only JPG, JPEG, or PNG files are allowed"
             },
+            lat: "Please Select address from dropdown list by google",
             name: "Enter name for your property",
             address: "Select Address",
             locality: 'Select nearby locality',
@@ -522,6 +590,17 @@ console.log(selectedPropertyType)
     //     }
     //   });
     // Initialize FancyBox on the images
+    $('input[name="property_status"]').on('change', function () {
+            var selectedStatus = $(this).val();
+            
+            if (selectedStatus === 'ready_to_move') {
+                $('.property-age-options').show();
+                $('.possession-options').hide();
+            } else if (selectedStatus === 'under_construction') {
+                $('.property-age-options').hide();
+                $('.possession-options').show();
+            }
+        });
     })
 </script>
 @endsection

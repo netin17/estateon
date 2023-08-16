@@ -26,6 +26,18 @@
                             {{ $amenity->name }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            Image
+                        </th>
+                        <td>
+                        @if ($amenity->image)
+                <img src="{{ asset('storage/' . $amenity->image) }}" alt="Existing Icon Image" style="max-width: 100px;">
+            @else
+                No icon image available.
+            @endif
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">

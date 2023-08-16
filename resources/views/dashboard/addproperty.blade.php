@@ -45,6 +45,26 @@
                                 </div>
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
+                                <label for="name" class="d-block fw-bold">Are You*</label>
+                                <div class="row">
+                                    <div class="col-4 rent-sell-button position-relative">
+
+                                        <input type="radio" id="agent" name="user_type" value="agent" required>
+                                        <label for="agent" class="position-relative rent-button">Agent</label>
+
+                                    </div>
+                                    <div class="col-4 rent-sell-button position-relative">
+                                        <input type="radio" id="owner" name="user_type" value="owner" required>
+                                        <label for="owner" class="position-relative sell-button">Owner</label><br>
+                                    </div>
+                                    <div class="col-4 rent-sell-button position-relative">
+                                        <input type="radio" id="builder" name="user_type" value="builder" required>
+                                        <label for="builder" class="position-relative sell-button">Builder</label><br>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </div>
+                            <div class="profile-form-group d-flex align-items-center mb-4">
                                 <label for="category" class="d-block">Properties Category</label>
                                 <select id="property_category" name="property_category" class="d-block profile-form-fild form-control select2 m-0" required>
                                     <option value="residential">Residential</option>
@@ -94,12 +114,7 @@
 
                                 <!--Google Maps-->
                             </div>
-                            <div hidden class="form-group {{ $errors->has('lat') ? 'has-error' : '' }}">
-                                <input type="hidden" id="address-latitude" name="lat" class="form-control" value="">
-                            </div>
-                            <div hidden class="form-group {{ $errors->has('lng') ? 'has-error' : '' }}">
-                                <input type="hidden" id="address-longitude" name="lng" class="form-control" value="">
-                            </div>
+                           
                         </div>
                         <div class="col-md-6">
                             <div class="step-form-group mb-3">
@@ -126,6 +141,8 @@
                             <div class="step-form-group mb-3">
                                 <label for="address" class="step-form-label">Property Address (Ref. Google Map)</label>
                                 <input type="text" id="address-input" name="address" placeholder="Address" class="step-form-field w-100 d-block" required />
+                                <input type="text" id="address-latitude" name="lat" class="visually-hidden" autocomplete="new-address"/>
+                            <input type="text" id="address-longitude" name="lng" class="visually-hidden" autocomplete="hhh-address"/>
                             </div>
                             <div class="step-form-group mb-5">
                                 <label for="locality" class="step-form-label">Locality</label>
@@ -198,6 +215,46 @@
                         <div class="tab">
                             <h3 class="dark-font text-center step-title">Other information</h3>
                             <div class="row mt-4">
+                            <div class="step-form-group mb-3 col-md-6">
+    <label for="property_status" class="step-form-label">Property Status</label>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_status" value="ready_to_move" id="ready_to_move">
+        <label class="form-check-label" for="ready_to_move">Ready to Move</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_status" value="under_construction" id="under_construction">
+        <label class="form-check-label" for="under_construction">Under Construction</label>
+    </div>
+
+
+<div class="step-form-group mb-3 property-age-options" style="display: none;">
+    <label for="property_age" class="step-form-label">Property Age</label>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="0-5" id="age_0_5">
+        <label class="form-check-label" for="age_0_5">0-5 years</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="6-10" id="age_6_10">
+        <label class="form-check-label" for="age_6_10">6-10 years</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="11-15" id="age_11_15">
+        <label class="form-check-label" for="age_11_15">11-15 years</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="15+" id="age_15+">
+        <label class="form-check-label" for="age_15+">More Than 15</label>
+    </div>
+    <!-- Add more options here as needed -->
+</div>
+
+<div class="step-form-group mb-3 possession-options" style="display: none;">
+    <label for="possession_by" class="step-form-label">Possession By</label>
+    <!-- Use a loop or add options manually -->
+   
+    <!-- Add more options here as needed -->
+</div>
+</div>
                                 <div class="step-form-group mb-3 col-md-6">
                                     <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
                                     <input type="text" id="project-id" placeholder="HY174257" name="rera_number" class="step-form-field step-form-field-other-info w-100 d-block" />
@@ -293,6 +350,7 @@
                 required: true,
                 extension: "jpg|jpeg|png"
             },
+            lat:"required",
             name: 'required',
             address: 'required',
             locality: 'required',
@@ -308,12 +366,12 @@
                 required: "Please select an image",
                 extension: "Only JPG, JPEG, or PNG files are allowed"
             },
+            lat: "Please Select address from dropdown list by google",
             name: "Enter name for your property",
             address: "Select Address",
             locality: 'Select nearby locality',
             price: 'Enter price for your property'
-        },
-
+        }
     }
     //     if ($.validator.methods.summernoteRequired) {
     //   // The summernoteRequired method is added
@@ -537,6 +595,33 @@
                 }
             });
         });
+        $('input[name="property_status"]').on('change', function () {
+            var selectedStatus = $(this).val();
+            
+            if (selectedStatus === 'ready_to_move') {
+                $('.property-age-options').show();
+                $('.possession-options').hide();
+            } else if (selectedStatus === 'under_construction') {
+                $('.property-age-options').hide();
+                $('.possession-options').show();
+            }
+        });
+
+        // Get the current year
+        var currentYear = new Date().getFullYear();
+        
+        // Generate possession years dynamically
+        var possessionOptions = $('.possession-options');
+        var possessionYears = 5; // Number of years in the future
+        
+        for (var i = 0; i <= possessionYears; i++) {
+            var year = currentYear + i;
+            var option = '<div class="form-check">' +
+                            '<input type="radio" class="form-check-input" name="possesion_by" value="' + year + '" id="possession_' + year + '">' +
+                            '<label class="form-check-label" for="possession_' + year + '">' + year + '</label>' +
+                          '</div>';
+            possessionOptions.append(option);
+        }
     });
 </script>
 @endsection

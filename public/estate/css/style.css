@@ -2094,7 +2094,13 @@ h4.Agnt_name {
   margin: 0px;
   font-size: 19px;
 }
-
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 /****** media query *****/
 @media screen and (max-width: 1440px) {
   .propty_silde .slick-arrow {

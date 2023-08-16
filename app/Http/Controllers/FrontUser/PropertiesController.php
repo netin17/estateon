@@ -17,6 +17,7 @@ use App\commonfunction;
 use App\Propertydetail;
 use App\Likes;
 use App\States;
+use App\Cities;
 use App\PlanTypes;
 use App\AssignedAmenities;
 use App\AssignedPreferences;
@@ -259,24 +260,30 @@ class PropertiesController extends Controller
 
         $property_details = Propertydetail::create([
             'property_id' => $property_id,
+            'user_type' => $data['user_type'], 
             'property_category' => $data['property_category'],
             'property_title' => $data['property_title'],
             'locality' => $data['locality'],
             'rera_number' => $data['rera_number'],
-            'property_feature' => @$data['property_feature'],
+            'property_feature' => isset($data['property_feature']) ? $data['property_feature'] : null,
+            'property_status' => isset($data['property_status']) ? $data['property_status'] : null,
+            'property_age'  => isset($data['property_age']) ? $data['property_age'] : null,
+            'possesion_by'  => isset($data['possesion_by']) ? $data['possesion_by'] : null,
+            'state_id'  => isset($data['state_id']) ? $data['state_id'] : null,
+            'city_id'  => isset($data['city_id']) ? $data['city_id'] : null,
             //'bedroom' => $data['bedroom'],
             //'bathroom' => $data['bathroom'],
             //'balcony' => $data['balcony'],
             //'kitchen' => $data['kitchen'],
             //'living_room' => $data['living_room'],
-            'furnished' => @$data['furnished'],
+            'furnished' => isset($data['furnished']) ? $data['furnished'] : null,
             'preference' => isset($data['preference']) ? $data['preference'] : '',
-            'size' => $data['size'],
-            'length' => $data['length'],
-            'width' => $data['width'],
+            'carpet_area' => isset($data['carpet_area']) ? $data['carpet_area'] : null,
+            'super_area' => isset($data['super_area']) ? $data['super_area'] : null,
+            'build_up_area' => isset($data['build_up_area']) ? $data['build_up_area'] : null,
             'price' => $data['price'],
             //'currency' => $data['currency'],
-            'govt_tax_include' => @$data['govt_tax_include'],
+            'govt_tax_include' =>isset($data['govt_tax_include']) ? $data['govt_tax_include'] : null,
             'extra_notes' => $extraNotes
         ]);
 
@@ -332,6 +339,15 @@ class PropertiesController extends Controller
                 $data['property_type_residential'] = PropertyType::where('property_type', 'residential')->get();
                 $data['amenityIds'] = $data['property']->amenities->pluck('amenity_id')->toArray();
                 $data['preferencesIds'] = $data['property']->preferences->pluck('preference_id')->toArray();
+                $data['states'] = States::where('country_id', 101)->get();
+                $data['cities'] =[];
+                if($data['property']->property_details->state_id){
+                    $stateId=$data['property']->property_details->state_id;
+                    $data['cities'] = Cities::where('state_id', $stateId)->get();
+                }
+                $data['possessionByOptions'] = [
+                    '2023', '2024', '2025', '2026', '2027', '2028' // Add more options as needed
+                ];
                 //                 echo "<pre>"; print_r($data['property']->toArray());
                 // exit;
                 //return view('userdashboard.property.edit', compact('data'));
@@ -452,24 +468,30 @@ class PropertiesController extends Controller
         $extraNotes = isset($data['extra_notes']) ? $data['extra_notes'] : '';
 
         $update_details = [
+            'user_type' => $data['user_type'], 
             'property_category' => $data['property_category'],
-            'property_feature' => @$data['property_feature'],
             'property_title' => $data['property_title'],
             'locality' => $data['locality'],
             'rera_number' => $data['rera_number'],
+            'property_feature' => isset($data['property_feature']) ? $data['property_feature'] : null,
+            'property_status' => isset($data['property_status']) ? $data['property_status'] : null,
+            'property_age'  => isset($data['property_age']) ? $data['property_age'] : null,
+            'possesion_by'  => isset($data['possesion_by']) ? $data['possesion_by'] : null,
+            'state_id'  => isset($data['state_id']) ? $data['state_id'] : null,
+            'city_id'  => isset($data['city_id']) ? $data['city_id'] : null,
             //'bedroom' => $data['bedroom'],
             //'bathroom' => $data['bathroom'],
             //'balcony' => $data['balcony'],
             //'kitchen' => $data['kitchen'],
             //'living_room' => $data['living_room'],
-            'furnished' => $data['furnished'],
+            'furnished' => isset($data['furnished']) ? $data['furnished'] : null,
             'preference' => isset($data['preference']) ? $data['preference'] : '',
-            'size' => $data['size'],
-            'length' => $data['length'],
-            'width' => $data['width'],
+            'carpet_area' => isset($data['carpet_area']) ? $data['carpet_area'] : null,
+            'super_area' => isset($data['super_area']) ? $data['super_area'] : null,
+            'build_up_area' => isset($data['build_up_area']) ? $data['build_up_area'] : null,
             'price' => $data['price'],
             //'currency' => $data['currency'],
-            'govt_tax_include' => @$data['govt_tax_include'],
+            'govt_tax_include' =>isset($data['govt_tax_include']) ? $data['govt_tax_include'] : null,
             'extra_notes' => $extraNotes
         ];
         Propertydetail::updateOrCreate(
