@@ -123,6 +123,26 @@
                                         <label for="name" class="step-form-label">Property/ Project Name</label>
                                         <input type="text" id="name-input" name="name" placeholder="Name" value="{{$data['property']->name ?? ''}}" class="step-form-field w-100 d-block" required />
                                     </div>
+
+                                    <div class="step-form-group mb-3">
+                                <label for="name" class="step-form-label">State</label>
+                                <select name="state_id" id="state_id" class="form-control d-block profile-form-fild select2 m-0" required>
+                                <option value="">--Select--</option>
+                                @foreach($data['states'] as $state)
+                                    <option value="{{ $state['id'] }}" {{$data['property']->property_details->state_id==$state['id'] ? 'selected':''}}>{{ $state['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="step-form-group mb-3">
+                                <label for="name" class="step-form-label">City</label>
+                                <select name="city_id" id="city_id" class="form-control d-block profile-form-field select2 m-0" required>
+                                @foreach($data['cities'] as $city)
+                                    <option value="{{ $city['id'] }}" {{$data['property']->property_details->city_id==$city['id'] ? 'selected':''}}>{{ $city['name'] }}</option>
+                                    @endforeach
+                                </select>
+                                </select>
+                            </div>
+
                                     <div class="step-form-group mb-3">
                                         <label for="address" class="step-form-label">Property Address (Ref. Google Map)</label>
                                         <input type="text" id="address-input" name="address" placeholder="Address" value="{{$data['property']->address ?? ''}}" class="step-form-field w-100 d-block" required />
@@ -559,37 +579,28 @@ console.log(selectedPropertyType)
         allow_numbers_only(e)
     })
     $('[data-fancybox="gallery"]').fancybox();
-    // var images = []; // Array to store image data
 
-    //   $('#imageInput').change(function(e) {
-    //     var files = e.target.files;
-    //     var imagePreviewContainer = $('#imagePreviewContainer');
-    //     imagePreviewContainer.empty(); // Clear previous previews
-    //     images = []; // Reset the array
-
-    //     if (files) {
-    //       for (var i = 0; i < files.length; i++) {
-    //         var file = files[i];
-    //         var reader = new FileReader();
-
-    //         reader.onload = (function(file) {
-    //           return function(e) {
-    //             var img = $('<img>').addClass('preview-image').attr('src', e.target.result);
-    //             img.appendTo(imagePreviewContainer);
-
-    //             // Push the image data to the array
-    //             images.push({
-    //               src: e.target.result,
-    //               type: 'image'
-    //             });
-    //           };
-    //         })(file);
-
-    //         reader.readAsDataURL(file);
-    //       }
-    //     }
-    //   });
-    // Initialize FancyBox on the images
+    $('#state_id').on('change', function () {
+            var stateId = $(this).val();
+            $.ajax({
+                url: '/cities/' + stateId,
+                type: 'GET',
+                success: function (response) {
+                    var citySelect = $('#city_id');
+                    citySelect.empty();
+                    $.each(response, function (index, city) {
+                        citySelect.append($('<option>', {
+                            value: city.id,
+                            text: city.name
+                        }));
+                    });
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        });
+        
     $('input[name="property_status"]').on('change', function () {
             var selectedStatus = $(this).val();
             

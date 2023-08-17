@@ -21,6 +21,31 @@
                     <option value="sale" {{$data['property']->type=='sale'? 'selected':''}}>Sale</option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <h5>User Type</h5>
+
+                <div class="row">
+                                    <div class="col-4 rent-sell-button position-relative">
+
+                                        <input type="radio" id="agent" name="user_type" value="agent" {{ $data['property']->property_details->user_type == 'agent' ? 'checked' : '' }} required>
+                                        <label for="agent" class="position-relative rent-button">Agent</label>
+
+                                    </div>
+                                    <div class="col-4 rent-sell-button position-relative">
+                                        <input type="radio" id="owner" name="user_type" value="owner" {{ $data['property']->property_details->user_type == 'owner' ? 'checked' : '' }} required>
+                                        <label for="owner" class="position-relative sell-button">Owner</label><br>
+                                    </div>
+                                    <div class="col-4 rent-sell-button position-relative">
+                                        <input type="radio" id="builder" name="user_type" value="builder" {{ $data['property']->property_details->user_type == 'builder' ? 'checked' : '' }} required>
+                                        <label for="builder" class="position-relative sell-button">Builder</label><br>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+            </div>
+
+
+
             <div class="form-group d-flex align-items-center mb-4">
                                 <label for="title" class="d-block">Property Title</label>
                                 <input type="text" id="title" name="property_title" placeholder="" value="{{ $data['property']->property_details->property_title ?? ''}}" class="form-control d-block profile-form-fild" required />
@@ -37,7 +62,24 @@
                     {{ trans('cruds.property.fields.description_helper') }}
                 </p>
             </div>
-
+            <div class="step-form-group mb-3">
+                                <label for="name" class="step-form-label">State</label>
+                                <select name="state_id" id="state_id" class="form-control d-block profile-form-fild select2 m-0" required>
+                                <option value="">--Select--</option>
+                                @foreach($data['states'] as $state)
+                                    <option value="{{ $state['id'] }}" {{$data['property']->property_details->state_id==$state['id'] ? 'selected':''}}>{{ $state['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="step-form-group mb-3">
+                                <label for="name" class="step-form-label">City</label>
+                                <select name="city_id" id="city_id" class="form-control d-block profile-form-field select2 m-0" required>
+                                @foreach($data['cities'] as $city)
+                                    <option value="{{ $city['id'] }}" {{$data['property']->property_details->city_id==$city['id'] ? 'selected':''}}>{{ $city['name'] }}</option>
+                                    @endforeach
+                                </select>
+                                </select>
+                            </div>
             <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
                 <label for="address">{{ trans('cruds.property.fields.address') }}*</label>
                 <input type="text" id="address-input" name="address" value="{{$data['property']->address}}" class="form-control map-input" required>
@@ -202,31 +244,16 @@
                 </p>
             </div>
             <div class="form-group {{ $errors->has('size') ? 'has-error' : '' }}">
-                <label for="size">Size*</label>
-                <input type="text" id="size" name="size" value="{{$data['property']->property_details['size']}}" class="form-control only-numbers" required>
-                @if($errors->has('size'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('size') }}
-                </em>
-                @endif
+                <label for="size">Carpet Area* (sq. feet)</label>
+                <input type="text" id="carpet_area" name="carpet_area" placeholder="250" value="{{$data['property']->property_details->carpet_area ?? ''}}" class="only-numbers form-control w-100 d-block" required/>
             </div>
             <div class="form-group {{ $errors->has('length') ? 'has-error' : '' }}">
-                <label for="length">Length*</label>
-                <input type="text" id="length" name="length" value="{{$data['property']->property_details['length']}}" class="form-control only-numbers" required>
-                @if($errors->has('length'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('length') }}
-                </em>
-                @endif
+            <label for="length" class="step-form-label">Super Area (sq. feet)</label>
+                            <input type="text" id="super_area" name="super_area" placeholder="25" value="{{$data['property']->property_details->super_area ?? ''}}" class="only-numbers form-control w-100 d-block" />
             </div>
             <div class="form-group {{ $errors->has('width') ? 'has-error' : '' }}">
-                <label for="width">Width*</label>
-                <input type="text" id="width" name="width" value="{{$data['property']->property_details['width']}}" class="form-control only-numbers" required>
-                @if($errors->has('width'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('width') }}
-                </em>
-                @endif
+            <label for="width" class="step-form-label">Build-in area (sq. feet)</label>
+                            <input type="text" id="build_up_area" name="build_up_area" placeholder="203" value="{{$data['property']->property_details->build_up_area ?? ''}}" class="only-numbers form-control w-100 d-block" />
             </div>
             
             <div class="form-group {{ $errors->has('property_feature') ? 'has-error' : '' }}">
@@ -237,7 +264,60 @@
                     {{ $errors->first('property_feature') }}
                 </em>
                 @endif
-            </div>             
+            </div>  
+            <div class="step-form-group mb-3 col-md-6">
+    <label for="property_status" class="step-form-label">Property Status</label>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_status" value="ready_to_move" id="ready_to_move"  {{ $data['property']->property_details->property_status == 'ready_to_move' ? 'checked' : '' }}>
+        <label class="form-check-label" for="ready_to_move">Ready to Move</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_status" value="under_construction" id="under_construction" {{ $data['property']->property_details->property_status == 'under_construction' ? 'checked' : '' }}>
+        <label class="form-check-label" for="under_construction">Under Construction</label>
+    </div>
+
+
+<div class="step-form-group mb-3 property-age-options" style="{{ $data['property']->property_details->property_status == 'ready_to_move' ? 'display: block;' : 'display: none;' }}">
+    <label for="property_age" class="step-form-label">Property Age</label>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="0-5" id="age_0_5">
+        <label class="form-check-label" for="age_0_5">0-5 years</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="6-10" id="age_6_10">
+        <label class="form-check-label" for="age_6_10">6-10 years</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="11-15" id="age_11_15">
+        <label class="form-check-label" for="age_11_15">11-15 years</label>
+    </div>
+    <div class="form-check">
+        <input type="radio" class="form-check-input" name="property_age" value="15+" id="age_15+">
+        <label class="form-check-label" for="age_15+">More Than 15</label>
+    </div>
+    <!-- Add more options here as needed -->
+</div>
+
+<div class="step-form-group mb-3 possession-options" style="{{ $data['property']->property_details->property_status == 'under_construction' ? 'display: block;' : 'display: none;' }}">
+    <label for="possession_by" class="step-form-label">Possession By</label>
+    <!-- Use a loop or add options manually -->
+    <div class="form-check">
+        @foreach ($data['possessionByOptions'] as $option)
+            <input type="radio" class="form-check-input" name="possesion_by" value="{{ $option }}" id="possession_{{ $option }}"
+            {{ $data['property']->property_details->possesion_by == $option ? 'checked' : '' }}>
+            <label class="form-check-label" for="possession_{{ $option }}">{{ $option }}</label>
+        @endforeach
+    </div>
+    <!-- Add more options here as needed -->
+</div>
+</div>
+
+
+
+                                        <div class="step-form-group mb-3 col-md-6">
+                                            <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
+                                            <input type="text" id="project-id" placeholder="HY174257" name="rera_number" value="{{$data['property']->property_details->rera_number ?? ''}}" class="step-form-field step-form-field-other-info w-100 d-block" />
+                                        </div>           
             <div class="form-group {{ $errors->has('govt_tax_include') ? 'has-error' : '' }}">
                 <label for="govt_tax">Govt Tax Include*</label>
                 <select name="govt_tax_include" class="form-control select21s" id="govt_tax">
@@ -277,10 +357,6 @@
                 <label for="type">User Id</label>
                 <input type="text" id="user_id" name="user_id" value="{{$data['property']->user_id}}" class="form-control" required>
             </div>
-            <div class="form-group mb-3 col-md-6">
-                                            <label for="project-id" class="step-form-label">Project ID (RERA PUDA)</label>
-                                            <input type="text" id="project-id" placeholder="HY174257" name="rera_number" value="{{$data['property']->property_details->rera_number ?? ''}}" class="step-form-field step-form-field-other-info w-100 d-block" />
-                                        </div>
            {{-- <div class="form-group">
                 <label for="type">Mobile Number</label>
                 <input type="text" id="contact_number" name="contact_number" value="{{$data['property']->contact_number}}" class="form-control" required>
@@ -479,7 +555,8 @@
         </script>
 
 <script>
-    $('input[type=radio][name=type]').change(function() {
+    $(document).ready(function(){
+        $('input[type=radio][name=type]').change(function() {
         if (this.value == 'rent') {
             console.log('Logic for entring rent duration (create and show input div)');
         } else if (this.value == 'sale') {
@@ -538,5 +615,39 @@
             e.preventDefault();
         }
     }
+    $('#state_id').on('change', function () {
+            var stateId = $(this).val();
+            $.ajax({
+                url: '/cities/' + stateId,
+                type: 'GET',
+                success: function (response) {
+                    var citySelect = $('#city_id');
+                    citySelect.empty();
+                    $.each(response, function (index, city) {
+                        citySelect.append($('<option>', {
+                            value: city.id,
+                            text: city.name
+                        }));
+                    });
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        });
+        
+    $('input[name="property_status"]').on('change', function () {
+            var selectedStatus = $(this).val();
+            
+            if (selectedStatus === 'ready_to_move') {
+                $('.property-age-options').show();
+                $('.possession-options').hide();
+            } else if (selectedStatus === 'under_construction') {
+                $('.property-age-options').hide();
+                $('.possession-options').show();
+            }
+        });
+    })
+   
 </script>
 @endsection
