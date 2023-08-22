@@ -70,6 +70,7 @@ class PropertiesController extends Controller
             $userId = Auth::id();
             $data['user'] = $this->getUserDetailsById($userId);
             $data['p_count'] = $this->getUserPropertyCount($userId);
+            $data['is_builder'] = $this->getbuilderstatus($userId);
             $data['states'] = States::where('country_id', 101)->get();
             $data['properties'] = Property::where('user_id', $userId)
                 ->with(['property_details', 'userSubscriptions' => function ($query) {
@@ -106,6 +107,7 @@ class PropertiesController extends Controller
             $userId = Auth::id();
             $data['user'] = $this->getUserDetailsById($userId);
             $data['p_count'] = $this->getUserPropertyCount($userId);
+            $data['is_builder'] = $this->getbuilderstatus($userId);
             //$data['property_type'] = PropertyType::get();
             $data['vastu'] = Vastu::get();
             $data['amenity'] = Amenity::get();
@@ -324,6 +326,7 @@ class PropertiesController extends Controller
             $userId = Auth::id();
             $data['user'] = $this->getUserDetailsById($userId);
             $data['p_count'] = $this->getUserPropertyCount($userId);
+            $data['is_builder'] = $this->getbuilderstatus($userId);
             //$data['property_type'] = PropertyType::get();
 
             $data['property'] = Property::where('id', $id)->with(['amenities', 'vastu.vastu_data', 'preferences', 'property_type.type_data', 'property_details', 'images' => function ($query) {
@@ -577,6 +580,7 @@ class PropertiesController extends Controller
                 } else {
                     $data['user'] = $this->getUserDetailsById($userId);
                     $data['p_count'] = $this->getUserPropertyCount($userId);
+                    $data['is_builder'] = $this->getbuilderstatus($userId);
                     $data['property'] = $property;
                     ////WORK HERE
                     //             echo "<pre>"; print_r($property->toArray()); echo "<pre>";
@@ -624,6 +628,7 @@ class PropertiesController extends Controller
                 } else {
                     $data['user'] = $this->getUserDetailsById($userId);
                     $data['p_count'] = $this->getUserPropertyCount($userId);
+                    $data['is_builder'] = $this->getbuilderstatus($userId);
                     $data['property'] = $property;
                     $data['leads'] = Leads::where('property_id', $property->id)->with(['property' => function ($query) {
                         $query->with(['property_details']);
@@ -648,6 +653,7 @@ class PropertiesController extends Controller
             $userId = Auth::user()->id;
             $data['user'] = $this->getUserDetailsById($userId);
             $data['p_count'] = $this->getUserPropertyCount($userId);
+            $data['is_builder'] = $this->getbuilderstatus($userId);
             $data['wishlist'] = Likes::where('user_id', $userId)->wherehas('property')->with(['property'=>function($query){
                 $query->with(['property_details', 'images'=>function($inmgQuery){
                     $inmgQuery->where('featured',1);

@@ -104,6 +104,7 @@ class HomeController extends Controller
             $userId = Auth::id();
             $data['user']=$this->getUserDetailsById($userId);
             $data['p_count']=$this->getUserPropertyCount($userId);
+            $data['is_builder'] = $this->getbuilderstatus($userId);
             //$data['property_type'] = PropertyType::get();
             
     
@@ -170,7 +171,7 @@ class HomeController extends Controller
                 "message_type" => $data['message_type'],
                 "state_id" => $data['state_id'],
                 "message" => $data['message'],
-                "property_id" =>$data['property_id'],
+                "property_id" =>isset($data['property_id']) ? $data['property_id']: null,
                 "user_id" =>$userId
             ]);
             return redirect()->back()->with('message', 'Thank you, We will contact you soon');

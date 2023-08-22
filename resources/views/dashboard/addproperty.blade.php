@@ -5,7 +5,7 @@
 <section class="dashboard-section">
     <div class="container">
         <div class="dashboard-row d-flex flex-wrap">
-            @include('partials.dashboardsidebar', ['user'=>$data['user'], 'propertycount'=>$data['p_count']])
+            @include('partials.dashboardsidebar', ['user'=>$data['user'], 'propertycount'=>$data['p_count'], 'is_builder'=>$data['is_builder']])
             <div class="dashboard-content-col">
                 <div class="dashboard-title-wrap d-lg-block d-none">
                     <h1 class="dark-font text-left dashboard-title mb-4 ">Dashboard</h1>

@@ -39,7 +39,8 @@ class PropertyVisitorController extends Controller
             $userId = Auth::id();
             $data['user'] = $this->getUserDetailsById($userId);
             $data['p_count'] = $this->getUserPropertyCount($userId);
-    
+            $data['is_builder'] = $this->getbuilderstatus($userId);
+            
             $subscribed = UserSubscription::where('user_id', $userId)
                 ->where('start_at', '<=', now())
                 ->where('end_at', '>=', now())

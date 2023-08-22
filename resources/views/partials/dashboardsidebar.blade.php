@@ -2,6 +2,9 @@
                         <div class="sidebar-top-wrap">
                             <div class="sidebar-top box-style text-center mb-lg-4">
                                 <div class="user-data-box text-center mb-lg-4 mb-3">
+                                    @if($data['is_builder'])
+                                    <img src="{{ url('estate/images/builder_cap.png')}}" alt="bilder-cap">  
+                                    @endif
                                     <h5 class="user-name dark-font mb-md-2 mb-1">{{$user->name}}</h5>
                                     <p class="verified dark-font d-flex align-items-center justify-content-center mb-0">
                                         Verified
@@ -33,6 +36,11 @@
                                 <li><a class="sidebar-link transition {{ request()->is('frontuser/property/create') || request()->is('frontuser/property/create') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.property.create')}}">Add Property</a></li>
                                 <li><a class="sidebar-link transition  {{ request()->is('frontuser/properties/visitors') || request()->is('frontuser/properties/visitors') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.property.visitors')}}">Properties Visitors</a></li>
                                 <li><a class="sidebar-link transition {{ request()->is('frontuser/wishlist') || request()->is('frontuser/wishlist') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.user.wishlist')}}">Other Fav. Property</a></li>
+                                <li><a class="sidebar-link transition {{ request()->is('create/builder') || request()->is('create/builder') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.builder.create')}}">Builder Profile</a></li>
+                           
+                                @if($data['is_builder'])
+                                <li><a class="sidebar-link transition {{ request()->is('contact/support') || request()->is('contact/support') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.builders.contact_suppoert')}}">Contact to Support</a></li>
+                                    @endif
                             </ul>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\User;
 use App\Property;
+use App\Builder;
 
 trait CommonTrait
 {
@@ -27,5 +28,15 @@ trait CommonTrait
     public function getUserPropertyCount($userId)
     {
         return Property::where('user_id', $userId)->count();
+    }
+   /**
+     * Get the user status for builder.
+     *
+     * @param int $userId
+     * @return int
+     */
+    public function getbuilderstatus($userId)
+    {
+        return Builder::where('user_id', $userId)->where('status','active')->first();
     }
 }

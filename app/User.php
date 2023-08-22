@@ -71,4 +71,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\UserSubscription', 'user_id');
     }
+    public function builder(){
+        return $this->hasOne(Builder::class);
+    }
 }

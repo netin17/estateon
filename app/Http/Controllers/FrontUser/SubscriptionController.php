@@ -99,6 +99,7 @@ public function transactionHistory(){
         $userId = Auth::id();
         $data['user']=$this->getUserDetailsById($userId);
         $data['p_count']=$this->getUserPropertyCount($userId);
+        $data['is_builder'] = $this->getbuilderstatus($userId);
         $data['transactions']=UserSubscription::where('user_id', $userId)->with(['payment', 'plan'=>function($query){
             $query->with(['planType']);
         }])->paginate();

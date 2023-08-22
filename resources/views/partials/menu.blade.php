@@ -148,6 +148,29 @@
                 </li>
             </ul>
         </li>
+
+        <li class="nav-item nav-dropdown">
+            <a class="nav-link  nav-dropdown-toggle" href="#">
+                <i class="fa fa-building nav-icon"></i>
+                Builder Management
+            </a>
+            <ul class="nav-dropdown-items">  
+            <li class="nav-item">
+                    <a href="{{route('admin.builders.requests')}}" class="nav-link {{ request()->is('admin/builders') || request()->is('admin/builders/*') ? 'active' : '' }}">
+                    <i class="fa fa-file-text nav-icon" aria-hidden="true"></i>
+                        Builder Requests
+                    </a>
+                </li>        
+                <li class="nav-item">
+                    <a href="{{route('admin.card.create')}}" class="nav-link {{ request()->is('admin/cards') || request()->is('admin/cards/*') ? 'active' : '' }}">
+                        <i class="fa fa-file-image-o nav-icon" aria-hidden="true"></i>
+                        Cards
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
         <li class="nav-item nav-dropdown">
             <a class="nav-link  nav-dropdown-toggle" href="#">
                 <i class="fas fa-flag  nav-icon"></i>

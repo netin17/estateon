@@ -40,4 +40,9 @@ class Propertydetail extends Model
         'rera_number',
         'govt_tax_include',
         'extra_notes'];
+
+        public function property()
+        {
+            return $this->belongsTo(Property::class);
+        }
 }

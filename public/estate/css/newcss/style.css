@@ -179,7 +179,7 @@ p {
 .red-font {
   color: #c42128;
 }
-
+.error {color: #f00; }
 .sky-font {
   color: #84c0fc !important;
 }
@@ -2391,6 +2391,49 @@ social media share
 .property-doc-img {
   padding: 10px;
 }
+
+/* 
+Builder card
+*/
+/* Add this CSS code to your stylesheet */
+.card-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-thumbnail {
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.card-thumbnail img {
+  width: 150px;
+  height: 100px;
+  border: 2px solid transparent;
+}
+
+.card-thumbnail input[type="radio"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.card-thumbnail input[type="radio"]:checked + img {
+  border-color: #f05e59; /* Red border color for selected image */
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 
+Builder card
+*/
 @keyframes spin {
   0% {
     transform: rotate(0deg);

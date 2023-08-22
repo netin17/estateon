@@ -103,6 +103,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('/visitors', 'HomeController@visitors')->name('visitors.list');
 
     Route::post('logout', 'HomeController@logout')->name('adminlogout');
+
+    //builders//\
+    Route::get('/cards', "BuildersController@cardCreate")->name('card.create');
+    Route::post('/cards/store', "BuildersController@cardStore")->name('card.store');
+    Route::get('/builders', "BuildersController@buildersRequests")->name('builders.requests');
+    Route::get('change_builder_status/{id}/{status}','BuildersController@changestatus')->name('builders.changestatus');
+ 
+    ///
 });
 ///user dashboard
 Route::group(['middleware' => ['auth']], function () {
@@ -144,6 +152,22 @@ Route::group(['middleware' => ['auth:frontuser'], 'prefix' => 'frontuser', 'as' 
     Route::post('property/{propertyId}/visit', 'PropertyVisitorController@visitProperty');
     Route::get('properties/visitors', 'PropertyVisitorController@visitors')->name('property.visitors');
     //Route::post('property/create', 'PropertiesController@create')->name('frontuser.property.create');
+
+    ///Builder Routes//
+    Route::get('create/builder', 'BuilderController@createBuilder')->name('builder.create');
+    Route::post('/builders', 'BuilderController@store')->name('builders.store');
+    Route::get('/builders/profilecreate', 'BuilderController@createProfile')->name('builder.profile_create');
+    Route::get('/builders/profile-edit', 'BuilderController@editProfile')->name('builder.profile_edit');
+    Route::put('/builders/profile-update/{id}', 'BuilderController@updateProfile')->name('builder-detail.edit');
+    Route::post('/builders/profilestore', 'BuilderController@profileStore')->name('builder-detail.store');
+    Route::get('/builders/cards', 'BuilderController@builderCards')->name('builder.cards');
+    Route::post('/builders/cards/store', 'BuilderController@cardStore')->name('card.store');
+    Route::put('/builders/cards/update/{id}', 'BuilderController@updateCard')->name('card.update');
+    Route::get('/builders/cards/projects', 'BuilderController@cardsProjects')->name('cards.projects');
+    Route::post('/builders/cards/projectsave', 'BuilderController@savecardsProjects')->name('save.cardsproperty');
+    Route::get('/builders/cards/edit/{id}','BuilderController@editCard')->name('builder-card.edit');
+    Route::get('/contact/support', 'BuilderController@contactSupport')->name('builders.contact_suppoert');
+    
 }); 
 
 //
