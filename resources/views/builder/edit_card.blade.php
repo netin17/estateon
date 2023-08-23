@@ -62,8 +62,8 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cardSelectionModal">Select Card</button>
-                            <label for="card_id">Card</label>
+                        <button type="button" class="btn btn-danger main-btn w-100" data-toggle="modal" data-target="#cardSelectionModal">Select Template</button>
+                           {{-- <label for="card_id">Card</label> --}}
                             <input type="hidden" name="card_id" value="{{$data['card_details']->card_id}}" id="selectedCardId">
                             <div id="selectedCardInfo" class="card-thumbnail">
                                 Selected Card:
@@ -71,7 +71,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-danger main-btn w-100">Update</button>
                     </form>
                 </div>
             </div>
@@ -79,29 +79,28 @@
     </div>
 </section>
 <div class="modal fade" id="cardSelectionModal" tabindex="-1" role="dialog" aria-labelledby="cardSelectionModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="max-width:662px;">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="cardSelectionModalLabel">Select a Card</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="card-thumbnails">
+            
+            <div class="modal-body p-3 p-md-5">
+                <div class="row">
                     @foreach ($data['all_cards'] as $card)
-                    <label class="card-thumbnail">
-                        <img src="{{ asset('storage/' . $card->thumbnail) }}" alt="Card Thumbnail">
-                        <input type="radio" name="selected_card" value="{{ $card->id }}" {{ $data['card_details']->card_id == $card->id ? 'checked' : '' }}>
-                    </label>
+					<div class="col-6 col-md-4">
+						<div class="card-thumb-box">
+						<input type="radio" name="selected_card" value="{{ $card->id }}">
+						<label>
+							<img src="{{ asset('storage/' . $card->thumbnail) }}" alt="Card Thumbnail">
+						</label>
+						</div>
+					</div>
                     @endforeach
                 </div>
+				<div class="modal-footer border-0 card-selection-action">
+					<button type="button" class="btn btn-outline-secondary cancel-btn" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-danger select-btn" id="selectCardBtn" disabled data-dismiss="modal">Select</button>
+				</div>
             </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
-                <button type="button" class="btn btn-primary" id="selectCardBtn" disabled data-dismiss="modal">Select</button>
-
-            </div>
+            
         </div>
     </div>
 </div>
@@ -144,7 +143,8 @@
         $('input[name="selected_card"]').change(function() {
             const selectedCardId = $(this).val();
             $('#selectedCardId').val(selectedCardId);
-            $('#selectedCardInfo').html('Selected Card: <img src="' + $(this).siblings('img').attr('src') + '" alt="Selected Card">');
+            const selectedCardImage = $(this).siblings('label').find('img').attr('src');
+            $('#selectedCardInfo').html('Selected Card: <img src="' + selectedCardImage + '" alt="Selected Card">');
             $('#selectCardBtn').prop('disabled', false);
         });
 

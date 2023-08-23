@@ -12,16 +12,18 @@
                 <div class="refer-box side-refer-box text-center mb-5">
                     Refer To Your Friend
                 </div>
-                <div class="step-bar px-sm-5">
-                    <ul class="d-flex step-list">
-                        <li class="position-relative step-item step-done"><span class="d-block">1</span></li>
-                        <li class="position-relative step-item"><span class="d-block">2</span></li>
-                        <li class="position-relative step-item"><span class="d-block">3</span></li>
-                    </ul>
-                </div>
+                
 
                 <div class="step-content box-style">
                     <h3 class="dark-font text-center step-title">Add Details</h3>
+					<div class="step-bar">
+						<ul class="d-flex step-list">
+							<li class="position-relative step-item step-done"><span class="d-block">1</span></li>
+							<li class="position-relative step-item"><span class="d-block">2</span></li>
+							<li class="position-relative step-item"><span class="d-block">3</span></li>
+						</ul>
+					</div>
+					
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -64,33 +66,43 @@
             <label for="portfolio">Portfolio URL</label>
             <input type="url" name="portfolio" class="form-control">
         </div>
-
-        <div class="form-group">
-            <label for="total_experience">Total Experience</label>
-            <input type="number" name="total_experience" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-            <label for="total_projects">Total Projects</label>
-            <input type="number" name="total_projects" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-            <label for="total_flexible_living">Total Flexible Living</label>
-            <input type="number" name="total_flexible_living" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label for="running_projects">Running Projects</label>
-            <input type="number" name="running_projects" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label for="completed_projects">Completed Projects</label>
-            <input type="number" name="completed_projects" class="form-control">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Next</button>
+		
+		<div class="row">
+			<div class="col-12 col-md-4">
+				<div class="form-group">
+					<label for="total_experience">Total Experience</label>
+					<input type="number" name="total_experience" class="form-control" required>
+				</div>
+			</div>
+			<div class="col-12 col-md-4">
+				<div class="form-group">
+					<label for="total_projects">Total Projects</label>
+					<input type="number" name="total_projects" class="form-control" required>
+				</div>
+			</div>
+			<div class="col-12 col-md-4">
+				<div class="form-group">
+					<label for="total_flexible_living">Total Flexible Living</label>
+					<input type="number" name="total_flexible_living" class="form-control">
+				</div>
+			</div>
+			
+			<div class="col-12 col-md-6">
+				<div class="form-group">
+					<label for="running_projects">Running Projects</label>
+					<input type="number" name="running_projects" class="form-control">
+				</div>
+			</div>
+			<div class="col-12 col-md-6">
+				 <div class="form-group">
+					<label for="completed_projects">Completed Projects</label>
+					<input type="number" name="completed_projects" class="form-control">
+				</div>
+			</div>
+		</div> 
+		<div class="d-flex justify-content-end">
+			<button type="submit" class="btn btn-primary submit-btn">Next</button>
+		</div>
     </form>
                 </div>
             </div>

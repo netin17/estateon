@@ -44,6 +44,8 @@ class BuilderController extends Controller
 
             $validatedData = $request->validate([
                 'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
+                'email' => ['required', 'email'], // Add email validation
+                'company_name' => ['required', 'max:255'], // Add company name validation
                 'contact_number' => ['required', 'regex:/^[6789]\d{9}$/'],
                 'registration_number' => 'required|max:50',
                 'id_proof' => 'required|mimes:jpeg,jpg,png,pdf|max:2048',
@@ -52,6 +54,10 @@ class BuilderController extends Controller
             ], [
                 'name.required' => 'The name field is required.',
                 'name.regex' => 'The name field should only contain letters and spaces.',
+                'email.required' => 'The email field is required.', // Email validation message
+                'email.email' => 'Please enter a valid email address.', // Email validation message
+                'company_name.required' => 'The company name field is required.', // Company name validation message
+                'company_name.max' => 'The company name may not be greater than :max characters.', // Company name validation message
                 'contact_number.required' => 'The contact number field is required.',
                 'contact_number.regex' => 'Please enter a valid Indian contact number.',
                 'registration_number.required' => 'The registration number field is required.',
@@ -70,6 +76,8 @@ class BuilderController extends Controller
             Builder::create([
                 'user_id' => $userId,
                 'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'company_name' => $validatedData['company_name'],
                 'contact_number' => $validatedData['contact_number'],
                 'registration_number' => $validatedData['registration_number'],
                 'id_proof' => $idProofPath,

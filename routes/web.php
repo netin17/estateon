@@ -154,7 +154,7 @@ Route::group(['middleware' => ['auth:frontuser'], 'prefix' => 'frontuser', 'as' 
     //Route::post('property/create', 'PropertiesController@create')->name('frontuser.property.create');
 
     ///Builder Routes//
-    Route::get('create/builder', 'BuilderController@createBuilder')->name('builder.create');
+    Route::get('/builders/create', 'BuilderController@createBuilder')->name('builder.create');
     Route::post('/builders', 'BuilderController@store')->name('builders.store');
     Route::get('/builders/profilecreate', 'BuilderController@createProfile')->name('builder.profile_create');
     Route::get('/builders/profile-edit', 'BuilderController@editProfile')->name('builder.profile_edit');

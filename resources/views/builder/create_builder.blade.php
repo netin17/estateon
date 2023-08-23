@@ -8,7 +8,7 @@
                 <div class="dashboard-title-wrap d-lg-block d-none">
                     <h1 class="dark-font text-left dashboard-title mb-4 ">Dashboard</h1>
                 </div>
-                <div class="refer-box side-refer-box text-center mb-5">
+                <div class="refer-box-red side-refer-box text-center mb-5">
                     Refer To Your Friend
                 </div>
                 <div class="step-content box-style">
@@ -33,13 +33,21 @@
                         @csrf
 
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Builder Name</label>
                             <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" required>
                         </div>
 
                         <div class="form-group">
                             <label>Contact Number</label>
                             <input type="text" name="contact_number" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text" name="company_name" class="form-control" required>
                         </div>
 
                         <div class="form-group">
@@ -56,20 +64,22 @@
                             <label>Comment</label>
                             <textarea name="comment" class="form-control"></textarea>
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Create Builder</button>
+						
+						<div class="d-flex justify-content-end">
+							<button type="submit" class="btn btn-primary submit-btn">Create Builder</button>
+						</div>
                     </form>
                     @else
                     <div>
                         @if($data['profile_created']->status=='inactive')
-                        <div>
+                        <div class="alert text-center alert-warning" role="alert">
                             Your profile is under review.
                         </div>
                         @else
-                        <div>
+                        <div class="alert text-center alert-success">
                             Your profile is approved.
                             @if ($data['profile_created'] && $data['profile_created']->details)
-                            <a href="{{route('frontuser.builder.profile_edit')}}">View your profile</a>
+                            <a class="alert-link" href="{{route('frontuser.builder.profile_edit')}}">View your profile</a>
                             @else
                             <a href="{{route('frontuser.builder.profile_create')}}">Create your profile</a>
                             @endif

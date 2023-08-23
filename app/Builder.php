@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Builder extends Model
 {
     protected $table = 'builders';
-    protected $fillable = ['user_id','name', 'contact_number', 'registration_number', 'id_proof', 'comment', 'status'];
+    protected $fillable = ['user_id','name', 'email', 'contact_number', 'company_name', 'registration_number', 'id_proof', 'comment', 'status'];
 
     public function details()
     {

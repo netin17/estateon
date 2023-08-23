@@ -12,44 +12,51 @@
                 <div class="refer-box side-refer-box text-center mb-5">
                     Refer To Your Friend
                 </div>
-                <div class="step-bar px-sm-5">
-                    <ul class="d-flex step-list">
-                        <li class="position-relative step-item step-done"><span class="d-block">1</span></li>
-                        <li class="position-relative step-item step-done"><span class="d-block">2</span></li>
-                        <li class="position-relative step-item step-done"><span class="d-block">3</span></li>
-                    </ul>
-                </div>
+                
                 <div class="step-content box-style">
-                    <h3 class="dark-font text-center step-title">Cards</h3>
+                    <h3 class="dark-font text-center step-title">Add Details</h3>
+					<div class="step-bar px-sm-5">
+						<ul class="d-flex step-list">
+							<li class="position-relative step-item step-done"><span class="d-block">1</span></li>
+							<li class="position-relative step-item step-done"><span class="d-block">2</span></li>
+							<li class="position-relative step-item step-done"><span class="d-block">3</span></li>
+						</ul>
+					</div>
                     <form method="post" action="{{ route('frontuser.save.cardsproperty') }}">
+						
                         @csrf
-                        @php
-                        $projects_available=0;
-                        @endphp
-                        @foreach($data['saved_card'] as $cards)
+						<div class="add-details-box">
+							@php
+							$projects_available=0;
+							@endphp
+							@foreach($data['saved_card'] as $cards)
 
-                        More Project by {{$data['builder']->details->company_name}} in {{$cards->city->name}}
-                        @if(count($cards->city->projects)>0)
-                        <div class="form-group">
-                            <label for="roles">Select Properties for slider
-                                <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
-                                <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
-                            <select name="project[{{$cards->id}}][{{$cards->city->id}}][]" id="project[{{$cards->id}}][{{$cards->city->id}}][]" class="form-control select2" multiple="multiple" required>
-                                @foreach($cards->city->projects as $project)
-                                @php
-                                $projects_available=$projects_available+1;
-                                @endphp
-                                <option value="{{$project->property->id }}" @if(in_array($project->property->id, $data['selectedPropertyIds'])) selected @endif>{{$project->property->name.' |  '. $project->property->id }}</option>
-                                @endforeach
-                            </select>
+							<div class="more-project"> More Project by <span class="company-name">{{$data['builder']->details->company_name}} in</span> <span class="city-name">{{$cards->city->name}}</span></div>
+							@if(count($cards->city->projects)>0)
+							<div class="form-group w-100">
+								<label for="roles">Select Properties for slider
+									<span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
+									<span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
+								<select name="project[{{$cards->id}}][{{$cards->city->id}}][]" id="project[{{$cards->id}}][{{$cards->city->id}}][]" class="form-control select2" multiple="multiple" required>
+									@foreach($cards->city->projects as $project)
+									@php
+									$projects_available=$projects_available+1;
+									@endphp
+									<option value="{{$project->property->id }}" @if(in_array($project->property->id, $data['selectedPropertyIds'])) selected @endif>{{$project->property->name.' |  '. $project->property->id }}</option>
+									@endforeach
+								</select>
 
-                        </div>
-                        @else
-                        <div>You Don't have any project for this location, <a href="{{route('frontuser.property.create')}}">Add Project/Property to get start</a> </div>
-                        @endif
-                        @endforeach
-                        @if($projects_available>0)
-                        <button type="submit">Save</button>
+							</div>
+							@else
+							<div>You Don't have any project for this location, <a href="{{route('frontuser.property.create')}}">Add Project/Property to get start</a> </div>
+							@endif
+							@endforeach
+							@if($projects_available>0)
+						</div>
+						<div class="d-flex justify-content-end mt-4">
+							<button type="submit" class="btn btn-primary submit-btn">Save</button>
+						</div>
+
                         @endif
                     </form>
                 </div>
