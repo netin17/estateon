@@ -106,7 +106,9 @@ class PropertiesController extends Controller
 
     public function newdetail($slug){
         $data = [];
-        $data['property'] = Property::where('slug', $slug)->withCount('likes')->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details', 'images'])->first();
+        $data['property'] = Property::where('slug', $slug)->withCount('likes')->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details', 'images'=>function($query){
+            $query->orderBy('featured', 'DESC');
+        }])->first();
         if($data['property'] == null){
             return redirect()->route('home.index');
         }
