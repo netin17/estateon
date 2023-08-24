@@ -33,4 +33,8 @@ class BuilderCard extends Model
     {
         return $this->belongsTo(Card::class);
     }
+
+    public function builderCardProperty(){
+        return $this->hasMany('App\BuilderFeatureProperty', 'builder_card_id');
+    }
 }

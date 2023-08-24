@@ -15,9 +15,10 @@ use App\States;
 use App\Propertydetail;
 use App\BuilderFeatureProperty;
 use App\Cities;
+use App\commonfunction;
 use App\User;
 use App\Traits\CommonTrait;
-
+use Illuminate\Support\Str;
 class BuilderController extends Controller
 {
     use CommonTrait;
@@ -72,7 +73,7 @@ class BuilderController extends Controller
                 return back()->withErrors(['user_id' => 'The builder already exists for the current user.']);
             }
             $idProofPath = $request->file('id_proof')->store('id_proofs', 'public');
-
+            $slug = commonfunction::createSlug(Str::slug($validatedData['company_name']), 0, 'builder');
             Builder::create([
                 'user_id' => $userId,
                 'name' => $validatedData['name'],
@@ -82,6 +83,7 @@ class BuilderController extends Controller
                 'registration_number' => $validatedData['registration_number'],
                 'id_proof' => $idProofPath,
                 'comment' => $validatedData['comment'],
+                'slug' =>$slug,
                 'status' => 'inactive',
             ]);
 

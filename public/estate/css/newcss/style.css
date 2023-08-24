@@ -655,6 +655,9 @@ body.body-overflow {
   border-radius: 50%;
 }
 
+.error{
+  color: #c42128
+}
 .plant-row::before {
   content: "";
   height: 10px;

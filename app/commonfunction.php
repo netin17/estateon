@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Property;
+use App\Builder;
 class commonfunction extends Model
 {
     //
@@ -20,6 +21,9 @@ class commonfunction extends Model
         }
         if($type=='property'){
             $allSlugs = self::getPropertySlugs($slug, $id);
+        }
+        if($type=='builder'){
+            $allSlugs = self::getBuilderSlugs($slug, $id);
         }
      
 
@@ -49,6 +53,12 @@ class commonfunction extends Model
     public static function getPropertySlugs($slug, $id = 0)
     {
         return Property::select('slug')->where('slug', 'like', $slug.'%')
+            ->where('id', '<>', $id)
+            ->get();
+    }
+
+    public static function getBuilderSlugs($slug, $id=0){
+        return Builder::select('slug')->where('slug', 'like', $slug.'%')
             ->where('id', '<>', $id)
             ->get();
     }

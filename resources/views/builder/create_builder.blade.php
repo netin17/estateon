@@ -9,7 +9,7 @@
                     <h1 class="dark-font text-left dashboard-title mb-4 ">Dashboard</h1>
                 </div>
                 <div class="refer-box-red side-refer-box text-center mb-5">
-                    Refer To Your Friend
+                    Activate Builder Profile
                 </div>
                 <div class="step-content box-style">
                     <h3 class="dark-font text-center step-title">Add Basic Information</h3>

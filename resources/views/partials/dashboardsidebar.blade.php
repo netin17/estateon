@@ -3,7 +3,7 @@
                             <div class="sidebar-top box-style text-center mb-lg-4">
                                 <div class="user-data-box text-center mb-lg-4 mb-3">
                                     @if($data['is_builder'])
-                                    <img src="{{ url('estate/images/builder_cap.png')}}" alt="bilder-cap">  
+                                    <img src="{{ url('estate/images/XMLID.svg')}}" alt="bilder-cap">  
                                     @endif
                                     <h5 class="user-name dark-font mb-md-2 mb-1">{{$user->name}}</h5>
                                     <p class="verified dark-font d-flex align-items-center justify-content-center mb-0">

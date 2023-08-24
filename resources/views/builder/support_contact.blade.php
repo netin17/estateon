@@ -11,7 +11,7 @@
                     <h1 class="dark-font text-left dashboard-title mb-4 ">Dashboard</h1>
                 </div>
                 <div class="refer-box side-refer-box text-center mb-5">
-                    Refer To Your Friend
+                    Builder Dashboard
                 </div>
 
                 <div class="step-content box-style">

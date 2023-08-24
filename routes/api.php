@@ -46,4 +46,7 @@ Route::post('imageupload', 'Api\UserController@image_upload');//Testing image up
 Route::post('forget-password', 'Api\UserController@forgetPasswords');//Testing forget
 Route::get('user/delete/{id}', 'Api\UserController@deleteUser');//Delete user 
 
+//Builder apis
+Route::get('builder/{slug}', 'Api\BuilderController@getBuilder');
+
 
