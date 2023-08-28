@@ -45,4 +45,8 @@ class Propertydetail extends Model
         {
             return $this->belongsTo(Property::class);
         }
+        public function city()
+        {
+            return $this->belongsTo(Cities::class);
+        }
 }

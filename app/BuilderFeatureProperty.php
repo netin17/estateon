@@ -18,4 +18,8 @@ class BuilderFeatureProperty extends Model
     {
         return $this->belongsTo(BuilderCard::class, 'builder_card_id');
     }
+
+    public function property(){
+        return $this->belongsTo(Property::class);
+    }
 }

@@ -14,7 +14,7 @@ Route::get('/signin', 'Web\HomeController@signin')->name('home.signin');
 Route::get('/signup', 'Web\HomeController@signup')->name('home.signup');
 Route::post('/postsignup', 'Web\HomeController@postsignup')->name('home.postsignup');
 Route::post('/postsignin', 'Web\HomeController@postsignin')->name('home.postsignin');
-Route::get('detail/{slug}', 'Web\PropertiesController@detail')->name('property.detail');
+Route::get('detail/{slug}', 'Web\PropertiesController@newdetail')->name('property.detail');
 Route::get('newddetail/{slug}', 'Web\PropertiesController@newdetail')->name('property.newdetail');
 Auth::routes(['register' => false]);
 Route::get('/phonelogin', 'Web\HomeController@invcaptcha')->name('home.plogin');

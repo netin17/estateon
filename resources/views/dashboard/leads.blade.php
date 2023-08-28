@@ -8,7 +8,7 @@
                         <div class="dashboard-title-wrap d-lg-block d-none">
                             <h1 class="dark-font dashboard-title mb-4 ">Dashboard</h1>
                         </div>
-                        <div class="refer-box side-refer-box text-center mb-5">
+                        <div class="refer-box-yellow side-refer-box text-center mb-5">
                             Refer To Your Friend
                         </div>
                         <div class="history-table-wrap box-style position-relative">

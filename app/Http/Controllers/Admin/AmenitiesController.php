@@ -54,7 +54,7 @@ class AmenitiesController extends Controller
         }
         $validatedData = $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png',
+            'image' => 'required|image|mimes:jpeg,png,svg',
         ]);
         $amenity = new Amenity();
         $amenity->name = $request->input('name');
@@ -119,7 +119,7 @@ class AmenitiesController extends Controller
         }
         $request->validate([
             'name' => 'required|string',
-            'image' => 'image|mimes:jpeg,png',
+            'image' => 'image|mimes:jpeg,png,svg',
         ]);
     
         $amenity = Amenity::findOrFail($id);

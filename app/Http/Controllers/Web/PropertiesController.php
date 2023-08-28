@@ -11,9 +11,11 @@ use App\Property;
 use App\PropertyType;
 use App\Vastu;
 use App\Amenity;
+use App\BuilderDetail;
 use App\Preferences;
 use App\Likes;
 use App\Leads;
+use App\User;
 
 class PropertiesController extends Controller
 {
@@ -109,9 +111,31 @@ class PropertiesController extends Controller
         $data['property'] = Property::where('slug', $slug)->withCount('likes')->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details', 'images'=>function($query){
             $query->orderBy('featured', 'DESC');
         }])->first();
+        
         if($data['property'] == null){
             return redirect()->route('home.index');
         }
+        // Load other properties by the same user
+    $data['otherproperties'] = User::where('id', $data['property']->user_id)
+    ->with([
+        'builder',
+        'properties' => function ($query) use ($data) {
+            $query->where('id', '<>', $data['property']->id)
+                ->where('status', 1)
+                ->with([
+                    'amenities' => function ($aquery) {
+                        $aquery->with(['amenity_data']);
+                        $aquery->limit(2); // Limiting the number of amenities to 2
+                    },
+                    'property_details',
+                    'images' => function ($iquery) {
+                        $iquery->where('featured', 1);
+                    }
+                ])
+                ->limit(6);
+        }
+    ])
+    ->first();
         // echo "<pre>"; print_r($data['property']->toArray());
         // exit;
         return view('estate.newdetail', compact('data')); 

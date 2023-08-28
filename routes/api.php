@@ -1,5 +1,5 @@
 <?php
-
+Route::middleware('cors')->group(function () {
 Route::post('registeruser', 'Api\UserController@register');
 Route::post('login', 'Api\UserController@authenticate');
 Route::post('forget-passwordtest', 'Api\UserController@forgetPassword');
@@ -49,4 +49,4 @@ Route::get('user/delete/{id}', 'Api\UserController@deleteUser');//Delete user
 //Builder apis
 Route::get('builder/{slug}', 'Api\BuilderController@getBuilder');
 
-
+});
