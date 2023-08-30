@@ -16,7 +16,10 @@ Route::post('/postsignup', 'Web\HomeController@postsignup')->name('home.postsign
 Route::post('/postsignin', 'Web\HomeController@postsignin')->name('home.postsignin');
 Route::get('detail/{slug}', 'Web\PropertiesController@newdetail')->name('property.detail');
 Route::get('newddetail/{slug}', 'Web\PropertiesController@newdetail')->name('property.newdetail');
-Auth::routes(['register' => false]);
+// Auth::routes(['register' => false]);
+Route::post('login', 'Auth\LoginController@login')->name('login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/estate_manage_on', 'Auth\LoginController@showLoginForm');
 Route::get('/phonelogin', 'Web\HomeController@invcaptcha')->name('home.plogin');
 // Change Password Routes...
 Route::get('change_password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('auth.change_password');
@@ -52,6 +55,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('abilities/destroy', 'AbilitiesController@massDestroy')->name('abilities.massDestroy');
     Route::resource('abilities', 'AbilitiesController');
+    Route::resource('blogs', 'BlogController');
     Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
     Route::resource('roles', 'RolesController');
     Route::resource('testimonials', 'TestimonialsController');

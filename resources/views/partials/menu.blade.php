@@ -207,6 +207,12 @@
                 Leads
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.blogs.index') }}" class="nav-link {{ request()->is('blogs') ? 'active' : '' }}">
+            <i class="nav-icon fa fa-rss" aria-hidden="true"></i>
+                Blogs
+            </a>
+        </li>
         @endcan
 
         @if(Auth::user()->user_level == 2)

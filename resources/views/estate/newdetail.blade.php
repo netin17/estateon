@@ -89,8 +89,7 @@
 												@break
 												@endswitch
 						</div>
-						@endif
-						@if($data['property']->property_details && $data['property']['property_details']['carpet_area'] != '')
+						@elseif($data['property']->property_details && $data['property']['property_details']['carpet_area'] != '')
 						<div class="col-6 col-md-4 mb-3 mb-md-0">
 							<p>Carpet Area</p>
 							<h4>{{$data['property']['property_details']['carpet_area']}} sq.ft</h4>
