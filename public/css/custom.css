@@ -202,7 +202,7 @@ input.form-control.search_list {
     padding: 10px;
     border: 1px solid #c8ced3;
     margin: 0 0 20px;
-    color: #fff;
+    /* color: #fff; */
 }
 form.filter-item {
     width: 100%;

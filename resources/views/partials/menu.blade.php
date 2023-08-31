@@ -171,24 +171,24 @@
         </li>
 
 
-        <li class="nav-item nav-dropdown">
+       <li class="nav-item nav-dropdown">
             <a class="nav-link  nav-dropdown-toggle" href="#">
                 <i class="fas fa-flag  nav-icon"></i>
 
                 </i>
-                Admin Users
+                Sliders
             </a>
             <ul class="nav-dropdown-items">                
                 <li class="nav-item">
-                    <a href="{{ route("admin.adminusers.index") }}" class="nav-link {{ request()->is('admin/adminusers') || request()->is('admin/adminusers/*') ? 'active' : '' }}">
-                        <i class="fas fa-building nav-icon"></i>
+                    <a href="{{ route('admin.sliders.index') }}" class="nav-link {{ request()->is('admin/sliders') || request()->is('admin/sliders/*') ? 'active' : '' }}">
+                        <i class="fa fa-sliders nav-icon"></i>
 
                         </i>
-                        Admin Users List
+                        Sliders List
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> 
         <li class="nav-item">
             <a href="{{ route('admin.contactqueries.list') }}" class="nav-link {{ request()->is('contactqueries') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-comment-alt"></i>

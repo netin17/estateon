@@ -58,5 +58,36 @@ jQuery(document).ready(function () {
         jQuery('.open-menu').toggleClass('close-menu');
         jQuery("body").toggleClass("body-overflow");
     });
+
+    $('#builder-search').on('input', function() {
+        const query = $(this).val();
+
+        if (query.length >= 2) {
+            $.ajax({
+                url: '/builders/autocomplete', // Replace with your route
+                dataType: 'json',
+                data: {
+                    query: query
+                },
+                success: function(data) {
+                    const resultsList = $('#autocomplete-results');
+                    resultsList.empty();
+
+                    data.forEach(function(builder) {
+                        const listItem = $('<li>').text(builder.company_name).addClass('autocomplete-item');
+                        resultsList.append(listItem);
+
+                        listItem.on('click', function() {
+                            const selectedName = builder.slug;
+                            const encodedName = encodeURIComponent(selectedName);
+                            const url = `https://builder.estateon.com/${encodedName}`;
+
+                            window.open(url, '_blank');
+                        });
+                    });
+                }
+            });
+        }
+    });
 });
 

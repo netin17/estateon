@@ -402,5 +402,16 @@ class BuilderController extends Controller
                    }
            
         } 
+
+        public function autocomplete(Request $request)
+{
+    $query = $request->input('query');
+
+    $builders = Builder::where('company_name', 'LIKE', "$query%")
+    ->select('company_name', 'slug')
+    ->get()
+    ->toArray();
+    return response()->json($builders);
+}
     
 }

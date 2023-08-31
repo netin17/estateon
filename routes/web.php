@@ -27,6 +27,9 @@ Route::patch('change_password', 'Auth\ChangePasswordController@changePassword')-
 
 //LOGOUT
 Route::get('logout', 'Web\HomeController@logout');
+
+//builder autocomplete
+Route::get('/builders/autocomplete', 'FrontUser\BuilderController@autocomplete');
 //
 Route::get('list', 'Web\PropertiesController@list')->name('property.list');
 Route::get('aboutus', 'Web\PageController@aboutus')->name('page.aboutus');
@@ -56,6 +59,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::post('abilities/destroy', 'AbilitiesController@massDestroy')->name('abilities.massDestroy');
     Route::resource('abilities', 'AbilitiesController');
     Route::resource('blogs', 'BlogController');
+    Route::resource('sliders', 'SliderController');
+    Route::get('propertyslides/{propertySliderId}', 'SliderController@addPropertySlideRelation')->name('property.slides');
+    Route::get('filterslides/{propertySliderId}', 'SliderController@filterProperties')->name('filter.slides');
+    Route::post('addpropertytoslide/{propertySliderId}', 'SliderController@addPropertyToSlide')->name('slides.property');
+    Route::get('deleteslider/{id}', 'SliderController@deletepropertyslider')->name('slider.delete');
     Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
     Route::resource('roles', 'RolesController');
     Route::resource('testimonials', 'TestimonialsController');

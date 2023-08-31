@@ -11,28 +11,27 @@
                         </div>
                         <span class="menu-icon open-menu"></span>
                         <div class="header-navbar header-wrap">
-                        @guest('frontuser')
                             <ul class="header-menu-list d-flex align-items-center justify-content-end">
+                                @guest('frontuser')
+
                                 <li class="header-menu-item"><a href="{{route('property.list')}}">Properties</a></li>
-                                <li class="header-menu-item"><a href="/">Explore Our Builders</a></li>
                                 <li class="header-menu-item"><a href="{{ route('home.signin') }}">Post Property Now</a></li>
                                 <li class="header-menu-item">
                                     <a href="/" class="yellow-btn btn btn-primary">Create Your Builder Profile</a>
                                 </li>
                                 <li class="header-menu-item"><a href="{{ route('home.signin') }}" class="login-btn btn btn-primary">Login</a>
                                 </li>
-                            </ul>
-                            @endguest
-                            @auth('frontuser')
-                            <ul class="header-menu-list d-flex align-items-center justify-content-end">
+
+                                @endguest
+                                @auth('frontuser')
                                 <li class="header-menu-item"><a href="/">Home</a></li>
                                 <li class="header-menu-item"><a href="{{route('property.list')}}">Properties</a></li>
                                 <li class="header-menu-item"><a href="{{route('frontuser.property.create')}}">Add Property</a></li>
                                 <li class="header-menu-item"><a href="{{ route('frontuser.property.index') }}" class="login-btn btn btn-primary">Dashboard</a>
                                 </li>
                                 <li class="header-menu-item">
-                                    <a href="{{ route('logout') }}">Logout 
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    <a href="{{ route('logout') }}">Logout
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
                                         {{--<svg width="28" height="28" viewBox="0 0 28 28" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -41,8 +40,14 @@
                                         </svg>--}}
                                     </a>
                                 </li>
+                                @endauth
+                                <li class="header-menu-item">
+                                    <div class="input-group">
+                                        <input type="text" id="builder-search" name="query" class="form-control" placeholder="Builders projects...">
+                                        <ul id="autocomplete-results" class="autocomplete-results"></ul>
+                                    </div>
+                                </li>
                             </ul>
-                             @endauth
                         </div>
                     </div>
                 </div>

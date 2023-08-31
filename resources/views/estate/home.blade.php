@@ -222,49 +222,50 @@
   </div>
 
 </section>
-
+@foreach($data['sliders']['slider'] as $slide)
+@if(count($slide->properties)>0)
 <section class="video_sec space">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="head_title">
-          <h3 class="corner">Hot Properties</h3>
+          <h3 class="corner">{{$slide->name}}</h3>
         </div>
         <ul class="v_slide">
-          @foreach($data['hot_featured']['hot'] as $hotp)
+          @foreach($slide->properties as $sproperty)
           <li class="v-inner">
             <div class="img-area">
               <div class="imgInner">
-                @if(isset($hotp->images[0]))
-                <a href="{{ route('property.detail', [$hotp->slug] ) }}"> <img src="{{$hotp->images[0]['url']}}" alt="image"></a>
+                @if(isset($sproperty->images[0]))
+                <a href="{{ route('property.detail', [$sproperty->slug] ) }}"> <img src="{{$sproperty->images[0]['url']}}" alt="image"></a>
                 @endif
                 @auth('frontuser')
-                @if($hotp->likes_count > 0)
-                <a class="likeBtn" data-propertyid="{{$hotp->id}}"><i class="fas fa-heart"></i> </a>
+                @if($sproperty->likes_count > 0)
+                <a class="likeBtn" data-propertyid="{{$sproperty->id}}"><i class="fas fa-heart"></i> </a>
                 @endif
-                @if($hotp->likes_count == 0)
-                <a class="likeBtn" data-propertyid="{{$hotp->id}}"><i class="far fa-heart"></i> </a>
+                @if($sproperty->likes_count == 0)
+                <a class="likeBtn" data-propertyid="{{$sproperty->id}}"><i class="far fa-heart"></i> </a>
                 @endif
                 @endauth
 
               </div>
               <div class="overlay">
                 <div class="over-text">
-                  <p class="propertyArea">{{$hotp->property_type->type_data->name}}</p>
+                  <p class="propertyArea">{{$sproperty->property_type->type_data->name}}</p>
 
                   <h4 class="BuildingName">
-                    <a href="{{ route('property.detail', [$hotp->slug] ) }}">
+                    <a href="{{ route('property.detail', [$sproperty->slug] ) }}">
                      
-                      {{\Illuminate\Support\Str::limit($hotp->name, 35, $end='...')}}</a>
+                      {{\Illuminate\Support\Str::limit($sproperty->name, 35, $end='...')}}</a>
                   </h4>
                   <div class="location">
-                    <i class="fas fa-map-marker-alt mr-2"> </i> <a class="locationArea" title="{{$hotp->address}}">{{\Illuminate\Support\Str::limit($hotp->address, 35, $end='...')}}</a>
+                    <i class="fas fa-map-marker-alt mr-2"> </i> <a class="locationArea" title="{{$sproperty->address}}">{{\Illuminate\Support\Str::limit($sproperty->address, 35, $end='...')}}</a>
                   </div>
                 </div>
                 <span class="divider"></span>
                 <div class="catFooter">
-                  <a href="{{ route('property.detail', [$hotp->slug] ) }}" class="flatPrice">₹ <span>{{number_form($hotp->property_details->price)}}</span></a>
-                  <a class="cm-btn mb-2" href="#">{{$hotp->type}}</a>
+                  <a href="{{ route('property.detail', [$sproperty->slug] ) }}" class="flatPrice">₹ <span>{{number_form($sproperty->property_details->price)}}</span></a>
+                  <a class="cm-btn mb-2" href="#">{{$sproperty->type}}</a>
                 </div>
               </div>
             </div>
@@ -275,57 +276,10 @@
     </div>
   </div>
 </section>
-<!-- featured property -->
-<!-- <section class="video_sec space featured">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="head_title">
-          <h3 class="corner">Featured Properties</h3>
-        </div>
-        <ul class="v_slide">
-          @foreach($data['hot_featured']['featured'] as $featuredp)
-          <li class="v-inner">
-            <div class="img-area">
-              <div class="imgInner">
-                @if(isset($featuredp->images[0]))
-                <a href="{{ route('property.detail', [$featuredp->slug] ) }}"> <img src="{{$featuredp->images[0]['url']}}" alt="image"></a>
-                @endif
-                @auth
-                @if($featuredp->likes_count > 0)
-                <a class="likeBtn" data-propertyid="{{$featuredp->id}}"><i class="fas fa-heart"></i> </a>
-                @endif
-                @if($featuredp->likes_count == 0)
-                <a class="likeBtn" data-propertyid="{{$featuredp->id}}"><i class="far fa-heart"></i> </a>
-                @endif
-                @endauth
-              </div>
-              <div class="overlay">
-                <div class="over-text">
-                  <p class="propertyArea">{{$featuredp->property_type->type_data->name}}</p>
+@endif
+@endforeach
 
-                  <h4 class="BuildingName">
-                    <a href="{{ route('property.detail', [$featuredp->slug] ) }}">{{$featuredp->name}}</a>
-                  </h4>
-                  <div class="location">
-                    <i class="fas fa-map-marker-alt mr-2"> </i> <a class="locationArea" title="{{$featuredp->address}}">{{\Illuminate\Support\Str::limit($featuredp->address, 35, $end='...')}}</a>
-                  </div>
-                </div>
-                <span class="divider"></span>
-                <div class="catFooter">
-                  <a href="{{ route('property.detail', [$featuredp->slug] ) }}" class="flatPrice">₹ <span>{{$featuredp->property_details->price}}</span></a>
-                  <a class="cm-btn mb-2" href="#">{{$featuredp->type}}</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          @endforeach
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
- -->
+ 
 
 <section class="section full-height over-hide px-4 px-sm-0">
  

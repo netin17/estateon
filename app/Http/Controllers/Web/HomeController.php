@@ -10,6 +10,7 @@ use App\Testimonials;
 use App\User;
 use App\Cities;
 use App\Ui;
+use App\PropertySlider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -24,9 +25,10 @@ class HomeController extends Controller
         //print '<pre>'; print_r(Auth::guard('frontuser')->user()); die;
         $category = $request->input('category', 'R');
         $data['property_type'] = PropertyType::select(['id', 'name','property_type'])->whereNotIn('name', ['Other','Featured',"New Posting"])->get();
-        $data['hot_featured'] = $this->gethotfeature();
-        $data['by_admin'] = $this->getByAdmin();
-        $data['by_users'] = $this->getByUsers();
+        $data['sliders'] = $this->getsliders();
+        // $data['by_admin'] = $this->getByAdmin();
+        // $data['by_users'] = $this->getByUsers();
+     
         // $data['section'] = Ui::Where('name','home')->with('uimeta.uimetadata')->get();
         $data['category'] = $category;
         $data['testimonials'] = Testimonials::get();
@@ -34,7 +36,7 @@ class HomeController extends Controller
         return view('estate.home', compact('data'));
     }
 
-    public function gethotfeature()
+    public function getsliders()
     {
         $userId = "";
         if (Auth::check()) {
@@ -42,36 +44,22 @@ class HomeController extends Controller
         }
         // echo "<pre>"; print_r($data);
         // exit;
-        $properties_hot = Property::where('hot', 1)->where('approved', 1)->where('status', 1)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'owner.roles' => function ($query) {
-            $query->select('name');
-        }, 'property_type.type_data', 'property_details', 'images']);
-        if ($userId != "") {
-            $properties_hot->where('user_id', '!=', $userId)->withCount([
-                'likes' => function ($query) use ($userId) {
-                    $query->where('user_id', $userId);
-                    $query->select(DB::raw('IF(count(*) > 0, 1, 0)'));
-                }
-            ]);
-        }
-        $radius = 30;
-        if (isset($data['lat']) && isset($data['lng'])) {
-            $properties_hot->selectRaw("( 6371 * acos( cos( radians(?) ) * cos( radians( lat ) )* cos( radians( lng ) - radians(?)) + sin( radians(?) ) * sin( radians( lat ) ) )) AS distance", [$data['lat'], $data['lng'], $data['lat']]);
-        }
-        $hotproperty = $properties_hot->limit(10)->orderByDesc('created_at')->get();
 
-        $properties_feature = Property::where('featured', 1)->where('status', 1)->where('approved', 1)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'owner.roles' => function ($query) {
-            $query->select('name');
-        }, 'property_type.type_data', 'property_details', 'images']);
-        if ($userId != "") {
-            $properties_feature->where('user_id', '!=', $userId)->withCount([
-                'likes' => function ($query) use ($userId) {
-                    $query->where('user_id', $userId);
-                    $query->select(DB::raw('IF(count(*) > 0, 1, 0)'));
-                }
-            ]);
-        }
-        $featured_property = $properties_feature->limit(10)->orderByDesc('created_at')->get();
-        return ['code' => '101', 'hot' => $hotproperty, 'featured' => $featured_property, 'status' => true];
+$sliders=PropertySlider::with(['properties'=>function($pquery) use($userId){
+    $pquery->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data','property_type.type_data', 'property_details', 'images'=>function($iquery){
+        $iquery->where('featured',1);
+    }]);
+    if ($userId != "") {
+        $pquery->where('user_id', '!=', $userId)->withCount([
+            'likes' => function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+                $query->select(DB::raw('IF(count(*) > 0, 1, 0)'));
+            }
+        ]);
+    }
+}])->get();
+
+        return ['code' => '101', 'slider' => $sliders, 'status' => true];
     }
 
 
