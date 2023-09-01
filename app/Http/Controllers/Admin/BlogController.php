@@ -107,6 +107,9 @@ class BlogController extends Controller
         $blog->link = $request->input('link');
 
         if ($request->hasFile('image')) {
+            if ($blog->image) {
+                Storage::disk('public')->delete($blog->image);
+            }
             $imagePath = $request->file('image')->store('images', 'public');
             $blog->image = $imagePath;
         }

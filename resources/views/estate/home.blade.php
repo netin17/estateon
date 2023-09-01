@@ -222,7 +222,7 @@
   </div>
 
 </section>
-@foreach($data['sliders']['slider'] as $slide)
+@foreach($data['sliders']['slider'] as $index =>$slide)
 @if(count($slide->properties)>0)
 <section class="video_sec space">
   <div class="container">
@@ -231,7 +231,7 @@
         <div class="head_title">
           <h3 class="corner">{{$slide->name}}</h3>
         </div>
-        <ul class="v_slide">
+        <ul class="v_slide property_slider-{{$index}}" {!! $index == 1 ? 'dir="rtl"' : '' !!}>
           @foreach($slide->properties as $sproperty)
           <li class="v-inner">
             <div class="img-area">
@@ -507,7 +507,7 @@
         $(" .header-top").slideDown();
       }
     });
-    jQuery(".v_slide").slick({
+    jQuery(".property_slider-0").slick({
       infinite: true,
       autoplay: true,
       dots: false,
@@ -516,6 +516,75 @@
       slidesToScroll: 1,
       speed: 500,
       arrows: true,
+      prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
+      nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
+      responsive: [{
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 1025,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 667,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        },
+
+      ]
+    });
+    jQuery(".property_slider-1").slick({
+      infinite: true,
+    autoplay: true,
+    dots: true,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    speed: 500,
+    arrows: true,
+    rtl:true,
+    prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
+    nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
+    responsive: [{
+        breakpoint: 1200,
+        settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+        }
+    },
+    {
+        breakpoint: 1025,
+        settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+        }
+    },
+    {
+        breakpoint: 667,
+        settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }
+    }]
+    });
+
+    jQuery(".property_slider-2").slick({
+      infinite: true,
+      autoplay: true,
+      dots: true,        // Show dots for navigation
+      autoplaySpeed: 4000,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      speed: 500,
+      arrows: false, 
       prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
       nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
       responsive: [{

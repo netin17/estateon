@@ -464,9 +464,7 @@ function savepayment(data){
             propertyId: data.propertyId,
             txnid: data.txnid
           },
-          headers: {
-            'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the request headers
-          },
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
           success: function(response) {
             // Handle success response
            console.log(response)

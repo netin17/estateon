@@ -84,8 +84,8 @@
                             @endif
                         </td>
                         <td> 
-                           <a href="" class="btn btn-xs btn-info">Edit</a>
-                           <a href="" class="btn btn-xs btn-info">Profile</a>
+                           <a href="{{route('admin.builders.edit', ['id'=>$builder->id])}}" class="btn btn-xs btn-info">Edit</a>
+                           {{--<a href="" class="btn btn-xs btn-info">Profile</a> --}}
                         </td>
                     </tr>
                     @endforeach

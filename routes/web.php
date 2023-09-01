@@ -121,6 +121,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.', '
     Route::post('/cards/store', "BuildersController@cardStore")->name('card.store');
     Route::get('/builders', "BuildersController@buildersRequests")->name('builders.requests');
     Route::get('change_builder_status/{id}/{status}','BuildersController@changestatus')->name('builders.changestatus');
+
+    Route::get('/builder/edit/{id}', 'BuildersController@editrequest')->name('builders.edit');
+    Route::patch('builder/update/{id}', 'BuildersController@updateBuilder')->name('builders.update');
  
     ///
 });
