@@ -7,6 +7,11 @@
     use Illuminate\Support\Str;
 @endphp
 <div class="details_main_banner">
+@if($data['property']->property_details && $data['property']['property_details']['property_title'] != '')
+	<div class="detail-strip">
+		{{$data['property']['property_details']['property_title'] ?? ''}}
+	</div>
+	@endif
 	@if(isset($data['property']['images']) && count($data['property']['images'])> 0)
 	<div class="details details-slider-main">
 		<div class="wrapper">
@@ -17,6 +22,7 @@
 	</div>
 	@endif
 	<div class="details_main_box">
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-12 col-md-6">
@@ -357,7 +363,7 @@
 									
 									<div class="swiper-slide">
 										<div class="properties_box">
-										<a href="{{ route('property.newdetail', [$otherproperty->slug] ) }}">
+										<a href="{{ route('property.detail', [$otherproperty->slug] ) }}">
 											
 											<div class="properties_box_img">
 											@if (count($otherproperty->images) > 0)
@@ -383,13 +389,14 @@
 													<span class="properties_tag">{{ucfirst($otherproperty->type)}}</span>
 												</div>
 												<div class="properties_box_items">
-													{{--<h6>Indore</h6>--}}
-
+													@if($otherproperty->property_details->city != "")
+													<h6>{{$otherproperty->property_details->city->name}}</h6>
+													@endif
 													<div class="properties_area">{{$otherproperty->property_details->carpet_area}} sq.ft</div>
 												</div>
 												<div class="properties_box_items">
 													<ul>
-													@foreach($otherproperty->amenities as $aminity)
+													@foreach($otherproperty->amenities->take(2) as $aminity)
 														<li>{{ $aminity->amenity_data->name}}</li>
 														@endforeach
 													</ul>

@@ -125,9 +125,10 @@ class PropertiesController extends Controller
                 ->with([
                     'amenities' => function ($aquery) {
                         $aquery->with(['amenity_data']);
-                        $aquery->limit(2); // Limiting the number of amenities to 2
                     },
-                    'property_details',
+                    'property_details'=>function($dquery){
+                        $dquery->with(['city']);
+                    },
                     'images' => function ($iquery) {
                         $iquery->where('featured', 1);
                     }
@@ -136,7 +137,7 @@ class PropertiesController extends Controller
         }
     ])
     ->first();
-        // echo "<pre>"; print_r($data['property']->toArray());
+        // echo "<pre>"; print_r($data['otherproperties']->toArray());
         // exit;
         return view('estate.newdetail', compact('data')); 
     }
@@ -156,9 +157,16 @@ class PropertiesController extends Controller
         // dd($params);
         //print '<pre>'; print_R($params); die;
         $data = [];
-        $property = Property::where('approved', 1)->where('status', 1)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'owner.roles' => function ($query) {
+        $property = Property::where('approved', 1)->where('status', 1)->with(['amenities' => function ($aquery) {
+            $aquery->with(['amenity_data']);
+        }, 'vastu.vastu_data', 'preferences.preferences_data', 'owner.roles' => function ($query) {
             $query->select('name');
-        }, 'property_type.type_data', 'property_details', 'images']);
+        }, 'property_type.type_data',  'property_details'=>function($dquery){
+            $dquery->with(['city']);
+        },
+        'images' => function ($iquery) {
+            $iquery->where('featured', 1);
+        }]);
         if ($userId != "") {
             $property->withCount([
                 'likes' => function ($query) use ($userId) {

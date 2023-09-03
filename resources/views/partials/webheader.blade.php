@@ -42,7 +42,7 @@
                                 </li>
                                 @endauth
                                 <li class="header-menu-item">
-                                    <div class="input-group">
+                                    <div class="input-group autocomplete-search">
                                         <input type="text" id="builder-search" name="query" class="form-control" placeholder="Builders projects...">
                                         <ul id="autocomplete-results" class="autocomplete-results"></ul>
                                     </div>

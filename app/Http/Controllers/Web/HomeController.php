@@ -46,7 +46,12 @@ class HomeController extends Controller
         // exit;
 
 $sliders=PropertySlider::with(['properties'=>function($pquery) use($userId){
-    $pquery->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data','property_type.type_data', 'property_details', 'images'=>function($iquery){
+    $pquery->where('status',1);
+    $pquery->with(['amenities' => function ($aquery) {
+        $aquery->with(['amenity_data']);
+    }, 'vastu.vastu_data', 'preferences.preferences_data','property_type.type_data', 'property_details'=>function($dquery){
+        $dquery->with(['city']);
+    }, 'images'=>function($iquery){
         $iquery->where('featured',1);
     }]);
     if ($userId != "") {

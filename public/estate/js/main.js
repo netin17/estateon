@@ -59,7 +59,7 @@ jQuery(document).ready(function () {
         jQuery("body").toggleClass("body-overflow");
     });
 
-    $('#builder-search').on('input', function() {
+    $('#builder-search').on('input', function () {
         const query = $(this).val();
 
         if (query.length >= 2) {
@@ -69,24 +69,30 @@ jQuery(document).ready(function () {
                 data: {
                     query: query
                 },
-                success: function(data) {
+                success: function (data) {
                     const resultsList = $('#autocomplete-results');
                     resultsList.empty();
+                    if (data.length > 0) {
+                        $('#autocomplete-results').show();
+                        data.forEach(function (builder) {
+                            const listItem = $('<li>').text(builder.company_name).addClass('autocomplete-item');
+                            resultsList.append(listItem);
 
-                    data.forEach(function(builder) {
-                        const listItem = $('<li>').text(builder.company_name).addClass('autocomplete-item');
-                        resultsList.append(listItem);
+                            listItem.on('click', function () {
+                                const selectedName = builder.slug;
+                                const encodedName = encodeURIComponent(selectedName);
+                                const url = `https://builder.estateon.com/${encodedName}`;
 
-                        listItem.on('click', function() {
-                            const selectedName = builder.slug;
-                            const encodedName = encodeURIComponent(selectedName);
-                            const url = `https://builder.estateon.com/${encodedName}`;
-
-                            window.open(url, '_blank');
+                                window.open(url, '_blank');
+                            });
                         });
-                    });
+                    } else {
+                        $('#autocomplete-results').hide();
+                    }
                 }
             });
+        } else {
+            $('#autocomplete-results').hide();
         }
     });
 });

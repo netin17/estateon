@@ -3208,6 +3208,799 @@ ul.social_media_left li a svg {
   background-color: #7B1FA2 !important;
 } */
 
+
+/*============== About Css Start ======================*/
+.about-banner {
+    padding-top: 270px;
+    background: #fff0f0;
+    background-image: url('https://estateon.com/estate/images/about-banner.png');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 50%;
+}
+.about-divider{
+	width: 380px;
+	height: 42px;
+	background: linear-gradient(270deg, #FFB1B5 -3.75%, rgba(255, 178, 141, 0.00) 108.58%);
+}
+.about-banner h1 {
+    color: #3B3A5D;
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%;
+    margin-bottom: 34px;
+}
+.about-banner h1 span {
+    color: #C42128;
+}
+.our-story-image {
+    position: relative;
+}
+.our-story-image img {
+    position: relative;
+    left: -13%;
+}
+.our-story-sec .title{
+	color: #636363;
+	font-size: 50px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 84px;
+	letter-spacing: 2px;
+	position: relative;
+}
+.our-story-sec .title::after {
+    width: 90px;
+    height: 4px;
+    background: #c42128;
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+}
+.our-story-con h6 {
+    color: #636363;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 84px;
+    letter-spacing: 1.2px;
+}
+.our-story-con h3 {
+    color: #C42128;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 84px;
+    letter-spacing: 2px;
+    margin: 0;
+}
+.our-story-con p {
+    color: #6B6A6A;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0;
+}
+.selling-property {
+    position: relative;
+}
+.selling-property::before {
+    width: 535px;
+    height: 1036.719px;
+    transform: rotate(-60deg);
+    flex-shrink: 0;
+    content: "";
+    border-radius: 267.5px;
+    background: #FFD2D2;
+    filter: blur(250px);
+    position: absolute;
+}
+.selling-property-con h3 {
+    color: #636363;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%;
+}
+.selling-property-con h6 {
+    color: #C42128;
+    font-family: Judson;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 118.5%;
+}
+.selling-item-list {
+    padding: 55px;
+    margin: 0;
+    list-style: none;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+	margin-top: 35px;
+}
+.selling-item-list li {
+    display: flex;
+    align-items: start;
+    gap: 45px;
+}
+.selling-item-con h5 {
+    color: #636363;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%;
+}
+.selling-item-con p {
+    color: #7D7D7D;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 118.5%;
+    margin: 0;
+}
+.our-experience-con {
+    height: 100%;
+    background: #C42128;
+    padding: 34px;
+}
+.our-experience-con h3 {
+    color: #FFF;
+    font-family: Judson;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 84px;
+    letter-spacing: 1.6px;
+    margin: 0;
+}
+.our-experience-con p {
+    color: #FFF;
+    font-family: Judson;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+.our-experience h4 {
+    color: #C42128;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 84px;
+    letter-spacing: 1.6px;
+}
+.our-team {
+    background: #FFF1F1;
+}
+.our-team h3 {
+    color: #636363;
+    text-align: center;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%;
+    margin-bottom: 45px;
+}
+.our-team-box {
+    text-align: center;
+}
+.our-team-img {
+    width: 230px;
+    height: 230px;
+    margin: 0 auto;
+}
+.our-team-img img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.our-team-con h5 {
+    color: #636363;
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%;
+}
+.our-team-con h6 {
+    color: #C42128;
+    text-align: center;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 118.5%;
+}
+.our-team-con {
+    margin-top: 28px;
+}
+.social-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+}
+.social-media a {
+    color: #636363;
+}
+.social-media a:hover {
+    color: #C42128;
+}
+.builders-goals {
+    padding: 50px 0 150px;
+	overflow: hidden;
+}
+.builders-goals-con {
+    background: #FFFADA;
+    padding: 50px;
+    position: relative;
+}
+
+.builders-goals-con::after {
+    background: #FFFADA;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    right: -100%;
+    top: 0;
+}
+
+.builders-goals-con::before {
+    background: #FFFADA;
+    position: absolute;
+    content: "";
+    width: 30%;
+    height: 100%;
+    left: -30%;
+    top: 0;
+}
+
+.builders-goals-img {
+    position: relative;
+    z-index: 1;
+    top: 100px;
+}
+
+.builders-goals-img img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.builders-goals-con h3 {
+    color: #D4BB1A;
+    text-align: left;
+    font-family: Judson;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%;
+}
+
+.builders-goals-con p {
+    color: #7D7D7D;
+    font-family: Judson;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 127.5%;
+}
+
+.builders-goals-con ul {
+    margin: 32px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 15px;
+}
+
+.builders-goals-con ul li {
+    color: #838383;
+    font-family: Judson;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 118.5%;
+	display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.agents-professionals {
+    box-shadow: 4px 4px 16px 0px rgba(196, 33, 40, 0.10), -4px -4px 16px 0px rgba(196, 33, 40, 0.10);
+	background:url("https://estateon.com/estate/images/agents-professionals-bg.svg") no-repeat bottom right;
+	background-size: 63%;
+	overflow: hidden;
+}
+.agents-professionals-img img {
+    width: 100%;
+}
+.agents-professionals-img {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+	position: relative;
+}
+.agents-professionals-img::before {
+    position: absolute;
+    border-radius: 328px;
+    background: #C42128;
+    filter: blur(200px);
+    content: "";
+    width: 328px;
+    height: 328px;
+    flex-shrink: 0;
+    z-index: 0;
+    top: 0;
+    right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+.agents-professionals-con .title{
+	color: #636363;
+	font-size: 50px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 84px;
+	letter-spacing: 2px;
+	position: relative;
+}
+.agents-professionals-con .title::after {
+    width: 90px;
+    height: 4px;
+    background: #c42128;
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+}
+.agents-professionals-con ul {
+    margin: 77px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.agents-professionals-con ul li {
+    display: flex;
+    align-items: start;
+    list-style: none;
+    gap: 15px;
+}
+.agents-professionals-con ul li svg {
+    width: 16px;
+    min-width: 16px;
+    margin-top: 7px;
+}
+.agents-professionals-con ul li p {
+    color: #7D7D7D;
+    font-family: Judson;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 127.5%;
+    margin: 0;
+}
+.agents-professionals-con a {
+    color: #C42128;
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%;
+    text-decoration-line: underline;
+    margin-bottom: 77px;
+}
+
+.owners-trust-sec .title{
+	color: #636363;
+	font-size: 50px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 84px;
+	letter-spacing: 2px;
+	position: relative;
+}
+.owners-trust-sec .title::after {
+    width: 90px;
+    height: 4px;
+    background: #c42128;
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+}
+.owners-trust-img {
+    position: relative;
+}
+
+.owners-trust-img img {
+    position: relative;
+    left: -11%;
+}
+
+.owners-trust-con h5 {
+    color: #595858;
+    font-family: Judson;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 127.5%; /* 33.15px */
+}
+
+.owners-trust-con p {
+    color: #7D7D7D;
+    font-family: Judson;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 127.5%; /* 20.4px */
+}
+
+.owners-trust-box {
+    border-radius: 10px;
+    border: 1px solid #DEDEDE;
+    background: #FFF2F2;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.10);
+    padding: 10px;
+}
+
+.owners-trust-box h2 {
+    color: #C42128;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #DFDFDF;
+}
+
+.owners-trust-box h2 span {
+    color: #787878;
+    text-align: right;
+    font-family: Judson;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.owners-trust-box h3 {
+    color: #656565;
+    font-family: Judson;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+}
+.customer-support-sec {
+    background: linear-gradient(270deg, #FFB1B5 -3.75%, rgba(255, 178, 141, 0.00) 108.58%);
+}
+.customer-support-img {
+    position: absolute;
+    width: 50%;
+    right: 0;
+	top: 0;
+    z-index: 0;
+}
+
+.customer-support-sec .container {
+    position: relative;
+    z-index: 1;
+}
+
+.customer-support-sec h2 {
+    color: #636363;
+    font-family: Judson;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%; /* 53.325px */
+}
+
+.customer-support-sec p {
+    color: #7D7D7D;
+    font-family: Judson;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 127.5%; /* 20.4px */
+}
+
+.customer-support-sec ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 59px;
+}
+
+.customer-support-sec ul li {
+    width: calc(100% - 2px / 5);
+    border-radius: 16px;
+    background: #FFF;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 1/1;
+    justify-content: center;
+    padding: 11px;
+}
+
+.customer-support-sec ul li h4 {
+    color: #606060;
+    text-align: center;
+    font-family: Cerebri Sans Pro;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 135.9%; /* 32.616px */
+    text-transform: capitalize;
+    margin: 10px 0 0 0;
+}
+
+
+.our-blog-sec .title{
+	color: #636363;
+	font-size: 50px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 84px;
+	letter-spacing: 2px;
+	position: relative;
+}
+.our-blog-sec .title::after {
+    width: 90px;
+    height: 4px;
+    background: #c42128;
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+}
+.blog-box {
+    border-radius: 16px;
+    background: #FFF;
+    box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+    margin: 20px;
+}
+
+.blog-box-con {
+    padding: 16px;
+}
+
+.blog-box-con p {
+    color: #7D7D7D;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 127.5%; /* 17.85px */
+    margin: 0;
+}
+
+.blog-box-con h4 {
+    color: #505050;
+    text-align: left;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%; /* 23.7px */
+    margin: 0 0 10px 0;
+}
+
+a.blog-box-img {
+    aspect-ratio: 1.5/1;
+    width: 100%;
+    height: 100%;
+    background: #a7a7a7;
+}
+
+a.blog-box-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.swiper-pagination-bullet-active {
+    background: #c42128 !important;
+}
+.achievements-sec .title{
+	color: #636363;
+	font-size: 50px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 84px;
+	letter-spacing: 2px;
+	position: relative;
+}
+.achievements-sec .title::after {
+    width: 90px;
+    height: 4px;
+    background: #c42128;
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+}
+.achievements-sec-img {
+    aspect-ratio: 1.5/1;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    background: #E6E6E6;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.10);
+	overflow: hidden;
+}
+.achievements-sec-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.achievements-sec-img2 {
+    aspect-ratio: 1.8/1;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    background: #E6E6E6;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.10);
+	overflow: hidden;
+}
+.achievements-sec-img2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.social-share-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-share {
+    border-radius: 20px;
+    border: 2px solid #C42128;
+    background: rgba(255, 255, 255, 0.50);
+    backdrop-filter: blur(5px);
+    padding: 24px;
+    text-align: center;
+}
+
+.social-share h3 {
+    color: #636363;
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 118.5%; /* 35.55px */
+    margin: 0 0 20px 0;
+}
+
+.social-share ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 21px;
+}
+.input-group.autocomplete-search {
+    position: relative;
+}
+
+.input-group.autocomplete-search .form-control {
+    border-radius: 4px;
+}
+
+.input-group.autocomplete-search .autocomplete-results {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 17px rgba(0,0,0,0.1);
+    border: 1px solid #c3c3c3;
+    display: none;
+}
+
+.input-group.autocomplete-search .autocomplete-results li {
+    font-size: 16px;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.input-group.autocomplete-search .autocomplete-results li:first-child {
+    padding-top: 0;
+}
+
+.input-group.autocomplete-search .autocomplete-results li:last-child {
+    border: none;
+    padding-bottom: 0;
+}
+
+.input-group.autocomplete-search .autocomplete-results li:hover {
+    color: #c42128;
+}
+
+.contact-box {
+  border-radius: 30px;
+  background: url('https://estateon.com/estate/images/contact-bg.svg') no-repeat top -57px center;
+  background-size: 110%;
+  background-color: #EFC2C4;
+  text-align: center;
+  padding: 40px 15px;
+}
+
+.contact-box h3 a{
+  color: #C42128;
+  font-family: Judson;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration: none;
+}
+.contact-box p {
+  color: #282828;
+  text-align: center;
+  font-family: Georgia;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 20px 0 0 0;
+}
+.detail-strip {
+    position: absolute;
+    top: 47px;
+    right: 0;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.50);
+    backdrop-filter: blur(5.5px);
+    z-index: 1;
+    padding: 8px;
+    color: #C42128;
+    font-family: Judson;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-left: 4px solid #C42128;
+}
+
+.detail-strip span {
+    font-size: 10px;
+    font-weight: normal;
+    margin-left: 5px;
+}
+.fancybox-container {
+    z-index: 999999999 !important;
+}
+/*============== About Css End ========================*/
+
+
 @media screen and (max-width: 650px) {
   .main-site-large-logo,
   .main-login-logo {

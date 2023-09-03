@@ -233,8 +233,8 @@
         </div>
         <ul class="v_slide property_slider-{{$index}}" {!! $index == 1 ? 'dir="rtl"' : '' !!}>
           @foreach($slide->properties as $sproperty)
-          <li class="v-inner">
-            <div class="img-area">
+          <li class="v-inner" dir="ltr">
+         {{--   <div class="img-area">
               <div class="imgInner">
                 @if(isset($sproperty->images[0]))
                 <a href="{{ route('property.detail', [$sproperty->slug] ) }}"> <img src="{{$sproperty->images[0]['url']}}" alt="image"></a>
@@ -268,7 +268,69 @@
                   <a class="cm-btn mb-2" href="#">{{$sproperty->type}}</a>
                 </div>
               </div>
-            </div>
+            </div> --}}
+
+
+
+            <div class="swiper-slide">
+										<div class="properties_box">
+										<a href="{{ route('property.detail', [$sproperty->slug] ) }}">
+											
+											<div class="properties_box_img">
+											@if (count($sproperty->images) > 0)
+												<img src="{{ $sproperty->images[0]->url }}">
+												@if ($sproperty->property_details->property_status)
+												@switch($sproperty->property_details->property_status)
+												@case('ready_to_move')
+												<span class="properties_img_tag">Ready to move</span>
+												@break
+												@case('under_construction')
+												<span class="properties_img_tag">Under Construction</span>
+												@break
+												@endswitch
+												@endif
+											@endif
+{{-- 
+                      @auth('frontuser')
+                @if($sproperty->likes_count > 0)
+                <a class="likeBtn" data-propertyid="{{$sproperty->id}}"><i class="fas fa-heart"></i> </a>
+                @endif
+                @if($sproperty->likes_count == 0)
+                <a class="likeBtn" data-propertyid="{{$sproperty->id}}"><i class="far fa-heart"></i> </a>
+                @endif
+                @endauth
+                --}}
+											</div>
+											
+										
+											<div class="properties_box_body">
+												<div class="property_title">{{ \Illuminate\Support\Str::limit($sproperty->name, $limit = 10, $end = '...') }}</div>
+												<div class="properties_box_items">
+													<h5>Apartment</h5>
+													<span class="properties_tag">{{ucfirst($sproperty->type)}}</span>
+												</div>
+												<div class="properties_box_items">
+                        @if($sproperty->property_details->city != "")
+													<h6>{{$sproperty->property_details->city->name}}</h6>
+													@endif
+
+													<div class="properties_area">{{$sproperty->property_details->carpet_area}} sq.ft</div>
+												</div>
+												<div class="properties_box_items">
+													<ul>
+													@foreach($sproperty->amenities->take(2) as $aminity)
+														<li>{{ $aminity->amenity_data->name}}</li>
+														@endforeach
+													</ul>
+													<div class="properties_price">₹ {{number_form($sproperty->property_details->price)}}</div>
+												</div>
+											</div>
+											</a>
+										</div>
+									</div>
+
+
+
           </li>
           @endforeach
         </ul>
@@ -470,7 +532,7 @@
 </section>
 <!-- testimonials -->
 <!-- newsletter -->
-<section class="newsltter space ">
+<!-- <section class="newsltter space ">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6">
@@ -486,7 +548,18 @@
       </div>
     </div>
   </div>
+</section> -->
+
+<section class='contact-sec py-4 py-md-5'>
+  <div class='container'>
+	<div class='contact-box'>
+	  <h3><a href="#" target='blank'>Contact to EstateOn</a></h3>
+	  <p>We love questions, feedbacks and we are always happy to help.<br/> Here is one way to 
+	  contact us.</p>
+	</div>
+  </div>
 </section>
+
 @endsection
 @section('scripts')
 <script src="{{url('/js/mapInput.js')}}"></script>
@@ -551,8 +624,8 @@
     speed: 500,
     arrows: true,
     rtl:true,
-    prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
-    nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
+    prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
+    nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
     responsive: [{
         breakpoint: 1200,
         settings: {

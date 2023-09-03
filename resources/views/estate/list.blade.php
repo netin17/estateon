@@ -26,40 +26,62 @@
             </div>
             @foreach($data['property'] as $property)
             <div class="col-md-6 col-12">
-              <div class="list_view">
-                <div class="img-area">
-                  <div class="imgInner">
-                    @if(isset($property->images[0]))
-                    <a href="{{ route('property.detail', [$property->slug] ) }}"> <img src="{{$property->images[0]['url']}}" alt="image"></a>
-                    @endif
-                    @auth
-                    @if($property->likes_count > 0)
-                    <a class="likeBtn" data-propertyid="{{$property->id}}"><i class="fas fa-heart"></i> </a>
-                    @endif
-                    @if($property->likes_count == 0)
-                    <a class="likeBtn" data-propertyid="{{$property->id}}"><i class="far fa-heart"></i> </a>
-                    @endif
-                    @endauth
-                  </div>
-                  <div class="overlay">
-                    <div class="over-text">
-                      <p class="propertyArea">{{$property->property_type->type_data->name}}</p>
+            <div class="swiper-slide">
+										<div class="properties_box">
+										<a href="{{ route('property.detail', [$property->slug] ) }}">
+											
+											<div class="properties_box_img">
+											@if (count($property->images) > 0)
+												<img src="{{ $property->images[0]->url }}">
+												@if ($property->property_details->property_status)
+												@switch($property->property_details->property_status)
+												@case('ready_to_move')
+												<span class="properties_img_tag">Ready to move</span>
+												@break
+												@case('under_construction')
+												<span class="properties_img_tag">Under Construction</span>
+												@break
+												@endswitch
+												@endif
+											@endif
+{{-- 
+                      @auth('frontuser')
+                @if($property->likes_count > 0)
+                <a class="likeBtn" data-propertyid="{{$property->id}}"><i class="fas fa-heart"></i> </a>
+                @endif
+                @if($property->likes_count == 0)
+                <a class="likeBtn" data-propertyid="{{$property->id}}"><i class="far fa-heart"></i> </a>
+                @endif
+                @endauth
+                --}}
+											</div>
+											
+										
+											<div class="properties_box_body">
+												<div class="property_title">{{ \Illuminate\Support\Str::limit($property->name, $limit = 10, $end = '...') }}</div>
+												<div class="properties_box_items">
+													<h5>Apartment</h5>
+													<span class="properties_tag">{{ucfirst($property->type)}}</span>
+												</div>
+												<div class="properties_box_items">
+                        @if($property->property_details->city != "")
+													<h6>{{$property->property_details->city->name}}</h6>
+													@endif
 
-                      <h4 class="BuildingName">
-                        <a href="{{ route('property.detail', [$property->slug] ) }}">{{$property->name}}</a>
-                      </h4>
-                      <div class="location">
-                        <i class="fas fa-map-marker-alt mr-2"> </i> <a class="locationArea" title="{{$property->address}}">{{\Illuminate\Support\Str::limit($property->address, 35, $end='...')}}</a>
-                      </div>
-                    </div>
-
-                    <div class="catFooter">
-                      <p class="flatPrice">₹ <span>{{$property->property_details->price}}</span></p>
-                      <a href="{{ route('property.detail', [$property->slug] ) }}" class="cm-btn">{{$property->type}}</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+													<div class="properties_area">{{$property->property_details->carpet_area}} sq.ft</div>
+												</div>
+												<div class="properties_box_items">
+													<ul>
+													@foreach($property->amenities->take(2) as $aminity)
+														<li>{{ $aminity->amenity_data->name}}</li>
+														@endforeach
+													</ul>
+													<div class="properties_price">₹ {{number_form($property->property_details->price)}}</div>
+												</div>
+											</div>
+											</a>
+										</div>
+									</div>
             </div>
             @endforeach
             <div class="col-12">
