@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\File;
 class Property extends Model
 {
     //
@@ -37,6 +37,9 @@ class Property extends Model
     public function owner(){
         return $this->belongsTo('App\User', 'user_id');
     }
+    public function builder_feature_property(){
+        return $this->hasMany('App\BuilderFeatureProperty', 'property_id');
+    }
 
 public function userSubscriptions()
 {
@@ -47,6 +50,7 @@ public function userSubscriptions()
         parent::boot();
 
         static::deleting(function($property) { // before delete() method call this
+            $imagesfolder= public_path('uploads\image\property'.$property->id);
              $property->amenities()->get()->each->delete();
              $property->vastu()->get()->each->delete();
              $property->preferences()->get()->each->delete();
@@ -54,6 +58,11 @@ public function userSubscriptions()
              $property->property_type()->get()->each->delete();
              $property->images()->get()->each->delete();
              $property->likes()->get()->each->delete();
+             $property->userSubscriptions()->get()->each->delete();
+             $property->builder_feature_property()->get()->each->delete();
+
+             //delete images folder
+             $deletefolder=File::deleteDirectory($imagesfolder);
              // do the rest of the cleanup...
         });
     }

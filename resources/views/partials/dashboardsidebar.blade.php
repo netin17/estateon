@@ -36,10 +36,10 @@
                                 <li><a class="sidebar-link transition {{ request()->is('frontuser/property/create') || request()->is('frontuser/property/create') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.property.create')}}">Add Property</a></li>
                                 <li><a class="sidebar-link transition  {{ request()->is('frontuser/properties/visitors') || request()->is('frontuser/properties/visitors') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.property.visitors')}}">Properties Visitors</a></li>
                                 <li><a class="sidebar-link transition {{ request()->is('frontuser/wishlist') || request()->is('frontuser/wishlist') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.user.wishlist')}}">Other Fav. Property</a></li>
-                                <li><a class="sidebar-link transition {{ request()->is('frontuser/builders/*') || request()->is('frontuser/builders/*') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.builder.create')}}">Builder Profile</a></li>
-                           
+								<li><a class="sidebar-link transition {{ request()->is('frontuser/builders/*') || (request()->is('frontuser/builders/*') && $data['is_builder']) ? 'sidebar-link-active1' : '' }}" href="{{route('frontuser.builder.create')}}">Builder Profile</a></li>
                                 @if($data['is_builder'])
-                                <li><a class="sidebar-link transition {{ request()->is('contact/support') || request()->is('contact/support') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.builders.contact_suppoert')}}">Contact to Support</a></li>
+									
+                                <li><a class="sidebar-link focus-red transition {{ request()->is('contact/support') || request()->is('contact/support') ? 'sidebar-link-active' : '' }}" href="{{route('frontuser.builders.contact_suppoert')}}">Contact to Support</a></li>
                                     @endif
                             </ul>
                         </div>

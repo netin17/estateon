@@ -7,15 +7,13 @@
         <div class="dashboard-row d-flex flex-wrap">
             @include('partials.dashboardsidebar', ['user'=>$data['user'], 'propertycount'=>$data['p_count'], 'is_builder'=>$data['is_builder']])
             <div class="dashboard-content-col">
-                <div class="dashboard-title-wrap d-lg-block d-none">
-                    <h1 class="dark-font text-left dashboard-title mb-4 ">Dashboard</h1>
-                </div>
-                <div class="refer-box side-refer-box text-center mb-5">
-                    Builder Dashboard
+                <div class="refer-box refer-box-contact side-refer-box text-center mb-5">
+                    Contact to Support
                 </div>
 
+				<h3 class="dark-font text-center step-title">Add Details</h3>
                 <div class="step-content box-style">
-                    <h3 class="dark-font text-center step-title">Add Details</h3>
+                    
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -60,11 +58,8 @@
                                 <input type="number" id="phone_no" name="phone" class="form-group-file" required />
                             </div>
                             
-                            <div class="form-group-col mb-0">
-                                <label for="phone_no">Write Message*</label>
-                                <textarea name="message" id="message" cols="30" rows="1" class="form-group-file textarea-msg" required></textarea>
-                            </div>
-                            <div class="contact-bottom mb-0 px-1 form-group-col d-flex align-items-center justify-content-end flex-wrap">
+                            
+                            <div class="contact-bottom mb-0 form-group-col d-flex align-items-center justify-content-end flex-wrap">
                                 <div class="form-group-col px-1 w-100">
                                     <label for="phone_no">State*</label>
                                     <select name="state_id" id="state_id" class="form-group-file" required>
@@ -74,11 +69,19 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="contact-bottom d-flex align-items-center justify-content-end w-100">
+                            </div>
+							<div class="form-group-col mb-0 w-100">
+                                <label for="phone_no">Write Message*</label>
+                                <textarea name="message" id="message" cols="30" rows="4" class="form-control" required></textarea>
+                            </div>
+							
+							<div class="form-group-col mb-0 w-100 d-flex align-items-center mt-4">
+								<div class="contact-bottom d-flex align-items-center justify-content-end w-100">
                                     <div class="d-flex align-items-center" id="recaptcha-container"></div>
                                 </div>
                                 <button type="submit" class="contact-sub-btn btn btn-primary mt-2">Submit</button>
-                            </div>
+							</div>
+							
                         </div>
                     </form>
                 </div>

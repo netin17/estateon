@@ -290,16 +290,35 @@
 												@endswitch
 												@endif
 											@endif
-{{-- 
-                      @auth('frontuser')
-                @if($sproperty->likes_count > 0)
-                <a class="likeBtn" data-propertyid="{{$sproperty->id}}"><i class="fas fa-heart"></i> </a>
+
+                     {{-- @auth('frontuser')
+                
+				@if($sproperty->likes_count > 0)
+                <a class="likeBtn" data-propertyid="{{$sproperty->id}}">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					  <mask id="mask0_1_330" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="1" y="3" width="20" height="17">
+						<path d="M6.87516 3.66669C4.09079 3.66669 1.8335 5.92398 1.8335 8.70835C1.8335 13.75 7.79183 18.3334 11.0002 19.3994C14.2085 18.3334 20.1668 13.75 20.1668 8.70835C20.1668 5.92398 17.9095 3.66669 15.1252 3.66669C13.4202 3.66669 11.9122 4.51323 11.0002 5.80894C10.5353 5.14674 9.91765 4.60631 9.19962 4.23341C8.48158 3.86051 7.68426 3.66612 6.87516 3.66669Z" fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+					  </mask>
+					  <g mask="url(#mask0_1_330)">
+						<path d="M0 0H22V22H0V0Z" fill="white"/>
+					  </g>
+					</svg>
+				</a>
                 @endif
                 @if($sproperty->likes_count == 0)
-                <a class="likeBtn" data-propertyid="{{$sproperty->id}}"><i class="far fa-heart"></i> </a>
+                <a class="likeBtn" data-propertyid="{{$sproperty->id}}">
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					  <mask id="mask0_1_352" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="1" y="3" width="20" height="17">
+						<path d="M6.87516 3.66663C4.09079 3.66663 1.8335 5.92392 1.8335 8.70829C1.8335 13.75 7.79183 18.3333 11.0002 19.3994C14.2085 18.3333 20.1668 13.75 20.1668 8.70829C20.1668 5.92392 17.9095 3.66663 15.1252 3.66663C13.4202 3.66663 11.9122 4.51317 11.0002 5.80888C10.5353 5.14668 9.91765 4.60625 9.19962 4.23335C8.48158 3.86045 7.68426 3.66606 6.87516 3.66663Z" fill="black" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+					  </mask>
+					  <g mask="url(#mask0_1_352)">
+						<path d="M0 0H22V22H0V0Z" fill="white"/>
+					  </g>
+					</svg>
+				</a>
                 @endif
-                @endauth
-                --}}
+                @endauth  --}}
+                
 											</div>
 											
 										

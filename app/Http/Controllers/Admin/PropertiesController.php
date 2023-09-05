@@ -19,6 +19,7 @@ use App\Cities;
 use App\commonfunction;
 use App\Leads;
 use App\User;
+use App\UserSubscription;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -496,6 +497,10 @@ class PropertiesController extends Controller
             return abort(401);
         }
         $property = Property::findOrFail($id);
+        $activesubscription=UserSubscription::where('property_id', $property->id)->where('status', 1)->first();
+        if($activesubscription){
+            return back()->withErrors(['active_sub' => 'Cannot delete property. It has active Subscription']);
+        }
         $property->delete();
 
         return redirect()->route('admin.property.index');
