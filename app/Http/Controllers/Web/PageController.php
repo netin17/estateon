@@ -10,10 +10,13 @@ use Exception;
 use App\Property;
 use App\SubscriptionPlan;
 use App\Content;
+use App\Blog;
 class PageController extends Controller
 {
     public function aboutus(){
-        return view('estate.about');
+        $data=[];
+        $data['blogs']=Blog::get();
+        return view('estate.about', compact(['data']));
     }
     public function contact(){
         return view('estate.contactus');

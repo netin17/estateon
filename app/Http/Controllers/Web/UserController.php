@@ -116,6 +116,9 @@ class UserController extends Controller
         }])->withCount(['properties' => function ($query) {
             $query->where('status', 1)->where('approved', 1);
         }])->first();
+        if(!$data['user']){
+            abort(404);
+        }
         return view('estate.agentdetail', compact(['data']));
         // echo "<pre>";
         // print_r($data['user']->toArray());

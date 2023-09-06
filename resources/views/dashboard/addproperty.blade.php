@@ -216,38 +216,42 @@
                             <div class="row mt-4">
                                 <div class="step-form-group mb-3 col-md-6">
                                     <label for="property_status" class="step-form-label">Property Status</label>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="property_status" value="ready_to_move" id="ready_to_move">
-                                        <label class="form-check-label" for="ready_to_move">Ready to Move</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="property_status" value="under_construction" id="under_construction">
-                                        <label class="form-check-label" for="under_construction">Under Construction</label>
-                                    </div>
+									<div class="property-status-box">
+										<div class="form-check">
+											<input type="radio" class="form-check-input" name="property_status" value="ready_to_move" id="ready_to_move">
+											<label class="form-check-label" for="ready_to_move">Ready to Move</label>
+										</div>
+										<div class="form-check">
+											<input type="radio" class="form-check-input" name="property_status" value="under_construction" id="under_construction">
+											<label class="form-check-label" for="under_construction">Under Construction</label>
+										</div>
+									</div>
 
 
-                                    <div class="step-form-group mb-3 property-age-options" style="display: none;">
+                                    <div class="step-form-group mb-3 mt-3 property-age-options" style="display: none;">
                                         <label for="property_age" class="step-form-label">Property Age</label>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="property_age" value="0-5" id="age_0_5">
-                                            <label class="form-check-label" for="age_0_5">0-5 years</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="property_age" value="6-10" id="age_6_10">
-                                            <label class="form-check-label" for="age_6_10">6-10 years</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="property_age" value="11-15" id="age_11_15">
-                                            <label class="form-check-label" for="age_11_15">11-15 years</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="property_age" value="15+" id="age_15+">
-                                            <label class="form-check-label" for="age_15+">More Than 15</label>
-                                        </div>
+                                        <div class="property-list-items">
+											<div class="form-check">
+												<input type="radio" class="form-check-input" name="property_age" value="0-5" id="age_0_5">
+												<label class="form-check-label" for="age_0_5">0-5 years</label>
+											</div>
+											<div class="form-check">
+												<input type="radio" class="form-check-input" name="property_age" value="6-10" id="age_6_10">
+												<label class="form-check-label" for="age_6_10">6-10 years</label>
+											</div>
+											<div class="form-check">
+												<input type="radio" class="form-check-input" name="property_age" value="11-15" id="age_11_15">
+												<label class="form-check-label" for="age_11_15">11-15 years</label>
+											</div>
+											<div class="form-check">
+												<input type="radio" class="form-check-input" name="property_age" value="15+" id="age_15+">
+												<label class="form-check-label" for="age_15+">More Than 15</label>
+											</div>
+										</div>
                                         <!-- Add more options here as needed -->
                                     </div>
 
-                                    <div class="step-form-group mb-3 possession-options" style="display: none;">
+                                    <div class="step-form-group mb-3 mt-3 possession-options" style="display: none;">
                                         <label for="possession_by" class="step-form-label">Possession By</label>
                                         <!-- Use a loop or add options manually -->
 
@@ -621,15 +625,16 @@
         // Generate possession years dynamically
         var possessionOptions = $('.possession-options');
         var possessionYears = 5; // Number of years in the future
-
+		var option = '<div class="property-list-items">'
         for (var i = 0; i <= possessionYears; i++) {
             var year = currentYear + i;
-            var option = '<div class="form-check">' +
+            option += '<div class="form-check">' +
                 '<input type="radio" class="form-check-input" name="possesion_by" value="' + year + '" id="possession_' + year + '">' +
                 '<label class="form-check-label" for="possession_' + year + '">' + year + '</label>' +
                 '</div>';
-            possessionOptions.append(option);
         }
+		option += '</div>'
+		possessionOptions.append(option);
     });
 </script>
 @endsection

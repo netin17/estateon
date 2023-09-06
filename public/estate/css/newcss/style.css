@@ -3232,7 +3232,7 @@ ul.social_media_left li a svg {
     background-image: url('https://estateon.com/estate/images/about-banner.png');
     background-repeat: no-repeat;
     background-position: right bottom;
-    background-size: 50%;
+    background-size: 100%;
 }
 .about-divider{
 	width: 380px;
@@ -3536,7 +3536,11 @@ ul.social_media_left li a svg {
 	overflow: hidden;
 }
 .agents-professionals-img img {
-    width: 100%;
+    width: calc(100% + 65%);
+    right: -38%;
+    max-width: inherit;
+    bottom: -28%;
+    position: absolute;
 }
 .agents-professionals-img {
     text-align: center;
@@ -3544,24 +3548,9 @@ ul.social_media_left li a svg {
     display: flex;
     align-items: end;
     justify-content: center;
-	position: relative;
+    position: relative;
 }
-.agents-professionals-img::before {
-    position: absolute;
-    border-radius: 328px;
-    background: #C42128;
-    filter: blur(200px);
-    content: "";
-    width: 328px;
-    height: 328px;
-    flex-shrink: 0;
-    z-index: 0;
-    top: 0;
-    right: 0;
-	bottom: 0;
-	left: 0;
-	margin: auto;
-}
+
 .agents-professionals-con .title{
 	color: #636363;
 	font-size: 50px;
@@ -4024,6 +4013,20 @@ a.blog-box-img img {
 .fancybox-container {
     z-index: 999999999 !important;
 }
+.property-status-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.property-list-items {
+    display: flex;
+    align-items: center;
+    gap: 5px 15px;
+    flex-wrap: wrap;
+}
+
+
 /*============== About Css End ========================*/
 
 
@@ -4107,6 +4110,39 @@ a.blog-box-img img {
 	}
 	.slider-thumbnail-outer {
 		margin-top: 20px;
+	}
+	.selling-property {
+		overflow: hidden;
+	}
+	.customer-support-sec ul {
+		gap: 15px;
+		flex-wrap: wrap;
+	}
+	.selling-item-list {
+		padding: 25px;
+	}
+	.selling-item-list li {
+		gap: 10px;
+		flex-wrap: wrap;
+	}
+	.agents-professionals-img img {
+		width: auto;
+		right: inherit;
+		max-width: 100%;
+		bottom: inherit;
+		position: inherit;
+	}
+	.about-divider {
+		width: 280px;
+	}
+	.builders-goals-img {
+		position: initial;
+	}
+	.builders-goals-con {
+		padding: 15px;
+	}
+	.customer-support-sec ul li {
+		aspect-ratio: 1.8/1;
 	}
 }
 

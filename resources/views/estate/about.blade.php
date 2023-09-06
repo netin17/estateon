@@ -19,7 +19,9 @@
 		<h2 class="title">Our Story</h2>
 		<div class="row">
 			<div class="col-12 col-md-6">
-				<div class="our-story-image"><img src="https://estateon.com/estate/images/our-story.svg"></div>
+				<div class="our-story-image">
+				<img src="{{ url('estate/images/our-story.svg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
+				</div>
 			</div>
 			<div class="col-12 col-md-6">
 				<div class="our-story-con">
@@ -44,7 +46,7 @@
 		<div class="row d-flex align-items-center">
 			<div class="col-12 col-md-5">
 				<div class="selling-property-img">
-					<img src="https://estateon.com/estate/images/selling-property.png">
+					<img src="{{ url('estate/images/selling-property.png')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 			<div class="col-12 col-md-7">
@@ -133,10 +135,10 @@
 		<div class="row">
 			<div class="col-12 col-md-4">
 				<div class="our-experience-img mb-3">
-					<img src="https://estateon.com/estate/images/our-experience1.jpg">
+					<img src="{{ url('estate/images/our-experience1.jpg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 				</div>
 				<div class="our-experience-img">
-					<img src="https://estateon.com/estate/images/our-experience2.jpg">
+					<img src="{{ url('estate/images/our-experience2.jpg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 			<div class="col-12 col-md-4">
@@ -157,7 +159,7 @@
 			</div>
 			<div class="col-12 col-md-4">
 				<div class="our-experience-img">
-					<img src="https://estateon.com/estate/images/our-experience3.jpg">
+					<img src="{{ url('estate/images/our-experience3.jpg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 				</div>
 				<h4>EstateOn</h4>
 			</div>
@@ -172,7 +174,7 @@
 			<div class="col-12 col-md-3 mb-3">
 				<div class="our-team-box">
 					<div class="our-team-img">
-						<img src="https://estateon.com/estate/images/jacob-jones.png">
+						<img src="{{ url('estate/images/jacob-jones.png')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 					</div>
 					<div class="our-team-con">
 						<h5>Jacob Jones</h5>
@@ -189,7 +191,7 @@
 			<div class="col-12 col-md-3 mb-3">
 				<div class="our-team-box">
 					<div class="our-team-img">
-						<img src="https://estateon.com/estate/images/esther-howard.png">
+						<img src="{{ url('estate/images/esther-howard.png')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 					</div>
 					<div class="our-team-con">
 						<h5>Esther Howard</h5>
@@ -206,7 +208,7 @@
 			<div class="col-12 col-md-3 mb-3">
 				<div class="our-team-box">
 					<div class="our-team-img">
-						<img src="https://estateon.com/estate/images/ronald-richards.png">
+						<img src="{{ url('estate/images/ronald-richards.png')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 					</div>
 					<div class="our-team-con">
 						<h5>Ronald Richards</h5>
@@ -223,7 +225,7 @@
 			<div class="col-12 col-md-3 mb-3">
 				<div class="our-team-box">
 					<div class="our-team-img">
-						<img src="https://estateon.com/estate/images/jerome-bell.png">
+						<img src="{{ url('estate/images/jerome-bell.png')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 					</div>
 					<div class="our-team-con">
 						<h5>Jerome Bell</h5>
@@ -246,7 +248,7 @@
 		<div class="row">
 			<div class="col-12 col-md-5">
 				<div class="builders-goals-img">
-					<img src="https://estateon.com/estate/images/builders-goals.jpg">
+					<img src="{{ url('estate/images/builders-goals.jpg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 			<div class="col-12 col-md-7">
@@ -336,7 +338,7 @@
 			</div>
 			<div class="col-12 col-md-6">
 				<div class="agents-professionals-img">
-					<img src="https://estateon.com/estate/images/agents-professionals.svg">
+					<img src="{{ url('estate/images/agents-professionals2.svg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 		</div>
@@ -351,7 +353,7 @@
 		<div class="row">
 			<div class="col-12 col-md-7">
 				<div class="owners-trust-img">
-					<img src="https://estateon.com/estate/images/owners-trust.svg">
+					<img src="{{ url('estate/images/owners-trust.svg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 			<div class="col-12 col-md-5">
@@ -402,7 +404,7 @@
 
 <section class="customer-support-sec py-3 py-md-5">
 	<div class="customer-support-img">
-		<img src="https://estateon.com/estate/images/customer-support-bg.svg">
+		<img src="{{ url('estate/images/customer-support-bg.svg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
 	</div>
 	
 	<div class="container">
@@ -559,80 +561,19 @@
 		
 		<div class="swiper mySwiper">
 		<div class="swiper-wrapper pb-4">
+		@foreach($data['blogs'] as $blog)
 		  <div class="swiper-slide">
 			<div class="blog-box">
-				<a href="#" class="blog-box-img">
-					<img src="https://estateon.com/estate/images/builders-goals.jpg">
+				<a href="{{ $blog->link }}" target="_blank" class="blog-box-img">
+					<img src="{{ asset('storage/' . $blog->image) }}" alt="no-property" class="mx-auto no-property-img d-block" />
 				</a>
 				<div class="blog-box-con">
-					<h4>Heading 1</h4>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem 
-					Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is 
-					simply dummy text of the printing and typesetting industry. Ipsum is simply dummy 
-					text of the printing and typesetting industry.</p>
+					<h4>{{$blog->title}}</h4>
+					{!! $blog->description !!}
 				</div>
 			</div>
 		  </div>
-		  
-		  <div class="swiper-slide">
-			<div class="blog-box">
-				<a href="#" class="blog-box-img">
-					<img src="https://estateon.com/estate/images/our-experience1.jpg">
-				</a>
-				<div class="blog-box-con">
-					<h4>Heading 2</h4>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem 
-					Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is 
-					simply dummy text of the printing and typesetting industry. Ipsum is simply dummy 
-					text of the printing and typesetting industry.</p>
-				</div>
-			</div>
-		  </div>
-		  
-		  <div class="swiper-slide">
-			<div class="blog-box">
-				<a href="#" class="blog-box-img">
-					<img src="https://estateon.com/estate/images/our-experience2.jpg">
-				</a>
-				<div class="blog-box-con">
-					<h4>Heading 3</h4>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem 
-					Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is 
-					simply dummy text of the printing and typesetting industry. Ipsum is simply dummy 
-					text of the printing and typesetting industry.</p>
-				</div>
-			</div>
-		  </div>
-		  
-		  <div class="swiper-slide">
-			<div class="blog-box">
-				<a href="#" class="blog-box-img">
-					<img src="https://estateon.com/estate/images/selling-property.png">
-				</a>
-				<div class="blog-box-con">
-					<h4>Heading 4</h4>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem 
-					Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is 
-					simply dummy text of the printing and typesetting industry. Ipsum is simply dummy 
-					text of the printing and typesetting industry.</p>
-				</div>
-			</div>
-		  </div>
-		  
-		  <div class="swiper-slide">
-			<div class="blog-box">
-				<a href="#" class="blog-box-img">
-					<img src="https://estateon.com/estate/images/builders-goals.jpg">
-				</a>
-				<div class="blog-box-con">
-					<h4>Heading 5</h4>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem 
-					Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is 
-					simply dummy text of the printing and typesetting industry. Ipsum is simply dummy 
-					text of the printing and typesetting industry.</p>
-				</div>
-			</div>
-		  </div>
+		  @endforeach
 		  
 		</div>
 		<div class="swiper-pagination"></div>

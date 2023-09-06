@@ -223,6 +223,7 @@
 
                                     <div class="step-form-group mb-3 col-md-6">
     <label for="property_status" class="step-form-label">Property Status</label>
+    <div class="property-status-box">
     <div class="form-check">
         <input type="radio" class="form-check-input" name="property_status" value="ready_to_move" id="ready_to_move"  {{ $data['property']->property_details->property_status == 'ready_to_move' ? 'checked' : '' }}>
         <label class="form-check-label" for="ready_to_move">Ready to Move</label>
@@ -231,10 +232,11 @@
         <input type="radio" class="form-check-input" name="property_status" value="under_construction" id="under_construction" {{ $data['property']->property_details->property_status == 'under_construction' ? 'checked' : '' }}>
         <label class="form-check-label" for="under_construction">Under Construction</label>
     </div>
+    </div>
 
-
-<div class="step-form-group mb-3 property-age-options" style="{{ $data['property']->property_details->property_status == 'ready_to_move' ? 'display: block;' : 'display: none;' }}">
+<div class="step-form-group mb-3 mt-3 property-age-options" style="{{ $data['property']->property_details->property_status == 'ready_to_move' ? 'display: block;' : 'display: none;' }}">
     <label for="property_age" class="step-form-label">Property Age</label>
+    <div class="property-list-items">
     <div class="form-check">
         <input type="radio" class="form-check-input" name="property_age" value="0-5" id="age_0_5">
         <label class="form-check-label" for="age_0_5">0-5 years</label>
@@ -253,15 +255,18 @@
     </div>
     <!-- Add more options here as needed -->
 </div>
+</div>
 
-<div class="step-form-group mb-3 possession-options" style="{{ $data['property']->property_details->property_status == 'under_construction' ? 'display: block;' : 'display: none;' }}">
+<div class="step-form-group mb-3 mt-3 possession-options" style="{{ $data['property']->property_details->property_status == 'under_construction' ? 'display: block;' : 'display: none;' }}">
     <label for="possession_by" class="step-form-label">Possession By</label>
     <!-- Use a loop or add options manually -->
-    <div class="form-check">
+    <div class="property-list-items">
         @foreach ($data['possessionByOptions'] as $option)
+		<div class="form-check">
             <input type="radio" class="form-check-input" name="possesion_by" value="{{ $option }}" id="possession_{{ $option }}"
             {{ $data['property']->property_details->possesion_by == $option ? 'checked' : '' }}>
             <label class="form-check-label" for="possession_{{ $option }}">{{ $option }}</label>
+		</div>
         @endforeach
     </div>
     <!-- Add more options here as needed -->
