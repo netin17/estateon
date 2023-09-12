@@ -24,6 +24,9 @@ class PageController extends Controller
     public function faq(){
         return view('estate.faq');
     }
+    public function privacy_policy(){
+        return view('estate.privacy_policy');
+    }
     public function pricing(){
         $plans= SubscriptionPlan::where('status', 1)->get();
         return view('estate.pricing', compact(['plans']));

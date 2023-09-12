@@ -735,6 +735,23 @@
 				swiper: sliderThumbnail
 			}
 		});
+		if (checkUserLoggedIn()) {
+    var propertyId = "{{$data['property']->id}}";
+    console.log("propertyId", propertyId)
+    $.ajax({
+            url: '/frontuser/property/' + propertyId + '/visit',
+            type: 'POST',
+            headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+            success: function (response) {
+                console.log(response.message);
+            },
+            error: function (error) {
+                console.error(error.responseJSON.error);
+            }
+        });
+}
 	})
 </script>
 @endsection

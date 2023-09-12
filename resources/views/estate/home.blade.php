@@ -323,7 +323,7 @@
 											
 										
 											<div class="properties_box_body">
-												<div class="property_title">{{ \Illuminate\Support\Str::limit($sproperty->name, $limit = 10, $end = '...') }}</div>
+												<div class="property_title">{{ \Illuminate\Support\Str::limit($sproperty->name, $limit = 17, $end = '...') }}</div>
 												<div class="properties_box_items">
 													<h5>Apartment</h5>
 													<span class="properties_tag">{{ucfirst($sproperty->type)}}</span>
@@ -590,6 +590,7 @@
 
 <script>
   $(document).ready(function() {
+
     $(window).scroll(function() {
       if ($(window).scrollTop() >= 1) {
         $("header").addClass("fixed-header");
@@ -599,76 +600,106 @@
         $(" .header-top").slideDown();
       }
     });
-    jQuery(".property_slider-0").slick({
-      infinite: true,
-      autoplay: true,
-      dots: false,
-      autoplaySpeed: 3000,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      speed: 500,
-      arrows: true,
-      prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
-      nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
-      responsive: [{
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 1025,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 667,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        },
+    
+    $(".property_slider-0").slick({
+  infinite: true,
+  autoplay: true,
+  dots: false,
+  autoplaySpeed: 3000,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  speed: 500,
+  arrows: true,
+  prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
+  nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
+    responsive: [
+    {
+      breakpoint: 1200, // Large desktops and laptops
+      settings: {
+        slidesToShow: 2,
+      }
+    },
+    {
+      breakpoint: 992, // Tablets and smaller desktops
+      settings: {
+        slidesToShow: 2,
+      }
+    },
+    {
+      breakpoint: 768, // Landscape tablets and mobile devices
+      settings: {
+        slidesToShow: 1,
+      }
+    },
+    {
+      breakpoint: 576, // Portrait smartphones
+      settings: {
+        slidesToShow: 1,
+      }
+    },
+    {
+      breakpoint: 480, // Smallest smartphones
+      settings: {
+        slidesToShow: 1,
+      }
+    }
+    // Add more breakpoints and settings as needed
+  ]
+});
 
-      ]
-    });
-    jQuery(".property_slider-1").slick({
-      infinite: true,
+  $(".property_slider-1").slick({
+  
+  infinite: true,
     autoplay: true,
-    dots: true,
+    dots: false, //if true create problem in responsive
+    autoplaySpeed: 3000,
     slidesToShow: 2,
     slidesToScroll: 1,
     speed: 500,
     arrows: true,
     rtl:true,
-    prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
-    nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
-    responsive: [{
-        breakpoint: 1200,
-        settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1
-        }
+  prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
+  nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
+   responsive: [
+    {
+      breakpoint: 1200, // Large desktops and laptops
+      settings: {
+        slidesToShow: 2,
+      }
     },
     {
-        breakpoint: 1025,
-        settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-        }
+      breakpoint: 992, // Tablets and smaller desktops
+      settings: {
+        slidesToShow: 2,
+      }
     },
     {
-        breakpoint: 667,
-        settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-        }
-    }]
+      breakpoint: 768, // Landscape tablets and mobile devices
+      settings: {
+        dots: false,
+        slidesToShow: 1,
+      }
+    },
+    {
+      breakpoint: 576, // Portrait smartphones
+      settings: {
+        dots: false,
+        slidesToShow: 1,
+      }
+    },
+    {
+      breakpoint: 480, // Smallest smartphones
+      settings: {
+        dots: false,
+        slidesToShow: 1,
+      }
+    }
+    // Add more breakpoints and settings as needed
+  ]
     });
+   
 
-    jQuery(".property_slider-2").slick({
+    $(".property_slider-2").slick({
       infinite: true,
       autoplay: true,
       dots: true,        // Show dots for navigation
@@ -676,34 +707,48 @@
       slidesToShow: 4,
       slidesToScroll: 1,
       speed: 500,
-      arrows: false, 
+      arrows: true, 
       prevArrow: "<button type='button' class='slick-prev slide-btn'><i class='fas fa-chevron-left' aria-hidden='true'></i></button>",
       nextArrow: "<button type='button' class='slick-next slide-btn'><i class='fas fa-chevron-right' aria-hidden='true'></i></button>",
-      responsive: [{
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 1025,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 667,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        },
-
-      ]
+    responsive: [
+    {
+      breakpoint: 1200, // Large desktops and laptops
+      settings: {
+        slidesToShow: 2,
+      }
+    },
+    {
+      breakpoint: 992, // Tablets and smaller desktops
+      settings: {
+        slidesToShow: 2,
+      }
+    },
+    {
+      breakpoint: 768, // Landscape tablets and mobile devices
+      settings: {
+        dots: false,
+        slidesToShow: 1,
+      }
+    },
+    {
+      breakpoint: 576, // Portrait smartphones
+      settings: {
+        dots: false,
+        slidesToShow: 1,
+      }
+    },
+    {
+      breakpoint: 480, // Smallest smartphones
+      settings: {
+        dots: false,
+        slidesToShow: 1,
+      }
+    }
+    // Add more breakpoints and settings as needed
+  ]
     });
-    jQuery(".v_testimonials").slick({
+
+    $(".v_testimonials").slick({
       infinite: false,
       autoplay: false,
       dots: true,
@@ -783,6 +828,7 @@
         }
       })
     })
+    
     $("#homeform").submit(function(e) {
       
       let error=false;

@@ -17,7 +17,7 @@
                             <li><a href="/">Home</a></li>
                             <li><a href="{{ route('page.aboutus') }}">About Us</a></li>
                             <li><a href="{{ route('page.tandc') }}">Terms & Conditions</a></li>
-                            <li><a href="{{ route('page.faq') }}">FAQs</a></li>
+                            <li><a href="{{ route('page.privacy') }}">Privacy Policy</a></li>
                         </ul>
                     </div>
                     <div class="footer-sub-link-col col-md-3 mb-md-0 mb-5">
