@@ -1,4 +1,6 @@
 @extends('layouts.estate')
+@section('title', 'Indian Real Estate Portal - Rent and Sell Properties in India - estateon.com') 
+@section('metaDescription', 'Find Your Real Estate Dream and Know More About Our Top Properties in Commercial and Top Residential Properties In India | Register Now on estateon.com.') 
 @section('content')
 <section class="find-prop main-home-banner">
   <img src="{{ url('estate/images/banner.jpg')}}" alt="property-front-view" class="full-img" />

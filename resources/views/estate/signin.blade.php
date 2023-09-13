@@ -1,4 +1,6 @@
 @extends('layouts.estate')
+@section('title', 'Sign In | Post Your Property on EstateOn') 
+@section('metaDescription', 'EstateOn account helps you to contact our Top Builder Projects in India and Leading Agents Properties in India. Owners Can Post Properties to Get More Users.') 
 @section('content')
 <section class="sign-up-section login-section">
             <div class="container">

@@ -117,7 +117,7 @@ section {
 body {
   line-height: 1.3;
   font-family: "Judson", serif !important;
-  color: #8a8a8a;
+  /* color: #8a8a8a; */
   background-color: #fff;
   font-size: 20px;
   font-weight: 400;
@@ -168,10 +168,21 @@ a {
   text-decoration: none;
 }
 
-p {
+/* p {
   color: #8a8a8a;
+} */
+.bullet {
+  display: block;
+  margin-bottom: 10px;
+  padding-left: 20px; /* Adjust as needed for the bullet's spacing */
+  position: relative;
 }
 
+.bullet::before {
+  content: "\2022"; /* Unicode bullet character (•) */
+  position: absolute;
+  left: 0;
+}
 .dark-font {
   color: #000000;
 }
@@ -4055,6 +4066,23 @@ a.blog-box-img img {
   .property-doc-col {
     max-width: 50%;
   }
+  .about-banner {
+    padding-top: 80px;
+    background-position: left -215px bottom;
+    background-size: cover;
+  }
+  .step-form-group .form-check-input {
+    width: 14px;
+    top: 0px;
+}
+	.history-table-wrap {
+		padding: 32px 22px;
+		min-height: auto;
+		overflow: hidden;
+	}
+	.amenities_box ul li {
+		flex-basis: calc(100% / 2 - 6px);
+	}
 }
 
 @media screen and (max-width: 500px) {

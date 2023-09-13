@@ -1,4 +1,6 @@
 @extends('layouts.estate')
+@section('title', 'Featured Properties to Buy Sell Rent in India - Indian Real Estate site estateon.com') 
+@section('metaDescription', 'Explore Our Agents and Builders Projects to Find Your Dream Properties for Sell and Rent Including Houses,  Apartments, Plot and Lands with EstateOn.') 
 @section('content')
 <main>
   <div class="breadcrum">

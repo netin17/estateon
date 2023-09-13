@@ -10,7 +10,7 @@ Route::get('reset-password/{token}', 'Auth\ForgotPasswordController@showResetPas
 Route::post('reset-password', 'Auth\ForgotPasswordController@submitResetPasswordForm')->name('reset.password.post');
 Route::get('reset-confirm', 'Auth\ForgotPasswordController@resetConfirm')->name('reset.password.confirm');
 Route::get('/', 'Web\HomeController@index')->name('home.index');
-Route::get('/signin', 'Web\HomeController@signin')->name('home.signin');
+Route::get('/sign-in', 'Web\HomeController@signin')->name('home.signin');
 Route::get('/signup', 'Web\HomeController@signup')->name('home.signup');
 Route::post('/postsignup', 'Web\HomeController@postsignup')->name('home.postsignup');
 Route::post('/postsignin', 'Web\HomeController@postsignin')->name('home.postsignin');
@@ -31,13 +31,13 @@ Route::get('logout', 'Web\HomeController@logout');
 //builder autocomplete
 Route::get('/builders/autocomplete', 'FrontUser\BuilderController@autocomplete');
 //
-Route::get('list', 'Web\PropertiesController@list')->name('property.list');
-Route::get('aboutus', 'Web\PageController@aboutus')->name('page.aboutus');
+Route::get('property-list', 'Web\PropertiesController@list')->name('property.list');
+Route::get('about-us', 'Web\PageController@aboutus')->name('page.aboutus');
 Route::get('contact', 'Web\PageController@contact')->name('page.contact');
 Route::get('faq', 'Web\PageController@faq')->name('page.faq');
 Route::get('privacy-policy', 'Web\PageController@privacy_policy')->name('page.privacy');
 Route::get('pricing', 'Web\PageController@pricing')->name('page.pricing');
-Route::get('tandc', 'Web\PageController@tandc')->name('page.tandc');
+Route::get('terms-and-conditions', 'Web\PageController@tandc')->name('page.tandc');
 Route::get('userguide', 'Web\PageController@userguide')->name('page.userguide');
 Route::get('wishlist', 'Web\PageController@wishlist')->name('page.wishlist');
 Route::get('agent', 'Web\UserController@agents')->name('user.agent');

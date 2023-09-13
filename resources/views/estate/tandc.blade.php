@@ -1,4 +1,6 @@
 @extends('layouts.estate')
+@section('title', 'Terms & Conditions | EstateOn') 
+@section('metaDescription', 'Our Terms and Conditions Help Users to Get Proper and Easy Solutions in Real Estate Era. Promised You to Give Relevant Help and Support on EstateOn.') 
 @section('content')
 <main>
       
@@ -9,57 +11,34 @@
         </div>
       </div>
       <!-- Bredacrum Over -->
-      
-<!-- featured property -->
-<!-- <section class="privacy-page space">
-    <div class="container">
-      <div class="row">
-            <div class="col-12">
-                <div class="privacy_page">
-                <strong>Applicable Terms</strong>
-                <div class="tips">
-                    <ul>
-                        <li>
-                            <p>This website (the “Site”) is owned and operated by Estate On, Mumbai, India. </p>
-                        </li>
-                        <li>
-                            <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        </li>
-                        <li class="mb-0">
-                            <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
-                        </li>
-                    </ul>
+      <section class="privacy_area space"> <!-- Work with section start --->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-12 mx-auto">
+                <h3><u>EstateOn Terms & conditions</u></h3>
+                    <p>Step on this website or user visits this website, using its application, subscription, data feed, and different types of services clearly states that a user agrees with our terms and conditions along with our privacy policy. In any case, if you have any issue or second thoughts about EstateOn Terms & Conditions then kindly leave this site and please do not use its services. We can amend/modify our terms & conditions without any prior notice. All such amendments will be applicable immediately from the moment they are made. </p>
+                    <p>This is the leading platform which offers real estate services and helps people connect with the real estate market in terms of selling or buying housing properties. We have full rights to all the content available on this site. Our terms & conditions apply to all users who use our services through this site. Entire “Terms of Use” implies an electronic record under the meaning of the applicable laws. All such electronic records are computer generated and in any case do not require any kind of physical or digital signatures. </p>
+                    <p>
+                    We are connected with two types of visitors such are general users (who visit the site for their queries) and real estate professionals (who want to sell or rent their property through our site). Terms and conditions apply to all kinds of users on this site. 
+                    </p>
+                    <p>
+                    EstateOn tries its level best to provide accurate information. But EstateOn.com does not guarantee that the content on this site is absolutely accurate, complete in all manners, trusted and error-free in all aspects. This site also provides or uses external links to provide extended services on which it has no control. In such case, EstateOn is not responsible for the availability of those external links, sites or platforms and does not take responsibility for such content and services.
+                    </p>
+                    <p>
+                    Initially, users can access our site without creating an account and can access basic features on the site. To access full features and services users have to create an account so that can access, upload, and download the specific information using the site. EstateOn has its own method to verify a user’s account then only one can be able to create an account. A single user is not able to create multiple accounts and to verify this we have some set of methods to prohibit a user. 
+                    </p>
+                    <p>
+                    We may have a subscription fee for our plans and services which is non-refundable until there is an offer for money back. EstateOn reserves all the right to change, revise, or amend the subscription or services fee without any prior notice. It may be conducted post subscription or during subscription of the plan so a user will not be intimated in such case and have to pay accordingly. 
+                    </p>
+                    <h3><u>Grievance Redressal –</u></h3>
+                    <p>
+                    In case of any complaint, misuse, abuse or discrepancies related to the breach of such terms & conditions you can write us on at Email - eoninfratech@gmail.com. We make sure that our Grievance officer will reach you within the minimum period of time with a solid solution.
+                    </p>
                 </div>
-                
-                <p><strong>Where does it come from?</strong>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                <strong>Liability</strong>
-                <div class="tips">
-                    <ul>
-                        <li>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
-                        </li>
-                        <li>
-                            <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </li>
-                        <li><p>Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.</p></li>
-                        <li><p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.</p></li>
-                        <li class="mb-0">
-                            <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
-                        </li>
-                    </ul>
-                </div>
-                
-                <p><strong>Use of the Site</strong>You agree to use the Site only for lawful purposes, and in a manner that does not infringe the rights of, or restrict or inhibit the use and enjoyment of the Site by any third party. Such restriction or inhibition includes, without limitation, conduct which is unlawful, or which may harass or cause distress or inconvenience to any person and the transmission of obscene or offensive content or disruption of normal flow of dialogue within the Site.</p>
-                
-                <p><strong>Where can I get some?</strong>If any of these Terms and Conditions should be determined to be illegal, invalid or otherwise unenforceable by reason of the laws of any state or country in which these Terms and Conditions are intended to be effective, then to the extent and within the jurisdiction which that term or condition is illegal, invalid or unenforceable, it shall be severed and deleted from these Terms and Conditions and the remaining terms and conditions shall survive, remain in full force and effect and continue to be binding and enforceable.</p>
-                
-                <p><strong>What is Lorem Ipsum?</strong>The Site is controlled and operated by Wadhim Solutions from its offices. Wadhim Solutions makes no representation that materials on the Site are appropriate or available for use in other locations. Those who choose to access the Site from other locations do so on their own initiative and are responsible for compliance with local laws, if and to the extent local laws are applicable.</p>
             </div>
         </div>
-      </div>
-    </div>
-  </section> -->
+      </section>
 
-    {!!html_entity_decode($content->content)!!}
+    <!-- {!!html_entity_decode($content->content)!!} -->
     </main>
 @endsection

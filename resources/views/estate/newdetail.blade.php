@@ -704,12 +704,23 @@
 
 
 		var sliderProperties = new Swiper('.properties-slider', {
-			slidesPerView: 2.5,
+			slidesPerView: 1,
 			spaceBetween: 0,
 			freeMode: true,
 			navigation: {
 				nextEl: '.properties-next',
 				prevEl: '.properties-prev',
+			},
+			breakpoints: {
+			  640: {
+				slidesPerView: 2,
+			  },
+			  768: {
+				slidesPerView: 2,
+			  },
+			  1024: {
+				slidesPerView: 2.5,
+			  },
 			},
 		});
 

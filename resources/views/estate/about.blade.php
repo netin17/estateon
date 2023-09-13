@@ -1,4 +1,6 @@
 @extends('layouts.estate')
+@section('title', 'About Us | EstateOn') 
+@section('metaDescription', 'Explore More Features and Real Estate Solutions on EstateOn. Get to Know More About Our Top Builders in India. Our Top Properties Help You to Fulfill Your Dream. Register Now.') 
 @section('content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
