@@ -129,6 +129,9 @@ class PropertiesController extends Controller
                     'property_details'=>function($dquery){
                         $dquery->with(['city']);
                     },
+                    'property_type'=>function($tquery){
+                        $tquery->with(['type_data']);
+                    },
                     'images' => function ($iquery) {
                         $iquery->where('featured', 1);
                     }

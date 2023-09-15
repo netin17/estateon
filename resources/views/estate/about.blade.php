@@ -22,7 +22,7 @@
 		<div class="row">
 			<div class="col-12 col-md-6">
 				<div class="our-story-image">
-				<img src="{{ url('estate/images/our-story.svg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
+				<img src="{{ url('estate/images/our-story.svg')}}" alt="property for sale" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 			<div class="col-12 col-md-6">
@@ -48,7 +48,7 @@
 		<div class="row d-flex align-items-center">
 			<div class="col-12 col-md-5">
 				<div class="selling-property-img">
-					<img src="{{ url('estate/images/selling-property.png')}}" alt="no-property" class="mx-auto no-property-img d-block" />
+					<img src="{{ url('estate/images/selling-property.png')}}" alt="apartments for sale" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 			<div class="col-12 col-md-7">
@@ -137,10 +137,10 @@
 		<div class="row">
 			<div class="col-12 col-md-4">
 				<div class="our-experience-img mb-3">
-					<img src="{{ url('estate/images/our-experience1.jpg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
+					<img src="{{ url('estate/images/our-experience1.jpg')}}" alt="rental apartments for rent" class="mx-auto no-property-img d-block" />
 				</div>
 				<div class="our-experience-img">
-					<img src="{{ url('estate/images/our-experience2.jpg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
+					<img src="{{ url('estate/images/our-experience2.jpg')}}" alt="studio apartments for rent" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 			<div class="col-12 col-md-4">
@@ -250,7 +250,7 @@
 		<div class="row">
 			<div class="col-12 col-md-5">
 				<div class="builders-goals-img">
-					<img src="{{ url('estate/images/builders-goals.jpg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
+					<img src="{{ url('estate/images/builders-goals.jpg')}}" alt="top builders in india" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 			<div class="col-12 col-md-7">
@@ -340,7 +340,7 @@
 			</div>
 			<div class="col-12 col-md-6">
 				<div class="agents-professionals-img">
-					<img src="{{ url('estate/images/agents-professionals2.svg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
+					<img src="{{ url('estate/images/agents-professionals2.svg')}}" alt="local real estate agents" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 		</div>
@@ -355,7 +355,7 @@
 		<div class="row">
 			<div class="col-12 col-md-7">
 				<div class="owners-trust-img">
-					<img src="{{ url('estate/images/owners-trust.svg')}}" alt="no-property" class="mx-auto no-property-img d-block" />
+					<img src="{{ url('estate/images/owners-trust.svg')}}" alt="house for rent by owner" class="mx-auto no-property-img d-block" />
 				</div>
 			</div>
 			<div class="col-12 col-md-5">

@@ -1,11 +1,14 @@
 @extends('layouts.estate')
+@section('title', 'Sign Up | Complete your Journey in Real Estate Era | EstateOn') 
+@section('metaDescription', 'Start your journey with estateon.com and access India's best property management & services platform. Join us today to make your dream into reality. ') 
+
 @section('content')
 <section class="sign-up-section">
     <div class="container large-container">
         <div class="row align-items-center">
             <div class="col-xl-7 col-md-6">
                 <div class="main-site-large-logo">
-                    <img src="{{ url('estate/images/very-large-logo2.png')}}" alt="logo" />
+                    <img src="{{ url('estate/images/very-large-logo2.png')}}" alt="EstateOn logo" />
                 </div>
             </div>
             <div class="col-xl-5 col-md-6">

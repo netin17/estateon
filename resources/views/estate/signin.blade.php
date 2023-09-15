@@ -7,7 +7,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-6 col-md-6">
                         <div class="main-login-logo ms-0">
-                            <img src="{{ url('estate/images/very-large-logo2.png')}}" alt="logo" />
+                            <img src="{{ url('estate/images/very-large-logo2.png')}}" alt="EstateOn logo" />
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6">

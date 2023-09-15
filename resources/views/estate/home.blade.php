@@ -3,7 +3,7 @@
 @section('metaDescription', 'Find Your Real Estate Dream and Know More About Our Top Properties in Commercial and Top Residential Properties In India | Register Now on estateon.com.') 
 @section('content')
 <section class="find-prop main-home-banner">
-  <img src="{{ url('estate/images/banner.jpg')}}" alt="property-front-view" class="full-img" />
+  <img src="{{ url('estate/images/banner.jpg')}}" alt="property for sale india" class="full-img" />
   <div class="container">
     <div class="web-intro">
       <div class="intro-head">
@@ -410,7 +410,7 @@
     <div class="row align-items-center">
       <div class="col-md-6">
         <div class="appImageSec">
-          <img src="{{ url('estate/images/estateonapp.png')}}" alt="images" class="img-fluide">
+          <img src="{{ url('estate/images/estateonapp.png')}}" alt="EstateOn App" class="img-fluide">
         </div>
       </div>
       <div class="col-md-6">
@@ -427,7 +427,7 @@
           </div>
           <div class="appStore mt-4">
             <ul class="p-0">
-              <a href="https://play.google.com/store/apps/details?id=com.wadhim.estateon"><img src="{{ url('estate/images/google.png')}}" alt="icon"></a>
+              <a href="https://play.google.com/store/apps/details?id=com.wadhim.estateon"><img src="{{ url('estate/images/google.png')}}" alt="google paly store Icon"></a>
               <a href=""><img src="{{ url('estate/images/Appstore.png')}}" alt=""></a>
             </ul>
           </div>
@@ -445,7 +445,7 @@
     <div class="row main-card-row">
       <div class="col-md-4">
         <div class="media">
-          <img class="mr-3" src="{{ url('estate/images/updateicon.png')}}" alt="Generic placeholder image">
+          <img class="mr-3" src="{{ url('estate/images/updateicon.png')}}" alt="buy a new home">
           <div class="media-body">
             <h5 class="mt-0">Buy a new home </h5>
             <p class="description"> Lorem ipsum dolor sit amet,
@@ -455,7 +455,7 @@
       </div>
       <div class="col-md-4">
         <div class="media">
-          <img class="mr-3" src="{{ url('estate/images/updateicon1.png')}}" alt="Generic placeholder image">
+          <img class="mr-3" src="{{ url('estate/images/updateicon1.png')}}" alt="sell a home">
           <div class="media-body">
             <h5 class="mt-0">Sell a home </h5>
             <p class="description"> Lorem ipsum dolor sit amet,
@@ -465,7 +465,7 @@
       </div>
       <div class="col-md-4">
         <div class="media">
-          <img class="mr-3" src="{{ url('estate/images/updateicon2.png')}}" alt="Generic placeholder image">
+          <img class="mr-3" src="{{ url('estate/images/updateicon2.png')}}" alt="rent a home">
           <div class="media-body">
             <h5 class="mt-0">Rent a home </h5>
             <p class="description"> Lorem ipsum dolor sit amet,

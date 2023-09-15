@@ -75,7 +75,7 @@
                                 <textarea name="message" id="message" cols="30" rows="4" class="form-control" required></textarea>
                             </div>
 							
-							<div class="form-group-col mb-0 w-100 d-flex align-items-center mt-4">
+							<div class="form-group-col mb-0 w-100 d-md-flex d-column align-items-center mt-4">
 								<div class="contact-bottom d-flex align-items-center justify-content-end w-100">
                                     <div class="d-flex align-items-center" id="recaptcha-container"></div>
                                 </div>

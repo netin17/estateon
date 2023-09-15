@@ -75,7 +75,7 @@
 												<div class="properties_box_items">
 													<ul>
 													@foreach($property->amenities->take(2) as $aminity)
-														<li>{{ $aminity->amenity_data->name}}</li>
+														<li>{{ $aminity->amenity_data->name ?? ''}}</li>
 														@endforeach
 													</ul>
 													<div class="properties_price">₹ {{number_form($property->property_details->price)}}</div>

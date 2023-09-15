@@ -32,7 +32,7 @@
                     </p>
                     <h3><u>Grievance Redressal –</u></h3>
                     <p>
-                    In case of any complaint, misuse, abuse or discrepancies related to the breach of such terms & conditions you can write us on at Email - eoninfratech@gmail.com. We make sure that our Grievance officer will reach you within the minimum period of time with a solid solution.
+                    In case of any complaint, misuse, abuse or discrepancies related to the breach of such terms & conditions you can write us on at Email - <a href="mailto:eoninfratech@gmail.com">eoninfratech@gmail.com</a>. We make sure that our Grievance officer will reach you within the minimum period of time with a solid solution.
                     </p>
                 </div>
             </div>

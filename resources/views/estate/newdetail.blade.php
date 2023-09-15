@@ -15,7 +15,7 @@
 	@if(isset($data['property']['images']) && count($data['property']['images'])> 0)
 	<div class="details details-slider-main">
 		<div class="wrapper">
-			<div class="swiper-slide"><img src="{{$data['property']['images'][0]['url']}}" alt=""></div>
+			<div class="swiper-slide"><img src="{{$data['property']['images'][0]['url']}}" alt="commercial property for sale"></div>
 		</div>
 		<!-- <div class="swiper-button-next"></div>
 		<div class="swiper-button-prev"></div> -->
@@ -367,7 +367,7 @@
 											
 											<div class="properties_box_img">
 											@if (count($otherproperty->images) > 0)
-												<img src="{{ $otherproperty->images[0]->url }}">
+												<img src="{{ $otherproperty->images[0]->url }}" alt="{{$otherproperty->properties->property_type->type_data->name ?? ''}} for {{$otherproperty->properties->type ?? ''}}">
 												@if ($otherproperty->property_details->property_status)
 												@switch($otherproperty->property_details->property_status)
 												@case('ready_to_move')
