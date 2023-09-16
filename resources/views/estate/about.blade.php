@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-12 col-md-4">
 				<div class="about-divider"></div>
-				<h1>About Our <span>EstateOn</span></h1>
+				<h1><span>EstateOn</span> About Us </h1>
 			</div>
 		</div>
 
@@ -29,14 +29,7 @@
 				<div class="our-story-con">
 					<h5>Our story starts with the name</h5>
 					<h3>EstateOn</h3>
-					<p>The founder serving the industry science 2008, having experience 13+ year and counting 
-					in various city across India starting from Indore,and got chance to work in Mumbai, 
-					Ahmadabad Jaipur Nagpur Raipur Bhopal etc. Founded company in 2019 with the vision of 
-					to provide best and value for money property options with all legal and transparent way 
-					to organize a proper system with corporate culture in real estate service industry. To 
-					solve all the major problem people are facing during real estate buying selling and lease 
-					process lack of transparency proper guidance and communication with actual facts. We have 
-					vision to provide all A to Z facilities like buying selling lease all under one roof</p>
+					<p>With an aim to provide easy access to selling, purchasing and renting properties to the people, EstateOn is established. This is the leading portal and first choice of buyers, homeowners, real estate brokers and developers. We have made EstateOn.com a user-friendly portal in such ways that you have very easy access to publicize and market your property, find a property of your dreams and rent your property. To solve the major problems people are facing in the real estate industry like buying a property in India, property for sell or property for rent at true cost with all legal information, this portal is designed, to get your multiple problems solved under one roof. Also, keep you updated with the latest trends and news in the real estate industry through this finest platform.</p>
 				</div>
 			</div>
 		</div>
@@ -53,10 +46,8 @@
 			</div>
 			<div class="col-12 col-md-7">
 				<div class="selling-property-con">
-					<h3>Buying & Selling Property In An Easy Way</h3>
-					<h6>Distinctively re-engineer revolutionary meta-services and premium At vero eos et 
-					accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum 
-					deleniti atque corrupti quos dolores et quas molestias excepturi.</h6>
+					<h3>Innovative & Easiest way of Buying & Selling your Property</h3>
+					<h6>First of all, we try our level best to offer maximum choices so that one can find a dream home without any pain and hectic approach. We meticulously verified each property listed on EstateOn in order to get surety about the direct owner, owner’s information and other necessary information.</h6>
 					
 					<ul class="selling-item-list">
 						<li>
@@ -73,8 +64,7 @@
 							</span>
 							<div class="selling-item-con">
 								<h5>Our Vision</h5>
-								<p>Distinctively re-engineer revolutionary meta-services and premium At vero 
-								eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+								<p>We believe in offering all kinds of real estate services and solutions on this single platform so that people can get their problems solved in no time.</p>
 							</div>
 						</li>
 						<li>
@@ -121,8 +111,7 @@
 							</span>
 							<div class="selling-item-con">
 								<h5>Our Mission</h5>
-								<p>Distinctively re-engineer revolutionary meta-services and premium At vero eos 
-								et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+								<p>We have only one aim to make the Indian real estate experience people totally transparent, memorable, effortless and result-oriented.</p>
 							</div>
 						</li>
 					</ul>
@@ -145,18 +134,8 @@
 			</div>
 			<div class="col-12 col-md-4">
 				<div class="our-experience-con">
-					<h3>Our Experience</h3>
-					<p>The founder serving the industry science 2008, having experience 13+ year and counting in 
-					various city across India starting from Indore, and got chance to work in Mumbai, Ahmadabad 
-					Jaipur Nagpur Raipur Bhopal etc. </p>
-
-					<p>Founded company in 2019 with the vision of to provide best and value for money property 
-					options with all legal and transparent way to organize a proper system with corporate culture 
-					in real estate service industry. 
-					To solve all the major problem people are facing during real estate buying selling and lease 
-					process lack of transparency proper guidance and communication with actual facts. </p>
-
-					<p>We have vision to provide all A to Z facilities like buying selling lease all under one roof</p>
+					<h3>Industry’s Long Experience makes us Leader in Market</h3>
+					<p>stateOn is founded and built on dedicated, self-motivated and exceptional people. People at EstateOn have the commitment to offer excellent solutions through their long experience in the industry to those people who are facing issues in the real estate industry. The team has experience in verifying the properties at a core level, handling legal documentation, and consulting with buyers as well as sellers that save users valuable time and make sure for trusted and fine deals. The expertise, professionalism and sincerity of our team not only help people save their money but also save the most expensive time.</p>
 				</div>
 			</div>
 			<div class="col-12 col-md-4">
@@ -256,44 +235,43 @@
 			<div class="col-12 col-md-7">
 				<div class="builders-goals-con">
 					<h3>Builders Goals</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum 
-					is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy 
-					text of the printing and typesetting industry. Ipsum is simply dummy text of the printing 
-					and typesetting industry.</p>
+					<p>Top builders in India focus on potential leads for their properties. Builder comes up with different properties (commercial as well as residential) for the clients. Builders have huge options in the real estate market like selling or renting their property but all they need is potential clients.</p>
+					<p>
+					We have several ways and different real estate digital marketing strategies that help the builder to meet potential clients. We generate leads using advanced and result-oriented techniques for developers as well as best builders in India. There are some techniques we use to generate leads for your properties.
+					</p>
 					<ul>
 						<li>
 							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 							  <path d="M5 0L6.35045 3.64955L10 5L6.35045 6.35045L5 10L3.64955 6.35045L0 5L3.64955 3.64955L5 0Z" fill="#D5BB1A"/>
 							</svg> 
-							Lorem Ipsum is simply dummy text of the printing
+							Using Specialized Services
 						</li>
 						<li>
 							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 							  <path d="M5 0L6.35045 3.64955L10 5L6.35045 6.35045L5 10L3.64955 6.35045L0 5L3.64955 3.64955L5 0Z" fill="#D5BB1A"/>
 							</svg> 
-							Lorem Ipsum is simply dummy text of the printing
+							Email Campaigns
 						</li>
 						<li>
 							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 							  <path d="M5 0L6.35045 3.64955L10 5L6.35045 6.35045L5 10L3.64955 6.35045L0 5L3.64955 3.64955L5 0Z" fill="#D5BB1A"/>
 							</svg> 
-							Lorem Ipsum is simply dummy text of the printing
+							Audio & Video Marketing
 						</li>
 						<li>
 							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 							  <path d="M5 0L6.35045 3.64955L10 5L6.35045 6.35045L5 10L3.64955 6.35045L0 5L3.64955 3.64955L5 0Z" fill="#D5BB1A"/>
 							</svg> 
-							Lorem Ipsum is simply dummy text of the printing
+							Digital Ads
 						</li>
 						<li>
 							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 							  <path d="M5 0L6.35045 3.64955L10 5L6.35045 6.35045L5 10L3.64955 6.35045L0 5L3.64955 3.64955L5 0Z" fill="#D5BB1A"/>
 							</svg> 
-							Lorem Ipsum is simply dummy text of the printing
+							Search Engine Optimization (SEO)
 						</li>
 					</ul>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is 
-					simply dummy text of the printing and typesetting industry.Lore</p>
+					<p>We are here to change the pattern of running a digital real estate platform in order to receive genuine, trusted and most potential leads for Builders and developers.</p>
 				</div>
 			</div>
 		</div>
@@ -311,12 +289,15 @@
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 							  <path d="M8 0L10.1607 5.83927L16 8L10.1607 10.1607L8 16L5.83927 10.1607L0 8L5.83927 5.83927L8 0Z" fill="#C42128"/>
 							</svg>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem 
-							Ipsum is simply dummy text of the printing and typesetting industry. Ipsum is 
-							simply dummy text of the printing and typesetting industry.</p>
+							<p>More than 50 top real estate brokers (residential as well as commercial) are connected with EstateOn and getting unexpected results. Our reach to potential clients makes it very easy and profitable for top real estate brokers. EstateOn rental platform helps you in finding potential tenants without any middleman. This is how you feel safe and comfortable with us in respect of dealing with clients. </p>
 						</li>
 						<li>
+							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+							  <path d="M8 0L10.1607 5.83927L16 8L10.1607 10.1607L8 16L5.83927 10.1607L0 8L5.83927 5.83927L8 0Z" fill="#C42128"/>
+							</svg>
+							<p>Listing your property at EstateOn is very simple and spontaneous. Hardly, it takes approximately 5 minutes to verify you and post your property in an eye-catching way. We have a set of algorithms and software to post and display your property in no time. While Post your property for rent online you may have complete guidance from our highly experienced, innovative and skilled customer service manager. We make sure that you will get only potential clients (buyers or tenants) and do not get fake calls. Being the first choice of consumer you will start getting calls from genuine clients on the day first. If you are looking for free property listing websites in India then don’t delay and post right now.</p>
+						</li>
+						<!-- <li>
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 							  <path d="M8 0L10.1607 5.83927L16 8L10.1607 10.1607L8 16L5.83927 10.1607L0 8L5.83927 5.83927L8 0Z" fill="#C42128"/>
 							</svg>
@@ -324,18 +305,9 @@
 							Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem 
 							Ipsum is simply dummy text of the printing and typesetting industry. Ipsum is 
 							simply dummy text of the printing and typesetting industry.</p>
-						</li>
-						<li>
-							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-							  <path d="M8 0L10.1607 5.83927L16 8L10.1607 10.1607L8 16L5.83927 10.1607L0 8L5.83927 5.83927L8 0Z" fill="#C42128"/>
-							</svg>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem 
-							Ipsum is simply dummy text of the printing and typesetting industry. Ipsum is 
-							simply dummy text of the printing and typesetting industry.</p>
-						</li>
+						</li> -->
 					</ul>
-					<a href="#">Register Now</a>
+					<a href="{{route('home.signup')}}">Register Now</a>
 				</div>
 			</div>
 			<div class="col-12 col-md-6">

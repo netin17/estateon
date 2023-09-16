@@ -281,12 +281,11 @@
 						<iframe src="https://maps.google.com/maps?q={{$data['property']->lat}},{{$data['property']->lng}}&hl=en&z=14&amp;output=embed" width="100%" height="320px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</div>
 					</section>
-
+					@if(isset($data['property']['amenities']) && count($data['property']['amenities'])> 0)
 					<section id="amenities" class="project_secrow amenities_box">
 						<div class="project_secrow_header">
 							<h4 class="project_details_con_title">Amenities</h4>
 						</div>
-						@if(isset($data['property']['amenities']) && count($data['property']['amenities'])> 0)
 						<div class="project_secrow_body">
 							<ul>
 								@foreach($data['property']['amenities'] as $amenity)
@@ -303,9 +302,9 @@
 								@endforeach
 							</ul>
 						</div>
-						@endif
+						
 					</section>
-
+					@endif
 					<section id="specification" class="project_secrow specification_box">
 						<div class="project_secrow_header">
 							<h4 class="project_details_con_title">Specification</h4>
@@ -367,7 +366,7 @@
 											
 											<div class="properties_box_img">
 											@if (count($otherproperty->images) > 0)
-												<img src="{{ $otherproperty->images[0]->url }}" alt="{{$otherproperty->properties->property_type->type_data->name ?? ''}} for {{$otherproperty->properties->type ?? ''}}">
+												<img src="{{ $otherproperty->images[0]->url }}" alt="{{$otherproperty->property_type->type_data->name ?? ''}} for {{$otherproperty->type ?? ''}}">
 												@if ($otherproperty->property_details->property_status)
 												@switch($otherproperty->property_details->property_status)
 												@case('ready_to_move')

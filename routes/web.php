@@ -11,7 +11,7 @@ Route::post('reset-password', 'Auth\ForgotPasswordController@submitResetPassword
 Route::get('reset-confirm', 'Auth\ForgotPasswordController@resetConfirm')->name('reset.password.confirm');
 Route::get('/', 'Web\HomeController@index')->name('home.index');
 Route::get('/sign-in', 'Web\HomeController@signin')->name('home.signin');
-Route::get('/signup', 'Web\HomeController@signup')->name('home.signup');
+Route::get('/user-registration', 'Web\HomeController@signup')->name('home.signup');
 Route::post('/postsignup', 'Web\HomeController@postsignup')->name('home.postsignup');
 Route::post('/postsignin', 'Web\HomeController@postsignin')->name('home.postsignin');
 Route::get('detail/{slug}', 'Web\PropertiesController@newdetail')->name('property.detail');

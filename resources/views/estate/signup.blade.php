@@ -1,6 +1,6 @@
 @extends('layouts.estate')
 @section('title', 'Sign Up | Complete your Journey in Real Estate Era | EstateOn') 
-@section('metaDescription', 'Start your journey with estateon.com and access India's best property management & services platform. Join us today to make your dream into reality. ') 
+@section('metaDescription', 'Start your journey with estateon.com and access India\'s best property management & services platform. Join us today to make your dream into reality.') 
 
 @section('content')
 <section class="sign-up-section">
