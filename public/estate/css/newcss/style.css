@@ -3383,8 +3383,8 @@ ul.social_media_left li a svg {
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
-    line-height: 84px;
-    letter-spacing: 1.6px;
+    /* line-height: 84px;
+    letter-spacing: 1.6px; */
     margin: 0;
 }
 .our-experience-con p {
@@ -3608,7 +3608,7 @@ ul.social_media_left li a svg {
     line-height: 127.5%;
     margin: 0;
 }
-.agents-professionals-con a {
+.agents-professionals-con .reg-link {
     color: #C42128;
     text-align: center;
     font-size: 30px;

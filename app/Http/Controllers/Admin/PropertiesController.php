@@ -155,7 +155,7 @@ class PropertiesController extends Controller
             'featured' => isset($data['featured']) ? 1 : 0,
             'hot' => isset($data['hot']) ? 1 : 0,
             //'notes' => $data['notes'],
-            'slug'=> commonfunction::createSlug(Str::slug($data['name']),0,'property'),
+            'slug'=> commonfunction::createSlug(Str::slug($data['property_title']),0,'property'),
             'created_by' => $user_id
 
         ]);
@@ -351,7 +351,7 @@ class PropertiesController extends Controller
             'featured' => isset($data['featured']) ? 1 : 0,
             'hot' => isset($data['hot']) ? 1 : 0,
             //'notes' => $data['notes'],
-            'slug'=> commonfunction::createSlug(Str::slug($data['name']),0,'property'),
+            'slug'=> commonfunction::createSlug(Str::slug($data['property_title']),0,'property'),
             'created_by' => $user_id
         ];
         Property::where('id', $id)

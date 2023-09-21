@@ -1,4 +1,7 @@
 @extends('layouts.estate')
+@section('title', $data['property']['property_details']['property_title']) 
+@section('metaDescription', $data['property']->description) 
+
 @section('content')
 <link rel="stylesheet" href="{{ url('estate/css/swiper-bundle.min.css')}}" />
 <link rel="stylesheet" href="{{ url('estate/css/bootstrap-icons.css')}}">
@@ -112,7 +115,21 @@
 						@elseif($data['property']->property_details && $data['property']['property_details']['furnished'] != '')
 						<div class="col-6 col-md-4 mb-3 mb-md-0">
 							<p>Furnished Status</p>
-							<h4>{{ucfirst($data['property']['property_details']['furnished'])}}</h4>
+							@switch($data['property']['property_details']['furnished'])
+												@case('unfurnished')
+												<h4>Unfurnished</h4>
+												@break
+												@case('furnished')
+												<h4>Furnished</h4>
+												@break
+												@case('semi_furnished')
+												<h4>Semi Furnished</h4>
+												@break
+												@default
+												<h4>Unfurnished</h4>
+												@break
+												@endswitch
+							
 						</div>
 						@endif
 						<div class="col-6 col-md-4 mb-3 mb-md-0">
@@ -256,7 +273,9 @@
 					<ul class="project_details_nav sticky-top">
 						<li><a href="#description" class="active">Description</a></li>
 						<li><a href="#location">Location</a></li>
+						@if(isset($data['property']['amenities']) && count($data['property']['amenities'])> 0)
 						<li><a href="#amenities">Amenities</a></li>
+						@endif
 						<li><a href="#specification">Specification</a></li>
 						{{-- <li><a href="#transaction-history">Transaction History</a></li>
 						<li><a href="#price-insights">Price Insights</a></li>
@@ -266,6 +285,7 @@
 
 					<section id="description" class="project_secrow description_box">
 						<div class="project_secrow_header">
+						<h3 class="project_details_con_title">{{$data['property']->name}}</h3>
 							<h4 class="project_details_con_title">Description</h4>
 						</div>
 						<div class="project_secrow_body">
@@ -311,42 +331,53 @@
 						</div>
 						<div class="project_secrow_body">
 							<div class="row">
-								@if($data['property']->property_details && $data['property']->property_details->property_category != '')
+								
 								<div class="col-6 col-md-4 mb-3 mb-md-4">
-									<p>Property category</p>
-									<h4>{{ucfirst($data['property']->property_details->property_category)}}</h4>
+									<p>Listed by</p>
+									<h4>{{ucfirst($data['property']->property_details->user_type) ?? "--"}}</h4>
 								</div>
-								@endif
-								@if($data['property']->property_details && $data['property']->property_details->numbers_of_floors != '')
 								<div class="col-6 col-md-4 mb-3 mb-md-4">
-									<p>Total Floor in Building</p>
-									<h4>{{$data['property']->property_details->numbers_of_floors}}</h4>
+									<p>Facing</p>
+									<h4>{{$data['property']->vastu->vastu_data->name ?? '--'}}</h4>
 								</div>
-								@endif
-								@if($data['property']->type)
-								<div class="col-6 col-md-4 mb-3 mb-md-4">
-									<p>Property For</p>
-									<h4>{{ucfirst($data['property']->type)}}</h4>
-								</div>
-								@endif
-								@if($data['property']->property_details && $data['property']->property_details->carpet_area != '')
+								
+								
 								<div class="col-6 col-md-4 mb-3 mb-md-4">
 									<p>Carpet Area</p>
-									<h4>{{$data['property']->property_details->carpet_area}}</h4>
+									<h4>{{isset($data['property']->property_details->carpet_area) ? $data['property']->property_details->carpet_area.' Sq.ft' : "--"}}</h4>
 								</div>
-								@endif
-								@if($data['property']->property_details && $data['property']->property_details->carpet_area != '')
+								
 								<div class="col-6 col-md-4 mb-3 mb-md-4">
 									<p>Super Area</p>
-									<h4>{{$data['property']->property_details->super_area}}</h4>
+									<h4>{{isset($data['property']->property_details->super_area) ? $data['property']->property_details->super_area.' Sq.ft' : "--"}}</h4>
 								</div>
-								@endif
-								@if($data['property']->property_details && $data['property']->property_details->build_up_area != '')
+								
 								<div class="col-6 col-md-4 mb-3 mb-md-4">
 									<p>Build-up Area</p>
-									<h4>{{$data['property']->property_details->build_up_area}}</h4>
+									<h4>{{isset($data['property']->property_details->build_up_area) ? $data['property']->property_details->build_up_area.' Sq.ft' : "--"}}</h4>
 								</div>
-								@endif
+
+								<div class="col-6 col-md-4 mb-3 mb-md-4">
+									<p>Project ID</p>
+									<h4>{{$data['property']->property_details->rera_number ?? "--"}}</h4>
+								</div>
+								<div class="col-6 col-md-4 mb-3 mb-md-4">
+									<p>Property Age</p>
+									<h4>{{ isset($data['property']->property_details->property_age) ? $data['property']->property_details->property_age . ' years' : "--" }}</h4>
+								</div>
+								<div class="col-6 col-md-4 mb-3 mb-md-4">
+									<p>Govt. Tax</p>
+									@switch($data['property']->property_details->govt_tax_include)
+												@case(0)
+												<h4>Not Included</h4>
+												@break
+												@case(1)
+												<h4>Included</h4>
+												@break
+												@default
+												<h4>Not Included</h4>
+												@endswitch
+								</div>
 							</div>
 						</div>
 					</section>

@@ -5,11 +5,15 @@
                             <div class="site-logo">
                                 <img src="{{ url('estate/images/footer-logo.png')}}" alt="logo" class="w-100" />
                             </div>
-                            <p style="font-size: 14px; color: #fff;">We’re reimagining how you buy, sell and rent. It’s
-                                now
-                                easier to get
-                                into a place you love.
-                                So let’s do this, together</p>
+                            <p style="font-size: 14px; color: #fff;">
+                            <b>EON INFRATECH PRIVATE LIMITED</b> <br>
+<b>CIN:</b>  U70109MP2019PTC048938 <br>
+<b>Registered Address: </b> S-59 Kalindi Gold,
+O & M Division, Sanwer, Indore,
+Madhya Pradesh 453555 IN <br>
+<b>Office Address:</b>  203, Malay Corporate,
+11 Bhamori Square, Indore,
+Madhya Pradesh 452001</p>
                         </div>
                     </div>
                     <div class="footer-link-col col-md-2 footer-link mb-md-0 mb-5">
@@ -41,7 +45,7 @@
                     </div>
                 </div>
                 <div class="text-center copyright-text mt-5">
-                    Copyright@2023 All Rights Resaved By Estateon
+                    Copyright@2023 All Rights Resaved By EON INFRATECH PRIVATE LIMITED
                 </div>
             </div>
 

@@ -29,7 +29,7 @@
 				<div class="our-story-con">
 					<h5>Our story starts with the name</h5>
 					<h3>EstateOn</h3>
-					<p>With an aim to provide easy access to selling, purchasing and renting properties to the people, EstateOn is established. This is the leading portal and first choice of buyers, homeowners, real estate brokers and developers. We have made EstateOn.com a user-friendly portal in such ways that you have very easy access to publicize and market your property, find a property of your dreams and rent your property. To solve the major problems people are facing in the real estate industry like buying a property in India, property for sell or property for rent at true cost with all legal information, this portal is designed, to get your multiple problems solved under one roof. Also, keep you updated with the latest trends and news in the real estate industry through this finest platform.</p>
+					<p>With an aim to provide easy access to selling, purchasing and renting properties to the people, EstateOn is established. This is the leading portal and first choice of buyers, homeowners, real estate brokers and developers. We have made EstateOn.com a user-friendly portal in such ways that you have very easy access to publicize and market your property, find a property of your dreams and rent your property. To solve the major problems people are facing in the real estate industry like buying a property in India, <a href="/" style="font-weight: 800;">property for sell</a>or property for rent at true cost with all legal information, this portal is designed, to get your multiple problems solved under one roof. Also, keep you updated with the latest trends and news in the real estate industry through this finest platform.</p>
 				</div>
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 			</div>
 			<div class="col-12 col-md-7">
 				<div class="selling-property-con">
-					<h3>Innovative & Easiest way of Buying & Selling your Property</h3>
+					<h1>Innovative & Easiest way of Buying & Selling your Property</h1>
 					<h6>First of all, we try our level best to offer maximum choices so that one can find a dream home without any pain and hectic approach. We meticulously verified each property listed on EstateOn in order to get surety about the direct owner, owner’s information and other necessary information.</h6>
 					
 					<ul class="selling-item-list">
@@ -135,7 +135,7 @@
 			<div class="col-12 col-md-4">
 				<div class="our-experience-con">
 					<h3>Industry’s Long Experience makes us Leader in Market</h3>
-					<p>stateOn is founded and built on dedicated, self-motivated and exceptional people. People at EstateOn have the commitment to offer excellent solutions through their long experience in the industry to those people who are facing issues in the real estate industry. The team has experience in verifying the properties at a core level, handling legal documentation, and consulting with buyers as well as sellers that save users valuable time and make sure for trusted and fine deals. The expertise, professionalism and sincerity of our team not only help people save their money but also save the most expensive time.</p>
+					<p>EstateOn is founded and built on dedicated, self-motivated and exceptional people. People at EstateOn have the commitment to offer excellent solutions through their long experience in the industry to those people who are facing issues in the real estate industry. The team has experience in verifying the properties at a core level, handling legal documentation, and consulting with buyers as well as sellers that save users valuable time and make sure for trusted and fine deals. The expertise, professionalism and sincerity of our team not only help people save their money but also save the most expensive time.</p>
 				</div>
 			</div>
 			<div class="col-12 col-md-4">
@@ -289,13 +289,13 @@
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 							  <path d="M8 0L10.1607 5.83927L16 8L10.1607 10.1607L8 16L5.83927 10.1607L0 8L5.83927 5.83927L8 0Z" fill="#C42128"/>
 							</svg>
-							<p>More than 50 top real estate brokers (residential as well as commercial) are connected with EstateOn and getting unexpected results. Our reach to potential clients makes it very easy and profitable for top real estate brokers. EstateOn rental platform helps you in finding potential tenants without any middleman. This is how you feel safe and comfortable with us in respect of dealing with clients. </p>
+							<p>More than 500+ top Agent Professionals (residential as well as commercial) are connected with EstateOn and getting unexpected results. Our reach to potential clients makes it very easy and profitable for top real estate brokers. EstateOn property management platform helps you in finding potential tenants. This is how you feel safe and comfortable with us in respect of dealing with clients.</p>
 						</li>
 						<li>
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 							  <path d="M8 0L10.1607 5.83927L16 8L10.1607 10.1607L8 16L5.83927 10.1607L0 8L5.83927 5.83927L8 0Z" fill="#C42128"/>
 							</svg>
-							<p>Listing your property at EstateOn is very simple and spontaneous. Hardly, it takes approximately 5 minutes to verify you and post your property in an eye-catching way. We have a set of algorithms and software to post and display your property in no time. While Post your property for rent online you may have complete guidance from our highly experienced, innovative and skilled customer service manager. We make sure that you will get only potential clients (buyers or tenants) and do not get fake calls. Being the first choice of consumer you will start getting calls from genuine clients on the day first. If you are looking for free property listing websites in India then don’t delay and post right now.</p>
+							<p>Agents Professionals can list their multiple properties at EstateOn is very simple and spontaneous. Hardly, it takes approximately 5 minutes to verify you and post your property in an eye-catching way. We have a set of algorithms and software to post and display your property in no time. While <a style="font-weight: 800;" href="{{route('property.list')}}"> Post your property for rent </a>  you may have complete guidance from our highly experienced, innovative and skilled customer service manager. EstateOn make sure them in getting unexpected positive result from market and will get only potential clients (buyers or tenants) for their top properties in India. Being the first choice of consumer, agent professionals will start getting calls from genuine buyers and renters from the day first of listing. If you are looking for <a style="font-weight: 800;" href="/">free property listing websites </a> in India then don&apos;t delay and post right now.</p>
 						</li>
 						<!-- <li>
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -307,7 +307,7 @@
 							simply dummy text of the printing and typesetting industry.</p>
 						</li> -->
 					</ul>
-					<a href="{{route('home.signup')}}">Register Now</a>
+					<a class="reg-link" href="{{route('home.signup')}}">Register Now</a>
 				</div>
 			</div>
 			<div class="col-12 col-md-6">
@@ -332,11 +332,8 @@
 			</div>
 			<div class="col-12 col-md-5">
 				<div class="owners-trust-con">
-					<h5>Heading 2</h5>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum 
-					is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy 
-					text of the printing and typesetting industry. Ipsum is simply dummy text of the printing 
-					and typesetting industry.</p>
+					<h5>Your Top Choice for Property Management</h5>
+					<p>Owners can trust on EstateOn, the best property management platform In India. EstateOn takes responsibility for the individual properties. It manages all the content related to listings and makes it visible by making the search very easy for buyers/renters to find their properties at zero brokerage.</p>
 					
 					<div class="text-right">
 						<svg width="37" height="49" viewBox="0 0 37 49" fill="none" xmlns="http://www.w3.org/2000/svg">

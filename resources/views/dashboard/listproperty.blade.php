@@ -74,7 +74,7 @@
 
                                         </div>
                                     </td>
-                                    <td class="table-data">Sell</td>
+                                    <td class="table-data">{{$property->type }}</td>
                                     <td class="table-data">
                                         <div class="listed-properties-table-data">
                                             <span class="d-inline-block px-2 py-1 table-sky-btn mb-1"><a href="{{ route('property.detail', [$property->slug] ) }}">View</a></span><br>

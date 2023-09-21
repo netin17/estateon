@@ -7,6 +7,21 @@
 <meta name="p:domain_verify" content="28ce3ca0627e40cddfa68d3fd4ef747f"/>
 <!-- Google tag (gtag.js) -->
 <meta name="google-site-verification" content="_tgtuGo-gQeEJTywiVp1pVRPDY4xIZUC-eNQMfho228" />
+
+
+<meta property="og:title" content="Indian Real Estate Portal - Rent and Sell Properties in India - estateon.com">
+<meta property="og:site_name" content="estateon">
+<meta property="og:url" content="https://estateon.com/">
+<meta property="og:description" content="Find Your Real Estate Dream and Know More About Our Top Properties in Commercial and Top Residential Properties In India | Register Now on estateon.com">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://estateon.com/estate/images/banner.jpg"><meta property="og:image" content="https://estateon.com/estate/images/logo.png">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@EstateOn_">
+<meta name="twitter:title" content="Indian Real Estate Portal - Rent and Sell Properties in India">
+<meta name="twitter:description" content="Find Your Real Estate Dream and Know More About Our Top Properties in Commercial and Top Residential Properties In India | Register Now on estateon.com">
+<meta name="twitter:image" content="https://estateon.com/estate/images/banner.jpg">
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YR8FFELL37"></script>
 <script>
   window.dataLayer = window.dataLayer || [];

@@ -3,7 +3,7 @@
 @section('metaDescription', 'Find Your Real Estate Dream and Know More About Our Top Properties in Commercial and Top Residential Properties In India | Register Now on estateon.com.') 
 @section('content')
 <section class="find-prop main-home-banner">
-  <img src="{{ url('estate/images/banner.jpg')}}" alt="property for sale india" class="full-img" />
+  <img src="{{ url('estate/images/banner.jpg')}}" alt="property for Buy India" class="full-img" />
   <div class="container">
     <div class="web-intro">
       <div class="intro-head">
@@ -16,7 +16,7 @@
             <input type="radio" id="search_rent" name="type" value="rent" {{$data['category']=='R'? 'checked':''}}>
             <label for="search_rent">Rent</label>
             <input type="radio" id="search_sale" name="type" value="sale" {{$data['category']=='s'? 'checked':''}}>
-            <label for="search_sale">Sale</label>
+            <label for="search_sale">Buy</label>
           </div>
           <div class="tab-pane">
             <div class="serch-flow">
@@ -427,7 +427,7 @@
           </div>
           <div class="appStore mt-4">
             <ul class="p-0">
-              <a href="https://play.google.com/store/apps/details?id=com.wadhim.estateon"><img src="{{ url('estate/images/google.png')}}" alt="google paly store Icon"></a>
+              <a href=""><img src="{{ url('estate/images/google.png')}}" alt="google paly store Icon"></a>
               <a href=""><img src="{{ url('estate/images/Appstore.png')}}" alt=""></a>
             </ul>
           </div>
