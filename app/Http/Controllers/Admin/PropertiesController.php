@@ -193,6 +193,7 @@ class PropertiesController extends Controller
             ]);
         }
         ////Amenities
+        if (isset($data['amenities'])) {
         $amenities = $data['amenities'];
         if (gettype($amenities) == 'array') {
             $insert_ammenity = [];
@@ -208,6 +209,7 @@ class PropertiesController extends Controller
                 AssignedAmenities::insert($insert_ammenity);
             }
         }
+    }
         ///Additional
         $additional =  isset($data['additional']) ?  $data['additional'] : [];
         if (gettype($additional) == 'array') {
@@ -281,7 +283,9 @@ class PropertiesController extends Controller
         }
 
         $data = [];
-        $data['property'] = Property::where('id', $id)->withCount('likes')->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details'])->first();
+        $data['property'] = Property::where('id', $id)->withCount('likes')->with(['amenities.amenity_data', 'owner','vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details'])->first();
+        //   echo "<pre>"; print_r($data['property']->toArray() );
+        // exit;
         return view('admin.property.show', compact('data'));
     }
 
@@ -409,6 +413,7 @@ class PropertiesController extends Controller
             ]);
         }
         ////Amenities
+        if (isset($data['amenities'])) {
         $amenities = $data['amenities'];
         $assigned_amenities = AssignedAmenities::where('property_id', $id)->delete();
         if (gettype($amenities) == 'array') {
@@ -425,6 +430,7 @@ class PropertiesController extends Controller
                 AssignedAmenities::insert($insert_ammenity);
             }
         }
+    }
         ///Additional
         $additional =  isset($data['additional']) ? $data['additional'] : [];
         $assigned_additional = AssignedPreferences::where('property_id', $id)->delete();

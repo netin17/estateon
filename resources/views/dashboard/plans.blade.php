@@ -7,13 +7,10 @@
             <div class="col-lg-6 col-md-8 ">
                 <div class="banner-content">
                     <h1 class="banner-title dark-font wow fadeInLeft">Become A Real Estate Professional</h1>
-                    <p class="banner-text dark-font wow fadeInLeft" data-wow-delay="0.4s">There are many
-                        variations of passages of Lorem
-                        Ipsum available, but the majority have suffered
-                        alteration in some form.</p>
+                    <p class="banner-text dark-font wow fadeInLeft" data-wow-delay="0.4s">Get ultimate growth professionally & financially by connecting with us and find yourself as an Expert Real Estate Professional.</p>
                 </div>
                 <div class="banner-bottom-content ps-xl-5 ps-md-4">
-                    <p class="dark-font">You must hire us for all real estate problems.</p>
+                    <p class="dark-font">Get complete guidance and latest updates on the Real Estate market here.</p>
                     <span class="d-block">-Estate On</span>
                 </div>
             </div>
@@ -33,8 +30,7 @@
                         </div>
                         <div class="work-item-content text-center">
                             <h5 class="mb-xl-3 mb-1 work-item-content-title">List Home</h5>
-                            <p>Our properties are located at prime areas where by there won’t be problem with
-                                transportation</p>
+                            <p>List your multiple properties in an eye-catching manner to attract genuine buyers with good a budget.</p>
                         </div>
                     </div>
                 </div>
@@ -47,9 +43,7 @@
                         </div>
                         <div class="work-item-content text-center">
                             <h5 class="mb-xl-3 mb-1 work-item-content-title">Make Payment</h5>
-                            <p>Our estates comes with good network,portable water , 24hrs light and round the
-                                clock
-                                security.</p>
+                            <p>You would be able to make payment via any means of payment (Debit or Credit Card), UPI, Direct Transfer or others.</p>
                         </div>
                     </div>
                 </div>
@@ -62,8 +56,7 @@
                         </div>
                         <div class="work-item-content text-center">
                             <h5 class="mb-3mb-xl-3 mb-1 work-item-content-title">Make it Official</h5>
-                            <p>We have been in business for over 32 years,for client outside the country you can
-                                trust us to deliver well.</p>
+                            <p>No more escape in such a wide market, display and get growth with us by playing truly officially in such a competitive market.</p>
                         </div>
                     </div>
                 </div>
@@ -74,11 +67,7 @@
 <section class="planning-section py-lg-5 py-4 position-relative">
     <div class="large-container container">
         <h3 class="text-center section-title">Plan For Owners</h3>
-        <p class="text-center col-lg-6 col-md-10 mx-auto">Lorem Ipsum is simply dummy text of the printing and
-            typesetting
-            industry.
-            Lorem
-            Ipsum has been the industry's standard</p>
+        <p class="text-center col-lg-6 col-md-10 mx-auto">We understand the different pocket sizes of the owner so we offer truly pocket-friendly plans for owners. Choose any plan stated here that meets your requirements perfectly.</p>
         <div class="row mt-4 pt-1 justify-content-center">
             @foreach($data['plans'] as $index=>$plan)
             @if($plan->name=='Owner')
@@ -121,13 +110,11 @@
                     <h3 class="section-title section-sm-title mb-md-4 mb-3">Explore Your Future Home With
                         Detailed
                         Videos</h3>
-                    <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have
-                        suffered alteration in some form, by injected humour, or randomised words which don't
-                        look even slightly believable.</p>
+                    <p class="mb-0">A trend has changed from a personal visit to a virtual tour of your dream home. So have a look at the videos of your future home and get all things in detail at a single click. This is how you can see a property from outside to inside and make your decision. You are getting</p>
                     <ul class="video-content-list pt-xl-4 pt-3 mt-xl-1 ps-4 mb-lg-5 mb-4">
-                        <li>Property detail view</li>
-                        <li>Standard quality video</li>
-                        <li>Everything in a nutshell</li>
+                        <li>360o view of your future home</li>
+                        <li>High definition Videos</li>
+                        <li>Virtual reality walkthrough experience</li>
                     </ul>
                     <a href="https://www.youtube.com/" class="d-flex transition align-items-center youtube-video-btn" target="_blank">
                         <img src="{{ url('estate/images/red-video-icon.svg')}}" alt="red-video-icon">
@@ -150,11 +137,7 @@
 <section class="planning-section planning-agents-section py-lg-5 py-4 position-relative">
     <div class="large-container container">
         <h3 class="text-center section-title sky-font">Plan For Agents</h3>
-        <p class="text-center col-lg-6 col-md-10 mx-auto">Lorem Ipsum is simply dummy text of the printing and
-            typesetting
-            industry.
-            Lorem
-            Ipsum has been the industry's standard</p>
+        <p class="text-center col-lg-6 col-md-10 mx-auto">We have some set of plans designed by keeping things in mind like the market competition, output and requirements of Real Estate Agents. Four ultimate plans are displayed below so to go with anyone that suits you perfectly.</p>
         <div class="row mt-4 pt-1 justify-content-center">
             @foreach($data['plans'] as $index=>$plan)
             @if($plan->name=='Agent')
@@ -186,10 +169,7 @@
         <div class="row">
             <div class="col-md-5 pe-xl-5">
                 <h3 class="section-title mb-4">EstateOn Supports The Investors </h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type specimen book. It has survived not only five
-                    centuries, but also the leap into electronic</p>
+                <p>It is our priority and we feel pleasure to support our valuable investors. We play smart and in an advanced manner to support and offer rapid growth to our investors so they feel worthy to be in connection with EstateOn. By handling and managing different kinds of activities like social media engagement, on-the-point & attractive graphic content and advertisements we provide full support to them. We have a dedicated team to offer 24*7 Personal Assistance to our most valuable investors.</p>
             </div>
             <div class="col-md-7 ps-lg-5 ps-md-4">
                 <div class="row px-1 plant-main-row">

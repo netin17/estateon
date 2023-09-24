@@ -70,7 +70,7 @@
                             {{ ucfirst($data['property']->property_details['furnished']) }}
                         </td>
                     </tr>
-
+{{--
                     <tr>
                         <th>
                             {{ trans('cruds.property.fields.featured') }}
@@ -88,7 +88,7 @@
                             {{ $data['property']->hot == 1 ? 'true': 'false' }}
                         </td>
                     </tr>
-
+--}}
                     <tr>
                         <th>
                             {{ trans('cruds.property.fields.amenities') }}
@@ -205,28 +205,28 @@
 
                     <tr>
                         <th>
-                            Size
+                            Carpet Area
                         </th>
                         <td>
-                            {{ $data['property']['property_details']->size }}
+                            {{ $data['property']['property_details']->carpet_area }}
                         </td>
                     </tr>
 
                     <tr>
                         <th>
-                            Length
+                            Super Area
                         </th>
                         <td>
-                            {{ $data['property']['property_details']->length }}
+                            {{ $data['property']['property_details']->super_area }}
                         </td>
                     </tr>
 
                     <tr>
                         <th>
-                            Width
+                            Build up Area
                         </th>
                         <td>
-                            {{ $data['property']['property_details']->length }}
+                            {{ $data['property']['property_details']->build_up_area }}
                         </td>
                     </tr>
                     
@@ -272,10 +272,12 @@
 
                     <tr>
                         <th>
-                        User Id
+                        User 
                         </th>
                         <td>
-                        {{$data['property']['user_id']}}
+                        <a href="{{ route('admin.users.show', $data['property']->owner->id ?? '') }}">
+                                {{ $data['property']->owner->name ?? '' }} ({{ $data['property']->owner->email ?? '' }})
+                            </a>
                         </td>
                     </tr>
 
@@ -301,6 +303,9 @@
             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
                 {{ trans('global.back_to_list') }}
             </a>
+            <a style="margin-top:20px;" class="btn btn-info" href="{{ route('admin.property.edit', $data['property']->id) }}">
+                                {{ trans('global.edit') }}
+                            </a>
         </div>
     </div>
 </div>

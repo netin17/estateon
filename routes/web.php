@@ -33,7 +33,7 @@ Route::get('/builders/autocomplete', 'FrontUser\BuilderController@autocomplete')
 //
 Route::get('property-list', 'Web\PropertiesController@list')->name('property.list');
 Route::get('about-us', 'Web\PageController@aboutus')->name('page.aboutus');
-Route::get('contact', 'Web\PageController@contact')->name('page.contact');
+// Route::get('contact', 'Web\PageController@contact')->name('page.contact');
 Route::get('faq', 'Web\PageController@faq')->name('page.faq');
 Route::get('privacy-policy', 'Web\PageController@privacy_policy')->name('page.privacy');
 Route::get('pricing', 'Web\PageController@pricing')->name('page.pricing');

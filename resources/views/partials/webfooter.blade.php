@@ -7,12 +7,12 @@
                             </div>
                             <p style="font-size: 14px; color: #fff;">
                             <b>EON INFRATECH PRIVATE LIMITED</b> <br>
-<b>CIN:</b>  U70109MP2019PTC048938 <br>
-<b>Registered Address: </b> S-59 Kalindi Gold,
-O & M Division, Sanwer, Indore,
+<b><u>CIN</u>:</b>  U70109MP2019PTC048938 <br>
+<b><u>Registered Address</u>: </b> S-59 Kalindi Gold,  <br>
+O & M Division, Sanwer, Indore,  <br>
 Madhya Pradesh 453555 IN <br>
-<b>Office Address:</b>  203, Malay Corporate,
-11 Bhamori Square, Indore,
+<b><u>Office Address</u>:</b>  203, Malay Corporate, <br>
+11 Bhamori Square, Indore,  <br>
 Madhya Pradesh 452001</p>
                         </div>
                     </div>

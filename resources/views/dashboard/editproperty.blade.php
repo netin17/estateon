@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class="profile-form-group d-flex align-items-center mb-4">
-                                <label for="category" class="d-block">Properties Category {{ $data['property']->property_details->property_category}}</label>
+                                <label for="category" class="d-block">Properties Category</label>
                                 <select id="property_category" name="property_category" class="d-block profile-form-fild form-control select2 m-0" required>
     <option value="residential" {{ isset($data['property']->property_details->property_category) && $data['property']->property_details->property_category == 'residential' ? 'selected' : '' }}>Residential</option>
     <option value="commercial" {{ isset($data['property']->property_details->property_category) && $data['property']->property_details->property_category == 'commercial' ? 'selected' : '' }}>Commercial</option>
@@ -77,7 +77,7 @@
                                 <label for="type" class="d-block">Property Type </label>
                                 <select name="property_type" id="property_type_commercial" class="form-control d-block profile-form-fild select2 m-0" required>
                                     @foreach($data['property_type_commercial'] as $propert)
-                                    <option value="{{ $propert['id'] }}" {{ $data['property']->property_type->type_id ?? '' == $propert['id'] ? 'selected' : '' }}>{{ $propert['name'] }}</option>
+                                    <option value="{{ $propert['id'] }}" {{ (isset($data['property']->property_type->type_id) &&  $data['property']->property_type->type_id == $propert['id']) ? 'selected' : '' }}>{{ $propert['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>--}}
@@ -91,7 +91,7 @@
                                 <label for="vastu" class="d-block">Property Vastu </label>
                                 <select name="vastu" id="vastu" class="form-control d-block profile-form-fild select2 m-0" required>
                                     @foreach($data['vastu'] as $vast)
-                                    <option value="{{ $vast['id'] }}" {{ $data['property']->vastu->vastu_id ?? '' == $vast['id'] ? 'selected' : '' }}>{{ $vast['name'] }}</option>
+                                    <option value="{{ $vast['id'] }}" {{ (isset($data['property']->vastu->vastu_id) && $data['property']->vastu->vastu_id == $vast['id']) ? 'selected' : '' }}>{{ $vast['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -234,27 +234,27 @@
     </div>
     </div>
 
-<div class="step-form-group mb-3 mt-3 property-age-options" style="{{ $data['property']->property_details->property_status == 'ready_to_move' ? 'display: block;' : 'display: none;' }}">
+    <div class="step-form-group mb-3 mt-3 property-age-options" style="{{ $data['property']->property_details->property_status == 'ready_to_move' ? 'display: block;' : 'display: none;' }}">
     <label for="property_age" class="step-form-label">Property Age</label>
     <div class="property-list-items">
-    <div class="form-check">
-        <input type="radio" class="form-check-input" name="property_age" value="0-5" id="age_0_5">
-        <label class="form-check-label" for="age_0_5">0-5 years</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" name="property_age" value="0-5" id="age_0_5" {{ $data['property']->property_details->property_age == '0-5' ? 'checked' : '' }}>
+            <label class="form-check-label" for="age_0_5">0-5 years</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" name="property_age" value="6-10" id="age_6_10" {{ $data['property']->property_details->property_age == '6-10' ? 'checked' : '' }}>
+            <label class="form-check-label" for="age_6_10">6-10 years</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" name="property_age" value="11-15" id="age_11_15" {{ $data['property']->property_details->property_age == '11-15' ? 'checked' : '' }}>
+            <label class="form-check-label" for="age_11_15">11-15 years</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" name="property_age" value="15+" id="age_15+" {{ $data['property']->property_details->property_age == '15+' ? 'checked' : '' }}>
+            <label class="form-check-label" for="age_15+">More Than 15</label>
+        </div>
+        <!-- Add more options here as needed -->
     </div>
-    <div class="form-check">
-        <input type="radio" class="form-check-input" name="property_age" value="6-10" id="age_6_10">
-        <label class="form-check-label" for="age_6_10">6-10 years</label>
-    </div>
-    <div class="form-check">
-        <input type="radio" class="form-check-input" name="property_age" value="11-15" id="age_11_15">
-        <label class="form-check-label" for="age_11_15">11-15 years</label>
-    </div>
-    <div class="form-check">
-        <input type="radio" class="form-check-input" name="property_age" value="15+" id="age_15+">
-        <label class="form-check-label" for="age_15+">More Than 15</label>
-    </div>
-    <!-- Add more options here as needed -->
-</div>
 </div>
 
 <div class="step-form-group mb-3 mt-3 possession-options" style="{{ $data['property']->property_details->property_status == 'under_construction' ? 'display: block;' : 'display: none;' }}">
@@ -282,8 +282,8 @@
                                         <div class="step-form-group mb-3 col-md-6">
                                             <label for="include" class="step-form-label">Govt Tax Include</label>
                                             <select name="govt_tax_include" class="form-control select2 step-form-field step-form-field-other-info w-100 d-block m-0" id="govt_tax">
-                                                <option value="1" {{ $data['property']->property_details->govt_tax_include ?? '' == '1' ? 'selected' : '' }}>Included</option>
-                                                <option value="0" {{ $data['property']->property_details->govt_tax_include ?? '' == '0' ? 'selected' : '' }}>Not Included</option>
+                                                <option value="1" {{ (isset($data['property']->property_details->govt_tax_include) &&  $data['property']->property_details->govt_tax_include == '1') ? 'selected' : '' }}>Included</option>
+                                                <option value="0" {{ (isset($data['property']->property_details->govt_tax_include) &&  $data['property']->property_details->govt_tax_include == '0') ? 'selected' : '' }}>Not Included</option>
                                             </select>
                                         </div>
                                         <div class="step-form-group col-md-6 mb-3">

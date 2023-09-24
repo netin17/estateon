@@ -337,7 +337,7 @@
 									<h4>{{ucfirst($data['property']->property_details->user_type) ?? "--"}}</h4>
 								</div>
 								<div class="col-6 col-md-4 mb-3 mb-md-4">
-									<p>Facing</p>
+									<p>Vastu</p>
 									<h4>{{$data['property']->vastu->vastu_data->name ?? '--'}}</h4>
 								</div>
 								
