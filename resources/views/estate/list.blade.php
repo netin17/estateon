@@ -60,7 +60,7 @@
 											
 										
 											<div class="properties_box_body">
-												<div class="property_title">{{ \Illuminate\Support\Str::limit($property->name, $limit = 10, $end = '...') }}</div>
+												<div class="property_title">{{ \Illuminate\Support\Str::limit($property->property_details->property_title, $limit = 10, $end = '...') }}</div>
 												<div class="properties_box_items">
 													<h5>Apartment</h5>
 													<span class="properties_tag">{{ucfirst($property->type)}}</span>

@@ -25,6 +25,37 @@
                             {{ $data['property']->name }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            Title
+                        </th>
+                        <td>
+                            {{ $data['property']->property_details->property_title }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                        Project Status
+                        </th>
+                        <td>
+                        @switch($data['property']->property_details->property_status)
+												@case('ready_to_move')
+												<h4>Ready to move</h4>
+												@break
+												@case('under_construction')
+												<h4>Under Construction</h4>
+												@break
+												@endswitch
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                        Project/Property Age
+                        </th>
+                        <td>
+                        {{$data['property']->property_details->property_age ?? ''}}				
+                        </td>
+                    </tr>
 
                     <tr>
                         <th>
@@ -238,7 +269,7 @@
                         {{ $data['property']['property_details']->property_category }}
                         </td>
                     </tr>
-
+                    {{--
                     <tr>
                         <th>
                         Property Feature
@@ -247,7 +278,7 @@
                         {{ $data['property']['property_details']->property_feature }}
                         </td>
                     </tr>
-
+--}}
                     <tr>
                         <th>
                         Govt Tax Include

@@ -258,7 +258,7 @@
                   <h4 class="BuildingName">
                     <a href="{{ route('property.detail', [$sproperty->slug] ) }}">
                      
-                      {{\Illuminate\Support\Str::limit($sproperty->name, 35, $end='...')}}</a>
+                      {{\Illuminate\Support\Str::limit($sproperty->property_details->property_title, 35, $end='...')}}</a>
                   </h4>
                   <div class="location">
                     <i class="fas fa-map-marker-alt mr-2"> </i> <a class="locationArea" title="{{$sproperty->address}}">{{\Illuminate\Support\Str::limit($sproperty->address, 35, $end='...')}}</a>
@@ -325,7 +325,7 @@
 											
 										
 											<div class="properties_box_body">
-												<div class="property_title">{{ \Illuminate\Support\Str::limit($sproperty->name, $limit = 17, $end = '...') }}</div>
+												<div class="property_title">{{ \Illuminate\Support\Str::limit($sproperty->property_details->property_title, $limit = 17, $end = '...') }}</div>
 												<div class="properties_box_items">
 													<h5>Apartment</h5>
 													<span class="properties_tag">{{ucfirst($sproperty->type)}}</span>

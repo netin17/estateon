@@ -89,14 +89,14 @@
                         {{ trans('cruds.testimonials.title') }}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route("admin.content.index") }}" class="nav-link {{ request()->is('admin/content') || request()->is('admin/content/*') ? 'active' : '' }}">
+                {{-- <li class="nav-item">
+                    <a href="{{ route('admin.content.index') }}" class="nav-link {{ request()->is('admin/content') || request()->is('admin/content/*') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-quote-left nav-icon">
 
                         </i>
                         Content
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
 
