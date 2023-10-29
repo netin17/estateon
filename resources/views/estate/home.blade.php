@@ -339,8 +339,8 @@
 												</div>
 												<div class="properties_box_items">
 													<ul>
-													@foreach($sproperty->amenities->take(2) as $aminity)
-														<li>{{ $aminity->amenity_data->name}}</li>
+													@foreach($sproperty->preferences->take(1) as $preference)
+														<li>{{ $preference->preferences_data->name}}</li>
 														@endforeach
 													</ul>
 													<div class="properties_price">₹ {{number_form($sproperty->property_details->price)}}</div>

@@ -40,10 +40,10 @@
                         <td>
                         @switch($data['property']->property_details->property_status)
 												@case('ready_to_move')
-												<h4>Ready to move</h4>
+												Ready to move
 												@break
 												@case('under_construction')
-												<h4>Under Construction</h4>
+												Under Construction
 												@break
 												@endswitch
                         </td>

@@ -20,8 +20,6 @@
 		<div class="wrapper">
 			<div class="swiper-slide"><img src="{{$data['property']['images'][0]['url']}}" alt="commercial property for sale"></div>
 		</div>
-		<!-- <div class="swiper-button-next"></div>
-		<div class="swiper-button-prev"></div> -->
 	</div>
 	@endif
 	<div class="details_main_box">
@@ -426,8 +424,8 @@
 												</div>
 												<div class="properties_box_items">
 													<ul>
-													@foreach($otherproperty->amenities->take(2) as $aminity)
-														<li>{{ $aminity->amenity_data->name}}</li>
+													@foreach($otherproperty->preferences->take(1) as $preference)
+														<li>{{ $preference->preferences_data->name}}</li>
 														@endforeach
 													</ul>
 													<div class="properties_price">₹ {{number_form($otherproperty->property_details->price)}}</div>
@@ -448,185 +446,7 @@
 					</section>
 					@endif
 
-					{{--<section id="transaction-history" class="project_secrow transaction_history_box">
-						<div class="project_secrow_header">
-							<h4 class="project_details_con_title">Transaction History</h4>
-							<h6 class="project_details_con_subtitle">Data Source: Maharashtra Govt.</h6>
-						</div>
-						<div class="project_secrow_body">
-							<div class="table-responsive transaction_table">
-								<table class="table table-borderless">
-								  <thead>
-									<tr>
-									  <th scope="col" class="text-center">
-										<h4>Sold Price</h4>
-										<span>Registry Date</span>
-									  </th>
-									  <th scope="col" class="text-center">
-										<h4>Area</h4>
-										<span>Flat & Floor No.</span>
-									  </th>
-									  <th scope="col" class="text-center">
-										<h4>Price</h4>
-										<span>Per Sq.ft(₹)</span>
-									  </th>
-									</tr>
-								  </thead>
-								  <tbody>
-									<tr>
-									  <td class="text-center">
-										<h4>₹30L</h4>
-										<span>Aug 2022</span>
-									  </td>
-									  <td class="text-center">
-										<h4>513 Sq.ft</h4>
-										<span>#603, Floor3</span>
-									  </td>
-									  <td class="text-center">
-										<h4>₹5.85K</h4>
-										<span>/Sq.ft</span>
-									  </td>
-									</tr>
-									
-									<tr>
-									  <td class="text-center">
-										<h4>₹30L</h4>
-										<span>Aug 2022</span>
-									  </td>
-									  <td class="text-center">
-										<h4>513 Sq.ft</h4>
-										<span>#603, Floor3</span>
-									  </td>
-									  <td class="text-center">
-										<h4>₹5.85K</h4>
-										<span>/Sq.ft</span>
-									  </td>
-									</tr>
-									
-									<tr>
-									  <td class="text-center">
-										<h4>₹30L</h4>
-										<span>Aug 2022</span>
-									  </td>
-									  <td class="text-center">
-										<h4>513 Sq.ft</h4>
-										<span>#603, Floor3</span>
-									  </td>
-									  <td class="text-center">
-										<h4>₹5.85K</h4>
-										<span>/Sq.ft</span>
-									  </td>
-									</tr>
-									
-									<tr>
-									  <td class="text-center">
-										<h4>₹30L</h4>
-										<span>Aug 2022</span>
-									  </td>
-									  <td class="text-center">
-										<h4>513 Sq.ft</h4>
-										<span>#603, Floor3</span>
-									  </td>
-									  <td class="text-center">
-										<h4>₹5.85K</h4>
-										<span>/Sq.ft</span>
-									  </td>
-									</tr>
-									
-									<tr>
-									  <td class="text-center">
-										<h4>₹30L</h4>
-										<span>Aug 2022</span>
-									  </td>
-									  <td class="text-center">
-										<h4>513 Sq.ft</h4>
-										<span>#603, Floor3</span>
-									  </td>
-									  <td class="text-center">
-										<h4>₹5.85K</h4>
-										<span>/Sq.ft</span>
-									  </td>
-									</tr>
-									
-									<tr>
-									  <td class="text-center">
-										<h4>₹30L</h4>
-										<span>Aug 2022</span>
-									  </td>
-									  <td class="text-center">
-										<h4>513 Sq.ft</h4>
-										<span>#603, Floor3</span>
-									  </td>
-									  <td class="text-center">
-										<h4>₹5.85K</h4>
-										<span>/Sq.ft</span>
-									  </td>
-									</tr>
-									
-									<tr>
-									  <td class="text-center">
-										<h4>₹30L</h4>
-										<span>Aug 2022</span>
-									  </td>
-									  <td class="text-center">
-										<h4>513 Sq.ft</h4>
-										<span>#603, Floor3</span>
-									  </td>
-									  <td class="text-center">
-										<h4>₹5.85K</h4>
-										<span>/Sq.ft</span>
-									  </td>
-									</tr>
-									
-									
-									<tr>
-									  <td class="text-center">
-										<h4>₹30L</h4>
-										<span>Aug 2022</span>
-									  </td>
-									  <td class="text-center">
-										<h4>513 Sq.ft</h4>
-										<span>#603, Floor3</span>
-									  </td>
-									  <td class="text-center">
-										<h4>₹5.85K</h4>
-										<span>/Sq.ft</span>
-									  </td>
-									</tr>
-									
-								  </tbody>
-								</table>
-							</div>
-						</div>
-					</section>
-					<section id="price-insights" class="project_secrow price_insights_box">
-						<div class="project_secrow_header">
-							<h4 class="project_details_con_title">Price Insights</h4>
-						</div>
-						<div class="project_secrow_body">
-							<p>Kedar Developer presents Kedar Sai Spring, a residential project in Kalyan West Thane.The project 
-							offers spacious and ventilated Kedar Sai Spring Apartment. The project is under construction and the 
-							possession date of the project is April 2023.</p>
-							
-							<p>The super area of 2 BHK starts from 352 sqft. The project is equipped with modern amenities such 
-							as 24*7 Security, CCTV, Children Play Area, Fire Fighting System, Indoor Games, Landscaped Garden to 
-							facilitate the needs of the residents. The project is RERA registered P51700009813.</p>
-						</div>
-					</section>
-					<section id="emi-calculator" class="project_secrow emi_calculator_box">
-						<div class="project_secrow_header">
-							<h4 class="project_details_con_title">EMI Calculator</h4>
-						</div>
-						<div class="project_secrow_body">
-							<p>Kedar Developer presents Kedar Sai Spring, a residential project in Kalyan West Thane.The project 
-							offers spacious and ventilated Kedar Sai Spring Apartment. The project is under construction and the 
-							possession date of the project is April 2023.</p>
-							
-							<p>The super area of 2 BHK starts from 352 sqft. The project is equipped with modern amenities such 
-							as 24*7 Security, CCTV, Children Play Area, Fire Fighting System, Indoor Games, Landscaped Garden to 
-							facilitate the needs of the residents. The project is RERA registered P51700009813.</p>
-						</div>
-					</section> --}}
+					
 
 				</div>
 			</div>
@@ -731,8 +551,25 @@
 			$('.project_details_nav a').removeClass('active');
 			$(this).addClass('active');
 		});
-
-
+		
+		if (checkUserLoggedIn()) {
+    var propertyId = "{{$data['property']->id}}";
+    console.log("propertyId", propertyId)
+    $.ajax({
+            url: '/frontuser/property/' + propertyId + '/visit',
+            type: 'POST',
+            headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+            success: function (response) {
+                console.log(response.message);
+            },
+            error: function (error) {
+                console.error(error.responseJSON.error);
+            }
+        });
+}
+if ($('.properties-slider').length > 0) {
 		var sliderProperties = new Swiper('.properties-slider', {
 			slidesPerView: 1,
 			spaceBetween: 0,
@@ -753,7 +590,8 @@
 			  },
 			},
 		});
-
+	}
+	if ($('.slider-thumbnail').length > 0) {
 		var sliderThumbnail = new Swiper('.slider-thumbnail', {
 			slidesPerView: 4,
 			spaceBetween: 23,
@@ -766,33 +604,18 @@
 				prevEl: '.thumbnail-prev',
 			},
 		});
-
-		var slider = new Swiper('.details-slider-main', {
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-			thumbs: {
-				swiper: sliderThumbnail
-			}
-		});
-		if (checkUserLoggedIn()) {
-    var propertyId = "{{$data['property']->id}}";
-    console.log("propertyId", propertyId)
-    $.ajax({
-            url: '/frontuser/property/' + propertyId + '/visit',
-            type: 'POST',
-            headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-            success: function (response) {
-                console.log(response.message);
-            },
-            error: function (error) {
-                console.error(error.responseJSON.error);
-            }
-        });
-}
+	}
+	// if ($('.details-slider-main').length > 0) {
+	// 	var slider = new Swiper('.details-slider-main', {
+	// 		navigation: {
+	// 			nextEl: '.swiper-button-next',
+	// 			prevEl: '.swiper-button-prev',
+	// 		},
+	// 		// thumbs: {
+	// 		// 	swiper: sliderThumbnail
+	// 		// }
+	// 	});
+	// }
 	})
 </script>
 @endsection

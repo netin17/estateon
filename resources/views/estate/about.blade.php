@@ -382,7 +382,7 @@
 		<div class="row">
 			<div class="col-12 col-md-5">
 				<h2>Our Customer Support</h2>
-				<p>how our Customer Support is responsive qnd dedicated to delivering quality</p>
+				<p>how our Customer Support is responsive and dedicated to delivering quality</p>
 			</div>
 		</div>
 		<ul>
