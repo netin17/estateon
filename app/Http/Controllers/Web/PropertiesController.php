@@ -253,15 +253,31 @@ class PropertiesController extends Controller
         //         });
         //     }
         // }
-        if (isset($params['budgetMin']) || isset($params['maxBudjet'])) {
-            $minbudget= $params['budgetMin'] =="" ? 0: $params['budgetMin'];
-            $maxbudget= $params['maxBudjet']  =="" ? 0: $params['maxBudjet'] ;
-            
-                $property->whereHas('property_details', function ($query)  use ($minbudget,$maxbudget) {
-                    $query->whereBetween('price', [$minbudget, $maxbudget]);
-                });
-            
-         }
+        if (isset($params['budgetMin']) && !isset($params['maxBudjet'])) {
+            $minbudget = $params['budgetMin'] ?? 0;
+        
+            $property->whereHas('property_details', function ($query) use ($minbudget) {
+                $query->where('price', '>=', $minbudget);
+            });
+        }
+        
+        if (!isset($params['budgetMin']) && isset($params['maxBudjet'])) {
+            $maxbudget = $params['maxBudjet'] ?? 0;
+        
+            $property->whereHas('property_details', function ($query) use ($maxbudget) {
+                $query->where('price', '<=', $maxbudget);
+            });
+        }
+        
+        if (isset($params['budgetMin']) && isset($params['maxBudjet'])) {
+            $minbudget = $params['budgetMin'] ?? 0;
+            $maxbudget = $params['maxBudjet'] ?? 0;
+        
+            $property->whereHas('property_details', function ($query) use ($minbudget, $maxbudget) {
+                $query->whereBetween('price', [$minbudget, $maxbudget]);
+            });
+        }
+        
         // if (isset($params['vastu'])) {
         //     if ($params['vastu'] != '') {
         //         $property->whereHas('vastu', function ($query)  use ($params) {
