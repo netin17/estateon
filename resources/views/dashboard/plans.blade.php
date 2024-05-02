@@ -106,7 +106,7 @@
         <div class="row">
             <div class="col-md-6 pr-xl-5 mb-md-0 mb-4">
                 <div class="video-content">
-                    <span class="d-block mb-lg-3" style="color: #323232;">View your deram home</span>
+                    <span class="d-block mb-lg-3" style="color: #323232;">View your dream home</span>
                     <h3 class="section-title section-sm-title mb-md-4 mb-3">Explore Your Future Home With
                         Detailed
                         Videos</h3>
