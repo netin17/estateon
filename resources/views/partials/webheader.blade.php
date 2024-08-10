@@ -21,7 +21,8 @@
                                 </li>
                                 <li class="header-menu-item"><a href="{{ route('home.signin') }}" class="login-btn btn btn-primary">Login</a>
                                 </li>
-
+                                <li class="header-menu-item"><a href="{{ route('home.signup') }}" class="signup-btn btn btn-primary">Sign Up</a>
+                                </li>
                                 @endguest
                                 @auth('frontuser')
                                 <li class="header-menu-item"><a href="{{route('property.list')}}">Properties</a></li>

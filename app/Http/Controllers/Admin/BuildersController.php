@@ -15,7 +15,9 @@ class BuildersController extends Controller
     //
     public function cardCreate()
     {
-        return view('admin.builders.cards.add');
+        $data=[];
+        $data['cards']=Card::get();
+        return view('admin.builders.cards.add',compact(['data']));
     }
 
     public function cardStore(Request $request)
@@ -36,6 +38,38 @@ class BuildersController extends Controller
         ]);
 
         return redirect()->route('admin.card.create')->with('success', 'Card created successfully.');
+    }
+
+
+    public function editcard($id){
+        $data=[];
+        $data['card']=Card::findOrFail($id);
+        return view('admin.builders.cards.edit',compact(['data']));
+    }
+    public function updatecard(Request $request, $id){
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        $card = Card::findOrFail($id);
+        if ($request->hasFile('image')) {
+            if ($card->image) {
+                Storage::disk('public')->delete($card->image);
+            }
+            $imagePath = $request->file('image')->store('images', 'public');
+            $card->image = $imagePath;
+        }
+        if ($request->hasFile('thumbnail')) {
+            if ($card->image) {
+                Storage::disk('public')->delete($card->thumbnail);
+            }
+         
+            $thumbnailPath = $request->file('thumbnail')->store('card_thumbnails', 'public');
+           
+            $card->thumbnail = $thumbnailPath;
+        }
+        $card->save();
+        return redirect()->route('admin.card.create')->with('success', 'Card updated successfully.');
     }
 
     public function buildersRequests()

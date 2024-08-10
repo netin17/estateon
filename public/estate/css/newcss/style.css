@@ -282,14 +282,22 @@ button:focus,
 }
 
 .header-menu-item .login-btn {
-  padding: 12px 50px;
+  padding: 12px 35px;
   background-color: #c42128;
   color: #fff;
   border: 0;
   line-height: 1.18;
   border-radius: 3px;
 }
-
+.header-menu-item .signup-btn {
+  padding: 12px 35px;
+  background-color: #c42128;
+  color: #fff;
+  border: 0;
+  line-height: 1.18;
+  border-radius: 3px;
+  margin-left: 1px;
+}
 .header-menu-item .login-btn:hover {
   background-color: #a11b22;
   color: #fff;
