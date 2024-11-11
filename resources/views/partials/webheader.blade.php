@@ -20,8 +20,9 @@
                                     <a href="/" class="yellow-btn btn btn-primary">Create Your Builder Profile</a>
                                 </li>
                                 <li class="header-menu-item"><a href="{{ route('home.signin') }}" class="login-btn btn btn-primary">Login</a>
-                                </li>
-                                <li class="header-menu-item"><a href="{{ route('home.signup') }}" class="signup-btn btn btn-primary">Sign Up</a>
+                                <a href="{{ route('home.signup') }}" class="signup-btn btn btn-primary">Sign Up</a>   
+                            </li>
+                                <li class="header-menu-item">
                                 </li>
                                 @endguest
                                 @auth('frontuser')
