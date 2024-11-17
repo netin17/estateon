@@ -25,8 +25,24 @@ class StoreUsersRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
+            'phone' => 'required|unique:users,phone|regex:/^[0-9\+\-\s]{10,15}$/',
             'password' => 'required',
             'roles' => 'required'
         ];
+    }
+    protected function prepareForValidation()
+    {
+        if ($this->has('phone')) {
+            $this->merge([
+                'phone' => $this->normalizePhoneNumber($this->input('phone')),
+            ]);
+        }
+    }
+
+    private function normalizePhoneNumber($phone)
+    {
+        $re = '/^(?:\+?91|0)?/m';
+        $ccode = '+91';
+        return preg_replace($re, $ccode, $phone);
     }
 }

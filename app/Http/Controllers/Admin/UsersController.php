@@ -67,6 +67,7 @@ class UsersController extends Controller
         if (!Gate::allows('users_manage')) {
             return abort(401);
         }
+        $validatedData = $request->validated();
         $data = $request->all();
         //Phone Number Formatting//
         $re = '/^(?:\+?91|0)?/m';
@@ -90,7 +91,7 @@ class UsersController extends Controller
             $user->assign($role);
         }
 
-        if($data['user_level'] == 2){
+        if(isset($data['user_level']) && $data['user_level'] == 2){
             return redirect()->route('admin.adminusers.index');    
         }else{
             return redirect()->route('admin.users.index');

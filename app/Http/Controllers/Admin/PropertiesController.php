@@ -298,6 +298,8 @@ class PropertiesController extends Controller
     public function edit($id)
     {
         //
+        // echo "here";
+        // exit;
         if (!Gate::allows('users_manage')) {
             return abort(401);
         }
@@ -309,13 +311,11 @@ class PropertiesController extends Controller
         $data['property'] = Property::where('id', $id)->with(['amenities.amenity_data', 'vastu.vastu_data', 'preferences.preferences_data', 'property_type.type_data', 'property_details','images' => function ($query) {
             $query->where('featured', 1)->first();
         }])->first();
-        //  echo "<pre>"; print_r($data['property']->toArray() );
-        // exit;
         $data['property_type_commercial'] = PropertyType::where('property_type','commercial')->get();
         $data['property_type_residential'] = PropertyType::where('property_type','residential')->get();
         $data['states'] = States::where('country_id', 101)->get();
         $data['cities'] =[];
-        if($data['property']->property_details->state_id){
+        if(isset($data['property']->property_details) && $data['property']->property_details->state_id){
             $stateId=$data['property']->property_details->state_id;
             $data['cities'] = Cities::where('state_id', $stateId)->get();
         }
@@ -452,11 +452,11 @@ class PropertiesController extends Controller
         $extraNotes = isset($data['extra_notes']) ? $data['extra_notes'] : '';
 
         $update_details = [            
-            'user_type' => $data['user_type'], 
-            'property_category' => $data['property_category'],
-            'property_title' => $data['property_title'],
-            'locality' => $data['locality'],
-            'rera_number' => $data['rera_number'],
+            'user_type' => $data['user_type'] ?? null, 
+            'property_category' => $data['property_category'] ?? null,
+            'property_title' => $data['property_title'] ?? null,
+            'locality' => $data['locality'] ?? null,
+            'rera_number' => $data['rera_number'] ?? null,
             'property_feature' => isset($data['property_feature']) ? $data['property_feature'] : null,
             'property_status' => isset($data['property_status']) ? $data['property_status'] : null,
             'property_age'  => isset($data['property_age']) ? $data['property_age'] : null,
